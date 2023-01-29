@@ -1,5 +1,5 @@
 import React from "react";
-import { RiSearch2Line } from "react-icons/ri";
+import SearchIcon from "@mui/icons-material/Search";
 const SearchBar = () => {
   return (
     <section className="flex flex-col gap-4">
@@ -13,7 +13,7 @@ const SearchBar = () => {
           className="bg-darkBlue placeholder:text-sm w-full outline-none border-none text-darkTitle text-base font-normal"
         />
         <div className="bg-skyBlue rounded-full px-[6px] py-[6px]">
-          <RiSearch2Line className="text-darkBlue text-xl " />
+          <SearchIcon className="text-darkBlue text-xl " />
         </div>
       </div>
     </section>

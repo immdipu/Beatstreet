@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { HiPlay } from "react-icons/hi";
+import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 
 const MusicCard = ({ image, id, name }) => {
   return (
@@ -13,7 +13,7 @@ const MusicCard = ({ image, id, name }) => {
         />
         <div className="absolute flex z-20 opacity-0 rounded-lg group-hover:opacity-100 duration-200 transition-all inset-0 w-full items-center justify-center bg-[#4c4c4c68] text-3xl">
           <Link to={`albums/${id}`} className="w-fit rounded-full">
-            <HiPlay className="text-5xl text-lightBlue" />
+            <PlayCircleFilledIcon className="text-5xl text-lightBlue" />
           </Link>
         </div>
       </div>

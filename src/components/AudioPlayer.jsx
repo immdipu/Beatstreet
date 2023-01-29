@@ -7,10 +7,12 @@ import PlayArrowRounded from "@mui/icons-material/PlayArrowRounded";
 import FastForwardRounded from "@mui/icons-material/FastForwardRounded";
 import FastRewindRounded from "@mui/icons-material/FastRewindRounded";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useMusicContext } from "../Context/MusicContext";
 
 const AudioPlayer = () => {
   const { currentSong, audioLoading } = useMusicContext();
+  const [downloading, setDownloading] = useState(false);
   const [audioProgress, setAudioProgress] = useState(0);
   const [paused, setPaused] = useState(false);
   const [musicTotalLength, setMusicTotalLength] = useState("00:00");
@@ -63,6 +65,24 @@ const AudioPlayer = () => {
     return <div className="text-xl text-slate-700">Loading...</div>;
   }
 
+  const handleDownload = () => {
+    setDownloading(true);
+    fetch(currentSong.downloadurl)
+      .then((response) => {
+        response.blob().then((blob) => {
+          let link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
+          link.download = `${currentSong.name}`;
+          link.click();
+          setDownloading(false);
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+        setDownloading(false);
+      });
+  };
+
   return (
     <div className=" px-7 py-5 mt-10 relative boss ">
       <img
@@ -81,7 +101,12 @@ const AudioPlayer = () => {
         ></audio>
 
         <h3 className="text-lg text-darkTitle mt-4">{currentSong.name}</h3>
-        <h5 className="text-xs opacity-90">Artist name</h5>
+        <marquee
+          className="text-xs opacity-90 whitespace-nowrap"
+          direction="right"
+        >
+          {currentSong.primaryArtists}
+        </marquee>
         <img
           src={currentSong.image}
           alt="song Avatar"
@@ -143,6 +168,14 @@ const AudioPlayer = () => {
           <IconButton aria-label="nextsong">
             <FastForwardRounded fontSize="large" htmlColor="#8e9196" />
           </IconButton>
+        </div>
+
+        <div className=" w-full flex justify-end cursor-pointer">
+          {downloading ? (
+            <CircularProgress size={30} />
+          ) : (
+            <CloudDownloadIcon onClick={handleDownload} />
+          )}
         </div>
       </section>
     </div>

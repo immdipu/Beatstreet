@@ -77,7 +77,7 @@ export const MusicProvider = ({ children }) => {
       setLoading(true);
       try {
         const response = await axios.get(
-          "https://saavn.me/modules?language=hindi,english"
+          "https://saavn.me/modules?language=hindi,english,Bhojpuri"
         );
         let result = response.data.data;
         setHomeData({

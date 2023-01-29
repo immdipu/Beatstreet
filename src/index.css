@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: 'Poppins', sans-serif;
+
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+
+
+
+.boss {
+    box-shadow: 12px 12px 29px #151b20, -12px -12px 29px #1a1f26;
+    border-radius: 18px;
+}
+
+.imageAnimation {
+    animation: animateAvatar .5s linear infinite;
+}
+
+
+@keyframes animateAvatar {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.03);
+    }
+}

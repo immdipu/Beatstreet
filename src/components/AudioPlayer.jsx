@@ -38,6 +38,9 @@ const AudioPlayer = () => {
   };
 
   const handleAudioUpdate = () => {
+    if (currentAudio.current.currentTime === currentAudio.current.duration) {
+      setPaused(true);
+    }
     //input total length of the audio
     let minutes = Math.floor(currentAudio.current.duration / 60);
     let seconds = Math.floor(currentAudio.current.duration % 60);

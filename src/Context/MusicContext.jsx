@@ -24,8 +24,8 @@ export const MusicProvider = ({ children }) => {
     Albums: "null",
     playlists: "null",
     charts: "null",
-    trendingAlbums: "null",
-    trendingSongs: "null",
+    trendingAlbums: [],
+    trendingSongs: [],
   });
 
   const singleAlbum = async (id) => {
@@ -74,20 +74,25 @@ export const MusicProvider = ({ children }) => {
 
   useEffect(() => {
     const homePageMusic = async () => {
-      const response = await axios.get(
-        "https://saavn.me/modules?language=hindi,english"
-      );
-      let result = response.data.data;
-      setHomeData({
-        ...homeData,
-        Albums: result.albums,
-        playlists: result.playlists,
-        charts: result.charts,
-        trendingAlbums: result.trending.albums,
-        trendingSongs: result.trending.songs,
-      });
+      setLoading(true);
+      try {
+        const response = await axios.get(
+          "https://saavn.me/modules?language=hindi,english"
+        );
+        let result = response.data.data;
+        setHomeData({
+          ...homeData,
+          Albums: result.albums,
+          playlists: result.playlists,
+          charts: result.charts,
+          trendingAlbums: result.trending.albums,
+          trendingSongs: result.trending.songs,
+        });
 
-      setLoading(false);
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     homePageMusic();

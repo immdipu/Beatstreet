@@ -7,7 +7,6 @@ const Mains = () => {
   if (loading) {
     return <div className="text-2xl font-bold ">Its loading...</div>;
   }
-
   return (
     <div className="bg-darkBlue ml-44 mr-96 pl-10 pr-4 overflow-hidden">
       <section className="w-full my-6 ">

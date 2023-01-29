@@ -1,8 +1,12 @@
 import React from "react";
-import { FaCompass } from "react-icons/fa";
-import { AiFillPieChart } from "react-icons/ai";
-import { BsCollectionPlayFill, BsFillHeartFill } from "react-icons/bs";
-import { MdAssessment, MdTopic, MdAccountBox } from "react-icons/md";
+import ExploreIcon from "@mui/icons-material/Explore";
+import AssessmentIcon from "@mui/icons-material/Assessment";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import SourceIcon from "@mui/icons-material/Source";
+import DonutSmallIcon from "@mui/icons-material/DonutSmall";
+import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { NavLink } from "react-router-dom";
 
 const SideNav = () => {
   return (
@@ -19,17 +23,24 @@ const SideNav = () => {
               Menu
             </h3>
             <ul className="flex flex-col gap-6 mt-5">
+              <NavLink
+                to={"/"}
+                className="flex items-center gap-4 text-sm font-medium"
+              >
+                <ExploreIcon />
+                Discover
+              </NavLink>
               <li className="flex items-center gap-4 text-sm font-medium">
-                <FaCompass className="text-[1.4rem]" /> Discover
+                <AssessmentIcon />
+                Trending
               </li>
               <li className="flex items-center gap-4 text-sm font-medium">
-                <MdAssessment className="text-[1.4rem]" /> Trending
+                <AccountBoxIcon />
+                Album
               </li>
               <li className="flex items-center gap-4 text-sm font-medium">
-                <MdAccountBox className="text-[1.4rem]" /> Album
-              </li>
-              <li className="flex items-center gap-4 text-sm font-medium">
-                <MdTopic className="text-[1.4rem]" /> Genre
+                <SourceIcon />
+                Genre
               </li>
             </ul>
           </section>
@@ -43,13 +54,15 @@ const SideNav = () => {
           </h3>
           <ul className="flex flex-col gap-6 mt-5">
             <li className="flex items-center gap-4 text-sm font-medium">
-              <AiFillPieChart className="text-[1.4rem]" /> Recent
+              <DonutSmallIcon />
+              Recent
             </li>
             <li className="flex items-center gap-4 text-sm font-medium">
-              <BsCollectionPlayFill className="text-lg" /> Playlists
+              <SubscriptionsIcon />
+              Playlists
             </li>
             <li className="flex items-center gap-4 text-sm font-medium">
-              <BsFillHeartFill className="text-lg" /> Favorites
+              <FavoriteIcon /> Favorites
             </li>
           </ul>
         </section>

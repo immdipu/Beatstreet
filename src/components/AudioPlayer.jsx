@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Slider from "@mui/material/Slider";
 import IconButton from "@mui/material/IconButton";
@@ -6,12 +6,14 @@ import PauseRounded from "@mui/icons-material/PauseRounded";
 import PlayArrowRounded from "@mui/icons-material/PlayArrowRounded";
 import FastForwardRounded from "@mui/icons-material/FastForwardRounded";
 import FastRewindRounded from "@mui/icons-material/FastRewindRounded";
+import { useMusicContext } from "../Context/MusicContext";
 
 const AudioPlayer = () => {
+  const { currentSong, audioLoading } = useMusicContext();
   const [audioProgress, setAudioProgress] = useState(0);
-  const [paused, setPaused] = useState(true);
-  const [musicTotalLength, setMusicTotalLength] = useState("44 : 44");
-  const [musicCurrentTime, setMusicCurrentTime] = useState("00 : 00");
+  const [paused, setPaused] = useState(false);
+  const [musicTotalLength, setMusicTotalLength] = useState("00:00");
+  const [musicCurrentTime, setMusicCurrentTime] = useState("00:00");
   const theme = useTheme();
 
   const handleMusicProgressBar = (e) => {
@@ -56,10 +58,14 @@ const AudioPlayer = () => {
     setAudioProgress(isNaN(progress) ? 0 : progress);
   };
 
+  if (audioLoading) {
+    return <div className="text-xl text-slate-700">Loading...</div>;
+  }
+
   return (
     <div className=" px-7 py-5 mt-10 relative boss ">
       <img
-        src="https://c.saavncdn.com/679/Thunderclouds-English-2018-20180809032729-500x500.jpg"
+        src={currentSong.image}
         alt="background"
         className="absolute inset-0 -z-40 h-full object-cover opacity-20 blur-md rounded-lg
     "
@@ -67,15 +73,16 @@ const AudioPlayer = () => {
       <h3 className="text-xl opacity-30">player</h3>
       <section className="flex flex-col items-center gap-1 ">
         <audio
-          src="https://aac.saavncdn.com/679/b0b7a063d3efddf3a771a0dc91b30d69_96.mp4"
+          src={currentSong.downloadurl}
           ref={currentAudio}
+          autoPlay
           onTimeUpdate={handleAudioUpdate}
         ></audio>
 
-        <h3 className="text-lg text-darkTitle mt-4">Song name</h3>
+        <h3 className="text-lg text-darkTitle mt-4">{currentSong.name}</h3>
         <h5 className="text-xs opacity-90">Artist name</h5>
         <img
-          src="https://c.saavncdn.com/679/Thunderclouds-English-2018-20180809032729-500x500.jpg"
+          src={currentSong.image}
           alt="song Avatar"
           className="h-32 w-32 rounded-full object-cover mt-4"
         />

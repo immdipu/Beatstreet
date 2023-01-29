@@ -9,7 +9,7 @@ const Mains = () => {
   }
 
   return (
-    <div className="bg-darkBlue ml-44 mr-80 pl-10 pr-4 overflow-hidden">
+    <div className="bg-darkBlue ml-44 mr-96 pl-10 pr-4 overflow-hidden">
       <section className="w-full my-6 ">
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Trending

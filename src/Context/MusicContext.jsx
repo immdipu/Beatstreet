@@ -8,6 +8,7 @@ import {
   GET_SINGLE_ALBUM_BEGIN,
   GET_SINGLE_ALBUM_SUCESS,
   GET_SINGLE_ALBUM_ERROR,
+  ALERT_SHOW,
 } from "../Actions";
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
   trendingAlbums: [],
   trendingSongs: [],
   currentAlbum: [],
+  alert_show: true,
 };
 
 const MusicContext = React.createContext();
@@ -54,11 +56,16 @@ export const MusicProvider = ({ children }) => {
     homePageMusic();
   }, []);
 
+  const HandleAlert = () => {
+    dispatch({ type: ALERT_SHOW });
+  };
+
   return (
     <MusicContext.Provider
       value={{
         ...state,
         singleAlbums,
+        HandleAlert,
       }}
     >
       {children}

@@ -8,6 +8,7 @@ import SongsList from "./SongsList";
 import TrendingAlbums from "./TrendingAlbums";
 import Albums from "./Albums";
 import SearchBar from "./SearchBar";
+import Alert from "./Alert";
 
 export {
   AudiPlayer,
@@ -20,4 +21,5 @@ export {
   TrendingAlbums,
   Albums,
   SearchBar,
+  Alert,
 };

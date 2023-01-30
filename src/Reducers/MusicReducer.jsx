@@ -5,6 +5,7 @@ import {
   GET_SINGLE_ALBUM_BEGIN,
   GET_SINGLE_ALBUM_SUCESS,
   GET_SINGLE_ALBUM_ERROR,
+  ALERT_SHOW,
 } from "../Actions";
 
 const Music_reducer = (state, action) => {
@@ -35,7 +36,9 @@ const Music_reducer = (state, action) => {
       single_album_loading: false,
     };
   }
-
+  if (action.type === ALERT_SHOW) {
+    return { ...state, alert_show: false };
+  }
   throw new Error(`No Matching "${action.type}" -action type`);
 };
 

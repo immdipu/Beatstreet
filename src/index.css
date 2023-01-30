@@ -5,6 +5,7 @@
 @layer base {
     html {
         font-family: 'Poppins', sans-serif;
+        -webkit-tap-highlight-color: transparent;
 
     }
 

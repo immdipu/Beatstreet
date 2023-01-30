@@ -6,13 +6,15 @@ import { SideNav, RightSideMenu } from "./components";
 function App() {
   return (
     <BrowserRouter>
-      <SideNav />
-      <RightSideMenu />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/albums/:id" element={<SingleAlbum />} />
-        <Route path="/search" element={<SearchResult />} />
-      </Routes>
+      <div className="grid grid-cols-[max-content,auto,max-content]">
+        <SideNav />
+        <RightSideMenu />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/albums/:id" element={<SingleAlbum />} />
+          <Route path="/search" element={<SearchResult />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

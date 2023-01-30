@@ -7,17 +7,30 @@ import DonutSmallIcon from "@mui/icons-material/DonutSmall";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { NavLink } from "react-router-dom";
+import { usePlayerContext } from "../Context/PlayerContext";
 
 const SideNav = () => {
+  const { HandleSideNav, side_navbar_show } = usePlayerContext();
   return (
-    <div className="w-52">
-      <div className="bg-lightBlue text-darkTextColor fixed h-full  py-10 ">
+    <div
+      className={
+        "w-52 transition-all duration-200 ease-in " +
+        (side_navbar_show ? "max-md:w-52" : "max-md:w-0")
+      }
+    >
+      <div
+        className={
+          "bg-lightBlue text-darkTextColor  w-52 transition-all duration-200 ease-in fixed h-full  py-10 " +
+          (side_navbar_show ? "max-md:w-52" : "max-md:-left-96")
+        }
+      >
         <section className="px-7">
           <section>
             <h2 className="font-Rubik uppercase font-medium text-white tracking-wider">
               Cinemaa Music
             </h2>
           </section>
+
           <section className="mt-10">
             <h3 className="uppercase font-Rubik font-medium tracking-wider text-sm">
               Menu

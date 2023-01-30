@@ -26,17 +26,6 @@ const MusicContext = React.createContext();
 export const MusicProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const [loading, setLoading] = useState(true);
-  const [audioLoading, setaudioLoading] = useState(true);
-
-  const [currentSong, setCurrentSong] = useState({
-    image: "null",
-    name: "null",
-    primaryArtists: "null",
-    downloadurl: "null",
-  });
-  const [selectSongId, setSelectedId] = useState(null);
-
   const homePageMusic = async () => {
     dispatch({ type: GET_HOME_DATA_BEGIN });
     try {
@@ -69,13 +58,7 @@ export const MusicProvider = ({ children }) => {
     <MusicContext.Provider
       value={{
         ...state,
-        loading,
         singleAlbums,
-        setSelectedId,
-        selectSongId,
-        currentSong,
-        setCurrentSong,
-        audioLoading,
       }}
     >
       {children}

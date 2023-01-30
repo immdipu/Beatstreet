@@ -18,7 +18,7 @@ const SingleSongList = ({ id, name, primaryArtists, duration, index }) => {
       <div className="w-4">{PlayBtn}</div>
       <div>
         <h3 className="text-slate-200">{name}</h3>
-        <p className="text-xs opacity-90 mt-[2px] text-darkTextColor tracking-wide">
+        <p className="text-xs opacity-90 mt-[2px]   text-darkTextColor tracking-wide">
           {primaryArtists}
         </p>
       </div>

@@ -16,3 +16,4 @@ export const SEARCH_ERROR = "SEARCH_ERROR";
 export const NEXT_PAGE_BTN = "NEXT_PAGE_BTN";
 export const PREV_PAGE_BTN = "PREV_PAGE_BTN";
 export const NEW_SEARCH_BEGIN = "NEW_SEARCH_BEGIN";
+export const LEFT_MENU_BTN = "LEFT_MENU_BTN";

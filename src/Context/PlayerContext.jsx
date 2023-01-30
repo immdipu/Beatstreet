@@ -12,12 +12,14 @@ import {
   PREV_PAGE_BTN,
   NEXT_PAGE_BTN,
   NEW_SEARCH_BEGIN,
+  LEFT_MENU_BTN,
 } from "../Actions";
 
 const playerContext = React.createContext();
 
 const initialState = {
   side_menu_show: false,
+  side_navbar_show: false,
   audio_playing: false,
   play_song_loading: false,
   search_loading: false,
@@ -86,6 +88,10 @@ export const PlayerProvider = ({ children }) => {
     PageChange(inputValue, state.current_page_count);
   };
 
+  const HandleSideNav = () => {
+    dispatch({ type: LEFT_MENU_BTN });
+  };
+
   return (
     <playerContext.Provider
       value={{
@@ -97,6 +103,7 @@ export const PlayerProvider = ({ children }) => {
         setInputValue,
         HandlePreviousPageBtn,
         HandleNextPageBtn,
+        HandleSideNav,
       }}
     >
       {children}

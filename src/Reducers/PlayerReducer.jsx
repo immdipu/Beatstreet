@@ -9,6 +9,7 @@ import {
   PREV_PAGE_BTN,
   NEXT_PAGE_BTN,
   NEW_SEARCH_BEGIN,
+  LEFT_MENU_BTN,
 } from "../Actions";
 const Player_Reducer = (state, action) => {
   if (action.type === PLAY_SONG_BEGIN) {
@@ -58,6 +59,10 @@ const Player_Reducer = (state, action) => {
     } else {
       return { ...state, current_page_count: state.current_page_count + 1 };
     }
+  }
+
+  if (action.type === LEFT_MENU_BTN) {
+    return { ...state, side_navbar_show: !state.side_navbar_show };
   }
 
   throw new Error(`No Matching "${action.type}" -action type`);

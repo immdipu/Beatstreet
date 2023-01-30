@@ -15,6 +15,9 @@ module.exports = {
         darkSongname: "#ffffffd6",
         skyBlue: "#007aff",
       },
+      screens: {
+        xxs: "325px",
+      },
     },
   },
   plugins: [],

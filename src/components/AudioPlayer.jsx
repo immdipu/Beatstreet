@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { useTheme } from "@mui/material/styles";
 import Slider from "@mui/material/Slider";
 import IconButton from "@mui/material/IconButton";
 import PauseRounded from "@mui/icons-material/PauseRounded";
@@ -8,10 +8,11 @@ import FastForwardRounded from "@mui/icons-material/FastForwardRounded";
 import FastRewindRounded from "@mui/icons-material/FastRewindRounded";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useMusicContext } from "../Context/MusicContext";
+import { usePlayerContext } from "../Context/PlayerContext";
+import { AudioLinkSelector, ImageFetch } from "../Utils/Helper";
 
 const AudioPlayer = () => {
-  const { currentSong, audioLoading } = useMusicContext();
+  const { current_song, audio_playing } = usePlayerContext();
   const [downloading, setDownloading] = useState(false);
   const [audioProgress, setAudioProgress] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -64,18 +65,14 @@ const AudioPlayer = () => {
     setAudioProgress(isNaN(progress) ? 0 : progress);
   };
 
-  if (audioLoading) {
-    return <div className="text-xl text-slate-700">Loading...</div>;
-  }
-
   const handleDownload = () => {
     setDownloading(true);
-    fetch(currentSong.downloadurl)
+    fetch(AudioLinkSelector(current_song))
       .then((response) => {
         response.blob().then((blob) => {
           let link = document.createElement("a");
           link.href = window.URL.createObjectURL(blob);
-          link.download = `${currentSong.name}`;
+          link.download = `${current_song.name}`;
           link.click();
           setDownloading(false);
         });
@@ -85,11 +82,13 @@ const AudioPlayer = () => {
         setDownloading(false);
       });
   };
-
+  if (!audio_playing) {
+    return null;
+  }
   return (
     <div className=" px-7 py-5 mt-10 relative boss ">
       <img
-        src={currentSong.image}
+        src={ImageFetch(current_song)}
         alt="background"
         className="absolute inset-0 -z-40 h-full object-cover opacity-20 blur-md rounded-lg
     "
@@ -97,21 +96,21 @@ const AudioPlayer = () => {
       <h3 className="text-xl opacity-30">player</h3>
       <section className="flex flex-col items-center gap-1 ">
         <audio
-          src={currentSong.downloadurl}
+          src={AudioLinkSelector(current_song)}
           ref={currentAudio}
           autoPlay
           onTimeUpdate={handleAudioUpdate}
         ></audio>
 
-        <h3 className="text-lg text-darkTitle mt-4">{currentSong.name}</h3>
+        <h3 className="text-lg text-darkTitle mt-4">{current_song.name}</h3>
         <marquee
           className="text-xs opacity-90 whitespace-nowrap"
           direction="right"
         >
-          {currentSong.primaryArtists}
+          {current_song.primaryArtists}
         </marquee>
         <img
-          src={currentSong.image}
+          src={ImageFetch(current_song)}
           alt="song Avatar"
           className="h-32 w-32 rounded-full object-cover mt-4"
         />

@@ -3,9 +3,9 @@ import SearchIcon from "@mui/icons-material/Search";
 const SearchBar = () => {
   return (
     <section className="flex flex-col gap-4">
-      <h4 className="font-Poppins text-darkTitle uppercase ml-3  tracking-widest font-medium text-sm">
+      {/* <h4 className="font-Poppins text-darkTitle uppercase ml-3  tracking-widest font-medium text-sm">
         Quick search
-      </h4>
+      </h4> */}
       <div className="flex bg-darkBlue items-center w-full focus-within:border-darkTextColor transition-all duration-400 ease-linear rounded-full pl-5 pr-1 h-10 border-[0.7px] border-[#8b8b8b6e]">
         <input
           type="text"

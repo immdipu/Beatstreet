@@ -1,9 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SideNav from "./components/SideNav";
-import Mains from "./components/Mains";
-import SingleAlbum from "./components/SingleAlbum";
-import RightSideMenu from "./components/RightSideMenu";
+import { Home, SingleAlbum } from "./Page";
+import { SideNav, RightSideMenu, SearchBar } from "./components";
 
 function App() {
   return (
@@ -11,7 +9,7 @@ function App() {
       <SideNav />
       <RightSideMenu />
       <Routes>
-        <Route path="/" element={<Mains />} />
+        <Route path="/" element={<Home />} />
         <Route path="/albums/:id" element={<SingleAlbum />} />
       </Routes>
     </BrowserRouter>

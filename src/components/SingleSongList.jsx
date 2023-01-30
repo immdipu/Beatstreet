@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { useMusicContext } from "../Context/MusicContext";
-
+import { usePlayerContext } from "../Context/PlayerContext";
 const SingleSongList = ({ id, name, primaryArtists, duration, index }) => {
-  const { setSelectedId } = useMusicContext();
+  const { singleSong } = usePlayerContext();
   let currentIndex = <p className="text-slate-300">{index}</p>;
   let playButton = <PlayArrowIcon className="text-darkTitle text-xl" />;
   const [PlayBtn, setPlayBtn] = useState(currentIndex);
@@ -14,7 +13,7 @@ const SingleSongList = ({ id, name, primaryArtists, duration, index }) => {
       className="grid grid-cols-[max-content,auto,max-content] gap-3 cursor-pointer bg-lightBlue rounded-lg shadow-xl py-4 items-center px-5"
       onMouseEnter={() => setPlayBtn(playButton)}
       onMouseLeave={() => setPlayBtn(currentIndex)}
-      onClick={() => setSelectedId(id)}
+      onClick={() => singleSong(id)}
     >
       <div className="w-4">{PlayBtn}</div>
       <div>

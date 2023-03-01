@@ -26,7 +26,7 @@ const SideNav = () => {
       >
         <section className="px-7">
           <section>
-            <svg width="145" viewBox="0 0 390 91" class="css-1j8o68f">
+            <svg width="145" viewBox="0 0 390 91" className="css-1j8o68f">
               <defs id="SvgjsDefs2659"></defs>
               <g
                 id="SvgjsG2660"

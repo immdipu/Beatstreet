@@ -13,8 +13,20 @@ const SearchResult = () => {
 
   if (search_loading) {
     return (
-      <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
-        <LoadingSpinner size={80} />
+      <div
+        className={
+          "bg-darkBlue pl-10 max-md:pl-4 pr-4 overflow-hidden " +
+          (side_menu_show
+            ? "mr-96 transition-all duration-300 ease-in"
+            : "mr-0")
+        }
+      >
+        <div className="w-3/5 max-md:pl-3 max-md:w-4/5 pt-9">
+          <SearchBar />
+        </div>
+        <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
+          <LoadingSpinner size={80} />
+        </div>
       </div>
     );
   }

@@ -20,14 +20,13 @@ const initialState = {
   trendingAlbums: [],
   trendingSongs: [],
   currentAlbum: [],
-  alert_show: true,
+  alert_show: false,
 };
 
 const MusicContext = React.createContext();
 
 export const MusicProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
   const homePageMusic = async () => {
     dispatch({ type: GET_HOME_DATA_BEGIN });
     try {

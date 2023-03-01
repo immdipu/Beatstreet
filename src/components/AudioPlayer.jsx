@@ -102,7 +102,12 @@ const AudioPlayer = () => {
           onTimeUpdate={handleAudioUpdate}
         ></audio>
 
-        <h3 className="text-lg text-darkTitle mt-4">{current_song.name}</h3>
+        <h3
+          className="text-lg text-darkTitle mt-4 text-center"
+          dangerouslySetInnerHTML={{
+            __html: `${current_song.name}`,
+          }}
+        />
         <marquee
           className="text-xs opacity-90 whitespace-nowrap"
           direction="right"

@@ -30,7 +30,13 @@ const SingleSongList = ({
         alt={name}
       />
       <div>
-        <h3 className="text-slate-200">{name}</h3>
+        <h3
+          className="text-slate-200"
+          dangerouslySetInnerHTML={{
+            __html: `${name}`,
+          }}
+        />
+
         <p className="text-xs opacity-90 mt-[2px]   text-darkTextColor tracking-wide">
           {primaryArtists}
         </p>

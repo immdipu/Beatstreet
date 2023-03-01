@@ -6,13 +6,13 @@ import {
   PLAY_SONG_SUCESS,
   PLAY_SONG_ERROR,
   RIGHT_MENU_BTN,
-  SEARCH_BEGIN,
   SEARCH_SUCESS,
   SEARCH_ERROR,
-  PREV_PAGE_BTN,
   NEXT_PAGE_BTN,
   NEW_SEARCH_BEGIN,
   LEFT_MENU_BTN,
+  NEXT_SEARCHED_ARRAY,
+  NEXT_SEARCHED_ARRAY_ERROR,
 } from "../Actions";
 
 const playerContext = React.createContext();
@@ -23,6 +23,7 @@ const initialState = {
   audio_playing: false,
   play_song_loading: false,
   search_loading: false,
+  has_more: true,
   current_song: {
     name: "null",
     primaryArtists: "null",
@@ -58,29 +59,24 @@ export const PlayerProvider = ({ children }) => {
       const result = res.data.data.results;
       dispatch({ type: SEARCH_SUCESS, payload: result });
     } catch (error) {
+      console.log(error);
       dispatch({ type: SEARCH_ERROR });
     }
   };
   const PageChange = async (text, page) => {
-    dispatch({ type: SEARCH_BEGIN });
     try {
       const res = await axios.get(
         `https://saavn.me/search/songs?query=${text}&page=${page}`
       );
       const result = res.data.data.results;
-      dispatch({ type: SEARCH_SUCESS, payload: result });
+      dispatch({ type: NEXT_SEARCHED_ARRAY, payload: result });
     } catch (error) {
-      dispatch({ type: SEARCH_ERROR });
+      dispatch({ type: NEXT_SEARCHED_ARRAY_ERROR });
     }
   };
 
   const HandleRightSideMenu = () => {
     dispatch({ type: RIGHT_MENU_BTN });
-  };
-
-  const HandlePreviousPageBtn = () => {
-    dispatch({ type: PREV_PAGE_BTN });
-    PageChange(inputValue, state.current_page_count);
   };
 
   const HandleNextPageBtn = () => {
@@ -101,7 +97,6 @@ export const PlayerProvider = ({ children }) => {
         SearchSongs,
         inputValue,
         setInputValue,
-        HandlePreviousPageBtn,
         HandleNextPageBtn,
         HandleSideNav,
       }}

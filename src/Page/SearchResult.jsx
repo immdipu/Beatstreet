@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { SearchBar, LoadingSpinner, SongsList } from "../components";
+import InfiniteScroll from "react-infinite-scroll-component";
 import { usePlayerContext } from "../Context/PlayerContext";
 
 const SearchResult = () => {
@@ -7,8 +8,8 @@ const SearchResult = () => {
     side_menu_show,
     search_loading,
     search_results,
-    HandlePreviousPageBtn,
     HandleNextPageBtn,
+    has_more,
   } = usePlayerContext();
 
   if (search_loading) {
@@ -48,23 +49,19 @@ const SearchResult = () => {
           </p>
         </div>
       )}
-      <div>{search_results && <SongsList songs={search_results} />}</div>
-      {search_results.length > 0 && (
-        <div className="flex justify-evenly mt-4 pb-12">
-          <p
-            className="bg-lightBlue w-fit cursor-pointer shadow-md rounded-md px-4 py-1 text-lg text-darkTextColor"
-            onClick={HandlePreviousPageBtn}
+      <div>
+        {search_results.length > 0 && (
+          <InfiniteScroll
+            dataLength={search_results.length}
+            next={HandleNextPageBtn}
+            hasMore={has_more}
+            loader={<h4 className="text-white text-center mb-3">Loading...</h4>}
+            endMessage={<p className="text-white text-center">End</p>}
           >
-            Previous
-          </p>
-          <p
-            className="bg-lightBlue cursor-pointer w-fit shadow-md rounded-md px-4 py-1 text-lg text-darkTextColor"
-            onClick={HandleNextPageBtn}
-          >
-            Next
-          </p>
-        </div>
-      )}
+            {search_results && <SongsList songs={search_results} />}
+          </InfiniteScroll>
+        )}
+      </div>
     </div>
   );
 };

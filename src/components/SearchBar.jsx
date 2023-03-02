@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { usePlayerContext } from "../Context/PlayerContext";
 import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
@@ -14,9 +14,11 @@ const SearchBar = () => {
   } = usePlayerContext();
 
   const [searchTimer, setSearchTimer] = useState(null);
+  const inputRef = useRef(null);
 
   function HandleSearch() {
     navigate("/search");
+    inputRef.current.focus();
   }
 
   function handleInputChange(event) {
@@ -49,6 +51,7 @@ const SearchBar = () => {
         <input
           type="text"
           value={inputValue}
+          ref={inputRef}
           onChange={handleInputChange}
           onKeyDown={HandleSubmit}
           placeholder="Type here to search"

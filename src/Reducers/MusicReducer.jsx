@@ -9,6 +9,9 @@ import {
   GET_SINGLE_PLAYLIST_BEGIN,
   GET_SINGLE_PLAYLIST_SUCESS,
   GET_SINGLE_PLAYLIST_ERROR,
+  GET_ARTIST_DETAILS_BEGIN,
+  GET_ARTIST_DETAILS_SUCESS,
+  GET_ARTIST_DETAILS_ERROR,
 } from "../Actions";
 
 const Music_reducer = (state, action) => {
@@ -51,6 +54,23 @@ const Music_reducer = (state, action) => {
       currentPlaylists: data,
       single_album_loading: false,
     };
+  }
+
+  if (action.type === GET_ARTIST_DETAILS_BEGIN) {
+    return { ...state, single_artist_loading: true };
+  }
+
+  if (action.type === GET_ARTIST_DETAILS_SUCESS) {
+    let data = action.payload;
+    return {
+      ...state,
+      single_artist_details: data,
+      single_artist_loading: false,
+    };
+  }
+
+  if (action.type === GET_ARTIST_DETAILS_ERROR) {
+    return { ...state };
   }
 
   if (action.type === ALERT_SHOW) {

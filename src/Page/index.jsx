@@ -4,6 +4,7 @@ import SearchResult from "./SearchResult";
 import SinglePlayLists from "./SinglePlayLists";
 import ViewAllSongList from "./ViewAllSongList";
 import ViewAllAlbums from "./ViewAllAlbums";
+import Artist from "./Artist";
 
 export {
   Home,
@@ -12,4 +13,5 @@ export {
   SinglePlayLists,
   ViewAllSongList,
   ViewAllAlbums,
+  Artist,
 };

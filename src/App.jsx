@@ -7,6 +7,7 @@ import {
   SinglePlayLists,
   ViewAllSongList,
   ViewAllAlbums,
+  Artist,
 } from "./Page";
 import { SideNav, RightSideMenu, Alert } from "./components";
 import { useMusicContext } from "./Context/MusicContext";
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/album/:id" element={<SingleAlbum />} />
+          <Route path="/artist/:id" element={<Artist />} />
           <Route path="/search/album/:id" element={<SingleAlbum />} />
           <Route path="/search" element={<SearchResult />} />
           <Route path="/playlists/:id" element={<SinglePlayLists />} />

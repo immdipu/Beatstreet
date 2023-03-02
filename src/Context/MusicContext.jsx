@@ -12,11 +12,15 @@ import {
   GET_SINGLE_PLAYLIST_BEGIN,
   GET_SINGLE_PLAYLIST_SUCESS,
   GET_SINGLE_PLAYLIST_ERROR,
+  GET_ARTIST_DETAILS_BEGIN,
+  GET_ARTIST_DETAILS_SUCESS,
+  GET_ARTIST_DETAILS_ERROR,
 } from "../Actions";
 
 const initialState = {
   homeData_loading: false,
   single_album_loading: false,
+  single_artist_loading: false,
   Albums: [],
   playlists: [],
   charts: [],
@@ -25,6 +29,7 @@ const initialState = {
   currentAlbum: [],
   currentPlaylists: [],
   alert_show: false,
+  single_artist_details: [],
 };
 
 const MusicContext = React.createContext();
@@ -49,6 +54,7 @@ export const MusicProvider = ({ children }) => {
     try {
       const response = await axios.get(`https://saavn.me/albums?id=${id}`);
       const result = response.data.data;
+
       dispatch({ type: GET_SINGLE_ALBUM_SUCESS, payload: result });
     } catch (error) {
       dispatch({ type: GET_SINGLE_ALBUM_ERROR });
@@ -66,6 +72,26 @@ export const MusicProvider = ({ children }) => {
     }
   };
 
+  const SingleArtist = async (id) => {
+    dispatch({ type: GET_ARTIST_DETAILS_BEGIN });
+    try {
+      const response = await axios.get(`https://saavn.me/artists?id=${id}`);
+      const result = response.data.data;
+      console.log(result);
+      dispatch({ type: GET_ARTIST_DETAILS_SUCESS, payload: result });
+    } catch (error) {
+      dispatch({ type: GET_ARTIST_DETAILS_ERROR });
+    }
+  };
+
+  const ArtistSongs = async (id) => {
+    try {
+      const res = await axios.get(
+        `https://saavn.me/artists/${id}/songs?page=1`
+      );
+    } catch (error) {}
+  };
+
   useEffect(() => {
     homePageMusic();
   }, []);
@@ -81,6 +107,7 @@ export const MusicProvider = ({ children }) => {
         singleAlbums,
         SinglePlaylist,
         HandleAlert,
+        SingleArtist,
       }}
     >
       {children}

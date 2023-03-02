@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const SingleArtist = ({ id, title, image }) => {
   return (
-    <div className="w-fit">
+    <Link to={`/artist/${id}`} className="w-fit">
       <div className="relative w-28 h-28 border-2 border-opacity-40 border-slate-300 rounded-full">
         <img
           src={image[1].link}
@@ -21,7 +21,7 @@ const SingleArtist = ({ id, title, image }) => {
       <p className="text-center text-slate-400 text-xs tracking-wide mt-1">
         Artist
       </p>
-    </div>
+    </Link>
   );
 };
 

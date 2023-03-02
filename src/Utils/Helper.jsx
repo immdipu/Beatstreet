@@ -21,3 +21,15 @@ export const AudioLinkSelector = (item) => {
     }
   }
 };
+
+export const FollowersCount = (count) => {
+  let followers = null;
+  if (count < 1000) {
+    followers = count;
+    return followers;
+  } else {
+    let newcount = Math.floor(count / 1000);
+    followers = newcount + "K";
+    return followers;
+  }
+};

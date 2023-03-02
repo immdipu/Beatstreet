@@ -11,6 +11,7 @@ import SearchBar from "./SearchBar";
 import Alert from "./Alert";
 import SingleChart from "./SingleChart";
 import TopCharts from "./TopCharts";
+import TopPlaylists from "./TopPlaylists";
 export {
   AudiPlayer,
   LoadingSpinner,
@@ -25,4 +26,5 @@ export {
   Alert,
   SingleChart,
   TopCharts,
+  TopPlaylists,
 };

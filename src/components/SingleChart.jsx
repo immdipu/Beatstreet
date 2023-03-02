@@ -4,7 +4,7 @@ import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 
 const SingleChart = ({ title, id, image }) => {
   return (
-    <div className="mb-14">
+    <div>
       <div className="relative w-36 h-36 group rounded-md">
         <img
           src={image[1].link}

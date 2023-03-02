@@ -8,6 +8,7 @@ import {
   Albums,
   SearchBar,
   TopCharts,
+  TopPlaylists,
 } from "../components";
 
 const Mains = () => {
@@ -48,6 +49,12 @@ const Mains = () => {
           Top Charts
         </h1>
         <TopCharts />
+      </section>
+      <section>
+        <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
+          Top Playlist
+        </h1>
+        <TopPlaylists />
       </section>
     </div>
   );

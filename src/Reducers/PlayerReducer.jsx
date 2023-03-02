@@ -11,6 +11,10 @@ import {
   LEFT_MENU_BTN,
   NEXT_SEARCHED_ARRAY,
   NEXT_SEARCHED_ARRAY_ERROR,
+  SEARCH_SONGS_SUCESS,
+  SEARCH_ALBUMS_SUCESS,
+  NEXT_SEARCHED_ALBUMS,
+  NEXT_PAGE_BTN_ALBUMS,
 } from "../Actions";
 const Player_Reducer = (state, action) => {
   if (action.type === PLAY_SONG_BEGIN) {
@@ -44,6 +48,16 @@ const Player_Reducer = (state, action) => {
     };
   }
 
+  if (action.type === SEARCH_SONGS_SUCESS) {
+    const data = action.payload;
+    return { ...state, search_loading: false, search_songs: data };
+  }
+
+  if (action.type === SEARCH_ALBUMS_SUCESS) {
+    const data = action.payload;
+    return { ...state, search_loading: false, search_albums: data };
+  }
+
   if (action.type === SEARCH_ERROR) {
     return {
       ...state,
@@ -52,10 +66,18 @@ const Player_Reducer = (state, action) => {
 
   if (action.type === NEXT_SEARCHED_ARRAY) {
     const data = action.payload;
-    let newdata = [...state.search_results, ...data];
+    let newdata = [...state.search_songs, ...data];
     return {
       ...state,
-      search_results: newdata,
+      search_songs: newdata,
+    };
+  }
+  if (action.type === NEXT_SEARCHED_ALBUMS) {
+    const data = action.payload;
+    let newdata = [...state.search_albums, ...data];
+    return {
+      ...state,
+      search_albums: newdata,
     };
   }
 
@@ -71,6 +93,16 @@ const Player_Reducer = (state, action) => {
       return { ...state };
     } else {
       return { ...state, current_page_count: state.current_page_count + 1 };
+    }
+  }
+  if (action.type === NEXT_PAGE_BTN_ALBUMS) {
+    if (state.current_page_count === 7) {
+      return { ...state };
+    } else {
+      return {
+        ...state,
+        current_page_count_albums: state.current_page_count_albums + 1,
+      };
     }
   }
 

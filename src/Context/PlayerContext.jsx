@@ -1,4 +1,10 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+  useRef,
+} from "react";
 import axios from "axios";
 import reducer from "../Reducers/PlayerReducer";
 import {
@@ -13,6 +19,10 @@ import {
   LEFT_MENU_BTN,
   NEXT_SEARCHED_ARRAY,
   NEXT_SEARCHED_ARRAY_ERROR,
+  SEARCH_SONGS_SUCESS,
+  SEARCH_ALBUMS_SUCESS,
+  NEXT_SEARCHED_ALBUMS,
+  NEXT_PAGE_BTN_ALBUMS,
 } from "../Actions";
 
 const playerContext = React.createContext();
@@ -24,20 +34,25 @@ const initialState = {
   play_song_loading: false,
   search_loading: false,
   has_more: true,
+  has_more_albums: true,
   current_song: {
     name: "null",
     primaryArtists: "null",
     image: "null",
     downloadUrl: "null",
   },
-  search_results: [],
+  search_results: null,
+  search_songs: [],
+  search_albums: [],
   current_album: [],
   current_page_count: 1,
+  current_page_count_albums: 1,
 };
 
 export const PlayerProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [inputValue, setInputValue] = useState("");
+  const inputRef = useRef(null);
 
   const singleSong = async (id) => {
     dispatch({ type: PLAY_SONG_BEGIN });
@@ -50,19 +65,46 @@ export const PlayerProvider = ({ children }) => {
     }
   };
 
-  const SearchSongs = async (text, page) => {
+  const SearchAll = async (text) => {
     dispatch({ type: NEW_SEARCH_BEGIN });
     try {
-      const res = await axios.get(
-        `https://saavn.me/search/songs?query=${text}&page=${page}`
-      );
-      const result = res.data.data.results;
+      const res = await axios.get(`https://saavn.me/search/all?query=${text}`);
+      const result = res.data.data;
       dispatch({ type: SEARCH_SUCESS, payload: result });
     } catch (error) {
       console.log(error);
       dispatch({ type: SEARCH_ERROR });
     }
   };
+
+  const SearchSongs = async (keyword) => {
+    dispatch({ type: NEW_SEARCH_BEGIN });
+    try {
+      const res = await axios.get(
+        `https://saavn.me/search/songs?query=${keyword}}&page=1`
+      );
+
+      const result = res.data.data.results;
+      dispatch({ type: SEARCH_SONGS_SUCESS, payload: result });
+    } catch (error) {
+      dispatch({ type: SEARCH_ERROR });
+    }
+  };
+
+  const SearchAlbums = async (keyword) => {
+    dispatch({ type: NEW_SEARCH_BEGIN });
+    try {
+      const res = await axios.get(
+        `https://saavn.me/search/albums?query=${keyword}}&page=1`
+      );
+
+      const result = res.data.data.results;
+      dispatch({ type: SEARCH_ALBUMS_SUCESS, payload: result });
+    } catch (error) {
+      dispatch({ type: SEARCH_ERROR });
+    }
+  };
+
   const PageChange = async (text, page) => {
     try {
       const res = await axios.get(
@@ -75,13 +117,31 @@ export const PlayerProvider = ({ children }) => {
     }
   };
 
+  const AlbumsPageChange = async (text, page) => {
+    try {
+      const res = await axios.get(
+        `https://saavn.me/search/albums?query=${text}&page=${page}`
+      );
+      console.log(res);
+      const result = res.data.data.results;
+      dispatch({ type: NEXT_SEARCHED_ALBUMS, payload: result });
+    } catch (error) {
+      dispatch({ type: NEXT_SEARCHED_ARRAY_ERROR });
+    }
+  };
+
   const HandleRightSideMenu = () => {
     dispatch({ type: RIGHT_MENU_BTN });
   };
 
-  const HandleNextPageBtn = () => {
+  const HandleNextPageBtn = (key) => {
     dispatch({ type: NEXT_PAGE_BTN });
-    PageChange(inputValue, state.current_page_count);
+    PageChange(key, state.current_page_count);
+  };
+
+  const HandleNextPageBtn_Albums = (key) => {
+    dispatch({ type: NEXT_PAGE_BTN_ALBUMS });
+    AlbumsPageChange(key, state.current_page_count_albums);
   };
 
   const HandleSideNav = () => {
@@ -94,11 +154,16 @@ export const PlayerProvider = ({ children }) => {
         ...state,
         singleSong,
         HandleRightSideMenu,
-        SearchSongs,
+        SearchAll,
         inputValue,
         setInputValue,
         HandleNextPageBtn,
         HandleSideNav,
+        inputRef,
+        SearchSongs,
+        SearchAlbums,
+        AlbumsPageChange,
+        HandleNextPageBtn_Albums,
       }}
     >
       {children}

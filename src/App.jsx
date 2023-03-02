@@ -1,6 +1,13 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, SingleAlbum, SearchResult, SinglePlayLists } from "./Page";
+import {
+  Home,
+  SingleAlbum,
+  SearchResult,
+  SinglePlayLists,
+  ViewAllSongList,
+  ViewAllAlbums,
+} from "./Page";
 import { SideNav, RightSideMenu, Alert } from "./components";
 import { useMusicContext } from "./Context/MusicContext";
 function App() {
@@ -17,9 +24,13 @@ function App() {
         <RightSideMenu />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/albums/:id" element={<SingleAlbum />} />
+          <Route path="/album/:id" element={<SingleAlbum />} />
+          <Route path="/search/album/:id" element={<SingleAlbum />} />
           <Route path="/search" element={<SearchResult />} />
           <Route path="/playlists/:id" element={<SinglePlayLists />} />
+          <Route path="search/playlists/:id" element={<SinglePlayLists />} />
+          <Route path="search/songs/:keyword" element={<ViewAllSongList />} />
+          <Route path="search/albums/:keyword" element={<ViewAllAlbums />} />
         </Routes>
       </div>
     </BrowserRouter>

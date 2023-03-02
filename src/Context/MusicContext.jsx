@@ -38,7 +38,6 @@ export const MusicProvider = ({ children }) => {
         "https://saavn.me/modules?language=hindi,english,Bhojpuri"
       );
       let result = response.data.data;
-      console.log(result);
       dispatch({ type: GET_HOME_DATA_SUCESS, payload: result });
     } catch (error) {
       dispatch({ type: GET_HOMEDATA_ERROR });

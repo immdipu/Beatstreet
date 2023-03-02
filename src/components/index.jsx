@@ -12,6 +12,9 @@ import Alert from "./Alert";
 import SingleChart from "./SingleChart";
 import TopCharts from "./TopCharts";
 import TopPlaylists from "./TopPlaylists";
+import TopResults from "./TopResults";
+import SingleArtist from "./SingleArtist";
+import SearchAlbum from "./SearchAlbum";
 export {
   AudiPlayer,
   LoadingSpinner,
@@ -27,4 +30,7 @@ export {
   SingleChart,
   TopCharts,
   TopPlaylists,
+  TopResults,
+  SingleArtist,
+  SearchAlbum,
 };

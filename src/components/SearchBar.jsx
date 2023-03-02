@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import { usePlayerContext } from "../Context/PlayerContext";
 import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
@@ -6,19 +6,18 @@ import { useNavigate } from "react-router-dom";
 const SearchBar = () => {
   const navigate = useNavigate();
   const {
-    SearchSongs,
+    SearchAll,
     inputValue,
     setInputValue,
     current_page_count,
     HandleSideNav,
+    inputRef,
   } = usePlayerContext();
 
   const [searchTimer, setSearchTimer] = useState(null);
-  const inputRef = useRef(null);
 
   function HandleSearch() {
     navigate("/search");
-    inputRef.current.focus();
   }
 
   function handleInputChange(event) {
@@ -27,7 +26,7 @@ const SearchBar = () => {
     setSearchTimer(
       setTimeout(() => {
         if (inputValue !== "") {
-          SearchSongs(inputValue, current_page_count);
+          SearchAll(inputValue, current_page_count);
         }
       }, 2500)
     );
@@ -35,7 +34,7 @@ const SearchBar = () => {
 
   function HandleSubmit(e) {
     if (e.key === "Enter") {
-      SearchSongs(inputValue, current_page_count);
+      SearchAll(inputValue, current_page_count);
     }
   }
 
@@ -51,9 +50,9 @@ const SearchBar = () => {
         <input
           type="text"
           value={inputValue}
-          ref={inputRef}
           onChange={handleInputChange}
           onKeyDown={HandleSubmit}
+          ref={inputRef}
           placeholder="Type here to search"
           className="bg-darkBlue placeholder:text-sm w-full outline-none border-none text-darkTitle text-base font-normal"
         />

@@ -9,6 +9,9 @@ import {
   GET_SINGLE_ALBUM_SUCESS,
   GET_SINGLE_ALBUM_ERROR,
   ALERT_SHOW,
+  GET_SINGLE_PLAYLIST_BEGIN,
+  GET_SINGLE_PLAYLIST_SUCESS,
+  GET_SINGLE_PLAYLIST_ERROR,
 } from "../Actions";
 
 const initialState = {
@@ -20,6 +23,7 @@ const initialState = {
   trendingAlbums: [],
   trendingSongs: [],
   currentAlbum: [],
+  currentPlaylists: [],
   alert_show: false,
 };
 
@@ -52,6 +56,17 @@ export const MusicProvider = ({ children }) => {
     }
   };
 
+  const SinglePlaylist = async (id) => {
+    dispatch({ type: GET_SINGLE_PLAYLIST_BEGIN });
+    try {
+      const response = await axios.get(`https://saavn.me/playlists?id=${id}`);
+      const result = response.data.data;
+      dispatch({ type: GET_SINGLE_PLAYLIST_SUCESS, payload: result });
+    } catch (error) {
+      dispatch({ type: GET_SINGLE_PLAYLIST_ERROR });
+    }
+  };
+
   useEffect(() => {
     homePageMusic();
   }, []);
@@ -65,6 +80,7 @@ export const MusicProvider = ({ children }) => {
       value={{
         ...state,
         singleAlbums,
+        SinglePlaylist,
         HandleAlert,
       }}
     >

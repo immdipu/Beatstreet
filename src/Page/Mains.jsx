@@ -7,6 +7,7 @@ import {
   TrendingAlbums,
   Albums,
   SearchBar,
+  TopCharts,
 } from "../components";
 
 const Mains = () => {
@@ -30,7 +31,7 @@ const Mains = () => {
         <SearchBar />
       </div>
 
-      <section className="w-full my-6 ">
+      <section className="w-full mt-14 my-6 ">
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Trending
         </h1>
@@ -41,6 +42,12 @@ const Mains = () => {
           Albums
         </h1>
         <Albums />
+      </section>
+      <section>
+        <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
+          Top Charts
+        </h1>
+        <TopCharts />
       </section>
     </div>
   );

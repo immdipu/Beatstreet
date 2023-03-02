@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Home, SingleAlbum, SearchResult } from "./Page";
+import { Home, SingleAlbum, SearchResult, SinglePlayLists } from "./Page";
 import { SideNav, RightSideMenu, Alert } from "./components";
 import { useMusicContext } from "./Context/MusicContext";
 function App() {
@@ -19,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/albums/:id" element={<SingleAlbum />} />
           <Route path="/search" element={<SearchResult />} />
+          <Route path="/playlists/:id" element={<SinglePlayLists />} />
         </Routes>
       </div>
     </BrowserRouter>

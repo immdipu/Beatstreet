@@ -6,6 +6,9 @@ import {
   GET_SINGLE_ALBUM_SUCESS,
   GET_SINGLE_ALBUM_ERROR,
   ALERT_SHOW,
+  GET_SINGLE_PLAYLIST_BEGIN,
+  GET_SINGLE_PLAYLIST_SUCESS,
+  GET_SINGLE_PLAYLIST_ERROR,
 } from "../Actions";
 
 const Music_reducer = (state, action) => {
@@ -36,6 +39,20 @@ const Music_reducer = (state, action) => {
       single_album_loading: false,
     };
   }
+
+  if (action.type === GET_SINGLE_PLAYLIST_BEGIN) {
+    return { ...state, single_album_loading: true };
+  }
+
+  if (action.type === GET_SINGLE_PLAYLIST_SUCESS) {
+    const data = action.payload;
+    return {
+      ...state,
+      currentPlaylists: data,
+      single_album_loading: false,
+    };
+  }
+
   if (action.type === ALERT_SHOW) {
     return { ...state, alert_show: false };
   }

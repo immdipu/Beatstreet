@@ -9,7 +9,8 @@ import TrendingAlbums from "./TrendingAlbums";
 import Albums from "./Albums";
 import SearchBar from "./SearchBar";
 import Alert from "./Alert";
-
+import SingleChart from "./SingleChart";
+import TopCharts from "./TopCharts";
 export {
   AudiPlayer,
   LoadingSpinner,
@@ -22,4 +23,6 @@ export {
   Albums,
   SearchBar,
   Alert,
+  SingleChart,
+  TopCharts,
 };

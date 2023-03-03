@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SearchBar, LoadingSpinner } from "../components";
+import { SearchBar, LoadingSpinner, SongsList, MusicCard } from "../components";
 import { useParams } from "react-router-dom";
 import { useMusicContext } from "../Context/MusicContext";
 import { ImageFetch, FollowersCount } from "../Utils/Helper";
@@ -13,9 +13,15 @@ const Artist = () => {
     SingleArtist,
     single_artist_details: artist,
     single_artist_loading: loading,
+    ArtistSongs,
+    single_artist_songs,
+    ArtistAlbums,
+    single_artist_albums,
   } = useMusicContext();
   useEffect(() => {
     SingleArtist(id);
+    ArtistSongs(id);
+    ArtistAlbums(id);
   }, [id]);
 
   if (loading) {
@@ -27,7 +33,7 @@ const Artist = () => {
   }
 
   return (
-    <div>
+    <div className="overflow-hidden">
       <div>
         <SearchBar />
       </div>
@@ -92,7 +98,19 @@ const Artist = () => {
             </div>
           </div>
         </div>
-        <div></div>
+        <section>
+          {single_artist_songs && <SongsList songs={single_artist_songs} />}
+        </section>
+
+        <section>
+          {single_artist_albums && (
+            <div className="flex gap-6 overflow-scroll h-full">
+              {single_artist_albums.map((item, index) => {
+                return <MusicCard key={index} {...item} />;
+              })}
+            </div>
+          )}
+        </section>
       </section>
     </div>
   );

@@ -15,13 +15,21 @@ import {
   GET_ARTIST_DETAILS_BEGIN,
   GET_ARTIST_DETAILS_SUCESS,
   GET_ARTIST_DETAILS_ERROR,
+  GET_ARTIST_SONGS_BEGIN,
+  GET_ARTIST_SONGS_SUCESS,
+  GET_ARTIST_SONGS_ERROR,
+  GET_ARTIST_ALBUMS_BEGIN,
+  GET_ARTIST_ALBUMS_SUCESS,
+  GET_ARTIST_ALBUMS_ERROR,
 } from "../Actions";
 
 const initialState = {
   homeData_loading: false,
   single_album_loading: false,
   single_artist_loading: false,
-  Albums: [],
+  single_artist_songs_loading: false,
+  single_artist_albums_loading: false,
+  albums: [],
   playlists: [],
   charts: [],
   trendingAlbums: [],
@@ -30,6 +38,8 @@ const initialState = {
   currentPlaylists: [],
   alert_show: false,
   single_artist_details: [],
+  single_artist_songs: [],
+  single_artist_albums: [],
 };
 
 const MusicContext = React.createContext();
@@ -77,7 +87,6 @@ export const MusicProvider = ({ children }) => {
     try {
       const response = await axios.get(`https://saavn.me/artists?id=${id}`);
       const result = response.data.data;
-      console.log(result);
       dispatch({ type: GET_ARTIST_DETAILS_SUCESS, payload: result });
     } catch (error) {
       dispatch({ type: GET_ARTIST_DETAILS_ERROR });
@@ -85,11 +94,30 @@ export const MusicProvider = ({ children }) => {
   };
 
   const ArtistSongs = async (id) => {
+    dispatch({ type: GET_ARTIST_SONGS_BEGIN });
     try {
       const res = await axios.get(
         `https://saavn.me/artists/${id}/songs?page=1`
       );
-    } catch (error) {}
+      const data = res.data.data.results;
+      dispatch({ type: GET_ARTIST_SONGS_SUCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: GET_ARTIST_SONGS_ERROR });
+    }
+  };
+
+  const ArtistAlbums = async (id) => {
+    dispatch({ type: GET_ARTIST_ALBUMS_BEGIN });
+    try {
+      const res = await axios.get(
+        `https://saavn.me/artists/${id}/albums?page=1`
+      );
+      const data = res.data.data.results;
+      console.log(data);
+      dispatch({ type: GET_ARTIST_ALBUMS_SUCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: GET_ARTIST_ALBUMS_ERROR });
+    }
   };
 
   useEffect(() => {
@@ -108,6 +136,8 @@ export const MusicProvider = ({ children }) => {
         SinglePlaylist,
         HandleAlert,
         SingleArtist,
+        ArtistSongs,
+        ArtistAlbums,
       }}
     >
       {children}

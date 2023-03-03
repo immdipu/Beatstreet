@@ -52,7 +52,7 @@ const SingleAlbum = () => {
             <Skeleton variant="rectangular" width={160} height={170} />
           )}
           <div className="flex place-content-end max-md:place-items-center flex-col">
-            <h2 className="font-bold text-4xl max-md:text-2xl text-white tracking-wider">
+            <h2 className="font-bold text-4xl max-md:text-center max-md:text-2xl text-white tracking-wider">
               {currentAlbum.name}
             </h2>
             <div className="flex max-md:flex-col items-center gap-3 max-md:my-0 max-md:gap-2 my-2 max-md:mt-4">

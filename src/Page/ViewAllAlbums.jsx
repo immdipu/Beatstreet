@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { usePlayerContext } from "../Context/PlayerContext";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ListItemButton from "@mui/material/ListItemButton";
+import { Logo } from "../components";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ViewAllAlbums = () => {
   let { keyword } = useParams();
@@ -21,15 +23,19 @@ const ViewAllAlbums = () => {
   return (
     <div>
       <section className=" flex justify-center items-center py-20 viewall rounded-b-2xl mb-16">
-        <img src="images/logo.svg" alt="" className="w-40 h-16" />
+        <Logo className="h-5 w-9" />
       </section>
       <InfiniteScroll
         dataLength={search_albums.length}
         next={() => HandleNextPageBtn_Albums(keyword)}
         hasMore={has_more_albums}
-        loader={<h4 className="text-white text-center mb-3">Loading...</h4>}
+        loader={
+          <h4 className="text-white text-center mb-3">
+            <ClipLoader size={30} color="#2764eb" speedMultiplier={3} />
+          </h4>
+        }
         endMessage={<p className="text-white text-center">End</p>}
-        className="flex flex-col gap-2 px-20"
+        className="flex flex-col gap-2 px-20 max-md:px-2"
       >
         {search_albums.map((item, index) => {
           return (
@@ -39,7 +45,6 @@ const ViewAllAlbums = () => {
                   display: "block",
                   borderRadius: 2,
                   overflow: "hidden",
-                  border: "2",
                 },
                 (theme) => ({
                   "&:hover": {
@@ -58,21 +63,21 @@ const ViewAllAlbums = () => {
                   className="w-14 rounded-lg object-cover"
                   alt={item.name}
                 />
-                <div>
+                <div className="overflow-hidden">
                   <h3
-                    className="text-slate-200"
+                    className="text-slate-200 text-sm whitespace-nowrap text-ellipsis overflow-hidden w-[90%]"
                     dangerouslySetInnerHTML={{
                       __html: `${item.name}`,
                     }}
                   />
 
-                  <div className="flex w-48 gap-2 overflow-hidden text-ellipsis">
+                  <div className="flex w-48 max-md:max-w-[70%] gap-2 overflow-hidden ">
                     {item.primaryArtists &&
                       item.primaryArtists.map((it, index) => {
                         return (
                           <p
                             key={index}
-                            className="text-xs opacity-90 mt-[2px] whitespace-nowrap text-darkTextColor tracking-wide"
+                            className="text-xs opacity-90 mt-[2px] text-ellipsis whitespace-nowrap text-darkTextColor tracking-wide"
                           >
                             {it.name}
                           </p>

@@ -50,14 +50,14 @@ const SinglePlayLists = () => {
             <Skeleton variant="rectangular" width={160} height={170} />
           )}
           <div className="flex place-content-end max-md:place-items-center flex-col">
-            <h2 className="font-bold text-4xl max-md:text-2xl text-white tracking-wider">
+            <h2 className="font-bold text-4xl max-md:text-2xl max-md:text-center text-white tracking-wider">
               {currentPlaylists.name}
             </h2>
             <div className="flex max-md:flex-col items-center gap-3 my-2 max-md:mt-4">
               <p className="text-slate-200 text-sm max-md:text-xs">
                 {currentPlaylists.followerCount} followers
               </p>
-              <div className="bg-darkTextColor rounded-full max-md:text-xs w-1 h-1"></div>
+              <div className="bg-darkTextColor rounded-full max-md:text-xs w-1 h-1 max-md:hidden"></div>
               <p className="text-slate-200 text-sm">
                 {currentPlaylists.songCount} songs
               </p>

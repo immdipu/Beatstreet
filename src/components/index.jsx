@@ -15,6 +15,7 @@ import TopPlaylists from "./TopPlaylists";
 import TopResults from "./TopResults";
 import SingleArtist from "./SingleArtist";
 import SearchAlbum from "./SearchAlbum";
+import Logo from "./Logo";
 export {
   AudiPlayer,
   LoadingSpinner,
@@ -33,4 +34,5 @@ export {
   TopResults,
   SingleArtist,
   SearchAlbum,
+  Logo,
 };

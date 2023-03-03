@@ -64,7 +64,7 @@ const Artist = () => {
               </p>
             </div>
             {artist.availableLanguages && (
-              <div className="text-slate-200 text-xs flex flex-wrap">
+              <div className="text-slate-200 text-xs flex flex-wrap max-md:justify-center">
                 Languages:
                 {artist.availableLanguages.map((item, index) => {
                   return (

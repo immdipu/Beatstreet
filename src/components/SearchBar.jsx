@@ -3,6 +3,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import { usePlayerContext } from "../Context/PlayerContext";
 import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
 import { useNavigate } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
 const SearchBar = () => {
   const navigate = useNavigate();
   const {
@@ -27,6 +28,7 @@ const SearchBar = () => {
       setTimeout(() => {
         if (inputValue !== "") {
           SearchAll(inputValue, current_page_count);
+          inputRef.current.blur();
         }
       }, 2500)
     );
@@ -36,13 +38,16 @@ const SearchBar = () => {
     if (e.key === "Enter") {
       clearTimeout(searchTimer);
       SearchAll(inputValue, current_page_count);
+      inputRef.current.blur();
     }
   }
 
   return (
     <section className="flex items-center gap-4">
       <div className="w-fit hidden max-md:flex" onClick={HandleSideNav}>
-        <FormatAlignCenterIcon className="text-darkTextColor" />
+        <IconButton>
+          <FormatAlignCenterIcon className="text-slate-200" />
+        </IconButton>
       </div>
       <div
         className="flex bg-darkBlue items-center w-full focus-within:border-darkTextColor transition-all duration-400 ease-linear rounded-full pl-5 pr-1 h-10 border-[0.7px] border-[#8b8b8b6e]"

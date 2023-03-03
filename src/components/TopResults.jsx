@@ -39,14 +39,7 @@ const TopResults = () => {
           );
         }
         if (item.type === "song") {
-          return (
-            <SingleSongList
-              {...item}
-              name={item.title}
-              albumName={item.album}
-              key={index}
-            />
-          );
+          return <SingleSongList {...item} name={item.title} key={index} />;
         }
         if (item.type === "artist") {
           return <SingleArtist {...item} key={index} />;

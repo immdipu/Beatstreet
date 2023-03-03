@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import React from "react";
 import { usePlayerContext } from "../Context/PlayerContext";
-import { ImageFetch } from "../Utils/Helper";
 import ListItemButton from "@mui/material/ListItemButton";
 const SingleSongList = ({
   id,
@@ -10,7 +8,7 @@ const SingleSongList = ({
   duration,
   index,
   image,
-  albumName = null,
+
   title,
 }) => {
   const { singleSong } = usePlayerContext();
@@ -56,11 +54,6 @@ const SingleSongList = ({
         {duration && (
           <div className="text-slate-200 text-sm opacity-70">
             {Math.floor(duration / 60)}:00
-          </div>
-        )}
-        {albumName && (
-          <div className="text-slate-200 text-xs opacity-70 absolute left-1/2 max-sm:left-3/4">
-            {albumName}
           </div>
         )}
       </div>

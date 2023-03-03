@@ -108,40 +108,43 @@ const SearchResult = () => {
               </ListItemButton>
             </section>
 
-            <section className="mt-12 max-md:ml-4">
-              <h3 className="text-white text-lg mb-5 max-md:font-semibold max-md:text-xl">
-                Albums
-              </h3>
-              <div className="flex gap-8 overflow-scroll h-full">
-                {search_results.albums.results.map((item, index) => {
-                  return <SearchAlbum {...item} key={index} />;
-                })}
-                <Link
-                  to={`albums/${inputValue}`}
-                  className="text-white flex items-center gap-2 self-center mb-11 justify-center ml-6 rounded-md px-2 group h-fit"
-                >
-                  <p className="group-hover:opacity-80">View All</p>
-                  <div className="bg-slate-500 group-hover:scale-110 transition-all ease-linear duration-200 bg-opacity-10 px-3 py-2 rounded-full">
-                    <ArrowForwardIosIcon
-                      sx={{ fontSize: "16px" }}
-                      className="mb-[2px] "
-                    />
-                  </div>
-                </Link>
-              </div>
-            </section>
-            <section className="mt-10 mb-10 max-md:ml-4">
-              {search_results.playlists.results > 0 && (
+            {search_results.albums.results.length > 0 && (
+              <section className="mt-12 max-md:ml-4">
+                <h3 className="text-white text-lg mb-5 max-md:font-semibold max-md:text-xl">
+                  Albums
+                </h3>
+                <div className="flex gap-8 overflow-scroll h-full">
+                  {search_results.albums.results.map((item, index) => {
+                    return <SearchAlbum {...item} key={index} />;
+                  })}
+                  <Link
+                    to={`albums/${inputValue}`}
+                    className="text-white flex items-center gap-2 self-center mb-11 justify-center ml-6 rounded-md px-2 group h-fit"
+                  >
+                    <p className="group-hover:opacity-80">View All</p>
+                    <div className="bg-slate-500 group-hover:scale-110 transition-all ease-linear duration-200 bg-opacity-10 px-3 py-2 rounded-full">
+                      <ArrowForwardIosIcon
+                        sx={{ fontSize: "16px" }}
+                        className="mb-[2px] "
+                      />
+                    </div>
+                  </Link>
+                </div>
+              </section>
+            )}
+            {search_results.playlists.results.length > 0 && (
+              <section className="mt-10 mb-10 max-md:ml-4">
                 <h3 className="text-white text-lg mb-6 ml-1 max-md:font-semibold max-md:text-xl">
                   Playlist
                 </h3>
-              )}
-              <div className="flex gap-8 max-md:gap-3 overflow-scroll h-full">
-                {search_results.playlists.results.map((item, index) => {
-                  return <SingleChart {...item} key={index} />;
-                })}
-              </div>
-            </section>
+
+                <div className="flex gap-8 max-md:gap-3 overflow-scroll h-full">
+                  {search_results.playlists.results.map((item, index) => {
+                    return <SingleChart {...item} key={index} />;
+                  })}
+                </div>
+              </section>
+            )}
           </div>
         )}
       </div>

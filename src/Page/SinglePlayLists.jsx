@@ -35,11 +35,11 @@ const SinglePlayLists = () => {
         (side_menu_show ? "mr-96 transition-all duration-300 ease-in" : "mr-0")
       }
     >
-      <div className="gradient flex flex-col gap-8 w-full pt-3 px-16 max-md:px-5 pb-7 ">
+      <div className="gradient flex flex-col gap-8 w-full pt-3 px-16 max-md:px-5 pb-7 Artistbackground ">
         <div className="pt-2 w-3/5 max-md:w-11/12">
           <SearchBar />
         </div>
-        <div className="grid grid-cols-[max-content,auto] max-md:grid-cols-1 max-md:place-items-center gap-5">
+        <div className="grid grid-cols-[max-content,auto] mt-7 max-md:grid-cols-1  max-md:place-items-center gap-5">
           {poster ? (
             <img
               src={ImageFetch(currentPlaylists)}
@@ -64,8 +64,10 @@ const SinglePlayLists = () => {
             </div>
           </div>
         </div>
-        {currentPlaylists.songs && <SongsList songs={currentPlaylists.songs} />}
       </div>
+      <section className="mx-12 mt-6 max-md:mx-2 mb-14">
+        {currentPlaylists.songs && <SongsList songs={currentPlaylists.songs} />}
+      </section>
     </div>
   );
 };

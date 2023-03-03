@@ -28,7 +28,7 @@ const Music_reducer = (state, action) => {
     const data = action.payload;
     return {
       ...state,
-      Albums: data.albums,
+      albums: data.albums,
       playlists: data.playlists,
       charts: data.charts,
       trendingAlbums: data.trending.albums,

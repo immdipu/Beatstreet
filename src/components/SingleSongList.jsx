@@ -22,6 +22,7 @@ const SingleSongList = ({
           display: "grid",
           borderRadius: 2,
           gridTemplateColumns: "max-content 1fr max-content",
+          overflow: "hidden",
         },
         (theme) => ({
           "&:hover": {
@@ -38,15 +39,15 @@ const SingleSongList = ({
         className="w-14 rounded-lg object-cover"
         alt={name}
       />
-      <div className="ml-4">
+      <div className="ml-4 overflow-hidden ">
         <h3
-          className="text-slate-200 text-sm"
+          className="text-slate-200 text-sm whitespace-nowrap text-ellipsis overflow-hidden w-[90%]"
           dangerouslySetInnerHTML={{
             __html: `${name || title}`,
           }}
         />
 
-        <p className="text-xs max-md:text-[11px]  opacity-90 mt-[2px] max-w-xs overflow-hidden whitespace-nowrap text-ellipsis text-darkTextColor tracking-wide">
+        <p className="text-xs max-md:text-[11px]  opacity-90 mt-[2px] max-w-xs max-md:max-w-[70%] overflow-hidden whitespace-nowrap text-ellipsis text-darkTextColor tracking-wide">
           {primaryArtists}
         </p>
       </div>

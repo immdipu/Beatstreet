@@ -71,7 +71,7 @@ const SingleAlbum = () => {
           </div>
         </div>
       </div>
-      <section className="mx-12 mt-6 max-md:mx-2">
+      <section className="mx-12 mb-10 mt-6 max-md:mx-2">
         {currentAlbum.songs && <SongsList songs={currentAlbum.songs} />}
       </section>
     </div>

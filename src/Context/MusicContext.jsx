@@ -113,7 +113,6 @@ export const MusicProvider = ({ children }) => {
         `https://saavn.me/artists/${id}/albums?page=1`
       );
       const data = res.data.data.results;
-      console.log(data);
       dispatch({ type: GET_ARTIST_ALBUMS_SUCESS, payload: data });
     } catch (error) {
       dispatch({ type: GET_ARTIST_ALBUMS_ERROR });

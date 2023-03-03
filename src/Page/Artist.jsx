@@ -34,11 +34,11 @@ const Artist = () => {
 
   return (
     <div className="overflow-hidden">
-      <div>
+      <div className="mt-7 w-1/3 ml-16 max-md:ml-0 max-md:w-full max-md:px-5">
         <SearchBar />
       </div>
       <section>
-        <div className="w-full flex gap-6 px-16 pt-7  relative overflow-hidden Artistbackground">
+        <div className="w-full flex gap-6 px-16 pt-7  max-md:flex-col relative overflow-hidden Artistbackground">
           <img
             src={ImageFetch(artist)}
             className="rounded-xl absolute inset-0 -z-20 w-full blur-md h-full object-contain"
@@ -46,7 +46,7 @@ const Artist = () => {
           />
           <img src={ImageFetch(artist)} className="rounded-xl h-72" alt="" />
 
-          <div className="self-end flex flex-col gap-2 mb-9">
+          <div className="self-end flex flex-col gap-2 mb-9 max-md:items-center">
             <h2 className="text-white font-medium text-3xl my-2 flex items-center">
               {artist.name}
               {artist.isVerified && (
@@ -64,7 +64,7 @@ const Artist = () => {
               </p>
             </div>
             {artist.availableLanguages && (
-              <div className="text-slate-200 text-xs">
+              <div className="text-slate-200 text-xs flex flex-wrap">
                 Languages:
                 {artist.availableLanguages.map((item, index) => {
                   return (
@@ -98,11 +98,21 @@ const Artist = () => {
             </div>
           </div>
         </div>
-        <section>
+        <section className="mt-12 mx-12 max-md:mx-2">
+          {single_artist_songs && (
+            <h3 className="text-white text-lg ml-5 mb-3 max-md:font-semibold max-md:text-xl  ">
+              Songs
+            </h3>
+          )}
           {single_artist_songs && <SongsList songs={single_artist_songs} />}
         </section>
 
-        <section>
+        <section className="mt-12 mx-14 mb-14 max-md:mx-4">
+          {single_artist_albums && (
+            <h3 className="text-white text-lg ml-2 mb-4 max-md:font-semibold max-md:text-xl  ">
+              Albums
+            </h3>
+          )}
           {single_artist_albums && (
             <div className="flex gap-6 overflow-scroll h-full">
               {single_artist_albums.map((item, index) => {

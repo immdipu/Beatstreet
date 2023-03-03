@@ -19,6 +19,11 @@
     }
 }
 
+.viewall {
+    background: #232526;
+    background: linear-gradient(to right, #2f3237, #101215);
+
+}
 
 .gradient {
     background-image: linear-gradient(110.3deg, rgb(34, 47, 57) 4.3%, rgba(49, 55, 82, 1) 96.7%);

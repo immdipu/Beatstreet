@@ -34,6 +34,7 @@ const SearchBar = () => {
 
   function HandleSubmit(e) {
     if (e.key === "Enter") {
+      clearTimeout(searchTimer);
       SearchAll(inputValue, current_page_count);
     }
   }

@@ -36,7 +36,7 @@ const SearchResult = () => {
             : "mr-0")
         }
       >
-        <div className="w-3/5 max-md:pl-3 max-md:w-4/5 pt-9">
+        <div className="mt-7 w-1/3 ml-16 max-md:ml-0 max-md:w-full max-md:px-5">
           <SearchBar />
         </div>
         <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
@@ -53,7 +53,7 @@ const SearchResult = () => {
         (side_menu_show ? "mr-96 transition-all duration-300 ease-in" : "mr-0")
       }
     >
-      <div className="w-3/5 max-md:pl-3 max-md:w-4/5 pt-9">
+      <div className="mt-7 w-1/3 ml-16 max-md:ml-0 max-md:w-full max-md:px-5">
         <SearchBar />
       </div>
       {!search_results && (
@@ -131,9 +131,11 @@ const SearchResult = () => {
               </div>
             </section>
             <section className="mt-10 mb-10 max-md:ml-4">
-              <h3 className="text-white text-lg mb-6 ml-1 max-md:font-semibold max-md:text-xl">
-                Playlist
-              </h3>
+              {search_results.playlists.results > 0 && (
+                <h3 className="text-white text-lg mb-6 ml-1 max-md:font-semibold max-md:text-xl">
+                  Playlist
+                </h3>
+              )}
               <div className="flex gap-8 max-md:gap-3 overflow-scroll h-full">
                 {search_results.playlists.results.map((item, index) => {
                   return <SingleChart {...item} key={index} />;

@@ -28,7 +28,7 @@ const Mains = () => {
         (side_menu_show ? "mr-96 transition-all duration-300 ease-in" : "mr-0")
       }
     >
-      <div className="pt-5 w-3/5 max-md:w-11/12">
+      <div className="mt-7 w-1/3 ml-16 max-md:ml-0 max-md:w-full max-md:px-5">
         <SearchBar />
       </div>
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const SingleArtist = ({ id, title, image }) => {
   return (
-    <Link to={`/artist/${id}`} className="w-fit">
+    <Link to={`/artist/${id}`} className="w-28 block">
       <div className="relative w-28 h-28 border-2 border-opacity-40 border-slate-300 rounded-full">
         <img
           src={image[1].link}
@@ -13,7 +13,7 @@ const SingleArtist = ({ id, title, image }) => {
         />
       </div>
       <h4
-        className="whitespace-nowrap  w-full text-center text-darkSongname text-sm mt-3 px-1 "
+        className="w-full text-center text-darkSongname text-sm mt-3 px-1 "
         title={title}
       >
         {title}

@@ -47,7 +47,7 @@ const SongDownloader = ({ songId }) => {
       .then((response) => {
         let link = document.createElement("a");
         link.href = window.URL.createObjectURL(response.data);
-        link.download = `${downloadLink.songName}.mp3`;
+        link.download = `${downloadLink.songName}`;
         link.click();
         setDownloading(false);
         setDownloadProgress(0);

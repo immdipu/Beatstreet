@@ -3,7 +3,7 @@ import DownloadLogo from "./DownloadLogo";
 
 const DownloadProgress = ({ HandleClick }) => {
   return (
-    <div onClick={HandleClick} className="border-2 h-fit">
+    <div onClick={HandleClick} className="h-fit">
       <DownloadLogo />
     </div>
   );

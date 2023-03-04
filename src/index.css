@@ -84,8 +84,8 @@
 
 circle {
     fill: none;
-    stroke: url(#GradientColor);
+    stroke: #007aff;
     stroke-width: 4px;
-    stroke-dasharray: 190;
+    stroke-dasharray: 132;
 
 }

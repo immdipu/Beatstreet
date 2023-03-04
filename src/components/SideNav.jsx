@@ -20,8 +20,8 @@ const SideNav = () => {
     >
       <div
         className={
-          "bg-lightBlue text-darkTextColor  w-52 transition-all duration-400 ease-in fixed z-40 h-full  py-10 " +
-          (side_navbar_show ? "max-md:w-52" : "max-md:-left-96")
+          "bg-lightBlue text-darkTextColor  w-52 transition-all duration-150 ease-in fixed z-40 h-full  py-10 " +
+          (side_navbar_show ? "max-md:w-52 left-0" : "max-md:-left-96")
         }
       >
         <section className="px-7">

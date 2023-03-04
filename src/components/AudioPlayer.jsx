@@ -10,14 +10,15 @@ import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import CircularProgress from "@mui/material/CircularProgress";
 import { usePlayerContext } from "../Context/PlayerContext";
 import { AudioLinkSelector, ImageFetch } from "../Utils/Helper";
+import SongDownloader from "./SongDownloader";
 
 const AudioPlayer = () => {
   const { current_song, audio_playing } = usePlayerContext();
-  const [downloading, setDownloading] = useState(false);
   const [audioProgress, setAudioProgress] = useState(0);
   const [paused, setPaused] = useState(false);
   const [musicTotalLength, setMusicTotalLength] = useState("00:00");
   const [musicCurrentTime, setMusicCurrentTime] = useState("00:00");
+
   const theme = useTheme();
 
   const handleMusicProgressBar = (e) => {
@@ -42,6 +43,13 @@ const AudioPlayer = () => {
     if (currentAudio.current.currentTime === currentAudio.current.duration) {
       setPaused(true);
     }
+
+    if (currentAudio.current.paused) {
+      setPaused(true);
+    } else {
+      setPaused(false);
+    }
+
     //input total length of the audio
     let minutes = Math.floor(currentAudio.current.duration / 60);
     let seconds = Math.floor(currentAudio.current.duration % 60);
@@ -67,20 +75,21 @@ const AudioPlayer = () => {
 
   const handleDownload = () => {
     setDownloading(true);
-    fetch(AudioLinkSelector(current_song))
-      .then((response) => {
-        response.blob().then((blob) => {
-          let link = document.createElement("a");
-          link.href = window.URL.createObjectURL(blob);
-          link.download = `${current_song.name}`;
-          link.click();
-          setDownloading(false);
-        });
-      })
-      .catch((error) => {
-        console.error(error);
-        setDownloading(false);
-      });
+    // fetch(AudioLinkSelector(current_song))
+    //   .then((response) => {
+    //     response.blob().then((blob) => {
+    //       let link = document.createElement("a");
+    //       link.href = window.URL.createObjectURL(blob);
+    //       link.download = `${current_song.name}`;
+    //       link.click();
+    //       setDownloading(false);
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //     setDownloading(false);
+    //   });
+    downloadFile(AudioLinkSelector(current_song), current_song.name);
   };
   if (!audio_playing) {
     return null;
@@ -178,11 +187,7 @@ const AudioPlayer = () => {
         </div>
 
         <div className=" w-full flex justify-end cursor-pointer">
-          {downloading ? (
-            <CircularProgress size={30} />
-          ) : (
-            <CloudDownloadIcon onClick={handleDownload} />
-          )}
+          <SongDownloader songId={current_song.id} />
         </div>
       </section>
     </div>

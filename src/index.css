@@ -81,3 +81,11 @@
         opacity: 1;
     }
 }
+
+circle {
+    fill: none;
+    stroke: url(#GradientColor);
+    stroke-width: 4px;
+    stroke-dasharray: 190;
+
+}

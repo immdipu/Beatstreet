@@ -40,6 +40,7 @@ const ViewAllAlbums = () => {
         {search_albums.map((item, index) => {
           return (
             <ListItemButton
+              key={index}
               sx={[
                 {
                   display: "block",
@@ -55,7 +56,6 @@ const ViewAllAlbums = () => {
             >
               <Link
                 to={`/album/${item.id}`}
-                key={index}
                 className="flex gap-5 items-center"
               >
                 <img

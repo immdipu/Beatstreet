@@ -52,6 +52,7 @@ const initialState = {
 export const PlayerProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [inputValue, setInputValue] = useState("");
+
   const inputRef = useRef(null);
 
   const singleSong = async (id) => {
@@ -122,7 +123,6 @@ export const PlayerProvider = ({ children }) => {
       const res = await axios.get(
         `https://saavn.me/search/albums?query=${text}&page=${page}`
       );
-      console.log(res);
       const result = res.data.data.results;
       dispatch({ type: NEXT_SEARCHED_ALBUMS, payload: result });
     } catch (error) {

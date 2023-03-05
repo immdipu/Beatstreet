@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { SongsList, LoadingSpinner, SearchBar } from "../components";
 import { useMusicContext } from "../Context/MusicContext";
-import { ImageFetch } from "../Utils/Helper";
+import { ImageFetch, FollowersCount } from "../Utils/Helper";
 import Skeleton from "@mui/material/Skeleton";
 import { usePlayerContext } from "../Context/PlayerContext";
 
@@ -55,7 +55,7 @@ const SinglePlayLists = () => {
             </h2>
             <div className="flex max-md:flex-col items-center gap-3 my-2 max-md:mt-4">
               <p className="text-slate-200 text-sm max-md:text-xs">
-                {currentPlaylists.followerCount} followers
+                {FollowersCount(currentPlaylists.followerCount)} followers
               </p>
               <div className="bg-darkTextColor rounded-full max-md:text-xs w-1 h-1 max-md:hidden"></div>
               <p className="text-slate-200 text-sm">

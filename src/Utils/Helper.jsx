@@ -28,8 +28,16 @@ export const FollowersCount = (count) => {
     followers = count;
     return followers;
   } else {
-    let newcount = Math.floor(count / 1000);
+    let newcount = (count / 1000).toFixed(1);
     followers = newcount + "K";
     return followers;
   }
+};
+
+export const SongDurtionFormat = (duration) => {
+  const minutes = Math.floor(duration / 60);
+  const seconds = duration % 60;
+  const formatMinutes = minutes.toString().padStart(2, 0);
+  const formatSeconds = seconds.toString().padStart(2, 0);
+  return `${formatMinutes}:${formatSeconds}`;
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import { usePlayerContext } from "../Context/PlayerContext";
 import ListItemButton from "@mui/material/ListItemButton";
+import { SongDurtionFormat } from "../Utils/Helper";
 const SingleSongList = ({
   id,
   name,
@@ -56,7 +57,7 @@ const SingleSongList = ({
       <div className="mr-20 max-md:mr-2">
         {duration && (
           <div className="text-slate-200 text-sm opacity-70">
-            {Math.floor(duration / 60)}:00
+            {SongDurtionFormat(duration)}
           </div>
         )}
       </div>

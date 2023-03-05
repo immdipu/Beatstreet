@@ -24,9 +24,10 @@ const MusicCard = ({ image, id, name }) => {
       <h4
         className="whitespace-nowrap overflow-hidden text-ellipsis w-28 text-darkSongname text-sm mt-2 px-1"
         title={name}
-      >
-        {name}
-      </h4>
+        dangerouslySetInnerHTML={{
+          __html: `${name}`,
+        }}
+      />
     </div>
   );
 };

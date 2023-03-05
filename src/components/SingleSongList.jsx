@@ -45,9 +45,12 @@ const SingleSongList = ({
           }}
         />
 
-        <p className="text-xs max-md:text-[11px]  opacity-90 mt-[2px] max-w-xs max-md:max-w-[70%] overflow-hidden whitespace-nowrap text-ellipsis text-darkTextColor tracking-wide">
-          {primaryArtists}
-        </p>
+        <p
+          className="text-xs max-md:text-[11px]  opacity-90 mt-[2px] max-w-xs max-md:max-w-[70%] overflow-hidden whitespace-nowrap text-ellipsis text-darkTextColor tracking-wide"
+          dangerouslySetInnerHTML={{
+            __html: `${primaryArtists}`,
+          }}
+        />
       </div>
 
       <div className="mr-20 max-md:mr-2">

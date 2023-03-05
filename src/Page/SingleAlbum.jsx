@@ -52,19 +52,26 @@ const SingleAlbum = () => {
             <Skeleton variant="rectangular" width={160} height={170} />
           )}
           <div className="flex place-content-end max-md:place-items-center flex-col">
-            <h2 className="font-bold text-4xl max-md:text-center max-md:text-2xl text-white tracking-wider">
-              {currentAlbum.name}
-            </h2>
+            <h2
+              className="font-bold text-4xl max-md:text-center max-md:text-2xl text-white tracking-wider"
+              dangerouslySetInnerHTML={{
+                __html: `${currentAlbum.name}`,
+              }}
+            />
+
             <div className="flex max-md:flex-col items-center gap-3 max-md:my-0 max-md:gap-2 my-2 max-md:mt-4">
-              <p className="text-slate-200 text-sm max-md:text-xs max-md:text-center">
-                {currentAlbum.primaryArtists}
-              </p>
+              <p
+                className="text-slate-200 text-sm max-md:text-xs max-md:text-center"
+                dangerouslySetInnerHTML={{
+                  __html: `${currentAlbum.primaryArtists}`,
+                }}
+              />
               <div className="bg-darkTextColor rounded-full w-1 h-1 max-md:hidden"></div>
               <p className="text-slate-200 text-sm max-md:text-xs">
                 {currentAlbum.year}
               </p>
               <div className="bg-darkTextColor rounded-full max-md:text-xs w-1 h-1 max-md:hidden"></div>
-              <p className="text-slate-200 text-sm">
+              <p className="text-slate-200 text-sm min-w-fit">
                 {currentAlbum.songCount} songs
               </p>
             </div>

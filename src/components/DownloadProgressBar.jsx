@@ -6,7 +6,7 @@ const DownloadProgressBar = ({ progress, percentage }) => {
   };
   return (
     <div className="round-progress-bar rounded-full relative flex items-center justify-center">
-      <div className="progress-label text-xs">{percentage}%</div>
+      <div className="progress-label text-xs text-slate-50">{percentage}%</div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         version="1.1"

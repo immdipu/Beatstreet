@@ -40,7 +40,7 @@ const Mains = () => {
       </section>
       <section className="w-full my-6">
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
-          Albums
+          Latest Releases
         </h1>
         <Albums />
       </section>

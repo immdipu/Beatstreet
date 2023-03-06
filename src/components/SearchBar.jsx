@@ -26,7 +26,7 @@ const SearchBar = () => {
     clearTimeout(searchTimer);
     setSearchTimer(
       setTimeout(() => {
-        if (inputValue !== "") {
+        if (event.target.value !== "") {
           SearchAll(inputValue, current_page_count);
           inputRef.current.blur();
         }

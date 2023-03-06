@@ -10,6 +10,7 @@ const SongDownloader = ({ songId }) => {
   const [downloadLink, setDownloadLink] = useState({
     songLink: null,
     songName: null,
+    artistName: null,
   });
   const [offsetValue, setOffsetValue] = useState(132);
 
@@ -21,6 +22,7 @@ const SongDownloader = ({ songId }) => {
         setDownloadLink({
           songLink: AudioLinkSelector(result),
           songName: result.name,
+          artistName: result.primaryArtists,
         });
       })
       .catch((error) => {
@@ -47,7 +49,7 @@ const SongDownloader = ({ songId }) => {
       .then((response) => {
         let link = document.createElement("a");
         link.href = window.URL.createObjectURL(response.data);
-        link.download = `${downloadLink.songName}`;
+        link.download = `${downloadLink.songName}-${downloadLink.artistName}`;
         link.click();
         setDownloading(false);
         setDownloadProgress(0);

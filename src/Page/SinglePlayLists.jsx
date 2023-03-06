@@ -19,15 +19,13 @@ const SinglePlayLists = () => {
     SinglePlaylist(id);
   }, [id]);
 
-  let poster = ImageFetch(currentPlaylists);
-
-  // if (loading) {
-  //   return (
-  //     <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
-  //       <LoadingSpinner size={80} />
-  //     </div>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
+        <LoadingSpinner size={80} />
+      </div>
+    );
+  }
 
   const handleImageLoad = () => {
     SetImageLoading(false);

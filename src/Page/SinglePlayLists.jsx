@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { SongsList, LoadingSpinner, SearchBar } from "../components";
 import { useMusicContext } from "../Context/MusicContext";
@@ -8,6 +8,7 @@ import { usePlayerContext } from "../Context/PlayerContext";
 
 const SinglePlayLists = () => {
   const { side_menu_show } = usePlayerContext();
+  const [ImageLoading, SetImageLoading] = useState(true);
   const {
     SinglePlaylist,
     currentPlaylists,
@@ -20,13 +21,17 @@ const SinglePlayLists = () => {
 
   let poster = ImageFetch(currentPlaylists);
 
-  if (loading) {
-    return (
-      <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
-        <LoadingSpinner size={80} />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
+  //       <LoadingSpinner size={80} />
+  //     </div>
+  //   );
+  // }
+
+  const handleImageLoad = () => {
+    SetImageLoading(false);
+  };
 
   return (
     <div
@@ -40,15 +45,24 @@ const SinglePlayLists = () => {
           <SearchBar />
         </div>
         <div className="grid grid-cols-[max-content,auto] mt-7 max-md:grid-cols-1  max-md:place-items-center gap-5">
-          {poster ? (
-            <img
-              src={ImageFetch(currentPlaylists)}
-              alt={currentPlaylists.name}
-              className="w-56 shadow-xl max-md:w-34 rounded-md"
+          {ImageLoading && (
+            <Skeleton
+              width={160}
+              height={170}
+              sx={{ bgcolor: "#545454" }}
+              variant="rounded"
             />
-          ) : (
-            <Skeleton variant="rectangular" width={160} height={170} />
           )}
+          <img
+            src={ImageFetch(currentPlaylists)}
+            alt={currentPlaylists.name}
+            onLoad={handleImageLoad}
+            className={
+              "w-56 shadow-xl max-md:w-34 rounded-md " +
+              (ImageLoading ? "hidden" : "block")
+            }
+          />
+
           <div className="flex place-content-end max-md:place-items-center flex-col">
             <h2 className="font-bold text-4xl max-md:text-2xl max-md:text-center text-white tracking-wider">
               {currentPlaylists.name}

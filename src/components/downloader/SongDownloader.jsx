@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DownloadProgressBar from "./DownloadProgressBar";
 import DownloadProgress from "./DownloadProgress";
 import axios from "axios";
-import { AudioLinkSelector } from "../Utils/Helper";
+import { AudioLinkSelector } from "../../Utils/Helper";
 
 const SongDownloader = ({ songId }) => {
   const [downloading, setDownloading] = useState(false);

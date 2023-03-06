@@ -2,7 +2,8 @@ import React from "react";
 import { usePlayerContext } from "../Context/PlayerContext";
 import ListItemButton from "@mui/material/ListItemButton";
 import { SongDurtionFormat } from "../Utils/Helper";
-import SongDownloader from "./SongDownloader";
+import { SongDownloader } from "../components";
+
 const SingleSongList = ({
   id,
   name,

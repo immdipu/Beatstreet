@@ -5,7 +5,7 @@ const LogoText = () => {
     <svg
       height="52.12383869603717"
       viewBox="0 0 170 14.75899160812756"
-      class="css-1j8o68f w-full"
+      className="css-1j8o68f w-full"
     >
       <defs id="SvgjsDefs7908"></defs>
       <g

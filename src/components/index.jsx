@@ -16,9 +16,10 @@ import TopResults from "./TopResults";
 import SingleArtist from "./SingleArtist";
 import SearchAlbum from "./SearchAlbum";
 import Logo from "./assets/Logo";
-import DownloadLogo from "./DownloadLogo";
-import DownloadProgress from "./DownloadProgress";
-import DownloadProgressBar from "./DownloadProgressBar";
+import DownloadLogo from "./downloader/DownloadLogo";
+import DownloadProgress from "./downloader/DownloadProgress";
+import DownloadProgressBar from "./downloader/DownloadProgressBar";
+import SongDownloader from "./downloader/SongDownloader";
 import SinglesongCard from "./SinglesongCard";
 import LogoText from "./assets/LogoText";
 export {
@@ -44,5 +45,6 @@ export {
   DownloadLogo,
   DownloadProgress,
   DownloadProgressBar,
+  SongDownloader,
   SinglesongCard,
 };

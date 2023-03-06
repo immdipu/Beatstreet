@@ -10,7 +10,7 @@ import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import CircularProgress from "@mui/material/CircularProgress";
 import { usePlayerContext } from "../Context/PlayerContext";
 import { AudioLinkSelector, ImageFetch } from "../Utils/Helper";
-import SongDownloader from "./SongDownloader";
+import SongDownloader from "./downloader/SongDownloader";
 
 const AudioPlayer = () => {
   const { current_song, audio_playing } = usePlayerContext();

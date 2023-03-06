@@ -22,7 +22,7 @@
 .viewall {
     background: #232526;
     background: linear-gradient(to right, #2f3237, #101215);
-
+    filter: opacity(0.2)
 }
 
 .gradient {

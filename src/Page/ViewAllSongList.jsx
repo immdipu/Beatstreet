@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { SongsList } from "../components";
 import { usePlayerContext } from "../Context/PlayerContext";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Logo } from "../components";
+import { Logo, LogoText } from "../components";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const ViewAllSongList = () => {
@@ -16,8 +16,13 @@ const ViewAllSongList = () => {
 
   return (
     <div>
-      <section className=" flex justify-center items-center py-20 viewall rounded-b-2xl mb-16">
-        <Logo className="h-5 w-9" />
+      <section className=" flex justify-center items-center py-20  rounded-b-2xl mb-16 relative h-80">
+        <div className=" absolute inset-0 flex justify-end viewall rounded-b-2xl">
+          <Logo />
+        </div>
+        <div className="ml-3 max-lg:ml-11 ">
+          <LogoText />
+        </div>
       </section>
       <InfiniteScroll
         dataLength={search_songs.length}

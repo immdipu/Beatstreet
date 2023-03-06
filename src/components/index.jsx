@@ -15,11 +15,12 @@ import TopPlaylists from "./TopPlaylists";
 import TopResults from "./TopResults";
 import SingleArtist from "./SingleArtist";
 import SearchAlbum from "./SearchAlbum";
-import Logo from "./Logo";
+import Logo from "./assets/Logo";
 import DownloadLogo from "./DownloadLogo";
 import DownloadProgress from "./DownloadProgress";
 import DownloadProgressBar from "./DownloadProgressBar";
 import SinglesongCard from "./SinglesongCard";
+import LogoText from "./assets/LogoText";
 export {
   AudiPlayer,
   LoadingSpinner,
@@ -39,6 +40,7 @@ export {
   SingleArtist,
   SearchAlbum,
   Logo,
+  LogoText,
   DownloadLogo,
   DownloadProgress,
   DownloadProgressBar,

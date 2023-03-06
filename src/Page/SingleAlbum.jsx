@@ -1,5 +1,4 @@
-import { RedoOutlined } from "@mui/icons-material";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useMusicContext } from "../Context/MusicContext";
 import { SongsList, LoadingSpinner, SearchBar } from "../components";
@@ -9,6 +8,7 @@ import { usePlayerContext } from "../Context/PlayerContext";
 
 const SingleAlbum = () => {
   const { side_menu_show } = usePlayerContext();
+  const [ImageLoading, SetImageLoading] = useState(true);
   let { id } = useParams();
   const {
     singleAlbums,
@@ -20,8 +20,6 @@ const SingleAlbum = () => {
     singleAlbums(id);
   }, [id]);
 
-  let poster = ImageFetch(currentAlbum);
-
   if (loading) {
     return (
       <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
@@ -29,6 +27,10 @@ const SingleAlbum = () => {
       </div>
     );
   }
+
+  const handleImageLoad = () => {
+    SetImageLoading(false);
+  };
 
   return (
     <div
@@ -42,15 +44,24 @@ const SingleAlbum = () => {
           <SearchBar />
         </div>
         <div className="grid grid-cols-[max-content,auto] mt-7 max-md:grid-cols-1 max-md:place-items-center gap-5 ">
-          {poster ? (
-            <img
-              src={ImageFetch(currentAlbum)}
-              alt={currentAlbum.name}
-              className="w-56 shadow-xl max-md:w-34 rounded-xl"
+          {ImageLoading && (
+            <Skeleton
+              variant="rounded"
+              width={160}
+              height={170}
+              sx={{ bgcolor: "#545454" }}
             />
-          ) : (
-            <Skeleton variant="rectangular" width={160} height={170} />
           )}
+          <img
+            src={ImageFetch(currentAlbum)}
+            alt={currentAlbum.name}
+            onLoad={handleImageLoad}
+            className={
+              "w-56 shadow-xl max-md:w-34 rounded-xl " +
+              (ImageLoading ? "hidden" : "block")
+            }
+          />
+
           <div className="flex place-content-end max-md:place-items-center flex-col">
             <h2
               className="font-bold text-4xl max-md:text-center max-md:text-2xl text-white tracking-wider"

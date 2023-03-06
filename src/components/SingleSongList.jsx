@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { usePlayerContext } from "../Context/PlayerContext";
 import ListItemButton from "@mui/material/ListItemButton";
 import { SongDurtionFormat } from "../Utils/Helper";
 import { SongDownloader } from "../components";
+import Skeleton from "@mui/material/Skeleton";
 
 const SingleSongList = ({
   id,
@@ -15,6 +16,10 @@ const SingleSongList = ({
   title,
 }) => {
   const { singleSong } = usePlayerContext();
+  const [ImageLoading, SetImageLoading] = useState(true);
+  const handleImageLoad = () => {
+    SetImageLoading(false);
+  };
 
   return (
     <div className="relative">
@@ -36,9 +41,21 @@ const SingleSongList = ({
         className="grid relative overflow-hidden gap-3 cursor-pointer  items-center px-5 max-md:px-3"
         onClick={() => singleSong(id)}
       >
+        {ImageLoading && (
+          <Skeleton
+            width={50}
+            height={50}
+            sx={{ bgcolor: "#545454" }}
+            variant="rounded"
+          />
+        )}
         <img
           src={image[1].link}
-          className="w-14 rounded-lg object-cover"
+          className={
+            "w-14 rounded-lg object-cover " +
+            (ImageLoading ? "hidden" : "block")
+          }
+          onLoad={handleImageLoad}
           alt={name}
         />
         <div className="ml-4 overflow-hidden ">

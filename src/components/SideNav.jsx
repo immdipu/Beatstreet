@@ -15,14 +15,14 @@ const SideNav = () => {
   return (
     <div
       className={
-        "w-52 transition-all duration-200 ease-in " +
+        "w-52 transition-all duration-200 " +
         (side_navbar_show ? "max-md:w-0" : "max-md:w-0")
       }
     >
       <div
         className={
-          "bg-lightBlue text-darkTextColor  w-52 transition-all duration-150 ease-in fixed z-40 h-full  py-10 " +
-          (side_navbar_show ? "max-md:w-52 left-0" : "max-md:-left-96")
+          "bg-lightBlue text-darkTextColor  w-52 transition-all duration-200 ease-linear  fixed z-40 h-full  py-10 " +
+          (side_navbar_show ? "max-md:w-52 left-0" : "max-md:-left-52")
         }
       >
         <section className="px-7">
@@ -82,12 +82,13 @@ const SideNav = () => {
           <button>Dark</button>
         </section>
       </div>
-      {side_navbar_show && (
-        <div
-          className="fixed z-30 h-full max-md:block hidden top-0 w-full bg-[#0c0c0cc7]"
-          onClick={HandleSideNav}
-        ></div>
-      )}
+      <div
+        className={
+          "fixed z-30 h-full max-md:block hidden top-0 w-full bg-[#0c0c0cc7] transition-all duration-200 ease-in " +
+          (side_navbar_show ? "visible opacity-100" : "invisible opacity-0")
+        }
+        onClick={HandleSideNav}
+      ></div>
     </div>
   );
 };

@@ -64,7 +64,7 @@ const SearchBar = () => {
         </IconButton>
       </div>
       <div
-        className="flex bg-darkBlue items-center w-full focus-within:border-darkTextColor group transition-all duration-400 ease-linear rounded-full pl-5 pr-1 h-10 border-[0.7px] border-[#ffd4d46e]"
+        className="flex  items-center w-full focus-within:border-darkTextColor group transition-all duration-400 ease-linear rounded-full pl-5 pr-1 h-10 normaic border-[#ffd4d46e]"
         onClick={HandleSearch}
       >
         <input
@@ -74,7 +74,7 @@ const SearchBar = () => {
           onKeyDown={HandleSubmit}
           ref={inputRef}
           placeholder="Type here to search"
-          className="bg-darkBlue placeholder:text-sm max-md:placeholder:text-xs text-sm w-full outline-none border-none text-darkTitle font-light"
+          className=" placeholder:text-sm bg-transparent placeholder:bg-transparent max-md:placeholder:text-xs text-sm w-full outline-none border-none  text-darkTitle font-light"
         />
         <div className="opacity-0 group-hover:opacity-100 group-focus-within:opacity-100  transition-all duration-200 ease-linear">
           <ClearRoundedIcon

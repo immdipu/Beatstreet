@@ -39,7 +39,7 @@ const SinglePlayLists = () => {
       }
     >
       <div className="gradient flex flex-col gap-8 w-full pt-3 px-16 max-md:px-5 pb-7 Artistbackground ">
-        <div className="pt-2 w-3/5 max-md:w-11/12">
+        <div className="mt-7 w-1/3 ml-16 max-md:ml-0 max-md:w-full max-md:px-5">
           <SearchBar />
         </div>
         <div className="grid grid-cols-[max-content,auto] mt-7 max-md:grid-cols-1  max-md:place-items-center gap-5">

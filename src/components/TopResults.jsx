@@ -15,7 +15,7 @@ const TopResults = () => {
           return (
             <div key={index}>
               <Link
-                to={`/albums/${item.id}`}
+                to={`/album/${item.id}`}
                 className="flex gap-8 cursor-pointer bg-lightBlue rounded-lg shadow-xl py-4 items-center px-5"
               >
                 <img

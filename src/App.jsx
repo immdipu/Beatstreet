@@ -8,6 +8,10 @@ import {
   ViewAllSongList,
   ViewAllAlbums,
   Artist,
+  SignUp,
+  LogIn,
+  ForgotPwd,
+  ResetPwd,
 } from "./Page";
 import { SideNav, RightSideMenu, Alert } from "./components";
 import { useMusicContext } from "./Context/MusicContext";
@@ -29,6 +33,10 @@ function App() {
           <Route path="/artist/:id" element={<Artist />} />
           <Route path="/search/album/:id" element={<SingleAlbum />} />
           <Route path="/search" element={<SearchResult />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/resetpassword/:token" element={<ResetPwd />} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/forgotPassword" element={<ForgotPwd />} />
           <Route path="/playlists/:id" element={<SinglePlayLists />} />
           <Route path="search/playlists/:id" element={<SinglePlayLists />} />
           <Route path="search/songs/:keyword" element={<ViewAllSongList />} />

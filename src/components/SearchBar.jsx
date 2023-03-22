@@ -57,7 +57,7 @@ const SearchBar = () => {
   }
 
   return (
-    <section className="flex items-center gap-4 w-96 max-md:w-full">
+    <section className="flex items-center searchBarContainer  gap-4 w-96 max-md:w-full">
       <div className="w-fit hidden max-md:flex" onClick={HandleSideNav}>
         <IconButton>
           <FormatAlignCenterIcon className="text-slate-200" />

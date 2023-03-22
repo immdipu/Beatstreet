@@ -22,6 +22,7 @@ import DownloadProgressBar from "./downloader/DownloadProgressBar";
 import SongDownloader from "./downloader/SongDownloader";
 import SinglesongCard from "./SinglesongCard";
 import LogoText from "./assets/LogoText";
+import TopNav from "./TopNav";
 export {
   AudiPlayer,
   LoadingSpinner,
@@ -47,4 +48,5 @@ export {
   DownloadProgressBar,
   SongDownloader,
   SinglesongCard,
+  TopNav,
 };

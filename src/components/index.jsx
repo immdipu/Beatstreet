@@ -23,6 +23,10 @@ import SongDownloader from "./downloader/SongDownloader";
 import SinglesongCard from "./SinglesongCard";
 import LogoText from "./assets/LogoText";
 import TopNav from "./TopNav";
+import LoginAlert from "./LoginAlert";
+import EyeVisibility from "./assets/EyeVisibility";
+import EyeNotVisibility from "./assets/EyeNotVisibility";
+
 export {
   AudiPlayer,
   LoadingSpinner,
@@ -49,4 +53,7 @@ export {
   SongDownloader,
   SinglesongCard,
   TopNav,
+  LoginAlert,
+  EyeNotVisibility,
+  EyeVisibility,
 };

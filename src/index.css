@@ -96,3 +96,54 @@ circle {
     stroke-dasharray: 132;
 
 }
+
+.success {
+    background-color: #cce7cc;
+    padding: 0 16px 0px 16px;
+    border-radius: 4px 4px 0 0;
+    color: rgb(30, 70, 32);
+}
+
+.failed {
+    padding: 0 16px 0px 16px;
+    border-radius: 4px 4px 0 0;
+    background-color: rgb(253, 237, 237);
+    color: rgb(95, 33, 32);
+}
+
+
+
+
+
+.slide-in-top {
+    -webkit-animation: slide-in-top 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-in-top 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes slide-in-top {
+    0% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-top {
+    0% {
+        -webkit-transform: translateY(-1000px);
+        transform: translateY(-1000px);
+        opacity: 0;
+    }
+
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

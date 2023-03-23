@@ -1,10 +1,63 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import RippleButton from "ripple-effect-reactjs";
+import { useUserContext } from "../Context/UserContext";
+import ClipLoader from "react-spinners/ClipLoader";
+import { LoginAlert } from "../components";
 
 const ForgotPwd = () => {
+  const {
+    forgotPassword,
+    forgot_password_loading,
+    forgot_password_success,
+    forgot_password_failed,
+  } = useUserContext();
+  const [validateEmail, setValidateEmail] = useState(false);
+  const emailRef = useRef(null);
+
+  let alert = null;
+  if (forgot_password_failed) {
+    alert = (
+      <LoginAlert
+        message={"Failed! The email you provided is not registered"}
+        alertClass={"failed"}
+      />
+    );
+  }
+
+  if (forgot_password_success) {
+    alert = (
+      <LoginAlert
+        message={
+          "SUCCESS! A email containing password reset link has been sent to your email"
+        }
+        alertClass={"success"}
+      />
+    );
+  }
+
+  const handleSubmit = () => {
+    if (emailRef.current.value.trim() !== "") {
+      const emailValidation =
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+          emailRef.current.value
+        );
+
+      if (!emailValidation) {
+        return setValidateEmail(true);
+      }
+      setValidateEmail(false);
+      let data = {
+        email: emailRef.current.value,
+      };
+      forgotPassword(data);
+      emailRef.current.value = null;
+    }
+  };
+
   return (
     <div className="max-w-2xl mx-auto mt-5 w-full">
+      {alert}
       <section className="bg-[#1e1f22] shadow-md px-10 py-6 rounded-md">
         <div className="flex flex-col gap-3">
           <h2 className="text-3xl text-slate-50">Forgot your password?</h2>
@@ -20,27 +73,63 @@ const ForgotPwd = () => {
             <li>2. Our system will send you a temporary link</li>
             <li>3. Use the link to reset your password</li>
           </ol>
+
+          <p className="text-sm font-Rubik mt-3 font-thin">
+            <span className="text-red-500 font-medium">Note: </span> If you
+            can't find the password reset email in your inbox, please check your
+            spam folder as it may have been filtered there.
+          </p>
         </div>
       </section>
       <section className="bg-[#1e1f22] shadow-md px-10 py-6 rounded-md mt-8">
-        <div>
-          <h4 className="text-slate-50 font-Rubik font-extralight text-lg">
-            Enter your email address
-          </h4>
+        <div
+          className={
+            " rounded-md   focus-within:border-opacity-90 focus-within:border-2 duration-150 transition-all ease-linear h-12 relative w-full " +
+            (validateEmail
+              ? "border-red-600 border-2"
+              : "border-slate-300 border border-opacity-30")
+          }
+        >
           <input
             type="email"
-            className=" outline-none rounded h-11 max-sm:w-full mt-2 w-4/6 text-white font-thin font-Rubik bg-transparent border opacity-40 focus:opacity-100 text-sm tracking-wider required transition-all duration-500 px-4  ease-linear focus:border-2"
+            id="email"
+            placeholder=" "
+            ref={emailRef}
+            className="w-full outline-none text-sm tracking-wide  text-white px-4 font-thin border-none h-full bg-transparent relative z-10 peer"
           />
+          {validateEmail && (
+            <p className="text-red-500 font-light text-sm mt-1 px-1">
+              Please provide valid email address
+            </p>
+          )}
+          <p
+            htmlFor="email"
+            className="absolute text-sm  text-white opacity-100  left-3 bg-[#1e1f22] font-light duration-100 transition-all -top-3 ease-linear px-2 peer-placeholder-shown:opacity-50 peer-placeholder-shown:top-2 peer-placeholder-shown:text-lg peer-focus-within:opacity-100  peer-focus-within:-top-3  peer-focus-within:text-sm  "
+          >
+            E-mail Address
+          </p>
           <p className="font-thin text-slate-100 text-sm font-sans opacity-70 mt-3">
             Enter the email address you used during the registration. Then we'll
             email a link to this address.
           </p>
         </div>
-        <div className="mt-7 flex justify-between items-center max-sm:flex-col">
-          <div className="w-40">
+
+        <div
+          className={
+            "flex justify-between items-center  max-sm:flex-col transition-all duration-200 ease-linear " +
+            (validateEmail ? "mt-24" : "mt-10")
+          }
+        >
+          <div className="w-40" onClick={handleSubmit}>
             <RippleButton color={"#519aff2e"} speed={500}>
               <button className="text-skyBlue bg-[#519aff2e] w-full px-3 py-2 rounded-md">
-                Send Reset Link
+                {forgot_password_loading ? (
+                  <div className="mt-2">
+                    <ClipLoader size={30} color="#2764eb" speedMultiplier={3} />
+                  </div>
+                ) : (
+                  "Send Reset Link"
+                )}
               </button>
             </RippleButton>
           </div>

@@ -6,8 +6,7 @@ import PauseRounded from "@mui/icons-material/PauseRounded";
 import PlayArrowRounded from "@mui/icons-material/PlayArrowRounded";
 import FastForwardRounded from "@mui/icons-material/FastForwardRounded";
 import FastRewindRounded from "@mui/icons-material/FastRewindRounded";
-import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
-import CircularProgress from "@mui/material/CircularProgress";
+
 import { usePlayerContext } from "../Context/PlayerContext";
 import { AudioLinkSelector, ImageFetch } from "../Utils/Helper";
 import SongDownloader from "./downloader/SongDownloader";
@@ -73,24 +72,6 @@ const AudioPlayer = () => {
     setAudioProgress(isNaN(progress) ? 0 : progress);
   };
 
-  const handleDownload = () => {
-    setDownloading(true);
-    // fetch(AudioLinkSelector(current_song))
-    //   .then((response) => {
-    //     response.blob().then((blob) => {
-    //       let link = document.createElement("a");
-    //       link.href = window.URL.createObjectURL(blob);
-    //       link.download = `${current_song.name}`;
-    //       link.click();
-    //       setDownloading(false);
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //     setDownloading(false);
-    //   });
-    downloadFile(AudioLinkSelector(current_song), current_song.name);
-  };
   if (!audio_playing) {
     return null;
   }

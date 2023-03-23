@@ -12,7 +12,7 @@ const RightSideMenu = () => {
         (side_menu_show ? "w-96 max-md:w-full " : "w-0 -right-20")
       }
     >
-      <div className="w-fit">
+      <div className="w-fit mt-14 max-md:mt-2">
         <KeyboardDoubleArrowLeftIcon
           className="rotate-180 cursor-pointer"
           onClick={HandleRightSideMenu}

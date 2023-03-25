@@ -1,7 +1,7 @@
 import React from "react";
 import { useMusicContext } from "../Context/MusicContext";
 import { usePlayerContext } from "../Context/PlayerContext";
-
+import { motion } from "framer-motion";
 import {
   LoadingSpinner,
   TrendingAlbums,
@@ -11,6 +11,7 @@ import {
   TopPlaylists,
   TopNav,
 } from "../components";
+import { duration } from "@mui/material";
 
 const Mains = () => {
   const { homeData_loading: loading } = useMusicContext();
@@ -23,7 +24,10 @@ const Mains = () => {
     );
   }
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1, transition: { ease: "easeInOut" } }}
+      exit={{ x: "-100vw", transition: { ease: "easeInOut" } }}
       className={
         "bg-darkBlue pl-10 pr-4 max-md:pl-4 overflow-hidden " +
         (side_menu_show ? "mr-96 transition-all duration-300 ease-in" : "mr-0")
@@ -55,7 +59,7 @@ const Mains = () => {
         </h1>
         <TopPlaylists />
       </section>
-    </div>
+    </motion.div>
   );
 };
 

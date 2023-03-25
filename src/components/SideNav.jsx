@@ -13,15 +13,10 @@ import LogoText from "./assets/LogoText";
 const SideNav = () => {
   const { HandleSideNav, side_navbar_show } = usePlayerContext();
   return (
-    <div
-      className={
-        "w-52 transition-all duration-200 " +
-        (side_navbar_show ? "max-md:w-0" : "max-md:w-0")
-      }
-    >
+    <div className={"float-left w-52 h-2 max-md:w-0"}>
       <div
         className={
-          "bg-lightBlue text-darkTextColor  w-52 transition-all duration-200 ease-linear  fixed z-40 h-full  py-10 " +
+          "bg-lightBlue text-darkTextColor top-0  w-52 transition-all duration-200 ease-linear  fixed z-50 h-full  py-10 " +
           (side_navbar_show ? "max-md:w-52 left-0" : "max-md:-left-52")
         }
       >

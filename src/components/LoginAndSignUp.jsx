@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const LoginAndSignUp = () => {
   return (
-    <div className="flex gap-8 items-center mr-5">
+    <div className="flex gap-8 items-center mr-5 max-md:hidden">
       <Link to={"/login"} className="text-white hover:opacity-90">
         Log In
       </Link>

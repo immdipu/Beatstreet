@@ -4,6 +4,7 @@ import RippleButton from "ripple-effect-reactjs";
 import { useUserContext } from "../Context/UserContext";
 import ClipLoader from "react-spinners/ClipLoader";
 import { LoginAlert } from "../components";
+import { motion } from "framer-motion";
 
 const ForgotPwd = () => {
   const {
@@ -56,7 +57,12 @@ const ForgotPwd = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto mt-5 w-full">
+    <motion.div
+      initial={{ y: "-100vw" }}
+      animate={{ y: "0vw", transition: { ease: "easeInOut" } }}
+      exit={{ y: "100vw", transition: { ease: "easeInOut" } }}
+      className="max-w-2xl mx-auto mt-5 w-full"
+    >
       {alert}
       <section className="bg-[#1e1f22] shadow-md px-10 py-6 rounded-md">
         <div className="flex flex-col gap-3">
@@ -146,7 +152,7 @@ const ForgotPwd = () => {
           </div>
         </div>
       </section>
-    </div>
+    </motion.div>
   );
 };
 

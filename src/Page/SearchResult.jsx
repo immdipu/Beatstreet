@@ -10,6 +10,7 @@ import {
   SingleChart,
 } from "../components";
 import ListItemButton from "@mui/material/ListItemButton";
+import { motion } from "framer-motion";
 
 import { usePlayerContext } from "../Context/PlayerContext";
 
@@ -47,7 +48,10 @@ const SearchResult = () => {
   }
 
   return (
-    <div
+    <motion.div
+      // initial={{ opacity: 0 }}
+      // animate={{ opacity: 1, transition: { ease: "easeInOut", delay: 0.5 } }}
+      // exit={{ opacity: 0, transition: { ease: "easeInOut" } }}
       className={
         "bg-darkBlue pl-10 max-md:pl-1 pr-4 overflow-hidden " +
         (side_menu_show ? "mr-96 transition-all duration-300 ease-in" : "mr-0")
@@ -148,7 +152,7 @@ const SearchResult = () => {
           </div>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -5,6 +5,8 @@ import { LoginAlert, EyeNotVisibility, EyeVisibility } from "../components";
 import ClipLoader from "react-spinners/ClipLoader";
 import PersonIcon from "@mui/icons-material/Person";
 import { useUserContext } from "../Context/UserContext";
+import { motion } from "framer-motion";
+
 const SignUp = () => {
   const { signup_loading, signup_success, signup_failed, signUpUser } =
     useUserContext();
@@ -101,7 +103,12 @@ const SignUp = () => {
   }
 
   return (
-    <div className=" max-w-lg w-full mx-auto mt-24 max-md:px-4 flex flex-col items-center justify-center">
+    <motion.div
+      initial={{ y: "100vh" }}
+      animate={{ y: "0vh", transition: { ease: "easeInOut" } }}
+      exit={{ y: "-100vh", transition: { ease: "easeInOut" } }}
+      className=" max-w-lg w-full mx-auto mt-24 max-md:px-4 flex flex-col items-center justify-center"
+    >
       {alert}
       <div className="rounded-full bg-slate-300 w-fit p-2">
         <PersonIcon fontSize="large" color="primary" />
@@ -242,7 +249,7 @@ const SignUp = () => {
           Already have an account? Logn in
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

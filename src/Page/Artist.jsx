@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { SearchBar, LoadingSpinner, SongsList, MusicCard } from "../components";
+import { LoadingSpinner, SongsList, MusicCard } from "../components";
 import { useParams } from "react-router-dom";
 import { useMusicContext } from "../Context/MusicContext";
 import { ImageFetch, FollowersCount } from "../Utils/Helper";
@@ -34,9 +34,6 @@ const Artist = () => {
 
   return (
     <div className="overflow-hidden">
-      <div className="mt-7 w-1/3 ml-16 max-md:ml-0 max-md:w-full max-md:px-5">
-        <SearchBar />
-      </div>
       <section>
         <div className="w-full flex gap-6 px-16 pt-7  max-md:flex-col relative overflow-hidden Artistbackground">
           <img

@@ -6,10 +6,8 @@ import {
   LoadingSpinner,
   TrendingAlbums,
   Albums,
-  SearchBar,
   TopCharts,
   TopPlaylists,
-  TopNav,
 } from "../components";
 
 const Mains = () => {
@@ -32,9 +30,7 @@ const Mains = () => {
         (side_menu_show ? "mr-96 transition-all duration-300 ease-in" : "mr-0")
       }
     >
-      <TopNav />
-
-      <section className="w-full mt-24 my-6 ">
+      <section className="w-full my-6 ">
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Trending
         </h1>

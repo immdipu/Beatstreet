@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
-  SearchBar,
   LoadingSpinner,
   SongsList,
   TopResults,
@@ -11,21 +10,11 @@ import {
 } from "../components";
 import ListItemButton from "@mui/material/ListItemButton";
 import { motion } from "framer-motion";
-
 import { usePlayerContext } from "../Context/PlayerContext";
 
 const SearchResult = () => {
-  const {
-    side_menu_show,
-    search_loading,
-    search_results,
-    inputRef,
-    inputValue,
-  } = usePlayerContext();
-
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+  const { side_menu_show, search_loading, search_results, inputValue } =
+    usePlayerContext();
 
   if (search_loading) {
     return (
@@ -37,9 +26,6 @@ const SearchResult = () => {
             : "mr-0")
         }
       >
-        <div className="mt-7 w-1/3 ml-16 max-md:ml-0 max-md:w-full max-md:px-5">
-          <SearchBar />
-        </div>
         <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
           <LoadingSpinner size={80} />
         </div>
@@ -57,9 +43,6 @@ const SearchResult = () => {
         (side_menu_show ? "mr-96 transition-all duration-300 ease-in" : "mr-0")
       }
     >
-      <div className="mt-7 w-1/3 ml-16 max-md:ml-0 max-md:w-full max-md:px-5">
-        <SearchBar />
-      </div>
       {!search_results && (
         <div>
           <p className="mt-20 text-center mx-auto w-fit text-darkTextColor">

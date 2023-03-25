@@ -114,7 +114,7 @@ const ForgotPwd = () => {
           >
             E-mail Address
           </p>
-          <p className="font-thin text-slate-100 text-sm font-sans opacity-70 mt-3">
+          <p className="font-thin text-slate-100 text-sm max-md:text-xs font-sans opacity-70 mt-3">
             Enter the email address you used during the registration. Then we'll
             email a link to this address.
           </p>
@@ -122,8 +122,8 @@ const ForgotPwd = () => {
 
         <div
           className={
-            "flex justify-between items-center  max-sm:flex-col transition-all duration-200 ease-linear " +
-            (validateEmail ? "mt-24" : "mt-10")
+            "flex justify-between items-center  max-md:flex-col max-md:gap-5 transition-all duration-200 ease-linear " +
+            (validateEmail ? "mt-24 max-md:mt-36" : "mt-10 max-md:mt-20")
           }
         >
           <div className="w-40" onClick={handleSubmit}>
@@ -144,7 +144,7 @@ const ForgotPwd = () => {
             <RippleButton color={"#c7757547"}>
               <Link
                 to={"/login"}
-                className="text-red-300 bg-[#c7757547] pl-5 text-sm w-full px-3 py-2 block rounded-md"
+                className="text-red-300 max-md:scale-75 bg-[#c7757547] pl-5 text-sm w-full px-3 py-2 block rounded-md"
               >
                 Back to Login
               </Link>

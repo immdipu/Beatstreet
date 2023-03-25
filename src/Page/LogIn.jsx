@@ -3,7 +3,12 @@ import RippleButton from "ripple-effect-reactjs";
 import { Link, useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import { useUserContext } from "../Context/UserContext";
-import { LoginAlert, EyeNotVisibility, EyeVisibility } from "../components";
+import {
+  LoginAlert,
+  EyeNotVisibility,
+  EyeVisibility,
+  TopNav,
+} from "../components";
 import ClipLoader from "react-spinners/ClipLoader";
 import { motion } from "framer-motion";
 
@@ -70,6 +75,7 @@ const LogIn = () => {
       className=" max-w-lg w-full mx-auto mt-24 max-md:px-4 flex flex-col items-center justify-center"
     >
       {alert}
+
       <div className="rounded-full bg-slate-300 w-fit p-2">
         <PersonIcon fontSize="large" color="primary" />
       </div>

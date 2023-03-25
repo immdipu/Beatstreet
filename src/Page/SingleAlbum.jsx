@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useMusicContext } from "../Context/MusicContext";
-import { SongsList, LoadingSpinner, SearchBar } from "../components";
+import { SongsList, LoadingSpinner } from "../components";
 import { ImageFetch } from "../Utils/Helper";
 import Skeleton from "@mui/material/Skeleton";
 import { usePlayerContext } from "../Context/PlayerContext";
@@ -40,9 +40,6 @@ const SingleAlbum = () => {
       }
     >
       <div className="gradient flex flex-col gap-8 relative w-full pt-3 px-16 max-md:px-5 pb-7  Artistbackground">
-        <div className="mt-7 w-1/3 ml-16 max-md:ml-0 max-md:w-full max-md:px-5">
-          <SearchBar />
-        </div>
         <div className="grid grid-cols-[max-content,auto] mt-7 max-md:grid-cols-1 max-md:place-items-center gap-5 ">
           {ImageLoading && (
             <Skeleton

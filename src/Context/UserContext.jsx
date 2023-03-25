@@ -35,7 +35,7 @@ const initialState = {
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   let UserEndPoints =
-    "https://colorful-fly-attire.cyclic.app//beatstreet/api/users";
+    "https://colorful-fly-attire.cyclic.app/beatstreet/api/users";
 
   const axiosInstance = axios.create({ withCredentials: true });
 

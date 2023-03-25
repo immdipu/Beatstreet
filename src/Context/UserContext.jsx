@@ -35,13 +35,19 @@ const initialState = {
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   let UserEndPoints =
-    "https://colorful-fly-attire.cyclic.app//beatstreet/api/users";
+    "https://colorful-fly-attire.cyclic.app/beatstreet/api/users";
+
+  const axiosInstance = axios.create({ withCredentials: true });
 
   const loginUser = async (data) => {
     try {
       dispatch({ type: USER_LOGIN_BEGIN });
-      const responses = await axios.post(UserEndPoints + "/login", data);
+      const responses = await axiosInstance.post(
+        UserEndPoints + "/login",
+        data
+      );
       const results = responses.data.data.user;
+      console.log(responses);
       dispatch({ type: USER_LOGIN_SUCESS, payload: results });
     } catch (error) {
       dispatch({ type: USER_LOGIN_FAILED });

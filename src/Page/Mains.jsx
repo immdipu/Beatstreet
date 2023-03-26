@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useMusicContext } from "../Context/MusicContext";
 import { usePlayerContext } from "../Context/PlayerContext";
-import { useUserContext } from "../Context/UserContext";
+
 import { motion } from "framer-motion";
 import {
   LoadingSpinner,
@@ -13,7 +13,6 @@ import {
 
 const Mains = () => {
   const { homeData_loading: loading } = useMusicContext();
-  const { AutoLogin } = useUserContext();
   const { side_menu_show } = usePlayerContext();
 
   useEffect(() => {

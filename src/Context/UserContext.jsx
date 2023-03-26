@@ -39,6 +39,16 @@ export const UserProvider = ({ children }) => {
 
   const axiosInstance = axios.create({ withCredentials: true });
 
+  const AutoLogin = async (token) => {
+    try {
+      const response = await axiosInstance.get(UserEndPoints + "isloggedin");
+      const result = response.data;
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const loginUser = async (data) => {
     try {
       dispatch({ type: USER_LOGIN_BEGIN });
@@ -49,6 +59,7 @@ export const UserProvider = ({ children }) => {
       const results = responses.data.data.user;
       console.log(responses);
       dispatch({ type: USER_LOGIN_SUCESS, payload: results });
+      localStorage.setItem("token", "hello");
     } catch (error) {
       dispatch({ type: USER_LOGIN_FAILED });
       setTimeout(() => {
@@ -93,7 +104,7 @@ export const UserProvider = ({ children }) => {
 
   return (
     <userContext.Provider
-      value={{ ...state, loginUser, signUpUser, forgotPassword }}
+      value={{ ...state, loginUser, signUpUser, forgotPassword, AutoLogin }}
     >
       {children}
     </userContext.Provider>

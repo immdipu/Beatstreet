@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useMusicContext } from "../Context/MusicContext";
 import { usePlayerContext } from "../Context/PlayerContext";
+import { useUserContext } from "../Context/UserContext";
 import { motion } from "framer-motion";
 import {
   LoadingSpinner,
@@ -12,7 +13,13 @@ import {
 
 const Mains = () => {
   const { homeData_loading: loading } = useMusicContext();
+  const { AutoLogin } = useUserContext();
   const { side_menu_show } = usePlayerContext();
+
+  useEffect(() => {
+    AutoLogin();
+  }, []);
+
   if (loading) {
     return (
       <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 pr-32 max-md:pr-0 ">

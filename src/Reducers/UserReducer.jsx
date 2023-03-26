@@ -11,6 +11,8 @@ import {
   FORGOT_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_FAILED,
   FORGOT_PASSWORD_FINISHED,
+  AUTO_LOGIN,
+  USER_DROP_DOWN_TOGGLE,
 } from "../Actions";
 
 const User_Reducer = (state, action) => {
@@ -50,6 +52,18 @@ const User_Reducer = (state, action) => {
     return {
       ...state,
       login_failed: false,
+    };
+  }
+
+  if (action.type === AUTO_LOGIN) {
+    const data = action.payload;
+    return {
+      ...state,
+      login_loading: false,
+      login_failed: false,
+      login_success: true,
+      user_name: data.name,
+      User_id: data._id,
     };
   }
 
@@ -120,6 +134,15 @@ const User_Reducer = (state, action) => {
       forgot_password_loading: false,
       forgot_password_success: false,
       forgot_password_failed: false,
+    };
+  }
+
+  /////////////////////////////////// BUTTON FUNCTIONS ////////////////////////////////
+
+  if (action.type === USER_DROP_DOWN_TOGGLE) {
+    return {
+      ...state,
+      user_drop_down: !state.user_drop_down,
     };
   }
 };

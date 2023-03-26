@@ -14,6 +14,8 @@ import {
   FORGOT_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_FAILED,
   FORGOT_PASSWORD_FINISHED,
+  AUTO_LOGIN,
+  USER_DROP_DOWN_TOGGLE,
 } from "../Actions";
 
 const userContext = React.createContext();
@@ -22,7 +24,7 @@ const initialState = {
   user_name: null,
   User_id: null,
   login_failed: false,
-  login_success: false,
+  login_success: true,
   login_loading: false,
   signup_loading: false,
   signup_success: false,
@@ -30,6 +32,7 @@ const initialState = {
   forgot_password_loading: false,
   forgot_password_success: false,
   forgot_password_failed: false,
+  user_drop_down: false,
 };
 
 export const UserProvider = ({ children }) => {
@@ -39,11 +42,11 @@ export const UserProvider = ({ children }) => {
 
   const axiosInstance = axios.create({ withCredentials: true });
 
-  const AutoLogin = async (token) => {
+  const AutoLogin = async () => {
     try {
       const response = await axiosInstance.get(UserEndPoints + "/isloggedin");
-      const result = response.data;
-      console.log(result);
+      const result = response.data.data.user;
+      dispatch({ type: AUTO_LOGIN, payload: result });
     } catch (error) {
       console.log(error);
     }
@@ -102,9 +105,20 @@ export const UserProvider = ({ children }) => {
     }, 10000);
   };
 
+  const HandleUserDropDown = () => {
+    dispatch({ type: USER_DROP_DOWN_TOGGLE });
+  };
+
   return (
     <userContext.Provider
-      value={{ ...state, loginUser, signUpUser, forgotPassword, AutoLogin }}
+      value={{
+        ...state,
+        loginUser,
+        signUpUser,
+        forgotPassword,
+        AutoLogin,
+        HandleUserDropDown,
+      }}
     >
       {children}
     </userContext.Provider>

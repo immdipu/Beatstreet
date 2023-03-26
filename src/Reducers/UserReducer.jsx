@@ -13,6 +13,9 @@ import {
   FORGOT_PASSWORD_FINISHED,
   AUTO_LOGIN,
   USER_DROP_DOWN_TOGGLE,
+  LOGOUT_USER_BEGIN,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_FAILED,
 } from "../Actions";
 
 const User_Reducer = (state, action) => {
@@ -134,6 +137,30 @@ const User_Reducer = (state, action) => {
       forgot_password_loading: false,
       forgot_password_success: false,
       forgot_password_failed: false,
+    };
+  }
+
+  //////////////////////////// LOG OUT ACTION ///////////////////////
+  if (action.type === LOGOUT_USER_BEGIN) {
+    return { ...state };
+  }
+
+  if (action.type === LOGOUT_USER_SUCCESS) {
+    return {
+      ...state,
+      login_loading: false,
+      login_failed: false,
+      login_success: false,
+      user_name: null,
+      User_id: null,
+      logout_failed: false,
+    };
+  }
+
+  if (action.type === LOGOUT_USER_SUCCESS) {
+    return {
+      ...state,
+      logout_failed: true,
     };
   }
 

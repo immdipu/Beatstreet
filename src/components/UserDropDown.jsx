@@ -8,7 +8,8 @@ import { motion } from "framer-motion";
 import { useUserContext } from "../Context/UserContext";
 
 const UserDropDown = ({ imageRef }) => {
-  const { user_name, user_drop_down, HandleUserDropDown } = useUserContext();
+  const { user_name, user_drop_down, HandleUserDropDown, logoutUser } =
+    useUserContext();
   const menuRef = useRef();
 
   useEffect(() => {
@@ -64,7 +65,10 @@ const UserDropDown = ({ imageRef }) => {
         >
           <HelpCenterIcon className="scale-110" /> Help or Support
         </Link>
-        <li className="flex gap-3 hover:bg-darkBlue duration-300 transition-colors ease-linear py-3 items-center px-3">
+        <li
+          onClick={logoutUser}
+          className="flex gap-3 hover:bg-darkBlue duration-300 transition-colors ease-linear py-3 items-center px-3"
+        >
           <ExitToAppIcon className="scale-110" /> Sign Out
         </li>
       </ul>

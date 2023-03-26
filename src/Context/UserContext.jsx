@@ -16,6 +16,9 @@ import {
   FORGOT_PASSWORD_FINISHED,
   AUTO_LOGIN,
   USER_DROP_DOWN_TOGGLE,
+  LOGOUT_USER_BEGIN,
+  LOGOUT_USER_SUCCESS,
+  LOGOUT_USER_FAILED,
 } from "../Actions";
 
 const userContext = React.createContext();
@@ -33,6 +36,7 @@ const initialState = {
   forgot_password_success: false,
   forgot_password_failed: false,
   user_drop_down: false,
+  logout_failed: false,
 };
 
 export const UserProvider = ({ children }) => {
@@ -68,6 +72,17 @@ export const UserProvider = ({ children }) => {
       setTimeout(() => {
         dispatch({ dispatch: LOGIN_FAILED_HANDLE });
       }, 10000);
+    }
+  };
+
+  const logoutUser = async () => {
+    try {
+      dispatch({ dispatch: LOGOUT_USER_BEGIN });
+      const response = await axios.get(UserEndPoints + "/login");
+      console.log(response.data);
+      dispatch({ type: LOGOUT_USER_SUCCESS });
+    } catch (error) {
+      dispatch({ type: LOGOUT_USER_FAILED });
     }
   };
 
@@ -118,6 +133,7 @@ export const UserProvider = ({ children }) => {
         forgotPassword,
         AutoLogin,
         HandleUserDropDown,
+        logoutUser,
       }}
     >
       {children}

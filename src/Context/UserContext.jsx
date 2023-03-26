@@ -41,7 +41,7 @@ export const UserProvider = ({ children }) => {
 
   const AutoLogin = async (token) => {
     try {
-      const response = await axiosInstance.get(UserEndPoints + "isloggedin");
+      const response = await axiosInstance.get(UserEndPoints + "/isloggedin");
       const result = response.data;
       console.log(result);
     } catch (error) {

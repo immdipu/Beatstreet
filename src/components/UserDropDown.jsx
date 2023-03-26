@@ -17,8 +17,7 @@ const UserDropDown = ({ imageRef }) => {
       if (
         user_drop_down &&
         e.target !== menuRef.current &&
-        e.target !== imageRef.current &&
-        e.target.dataset.log !== "logout"
+        e.target !== imageRef.current
       ) {
         HandleUserDropDown();
       }
@@ -67,7 +66,6 @@ const UserDropDown = ({ imageRef }) => {
           <HelpCenterIcon className="scale-110" /> Help or Support
         </Link>
         <li
-          data-log="logout"
           onClick={logoutUser}
           className="flex gap-3 hover:bg-darkBlue duration-300 transition-colors ease-linear py-3 items-center px-3"
         >

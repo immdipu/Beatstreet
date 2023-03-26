@@ -64,9 +64,7 @@ export const UserProvider = ({ children }) => {
         data
       );
       const results = responses.data.data.user;
-      console.log(responses);
       dispatch({ type: USER_LOGIN_SUCESS, payload: results });
-      localStorage.setItem("token", "hello");
     } catch (error) {
       dispatch({ type: USER_LOGIN_FAILED });
       setTimeout(() => {
@@ -77,10 +75,12 @@ export const UserProvider = ({ children }) => {
 
   const logoutUser = async () => {
     try {
-      dispatch({ dispatch: LOGOUT_USER_BEGIN });
-      const response = await axios.get(UserEndPoints + "/login");
+      dispatch({ type: LOGOUT_USER_BEGIN });
+      const response = await axiosInstance.get(UserEndPoints + "/login");
       console.log(response.data);
       dispatch({ type: LOGOUT_USER_SUCCESS });
+      // setTimeout(() => {
+      // }, 10000);
     } catch (error) {
       dispatch({ type: LOGOUT_USER_FAILED });
     }

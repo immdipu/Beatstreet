@@ -14,7 +14,8 @@ import {
   FORGOT_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_FAILED,
   FORGOT_PASSWORD_FINISHED,
-  AUTO_LOGIN,
+  AUTO_LOGIN_SUCCESS,
+  AUTO_LOGIN_FAILED,
   USER_DROP_DOWN_TOGGLE,
   LOGOUT_USER_BEGIN,
   LOGOUT_USER_SUCCESS,
@@ -50,8 +51,9 @@ export const UserProvider = ({ children }) => {
     try {
       const response = await axiosInstance.get(UserEndPoints + "/isloggedin");
       const result = response.data.data.user;
-      dispatch({ type: AUTO_LOGIN, payload: result });
+      dispatch({ type: AUTO_LOGIN_SUCCESS, payload: result });
     } catch (error) {
+      dispatch({ type: AUTO_LOGIN_FAILED });
       console.log(error);
     }
   };

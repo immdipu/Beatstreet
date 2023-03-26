@@ -53,7 +53,10 @@ export const FORGOT_PASSWORD_SUCCESS = "FORGOT_PASSWORD_SUCCESS";
 export const FORGOT_PASSWORD_FAILED = "FORGOT_PASSWORD_SUCCUESS";
 export const FORGOT_PASSWORD_FINISHED = "FORGOT_PASSWORD_FINISHED";
 /////////////////////////////////////////////////////////////
-export const AUTO_LOGIN = "AUTO_LOGIN";
+export const AUTO_LOGIN_SUCCESS = "AUTO_LOGIN_SUCCESS";
+export const AUTO_LOGIN_FAILED = "AUTO_LOGIN_FAILED";
+
+/////////////////////////
 export const USER_DROP_DOWN_TOGGLE = "USER_DROP_DOWN_TOGGLE";
 export const LOGOUT_USER_BEGIN = "LOGOUT_USER_BEGIN";
 export const LOGOUT_USER_SUCCESS = "LOGOUT_USER_SUCCESS";

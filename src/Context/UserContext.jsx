@@ -111,7 +111,6 @@ export const UserProvider = ({ children }) => {
         token
       );
       const result = response.data;
-      console.log(result);
       dispatch({ type: USER_VERIFICATION_SUCCESS, payload: result });
     } catch (error) {
       console.log(error);
@@ -120,7 +119,6 @@ export const UserProvider = ({ children }) => {
   };
 
   const sendVerificationCode = async (data) => {
-    console.log(data);
     try {
       dispatch({ type: RESEND_VERIFICATION_BEGIN });
       const response = await axiosInstance.post(
@@ -129,7 +127,6 @@ export const UserProvider = ({ children }) => {
       );
       const result = response.data;
       dispatch({ type: RESEND_VERIFICATION_SUCCESS });
-      console.log(result);
     } catch (error) {
       dispatch({ type: RESEND_VERIFICATAION_FAILED });
     }
@@ -159,7 +156,6 @@ export const UserProvider = ({ children }) => {
       );
       const results = response;
       dispatch({ type: FORGOT_PASSWORD_SUCCESS });
-      console.log(results);
     } catch (error) {
       console.log(error);
       dispatch({ type: FORGOT_PASSWORD_FAILED });

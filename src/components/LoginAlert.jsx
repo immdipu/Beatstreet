@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import RippleButton from "ripple-effect-reactjs";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 function LoginAlert({ message, alertClass }) {
   const [isVisible, setIsVisible] = useState(true);
-  const [timeLeft, setTimeLeft] = useState(8);
+  const [timeLeft, setTimeLeft] = useState(6);
 
   const handleDismiss = () => {
     setIsVisible(false);
@@ -25,7 +25,7 @@ function LoginAlert({ message, alertClass }) {
   }, [timeLeft]);
 
   const progressStyle = {
-    width: ((timeLeft / 8) * 100).toFixed(0) + "%",
+    width: ((timeLeft / 6) * 100).toFixed(0) + "%",
   };
 
   if (isVisible) {

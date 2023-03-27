@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import RippleButton from "ripple-effect-reactjs";
+import { motion, AnimatePresence } from "framer-motion";
 
 function LoginAlert({ message, alertClass }) {
   const [isVisible, setIsVisible] = useState(true);
@@ -29,7 +30,13 @@ function LoginAlert({ message, alertClass }) {
 
   if (isVisible) {
     return (
-      <div className="slide-in-top p-5 absolute z-50 top-12">
+      <motion.div
+        initial={{ y: "100vh" }}
+        animate={{ y: "0vh", transition: { ease: "easeInOut" } }}
+        exit={{ y: "100vh", transition: { ease: "easeInOut" } }}
+        transition={{ type: "spring", stiffness: "2", duration: "0.15" }}
+        className="slide-in-top p-5 absolute z-[100] -top-10"
+      >
         <div
           className={
             "gap-4 font-normal tracking-wide font-Rubik px-2  flex items-center " +
@@ -52,7 +59,7 @@ function LoginAlert({ message, alertClass }) {
             style={progressStyle}
           ></div>
         </div>
-      </div>
+      </motion.div>
     );
   }
   return null;

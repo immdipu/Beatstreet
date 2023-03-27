@@ -34,13 +34,13 @@ const SignUp = () => {
   const passwordRef = useRef(null);
   const passwordConfirmRef = useRef(null);
 
-  useEffect(() => {
-    if (verification_success) {
-      setTimeout(() => {
-        navigate("/login");
-      }, 5000);
-    }
-  });
+  // useEffect(() => {
+  //   if (verification_success) {
+  //     setTimeout(() => {
+  //       navigate("/login");
+  //     }, 5000);
+  //   }
+  // });
 
   const HandlePasswordVisibility = () => {
     setPasswordVisibility((prev) => !prev);
@@ -102,10 +102,10 @@ const SignUp = () => {
     );
   }
   if (verification_success) {
-    userNameRef.current.value = null;
-    emailRef.current.value = null;
-    passwordRef.current.value = null;
-    passwordConfirmRef.current.value = null;
+    // userNameRef.current.value = null;
+    // emailRef.current.value = null;
+    // passwordRef.current.value = null;
+    // passwordConfirmRef.current.value = null;
     alert = (
       <LoginAlert
         message={
@@ -269,9 +269,7 @@ const SignUp = () => {
               type="button"
               className={
                 "bg-white rounded-md border-2 h-12 text-lg w-full " +
-                (verification_begin
-                  ? "pointer-events-none"
-                  : "pointer-events-auto")
+                (signup_loading ? "pointer-events-none" : "pointer-events-auto")
               }
               onClick={handleSubmit}
             >

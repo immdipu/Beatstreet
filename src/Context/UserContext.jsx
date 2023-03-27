@@ -45,9 +45,9 @@ const initialState = {
   forgot_password_failed: false,
   user_drop_down: false,
   logout_failed: false,
-  user_verification: false,
+  user_verification: true,
   verification_begin: false,
-  verification_success: false,
+  verification_success: true,
   verificaiton_failed: false,
   resend_verification_success: false,
   resend_verification_failed: false,
@@ -121,7 +121,7 @@ export const UserProvider = ({ children }) => {
     try {
       dispatch({ type: RESEND_VERIFICATION_BEGIN });
       const response = await axiosInstance.post(
-        UserEndPoints + "/verficationtoken",
+        UserEndPoints + "/verificationtoken",
         data
       );
       const result = response.data;

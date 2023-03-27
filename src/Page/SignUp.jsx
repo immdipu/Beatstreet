@@ -146,7 +146,7 @@ const SignUp = () => {
       {alert}
       <AnimatePresence>
         {user_verification && (
-          <UserVerify userEmail={emailRef.current.value.trim()} />
+          <UserVerify email={emailRef.current.value.trim()} />
         )}
       </AnimatePresence>
       <div className="rounded-full bg-slate-300 w-fit p-2">

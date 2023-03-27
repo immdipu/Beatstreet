@@ -61,7 +61,7 @@ const ForgotPwd = () => {
       initial={{ y: "-100vw" }}
       animate={{ y: "0vw", transition: { ease: "easeInOut" } }}
       exit={{ y: "100vw", transition: { ease: "easeInOut" } }}
-      className="max-w-2xl mx-auto mt-5 w-full"
+      className="max-w-2xl max-lg:pl-14 max-md:pl-0   max-lg:max-w-lg mx-auto  mt-5 w-full"
     >
       {alert}
       <section className="bg-[#1e1f22] shadow-md px-10 py-6 rounded-md">
@@ -122,7 +122,7 @@ const ForgotPwd = () => {
 
         <div
           className={
-            "flex justify-between items-center  max-md:flex-col max-md:gap-5 transition-all duration-200 ease-linear " +
+            "flex justify-between items-center max-lg:mt-16  max-md:flex-col max-md:gap-5 transition-all duration-200 ease-linear " +
             (validateEmail ? "mt-24 max-md:mt-36" : "mt-10 max-md:mt-20")
           }
         >

@@ -4,8 +4,8 @@ const Logo = ({ width = 290 }) => {
     <svg width={width} viewBox="0 60 203 200" className="css-1j8o68f ">
       <defs id="SvgjsDefs1280">
         <linearGradient id="SvgjsLinearGradient1285">
-          <stop id="SvgjsStop1286" stop-color="#2d388a" offset="0"></stop>
-          <stop id="SvgjsStop1287" stop-color="#00aeef" offset="1"></stop>
+          <stop id="SvgjsStop1286" stopColor="#2d388a" offset="0"></stop>
+          <stop id="SvgjsStop1287" stopColor="#00aeef" offset="1"></stop>
         </linearGradient>
       </defs>
       <g

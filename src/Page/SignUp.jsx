@@ -1,15 +1,29 @@
 import React, { useRef, useState, useEffect } from "react";
 import RippleButton from "ripple-effect-reactjs";
 import { Link, useNavigate } from "react-router-dom";
-import { LoginAlert, EyeNotVisibility, EyeVisibility } from "../components";
+import {
+  LoginAlert,
+  EyeNotVisibility,
+  EyeVisibility,
+  UserVerify,
+} from "../components";
 import ClipLoader from "react-spinners/ClipLoader";
 import PersonIcon from "@mui/icons-material/Person";
 import { useUserContext } from "../Context/UserContext";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const SignUp = () => {
-  const { signup_loading, signup_success, signup_failed, signUpUser } =
-    useUserContext();
+  const {
+    signup_loading,
+    signup_success,
+    signup_failed,
+    signUpUser,
+    user_verification,
+    verification_begin,
+    verification_success,
+    resend_verification_success,
+    resend_verification_failed,
+  } = useUserContext();
   const navigate = useNavigate();
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [validateEmail, setValidateEmail] = useState(false);
@@ -21,7 +35,7 @@ const SignUp = () => {
   const passwordConfirmRef = useRef(null);
 
   useEffect(() => {
-    if (signup_success) {
+    if (verification_success) {
       setTimeout(() => {
         navigate("/login");
       }, 5000);
@@ -87,7 +101,7 @@ const SignUp = () => {
       />
     );
   }
-  if (signup_success) {
+  if (verification_success) {
     userNameRef.current.value = null;
     emailRef.current.value = null;
     passwordRef.current.value = null;
@@ -102,14 +116,35 @@ const SignUp = () => {
     );
   }
 
+  if (resend_verification_success) {
+    alert = (
+      <LoginAlert
+        message={
+          "A new token has been sent to your email address. Please check your inbox and spam folder"
+        }
+        alertClass={"success"}
+      />
+    );
+  }
+
+  if (resend_verification_failed) {
+    alert = (
+      <LoginAlert
+        message={"Ah error has occured ! Try again later"}
+        alertClass={"failed"}
+      />
+    );
+  }
+
   return (
     <motion.div
       initial={{ y: "100vh" }}
       animate={{ y: "0vh", transition: { ease: "easeInOut" } }}
       exit={{ y: "-100vh", transition: { ease: "easeInOut" } }}
-      className=" max-w-lg w-full mx-auto mt-24 max-md:px-4 flex flex-col items-center justify-center"
+      className=" max-w-md w-full mx-auto mt-10 max-md:px-4 flex flex-col items-center justify-center"
     >
       {alert}
+      <AnimatePresence> {user_verification && <UserVerify />}</AnimatePresence>
       <div className="rounded-full bg-slate-300 w-fit p-2">
         <PersonIcon fontSize="large" color="primary" />
       </div>
@@ -118,20 +153,20 @@ const SignUp = () => {
       <form
         className={
           "w-full flex flex-col gap-5 mt-4 " +
-          (validateEmail ? "gap-10" : "gap-7")
+          (validateEmail ? "gap-9" : "gap-4")
         }
       >
-        <div className="border opacity-60 rounded-md focus-within:opacity-100 focus-within:border-2 duration-150 transition-all ease-linear h-12 relative w-full">
+        <div className="border border-neutral-600 focus-within:border-opacity-100 focus-within:border-neutral-400 rounded-md focus-within:opacity-100 focus-within:border-2 duration-150 transition-all ease-linear h-9 relative w-full">
           <input
             type="text"
             id="FullName"
             placeholder=" "
             ref={userNameRef}
-            className="w-full outline-none tracking-wide  text-white px-4 font-thin border-none h-full bg-transparent relative z-10 peer"
+            className="w-full outline-none tracking-wide text-white px-4 font-thin border-none h-full bg-transparent relative z-10 peer"
           />
           <p
             htmlFor="FullName"
-            className="absolute text-sm text-white opacity-100 left-3 bg-darkBlue font-light duration-100 transition-all -top-3 ease-linear px-2 peer-placeholder-shown:top-2 peer-placeholder-shown:text-lg  peer-focus-within:-top-3  peer-focus-within:text-sm  "
+            className="absolute peer-placeholder-shown:opacity-60 text-sm peer-focus-within:opacity-100 text-white opacity-100 left-3 bg-darkBlue font-light duration-100 transition-all -top-3 ease-linear px-2 peer-placeholder-shown:top-[6px] peer-placeholder-shown:text-base  peer-focus-within:-top-3  peer-focus-within:text-sm  "
           >
             Full Name
           </p>
@@ -139,10 +174,10 @@ const SignUp = () => {
 
         <div
           className={
-            " rounded-md   focus-within:border-opacity-90 focus-within:border-2 duration-150 transition-all ease-linear h-12 relative w-full " +
+            " focus-within:border-opacity-100 focus-within:border-neutral-400 rounded-md focus-within:opacity-100 focus-within:border-2 duration-150 transition-all ease-linear h-9 relative w-full " +
             (validateEmail
               ? "border-red-600 border-2"
-              : "border-slate-300 border border-opacity-30")
+              : "border border-neutral-600")
           }
         >
           <input
@@ -159,39 +194,44 @@ const SignUp = () => {
           )}
           <p
             htmlFor="email"
-            className="absolute text-sm text-white opacity-100  left-3 bg-darkBlue font-light duration-100 transition-all -top-3 ease-linear px-2 peer-placeholder-shown:opacity-50 peer-placeholder-shown:top-2 peer-placeholder-shown:text-lg peer-focus-within:opacity-100  peer-focus-within:-top-3  peer-focus-within:text-sm  "
+            className="absolute peer-placeholder-shown:opacity-60 text-sm peer-focus-within:opacity-100 text-white opacity-100 left-3 bg-darkBlue font-light duration-100 transition-all -top-3 ease-linear px-2 peer-placeholder-shown:top-[6px] peer-placeholder-shown:text-base  peer-focus-within:-top-3  peer-focus-within:text-sm"
           >
             E-mail Address
           </p>
         </div>
-        <div className="border rounded-md border-slate-300 border-opacity-30 focus-within:border-opacity-90 focus-within:border-2 duration-150 transition-all ease-linear h-12 relative w-full">
+        <div className="border border-neutral-600 focus-within:border-opacity-100 focus-within:border-neutral-400 rounded-md focus-within:opacity-100 focus-within:border-2 duration-150 transition-all ease-linear h-9 relative w-full">
           <input
             type="password"
             id="pwd1"
             placeholder=" "
             required
             ref={passwordRef}
-            className="w-full rounded-md tracking-wider outline-none border-none text-white px-4 font-extralight h-full bg-transparent relative z-10 peer"
+            className="w-full outline-none tracking-wide  text-white px-4 font-thin border-none h-full bg-transparent relative z-10 peer"
           />
           <p
             htmlFor="pwd"
-            className="absolute text-sm text-white opacity-100  left-3 bg-darkBlue font-light duration-100 transition-all -top-3 ease-linear px-2 peer-placeholder-shown:opacity-50 peer-placeholder-shown:top-2 peer-placeholder-shown:text-lg peer-focus-within:opacity-100  peer-focus-within:-top-3  peer-focus-within:text-sm"
+            className="absolute peer-placeholder-shown:opacity-60 text-sm peer-focus-within:opacity-100 text-white opacity-100 left-3 bg-darkBlue font-light duration-100 transition-all -top-3 ease-linear px-2 peer-placeholder-shown:top-[6px] peer-placeholder-shown:text-base  peer-focus-within:-top-3  peer-focus-within:text-sm"
           >
             Password
           </p>
 
           <div
-            className="absolute pt-1 pr-1 cursor-pointer top-0 right-0 z-10 h-fit"
+            className="absolute pt-1 pr-1 cursor-pointer scale-75 rounded-full  -top-2 right-0 z-10 h-fit"
             onClick={HandlePasswordVisibility}
           >
-            <RippleButton color={"#0d417c9e"} speed={700} radius={999}>
+            <RippleButton
+              color={"#0d417c9e"}
+              speed={700}
+              width={90}
+              radius={999}
+            >
               {passwordVisibility ? <EyeVisibility /> : <EyeNotVisibility />}
             </RippleButton>
           </div>
         </div>
         <div
           className={
-            "border rounded-md border-slate-300 border-opacity-30 focus-within:border-opacity-90  lieanr focus-within:border-2 duration-150 transition-all ease-linear h-12 relative w-full " +
+            "border border-neutral-600 focus-within:border-opacity-100 focus-within:border-neutral-400 rounded-md focus-within:opacity-100 focus-within:border-2 duration-150 transition-all ease-linear h-9 relative w-full " +
             (validatePassword ? "mb-4" : "mb-1")
           }
         >
@@ -205,9 +245,9 @@ const SignUp = () => {
           />
           <p
             htmlFor="pwd2"
-            className="absolute text-sm text-white opacity-100  left-3 bg-darkBlue font-light duration-100 transition-all -top-3 ease-linear px-2 peer-placeholder-shown:opacity-50 peer-placeholder-shown:top-2 peer-placeholder-shown:text-lg peer-focus-within:opacity-100  peer-focus-within:-top-3  peer-focus-within:text-sm"
+            className="absolute peer-placeholder-shown:opacity-60 text-sm peer-focus-within:opacity-100 text-white opacity-100 left-3 bg-darkBlue font-light duration-100 transition-all -top-3 ease-linear px-2 peer-placeholder-shown:top-[6px] peer-placeholder-shown:text-base  peer-focus-within:-top-3  peer-focus-within:text-sm"
           >
-            Password
+            Password Confirm
           </p>
           {validatePassword && (
             <p className="text-red-500 font-light text-sm mt-1 px-1">
@@ -215,7 +255,7 @@ const SignUp = () => {
             </p>
           )}
           <div
-            className="absolute pt-1 pr-1 cursor-pointer top-0 right-0 z-10 h-fit"
+            className="absolute pt-1 pr-1 cursor-pointer -top-2 scale-75 rounded-full right-0 z-10 h-fit"
             onClick={HandlePasswordVisibility}
           >
             <RippleButton color={"#0d417c9e"} speed={700} radius={999}>
@@ -227,7 +267,12 @@ const SignUp = () => {
           <RippleButton speed={600} color={"#bbb7b7bf"} radius={7} width={40}>
             <button
               type="button"
-              className="bg-white rounded-md border-2 h-12 text-lg w-full"
+              className={
+                "bg-white rounded-md border-2 h-12 text-lg w-full " +
+                (verification_begin
+                  ? "pointer-events-none"
+                  : "pointer-events-auto")
+              }
               onClick={handleSubmit}
             >
               {signup_loading ? (

@@ -20,6 +20,13 @@ import {
   LOGOUT_USER_BEGIN,
   LOGOUT_USER_SUCCESS,
   LOGOUT_USER_FAILED,
+  USER_VERIFICATION,
+  USER_VERIFICATION_BEGIN,
+  USER_VERIFICATION_SUCCESS,
+  USER_VERIFICATION_FAILED,
+  RESEND_VERIFICATION_BEGIN,
+  RESEND_VERIFICATION_SUCCESS,
+  RESEND_VERIFICATAION_FAILED,
 } from "../Actions";
 
 const userContext = React.createContext();
@@ -38,6 +45,12 @@ const initialState = {
   forgot_password_failed: false,
   user_drop_down: false,
   logout_failed: false,
+  user_verification: true,
+  verification_begin: false,
+  verification_success: false,
+  verificaiton_failed: false,
+  resend_verification_success: false,
+  resend_verification_failed: false,
 };
 
 export const UserProvider = ({ children }) => {
@@ -88,6 +101,37 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  const userVerification = async (token) => {
+    try {
+      dispatch({ type: USER_VERIFICATION_BEGIN });
+      const response = await axiosInstance.post(
+        UserEndPoints + "/verify",
+        token
+      );
+      const result = response.data;
+      console.log(result);
+      dispatch({ type: USER_VERIFICATION_SUCCESS, payload: result });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: USER_VERIFICATION_FAILED });
+    }
+  };
+
+  const sendVerificationCode = async (data) => {
+    try {
+      dispatch({ type: RESEND_VERIFICATION_BEGIN });
+      const response = await axiosInstance.post(
+        UserEndPoints + "/verficationtoken",
+        data
+      );
+      const result = response.data;
+      dispatch({ type: RESEND_VERIFICATION_SUCCESS });
+      console.log(result);
+    } catch (error) {
+      dispatch({ type: RESEND_VERIFICATAION_FAILED });
+    }
+  };
+
   const signUpUser = async (data) => {
     try {
       dispatch({ type: USER_SIGNUP_BEGIN });
@@ -126,6 +170,10 @@ export const UserProvider = ({ children }) => {
     dispatch({ type: USER_DROP_DOWN_TOGGLE });
   };
 
+  const HandleVerificationBtn = () => {
+    dispatch({ type: USER_VERIFICATION });
+  };
+
   return (
     <userContext.Provider
       value={{
@@ -136,6 +184,9 @@ export const UserProvider = ({ children }) => {
         AutoLogin,
         HandleUserDropDown,
         logoutUser,
+        HandleVerificationBtn,
+        userVerification,
+        sendVerificationCode,
       }}
     >
       {children}

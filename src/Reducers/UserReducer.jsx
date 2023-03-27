@@ -17,6 +17,13 @@ import {
   LOGOUT_USER_BEGIN,
   LOGOUT_USER_SUCCESS,
   LOGOUT_USER_FAILED,
+  USER_VERIFICATION,
+  USER_VERIFICATION_BEGIN,
+  USER_VERIFICATION_SUCCESS,
+  USER_VERIFICATION_FAILED,
+  RESEND_VERIFICATION_BEGIN,
+  RESEND_VERIFICATION_SUCCESS,
+  RESEND_VERIFICATAION_FAILED,
 } from "../Actions";
 
 const User_Reducer = (state, action) => {
@@ -98,6 +105,7 @@ const User_Reducer = (state, action) => {
       signup_loading: false,
       signup_success: true,
       signup_failed: false,
+      user_verification: true,
     };
   }
   if (action.type === USER_SIGNUP_FAILED) {
@@ -176,12 +184,79 @@ const User_Reducer = (state, action) => {
     };
   }
 
+  /////////////////////////// USER VERIFICATION ////////////////////////
+  if (action.type === USER_VERIFICATION_BEGIN) {
+    return {
+      ...state,
+      verification_begin: true,
+      verification_success: false,
+      verificaiton_failed: false,
+    };
+  }
+
+  if (action.type === USER_VERIFICATION_SUCCESS) {
+    return {
+      ...state,
+      verification_begin: false,
+      verification_success: true,
+      verificaiton_failed: false,
+    };
+  }
+  if (action.type === USER_VERIFICATION_FAILED) {
+    return {
+      ...state,
+      verification_begin: false,
+      verification_success: false,
+      verificaiton_failed: true,
+    };
+  }
+
+  ///////////////////////// RESEND VERIFICATION TOKEN ///////////////////
+
+  if (action.type === RESEND_VERIFICATION_BEGIN) {
+    return {
+      ...state,
+      verification_begin: true,
+      verification_success: false,
+      verificaiton_failed: false,
+      resend_verification_success: false,
+      resend_verification_failed: false,
+    };
+  }
+  if (action.type === RESEND_VERIFICATION_SUCCESS) {
+    return {
+      ...state,
+      verification_begin: false,
+      verification_success: false,
+      verificaiton_failed: false,
+      resend_verification_success: true,
+      resend_verification_failed: false,
+    };
+  }
+  if (action.type === RESEND_VERIFICATAION_FAILED) {
+    return {
+      ...state,
+      verification_begin: false,
+      verification_success: false,
+      verificaiton_failed: false,
+      resend_verification_success: false,
+      resend_verification_failed: true,
+    };
+  }
+
   /////////////////////////////////// BUTTON FUNCTIONS ////////////////////////////////
 
   if (action.type === USER_DROP_DOWN_TOGGLE) {
     return {
       ...state,
       user_drop_down: !state.user_drop_down,
+    };
+  }
+
+  if (action.type === USER_VERIFICATION) {
+    return {
+      ...state,
+      user_verification: false,
     };
   }
 };

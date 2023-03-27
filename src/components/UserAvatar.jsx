@@ -21,7 +21,6 @@ const UserAvatar = () => {
         className="rounded-full  border-2 border-slate-300 border-opacity-50"
       />
       <AnimatePresence>
-        {" "}
         {user_drop_down && <UserDropDown imageRef={imageRef} />}
       </AnimatePresence>
     </div>

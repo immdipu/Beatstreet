@@ -26,6 +26,7 @@ import TopNav from "./TopNav";
 import LoginAlert from "./LoginAlert";
 import EyeVisibility from "./assets/EyeVisibility";
 import EyeNotVisibility from "./assets/EyeNotVisibility";
+import UserVerify from "./UserVerify";
 
 export {
   AudiPlayer,
@@ -56,4 +57,5 @@ export {
   LoginAlert,
   EyeNotVisibility,
   EyeVisibility,
+  UserVerify,
 };

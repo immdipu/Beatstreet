@@ -45,7 +45,7 @@ const initialState = {
   forgot_password_failed: false,
   user_drop_down: false,
   logout_failed: false,
-  user_verification: true,
+  user_verification: false,
   verification_begin: false,
   verification_success: false,
   verificaiton_failed: false,

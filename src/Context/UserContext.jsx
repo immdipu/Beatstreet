@@ -121,7 +121,7 @@ export const UserProvider = ({ children }) => {
     try {
       dispatch({ type: RESEND_VERIFICATION_BEGIN });
       const response = await axiosInstance.post(
-        UserEndPoints + "/verificationtoken",
+        UserEndPoints + "/verficationtoken",
         data
       );
       const result = response.data;

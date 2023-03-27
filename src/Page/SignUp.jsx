@@ -34,13 +34,13 @@ const SignUp = () => {
   const passwordRef = useRef(null);
   const passwordConfirmRef = useRef(null);
 
-  // useEffect(() => {
-  //   if (verification_success) {
-  //     setTimeout(() => {
-  //       navigate("/login");
-  //     }, 5000);
-  //   }
-  // });
+  useEffect(() => {
+    if (verification_success) {
+      setTimeout(() => {
+        navigate("/login");
+      }, 5000);
+    }
+  });
 
   const HandlePasswordVisibility = () => {
     setPasswordVisibility((prev) => !prev);
@@ -102,10 +102,10 @@ const SignUp = () => {
     );
   }
   if (verification_success) {
-    // userNameRef.current.value = null;
-    // emailRef.current.value = null;
-    // passwordRef.current.value = null;
-    // passwordConfirmRef.current.value = null;
+    userNameRef.current.value = null;
+    emailRef.current.value = null;
+    passwordRef.current.value = null;
+    passwordConfirmRef.current.value = null;
     alert = (
       <LoginAlert
         message={
@@ -144,7 +144,9 @@ const SignUp = () => {
       className=" max-w-md w-full mx-auto mt-10 max-md:px-4 flex flex-col items-center justify-center"
     >
       {alert}
-      <AnimatePresence> {user_verification && <UserVerify />}</AnimatePresence>
+      <AnimatePresence>
+        {user_verification && <UserVerify userEmail={emailRef.current.value} />}
+      </AnimatePresence>
       <div className="rounded-full bg-slate-300 w-fit p-2">
         <PersonIcon fontSize="large" color="primary" />
       </div>

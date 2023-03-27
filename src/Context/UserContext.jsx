@@ -118,6 +118,7 @@ export const UserProvider = ({ children }) => {
   };
 
   const sendVerificationCode = async (data) => {
+    console.log(data);
     try {
       dispatch({ type: RESEND_VERIFICATION_BEGIN });
       const response = await axiosInstance.post(

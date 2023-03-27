@@ -83,10 +83,10 @@ const SignUp = () => {
       setValidateEmail(false);
       setValidatePassword(false);
       let data = {
-        name: userNameRef.current.value,
-        email: emailRef.current.value,
-        password: passwordRef.current.value,
-        passwordConfirm: passwordConfirmRef.current.value,
+        name: userNameRef.current.value.trim(),
+        email: emailRef.current.value.trim(),
+        password: passwordRef.current.value.trim(),
+        passwordConfirm: passwordConfirmRef.current.value.trim(),
       };
       signUpUser(data);
     }
@@ -145,7 +145,9 @@ const SignUp = () => {
     >
       {alert}
       <AnimatePresence>
-        {user_verification && <UserVerify userEmail={emailRef.current.value} />}
+        {user_verification && (
+          <UserVerify userEmail={emailRef.current.value.trim()} />
+        )}
       </AnimatePresence>
       <div className="rounded-full bg-slate-300 w-fit p-2">
         <PersonIcon fontSize="large" color="primary" />

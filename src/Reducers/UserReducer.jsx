@@ -100,12 +100,14 @@ const User_Reducer = (state, action) => {
     };
   }
   if (action.type === USER_SIGNUP_SUCCESS) {
+    const data = action.payload;
     return {
       ...state,
       signup_loading: false,
       signup_success: true,
       signup_failed: false,
       user_verification: true,
+      signup_email: data,
     };
   }
   if (action.type === USER_SIGNUP_FAILED) {

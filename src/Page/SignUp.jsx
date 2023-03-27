@@ -144,11 +144,7 @@ const SignUp = () => {
       className=" max-w-md w-full mx-auto mt-10 max-md:px-4 flex flex-col items-center justify-center"
     >
       {alert}
-      <AnimatePresence>
-        {user_verification && (
-          <UserVerify email={emailRef.current.value.trim()} />
-        )}
-      </AnimatePresence>
+      <AnimatePresence>{user_verification && <UserVerify />}</AnimatePresence>
       <div className="rounded-full bg-slate-300 w-fit p-2">
         <PersonIcon fontSize="large" color="primary" />
       </div>

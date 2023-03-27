@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useReducer, useState } from "react";
 import reducer from "../Reducers/UserReducer";
 import axios from "axios";
 import {
@@ -51,10 +51,12 @@ const initialState = {
   verificaiton_failed: false,
   resend_verification_success: false,
   resend_verification_failed: false,
+  signup_email: null,
 };
 
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
   let UserEndPoints =
     "https://colorful-fly-attire.cyclic.app/beatstreet/api/users";
 
@@ -137,8 +139,8 @@ export const UserProvider = ({ children }) => {
     try {
       dispatch({ type: USER_SIGNUP_BEGIN });
       const responses = await axios.post(UserEndPoints + "/signup", data);
-      const results = responses.data.data;
-      dispatch({ type: USER_SIGNUP_SUCCESS });
+      const results = responses.data.data.email;
+      dispatch({ type: USER_SIGNUP_SUCCESS, payload: results });
     } catch (error) {
       console.log(error);
       dispatch({ type: USER_SIGNUP_FAILED });

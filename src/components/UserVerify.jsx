@@ -5,12 +5,13 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { useUserContext } from "../Context/UserContext";
 import { motion } from "framer-motion";
 
-const UserVerify = (email) => {
+const UserVerify = () => {
   const {
     HandleVerificationBtn,
     userVerification,
     verification_begin,
     sendVerificationCode,
+    signup_email,
   } = useUserContext();
   const input1Ref = useRef(null);
   const input2Ref = useRef(null);
@@ -45,7 +46,7 @@ const UserVerify = (email) => {
 
   const resendVerificationHandle = () => {
     const Email = {
-      email,
+      email: signup_email,
     };
     sendVerificationCode(Email);
   };

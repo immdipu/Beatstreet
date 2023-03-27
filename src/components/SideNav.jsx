@@ -16,7 +16,7 @@ const SideNav = () => {
   const { HandleSideNav, side_navbar_show } = usePlayerContext();
   const { login_success } = useUserContext();
   return (
-    <div className={"float-left w-52 max-h-screen max-md:w-0"}>
+    <div className={"float-left w-52 max-h-20 max-md:w-0"}>
       <div
         className={
           "bg-lightBlue text-darkTextColor top-0  w-52 transition-all duration-200 ease-linear  fixed z-50 h-full  py-10 " +

@@ -10,7 +10,7 @@ const UserAvatar = () => {
   let Imagelink = `https://api.dicebear.com/5.x/initials/svg?seed=${user_name}`;
   return (
     <div
-      className="w-12 rounded-full select-none cursor-pointer relative h-12 "
+      className="w-12 rounded-full ml-2 select-none cursor-pointer relative h-12 "
       onClick={HandleUserDropDown}
     >
       <motion.img

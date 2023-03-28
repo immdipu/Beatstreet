@@ -101,7 +101,9 @@ const Artist = () => {
               Songs
             </h3>
           )}
-          {single_artist_songs && <SongsList songs={single_artist_songs} />}
+          {single_artist_songs && (
+            <SongsList songs={single_artist_songs} current={"Artist"} />
+          )}
         </section>
 
         <section className="mt-12 mx-14 mb-14 max-md:mx-4">

@@ -12,7 +12,8 @@ import { AudioLinkSelector, ImageFetch } from "../Utils/Helper";
 import SongDownloader from "./downloader/SongDownloader";
 
 const AudioPlayer = () => {
-  const { current_song, audio_playing } = usePlayerContext();
+  const { current_song, audio_playing, current_playing_lists, singleSong } =
+    usePlayerContext();
   const [audioProgress, setAudioProgress] = useState(0);
   const [paused, setPaused] = useState(false);
   const [musicTotalLength, setMusicTotalLength] = useState("00:00");
@@ -40,7 +41,16 @@ const AudioPlayer = () => {
 
   const handleAudioUpdate = () => {
     if (currentAudio.current.currentTime === currentAudio.current.duration) {
-      setPaused(true);
+      if (current_playing_lists.length > 0) {
+        let IndexOfCurrentSong = current_playing_lists.indexOf(current_song.id);
+        if (IndexOfCurrentSong !== current_playing_lists.length - 1) {
+          singleSong(current_playing_lists[IndexOfCurrentSong + 1]);
+        } else {
+          setPaused(true);
+        }
+      } else {
+        setPaused(true);
+      }
     }
 
     if (currentAudio.current.paused) {
@@ -70,6 +80,24 @@ const AudioPlayer = () => {
       (currentAudio.current.currentTime / currentAudio.current.duration) * 100
     );
     setAudioProgress(isNaN(progress) ? 0 : progress);
+  };
+
+  const HandleNextSong = () => {
+    if (current_playing_lists.length > 0) {
+      let IndexOfCurrentSong = current_playing_lists.indexOf(current_song.id);
+      if (IndexOfCurrentSong !== current_playing_lists.length - 1) {
+        singleSong(current_playing_lists[IndexOfCurrentSong + 1]);
+      }
+    }
+  };
+
+  const HandlePreviousSong = () => {
+    if (current_playing_lists.length > 0) {
+      let IndexOfCurrentSong = current_playing_lists.indexOf(current_song.id);
+      if (IndexOfCurrentSong !== 0) {
+        singleSong(current_playing_lists[IndexOfCurrentSong - 1]);
+      }
+    }
   };
 
   if (!audio_playing) {
@@ -149,7 +177,7 @@ const AudioPlayer = () => {
         />
 
         <div className="mt-1">
-          <IconButton aria-label="previous song">
+          <IconButton aria-label="previous song" onClick={HandlePreviousSong}>
             <FastRewindRounded fontSize="large" htmlColor="#8e9196" />
           </IconButton>
           <IconButton
@@ -162,7 +190,7 @@ const AudioPlayer = () => {
               <PauseRounded sx={{ fontSize: "3rem" }} htmlColor="#8e9196" />
             )}
           </IconButton>
-          <IconButton aria-label="nextsong">
+          <IconButton aria-label="nextsong" onClick={HandleNextSong}>
             <FastForwardRounded fontSize="large" htmlColor="#8e9196" />
           </IconButton>
         </div>

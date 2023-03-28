@@ -23,6 +23,10 @@ import {
   SEARCH_ALBUMS_SUCESS,
   NEXT_SEARCHED_ALBUMS,
   NEXT_PAGE_BTN_ALBUMS,
+  PLAYING_CURRENT_ALBUM,
+  PLAYING_CURRENT_ARTIST,
+  PLAYING_CURRENT_PLAYLIST,
+  PLAYING_VIEWALLSONGS_LISTS,
 } from "../Actions";
 
 const playerContext = React.createContext();
@@ -47,9 +51,12 @@ const initialState = {
   current_album: [],
   current_page_count: 1,
   current_page_count_albums: 1,
+  current_playing_lists: [],
 };
-
+import { useMusicContext } from "../Context/MusicContext";
 export const PlayerProvider = ({ children }) => {
+  const { currentAlbum, single_artist_songs, currentPlaylists } =
+    useMusicContext();
   const [state, dispatch] = useReducer(reducer, initialState);
   const [inputValue, setInputValue] = useState("");
 
@@ -148,6 +155,27 @@ export const PlayerProvider = ({ children }) => {
     dispatch({ type: LEFT_MENU_BTN });
   };
 
+  const HandlePlaySong = (id, current) => {
+    if (current === "currentAlbum") {
+      dispatch({ type: PLAYING_CURRENT_ALBUM, payload: currentAlbum.songs });
+    }
+    if (current === "Artist") {
+      dispatch({ type: PLAYING_CURRENT_ARTIST, payload: single_artist_songs });
+    }
+    if (current === "Playlist") {
+      dispatch({
+        type: PLAYING_CURRENT_PLAYLIST,
+        payload: currentPlaylists.songs,
+      });
+    }
+    if (current === "ViewAllSong") {
+      dispatch({
+        type: PLAYING_VIEWALLSONGS_LISTS,
+      });
+    }
+    singleSong(id);
+  };
+
   return (
     <playerContext.Provider
       value={{
@@ -164,6 +192,7 @@ export const PlayerProvider = ({ children }) => {
         SearchAlbums,
         AlbumsPageChange,
         HandleNextPageBtn_Albums,
+        HandlePlaySong,
       }}
     >
       {children}

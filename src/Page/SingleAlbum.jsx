@@ -87,7 +87,9 @@ const SingleAlbum = () => {
         </div>
       </div>
       <section className="mx-12 mb-10 mt-6 max-md:mx-2">
-        {currentAlbum.songs && <SongsList songs={currentAlbum.songs} />}
+        {currentAlbum.songs && (
+          <SongsList songs={currentAlbum.songs} current={"currentAlbum"} />
+        )}
       </section>
     </div>
   );

@@ -75,7 +75,9 @@ const SinglePlayLists = () => {
         </div>
       </div>
       <section className="mx-12 mt-6 max-md:mx-2 mb-14">
-        {currentPlaylists.songs && <SongsList songs={currentPlaylists.songs} />}
+        {currentPlaylists.songs && (
+          <SongsList songs={currentPlaylists.songs} current={"Playlist"} />
+        )}
       </section>
     </div>
   );

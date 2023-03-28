@@ -38,7 +38,7 @@ const initialState = {
   user_name: null,
   User_id: null,
   login_failed: false,
-  login_success: false,
+  login_success: true,
   login_loading: false,
   signup_loading: false,
   signup_success: false,

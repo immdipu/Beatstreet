@@ -15,6 +15,10 @@ import {
   SEARCH_ALBUMS_SUCESS,
   NEXT_SEARCHED_ALBUMS,
   NEXT_PAGE_BTN_ALBUMS,
+  PLAYING_CURRENT_ALBUM,
+  PLAYING_CURRENT_ARTIST,
+  PLAYING_CURRENT_PLAYLIST,
+  PLAYING_VIEWALLSONGS_LISTS,
 } from "../Actions";
 const Player_Reducer = (state, action) => {
   if (action.type === PLAY_SONG_BEGIN) {
@@ -108,6 +112,29 @@ const Player_Reducer = (state, action) => {
 
   if (action.type === LEFT_MENU_BTN) {
     return { ...state, side_navbar_show: !state.side_navbar_show };
+  }
+
+  if (action.type === PLAYING_CURRENT_ALBUM) {
+    const data = action.payload;
+    const id = data.map((song) => song.id);
+    return { ...state, current_playing_lists: id };
+  }
+
+  if (action.type === PLAYING_CURRENT_ARTIST) {
+    const data = action.payload;
+    const id = data.map((song) => song.id);
+    return { ...state, current_playing_lists: id };
+  }
+
+  if (action.type === PLAYING_CURRENT_PLAYLIST) {
+    const data = action.payload;
+    const id = data.map((song) => song.id);
+    return { ...state, current_playing_lists: id };
+  }
+  if (action.type === PLAYING_VIEWALLSONGS_LISTS) {
+    const data = state.search_songs;
+    const id = data.map((song) => song.id);
+    return { ...state, current_playing_lists: id };
   }
 
   throw new Error(`No Matching "${action.type}" -action type`);

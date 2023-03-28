@@ -12,10 +12,10 @@ const SingleSongList = ({
   duration,
   index,
   image,
-
   title,
+  CURRENT = null,
 }) => {
-  const { singleSong } = usePlayerContext();
+  const { HandlePlaySong } = usePlayerContext();
   const [ImageLoading, SetImageLoading] = useState(true);
   const handleImageLoad = () => {
     SetImageLoading(false);
@@ -39,7 +39,7 @@ const SingleSongList = ({
         ]}
         data-id={id}
         className="grid relative overflow-hidden gap-3 cursor-pointer  items-center px-5 max-md:px-3"
-        onClick={() => singleSong(id)}
+        onClick={() => HandlePlaySong(id, CURRENT)}
       >
         {ImageLoading && (
           <Skeleton

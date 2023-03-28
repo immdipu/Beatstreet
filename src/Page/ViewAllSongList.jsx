@@ -36,7 +36,9 @@ const ViewAllSongList = () => {
         endMessage={<p className="text-white text-center">End</p>}
         className=" px-14 max-md:px-2"
       >
-        {search_songs && <SongsList songs={search_songs} />}
+        {search_songs && (
+          <SongsList songs={search_songs} current={"ViewAllSong"} />
+        )}
       </InfiniteScroll>
     </div>
   );

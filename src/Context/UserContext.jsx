@@ -38,7 +38,7 @@ const initialState = {
   user_name: null,
   User_id: null,
   login_failed: false,
-  login_success: true,
+  login_success: false,
   login_loading: false,
   signup_loading: false,
   signup_success: false,
@@ -102,8 +102,6 @@ export const UserProvider = ({ children }) => {
       const response = await axiosInstance.get(UserEndPoints + "/login");
       console.log(response.data);
       dispatch({ type: LOGOUT_USER_SUCCESS });
-      // setTimeout(() => {
-      // }, 10000);
     } catch (error) {
       dispatch({ type: LOGOUT_USER_FAILED });
     }

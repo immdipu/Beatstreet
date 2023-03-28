@@ -64,7 +64,7 @@ const SongDownloader = ({ songId }) => {
   };
 
   return (
-    <div className=" w-full flex justify-end cursor-pointer h-10">
+    <div className=" w-full flex downloadBtns justify-end cursor-pointer h-10">
       {downloading ? (
         <div className="mr-6">
           <DownloadProgressBar

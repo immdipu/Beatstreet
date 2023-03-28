@@ -3,7 +3,7 @@ import DownloadLogo from "./DownloadLogo";
 
 const DownloadProgress = ({ HandleClick }) => {
   return (
-    <div onClick={HandleClick} className="h-fit">
+    <div onClick={HandleClick} className="h-fit btnss">
       <DownloadLogo />
     </div>
   );

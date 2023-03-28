@@ -5,6 +5,8 @@ import { usePlayerContext } from "../Context/PlayerContext";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Logo, LogoText } from "../components";
 import ClipLoader from "react-spinners/ClipLoader";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
+import RippleButton from "ripple-effect-reactjs";
 
 const ViewAllSongList = () => {
   let { keyword } = useParams();
@@ -13,6 +15,13 @@ const ViewAllSongList = () => {
   useEffect(() => {
     SearchSongs(keyword);
   }, [keyword]);
+
+  const HandleDownloadAll = () => {
+    const btns = document.querySelectorAll(".btnss");
+    // btns.forEach((btn) => {
+    //   btn.click();
+    // });
+  };
 
   return (
     <div>
@@ -36,6 +45,21 @@ const ViewAllSongList = () => {
         endMessage={<p className="text-white text-center">End</p>}
         className=" px-14 max-md:px-2"
       >
+        <div className="text-neutral-200 mb-2 text-center flex justify-center ">
+          <div
+            className="bg-neutral-500 rounded-md pt-2 hover:bg-opacity-20 duration-300 transition-all ease-linear cursor-pointer bg-opacity-60 w-fit px-3"
+            onClick={HandleDownloadAll}
+            title="Download all"
+          >
+            <RippleButton radius={10} color={"#5454548c"}>
+              Download All
+              <CloudDownloadIcon
+                sx={{ fontSize: 28, paddingLeft: 1, paddingBottom: 1 }}
+                className="text-neutral-300 cursor-pointer"
+              />
+            </RippleButton>
+          </div>
+        </div>
         {search_songs && (
           <SongsList songs={search_songs} current={"ViewAllSong"} />
         )}

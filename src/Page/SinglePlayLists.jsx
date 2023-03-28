@@ -5,6 +5,8 @@ import { useMusicContext } from "../Context/MusicContext";
 import { ImageFetch, FollowersCount } from "../Utils/Helper";
 import Skeleton from "@mui/material/Skeleton";
 import { usePlayerContext } from "../Context/PlayerContext";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
+import RippleButton from "ripple-effect-reactjs";
 
 const SinglePlayLists = () => {
   const { side_menu_show } = usePlayerContext();
@@ -29,6 +31,13 @@ const SinglePlayLists = () => {
 
   const handleImageLoad = () => {
     SetImageLoading(false);
+  };
+
+  const HandleDownloadAll = () => {
+    const btns = document.querySelectorAll(".btnss");
+    btns.forEach((btn) => {
+      btn.click();
+    });
   };
 
   return (
@@ -70,6 +79,18 @@ const SinglePlayLists = () => {
               <p className="text-slate-200 text-sm">
                 {currentPlaylists.songCount} songs
               </p>
+              <div
+                className="w-[38px] ml-3 max-md:mt-4"
+                onClick={HandleDownloadAll}
+                tiltle="Download all "
+              >
+                <RippleButton height={36} radius={50} color={"#5454548c"}>
+                  <CloudDownloadIcon
+                    sx={{ fontSize: 35 }}
+                    className="text-neutral-300 cursor-pointer"
+                  />
+                </RippleButton>
+              </div>
             </div>
           </div>
         </div>

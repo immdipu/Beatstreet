@@ -6,6 +6,8 @@ import { ImageFetch, FollowersCount } from "../Utils/Helper";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
+import RippleButton from "ripple-effect-reactjs";
 
 const Artist = () => {
   const { id } = useParams();
@@ -31,6 +33,13 @@ const Artist = () => {
       </div>
     );
   }
+
+  const HandleDownloadAll = () => {
+    const btns = document.querySelectorAll(".btnss");
+    btns.forEach((btn) => {
+      btn.click();
+    });
+  };
 
   return (
     <div className="overflow-hidden">
@@ -97,9 +106,23 @@ const Artist = () => {
         </div>
         <section className="mt-12 mx-12 max-md:mx-2">
           {single_artist_songs && (
-            <h3 className="text-white text-lg ml-5 mb-3 max-md:font-semibold max-md:text-xl  ">
-              Songs
-            </h3>
+            <div className="flex justify-between pr-5 items-center">
+              <h3 className="text-white text-lg ml-5 mb-3 max-md:font-semibold max-md:text-xl  ">
+                Songs
+              </h3>
+              <div
+                className="w-[38px] max-md:mt-4"
+                title="Download all"
+                onClick={HandleDownloadAll}
+              >
+                <RippleButton height={36} radius={50} color={"#5454548c"}>
+                  <CloudDownloadIcon
+                    sx={{ fontSize: 35 }}
+                    className="text-neutral-300 cursor-pointer"
+                  />
+                </RippleButton>
+              </div>
+            </div>
           )}
           {single_artist_songs && (
             <SongsList songs={single_artist_songs} current={"Artist"} />

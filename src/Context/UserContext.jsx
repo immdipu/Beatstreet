@@ -180,7 +180,6 @@ export const UserProvider = ({ children }) => {
       );
       const results = response.data;
       dispatch({ type: PASSWORD_RESET_SUCCESS, payload: results });
-      console.log(results);
     } catch (error) {
       dispatch({ type: PASSWORD_RESET_FAILED });
       console.log(error);

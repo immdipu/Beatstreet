@@ -142,7 +142,14 @@ const ResetPwd = () => {
       </div>
       <div className="w-44 mt-10" onClick={HandlePasswordChange}>
         <RippleButton color={"#519aff2e"} speed={500}>
-          <button className="text-skyBlue select-none bg-[#519aff2e] w-full px-3 py-2 rounded-md">
+          <button
+            className={
+              "text-skyBlue select-none bg-[#519aff2e] w-full px-3 py-2 rounded-md " +
+              (password_reset_begin
+                ? "pointer-events-none"
+                : "pointer-events-auto")
+            }
+          >
             Change password
           </button>
         </RippleButton>

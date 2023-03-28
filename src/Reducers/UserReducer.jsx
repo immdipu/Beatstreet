@@ -24,6 +24,9 @@ import {
   RESEND_VERIFICATION_BEGIN,
   RESEND_VERIFICATION_SUCCESS,
   RESEND_VERIFICATAION_FAILED,
+  PASSWORD_RESET_BEGIN,
+  PASSWORD_RESET_SUCCESS,
+  PASSWORD_RESET_FAILED,
 } from "../Actions";
 
 const User_Reducer = (state, action) => {
@@ -243,6 +246,35 @@ const User_Reducer = (state, action) => {
       verificaiton_failed: false,
       resend_verification_success: false,
       resend_verification_failed: true,
+    };
+  }
+
+  ///////////////////////// PASSWORD RESET FUNCTIONS ////////////////////////////////
+
+  if (action.type === PASSWORD_RESET_BEGIN) {
+    return {
+      ...state,
+      password_reset_begin: true,
+      password_reset_success: false,
+      password_reset_failed: false,
+    };
+  }
+
+  if (action.type === PASSWORD_RESET_SUCCESS) {
+    return {
+      ...state,
+      password_reset_begin: false,
+      password_reset_success: true,
+      password_reset_failed: false,
+    };
+  }
+
+  if (action.type === PASSWORD_RESET_FAILED) {
+    return {
+      ...state,
+      password_reset_begin: false,
+      password_reset_success: false,
+      password_reset_failed: true,
     };
   }
 

@@ -27,6 +27,9 @@ import {
   RESEND_VERIFICATION_BEGIN,
   RESEND_VERIFICATION_SUCCESS,
   RESEND_VERIFICATAION_FAILED,
+  PASSWORD_RESET_BEGIN,
+  PASSWORD_RESET_SUCCESS,
+  PASSWORD_RESET_FAILED,
 } from "../Actions";
 
 const userContext = React.createContext();
@@ -52,6 +55,9 @@ const initialState = {
   resend_verification_success: false,
   resend_verification_failed: false,
   signup_email: null,
+  password_reset_begin: false,
+  password_reset_success: false,
+  password_reset_failed: false,
 };
 
 export const UserProvider = ({ children }) => {
@@ -165,6 +171,22 @@ export const UserProvider = ({ children }) => {
     }, 10000);
   };
 
+  const resetPassword = async (token, data) => {
+    try {
+      dispatch({ type: PASSWORD_RESET_BEGIN });
+      const response = await axiosInstance.patch(
+        UserEndPoints + `/resetPassword/${token}`,
+        data
+      );
+      const results = response.data;
+      dispatch({ type: PASSWORD_RESET_SUCCESS, payload: results });
+      console.log(results);
+    } catch (error) {
+      dispatch({ type: PASSWORD_RESET_FAILED });
+      console.log(error);
+    }
+  };
+
   const HandleUserDropDown = () => {
     dispatch({ type: USER_DROP_DOWN_TOGGLE });
   };
@@ -186,6 +208,7 @@ export const UserProvider = ({ children }) => {
         HandleVerificationBtn,
         userVerification,
         sendVerificationCode,
+        resetPassword,
       }}
     >
       {children}

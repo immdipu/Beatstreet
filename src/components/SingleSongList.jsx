@@ -82,7 +82,12 @@ const SingleSongList = ({
           )}
         </div>
       </ListItemButton>
-      <div className="absolute right-4 top-3 z-10 pt-[15px] max-md:right-20">
+      <div
+        className={
+          "absolute right-4 top-3 z-10 pt-[15px]  " +
+          (duration ? " max-md:right-20" : "max-md:right-3")
+        }
+      >
         <SongDownloader songId={id} />
       </div>
     </div>

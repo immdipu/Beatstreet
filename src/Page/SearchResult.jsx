@@ -36,7 +36,7 @@ const SearchResult = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { ease: "easeInOut", delay: 0.5 } }}
+      animate={{ opacity: 1, transition: { ease: "easeInOut" } }}
       exit={{ opacity: 0, transition: { ease: "easeInOut" } }}
       className={
         "bg-darkBlue pl-10 max-md:pl-1 pr-4 overflow-hidden " +
@@ -64,7 +64,9 @@ const SearchResult = () => {
               <h3 className="text-white tracking-wide text-lg mb-4 ml-5 max-md:font-semibold max-md:text-xl">
                 Songs
               </h3>
-              <SongsList songs={search_results.songs.results} />
+              {search_results.songs.results.length > 0 && (
+                <SongsList songs={search_results.songs.results} />
+              )}
 
               <ListItemButton
                 sx={[

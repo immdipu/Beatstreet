@@ -130,7 +130,7 @@ const UserVerify = () => {
       </div>
       <p className="text-sm  font-Rubik mt-5 px-8 text-center opacity-60 font-thin text-neutral-300">
         <span className="text-red-500 font-medium opacity-100">Note: </span> If
-        you can't find the password reset email in your inbox, please check your
+        you can't find the verification code in your inbox, please check your
         spam folder as it may have been filtered there.
       </p>
       {verification_begin && (

@@ -32,7 +32,6 @@ const SongDownloader = ({ songId }) => {
 
   const handleDownload = () => {
     setDownloading(true);
-
     axios({
       url: downloadLink.songLink,
       method: "GET",
@@ -63,13 +62,18 @@ const SongDownloader = ({ songId }) => {
       });
   };
 
+  const HandleCancel = () => {
+    console.log("download cancel pressed");
+  };
+
   return (
     <div className=" w-full flex downloadBtns justify-end cursor-pointer h-10">
       {downloading ? (
-        <div className="mr-6">
+        <div>
           <DownloadProgressBar
             progress={offsetValue}
             percentage={downloadProgress}
+            HandleCancell={HandleCancel}
           />
         </div>
       ) : (

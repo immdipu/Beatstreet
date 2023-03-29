@@ -7,10 +7,14 @@ import Skeleton from "@mui/material/Skeleton";
 import { usePlayerContext } from "../Context/PlayerContext";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import RippleButton from "ripple-effect-reactjs";
+import { useUserContext } from "../Context/UserContext";
+import { LoginAlert } from "../components";
 
 const SingleAlbum = () => {
   const { side_menu_show } = usePlayerContext();
   const [ImageLoading, SetImageLoading] = useState(true);
+  const { login_success } = useUserContext();
+  const [alert, setAlert] = useState(false);
   let { id } = useParams();
   const {
     singleAlbums,
@@ -41,6 +45,17 @@ const SingleAlbum = () => {
     });
   };
 
+  let timeoutId;
+  const HandleAlert = () => {
+    setAlert(true);
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      setAlert(false);
+    }, 5000);
+  };
+
   return (
     <div
       className={
@@ -48,6 +63,14 @@ const SingleAlbum = () => {
         (side_menu_show ? "mr-96 transition-all duration-300 ease-in" : "mr-0")
       }
     >
+      {alert && (
+        <div className="fixed top-28 left-1/2 z-[100] max-md:left-0 max-md:scale-75 w-full">
+          <LoginAlert
+            message="Login to download all songs"
+            alertClass={"failed"}
+          />
+        </div>
+      )}
       <div className="gradient flex flex-col gap-8 relative w-full pt-3 px-16 max-md:px-5 pb-7  Artistbackground">
         <div className="grid grid-cols-[max-content,auto] mt-7 max-md:grid-cols-1 max-md:place-items-center gap-5 ">
           {ImageLoading && (
@@ -93,14 +116,23 @@ const SingleAlbum = () => {
               </p>
             </div>
 
-            <div className="w-[38px] max-md:mt-4" onClick={HandleDownloadAll}>
-              <RippleButton height={36} radius={50} color={"#5454548c"}>
+            {login_success ? (
+              <div className="w-[38px] max-md:mt-4" onClick={HandleDownloadAll}>
+                <RippleButton height={36} radius={50} color={"#5454548c"}>
+                  <CloudDownloadIcon
+                    sx={{ fontSize: 35 }}
+                    className="text-neutral-300 cursor-pointer"
+                  />
+                </RippleButton>
+              </div>
+            ) : (
+              <div onClick={HandleAlert}>
                 <CloudDownloadIcon
                   sx={{ fontSize: 35 }}
                   className="text-neutral-300 cursor-pointer"
                 />
-              </RippleButton>
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

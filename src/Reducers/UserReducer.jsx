@@ -11,6 +11,7 @@ import {
   FORGOT_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_FAILED,
   FORGOT_PASSWORD_FINISHED,
+  AUTO_LOGIN_BEGIN,
   AUTO_LOGIN_SUCCESS,
   AUTO_LOGIN_FAILED,
   USER_DROP_DOWN_TOGGLE,
@@ -69,12 +70,22 @@ const User_Reducer = (state, action) => {
     };
   }
 
+  if (action.type === AUTO_LOGIN_BEGIN) {
+    return {
+      ...state,
+      login_failed: false,
+      login_success: false,
+      auto_login_begin: true,
+    };
+  }
+
   if (action.type === AUTO_LOGIN_SUCCESS) {
     const data = action.payload;
     return {
       ...state,
       login_loading: false,
       login_failed: false,
+      auto_login_begin: false,
       login_success: true,
       user_name: data.name,
       User_id: data._id,
@@ -85,6 +96,7 @@ const User_Reducer = (state, action) => {
     return {
       ...state,
       login_loading: false,
+      auto_login_begin: false,
       login_failed: false,
       login_success: false,
       user_name: null,

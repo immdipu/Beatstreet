@@ -53,6 +53,7 @@ export const FORGOT_PASSWORD_SUCCESS = "FORGOT_PASSWORD_SUCCESS";
 export const FORGOT_PASSWORD_FAILED = "FORGOT_PASSWORD_SUCCUESS";
 export const FORGOT_PASSWORD_FINISHED = "FORGOT_PASSWORD_FINISHED";
 /////////////////////////////////////////////////////////////
+export const AUTO_LOGIN_BEGIN = "AUTO_LOGIN_BEGIN";
 export const AUTO_LOGIN_SUCCESS = "AUTO_LOGIN_SUCCESS";
 export const AUTO_LOGIN_FAILED = "AUTO_LOGIN_FAILED";
 

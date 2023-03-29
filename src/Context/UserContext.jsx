@@ -14,6 +14,7 @@ import {
   FORGOT_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_FAILED,
   FORGOT_PASSWORD_FINISHED,
+  AUTO_LOGIN_BEGIN,
   AUTO_LOGIN_SUCCESS,
   AUTO_LOGIN_FAILED,
   USER_DROP_DOWN_TOGGLE,
@@ -55,6 +56,7 @@ const initialState = {
   resend_verification_success: false,
   resend_verification_failed: false,
   signup_email: null,
+  auto_login_begin: false,
   password_reset_begin: false,
   password_reset_success: false,
   password_reset_failed: false,
@@ -70,6 +72,7 @@ export const UserProvider = ({ children }) => {
 
   const AutoLogin = async () => {
     try {
+      dispatch({ type: AUTO_LOGIN_BEGIN });
       const response = await axiosInstance.get(UserEndPoints + "/isloggedin");
       const result = response.data.data.user;
       dispatch({ type: AUTO_LOGIN_SUCCESS, payload: result });

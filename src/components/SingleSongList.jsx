@@ -4,6 +4,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import { SongDurtionFormat } from "../Utils/Helper";
 import { SongDownloader } from "../components";
 import Skeleton from "@mui/material/Skeleton";
+import Tooltip from "@mui/material/Tooltip";
+import { useUserContext } from "../Context/UserContext";
+import DownloadLogo from "../components/downloader/DownloadLogo";
 
 const SingleSongList = ({
   id,
@@ -16,6 +19,7 @@ const SingleSongList = ({
   CURRENT = null,
 }) => {
   const { HandlePlaySong } = usePlayerContext();
+  const { login_success } = useUserContext();
   const [ImageLoading, SetImageLoading] = useState(true);
   const handleImageLoad = () => {
     SetImageLoading(false);
@@ -82,14 +86,21 @@ const SingleSongList = ({
           )}
         </div>
       </ListItemButton>
-      <div
-        className={
-          "absolute right-4 top-3 z-10 pt-[15px]  " +
-          (duration ? " max-md:right-20" : "max-md:right-3")
-        }
+
+      <Tooltip
+        title={login_success ? "" : "Login to Download"}
+        className="text-red-700"
+        arrow
       >
-        <SongDownloader songId={id} />
-      </div>
+        <div
+          className={
+            "absolute right-4 top-3 z-10 pt-[15px]  " +
+            (duration ? " max-md:right-20" : "max-md:right-3 ")
+          }
+        >
+          {login_success ? <SongDownloader songId={id} /> : <DownloadLogo />}
+        </div>
+      </Tooltip>
     </div>
   );
 };

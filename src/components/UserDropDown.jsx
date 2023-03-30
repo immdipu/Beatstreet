@@ -44,32 +44,38 @@ const UserDropDown = ({ imageRef }) => {
       className="absolute bg-lightBlue shadow-xl rounded-md -left-44 w-48 h-fit
       z-[55] text-slate-300 py-5"
     >
+      <div className="mb-2">
+        <h2 className="bg-neutral-700 text-center hover:text-white hover:text-lg transition-all duration-500  ease-linear text-neutral-50 py-1 bg-opacity-25  font-Poppins tracking-wider ">
+          Hello, {user_name.split(" ")[0]}
+        </h2>
+      </div>
+
       <ul className="flex flex-col">
         <Link
           to={"/useraccount"}
-          className="flex hover:bg-darkBlue duration-300 transition-colors ease-linear py-3 gap-3 items-center px-3"
+          className="flex hover:bg-darkBlue duration-300 transition-colors ease-linear py-2 gap-3 items-center px-3"
         >
-          <PersonIcon className="scale-110" />
+          <PersonIcon />
           Account
         </Link>
         <Link
           to={"/library"}
-          className="flex hover:bg-darkBlue duration-300 transition-colors ease-linear py-3 gap-3 items-center px-3"
+          className="flex hover:bg-darkBlue duration-300 transition-colors ease-linear py-2 gap-3 items-center px-3"
         >
-          <LibraryMusicIcon className="scale-110" />
+          <LibraryMusicIcon />
           My Library
         </Link>
         <Link
           to={"helpcenter"}
-          className="flex  hover:bg-darkBlue duration-300 transition-colors ease-linear py-3 gap-3 items-center px-3"
+          className="flex  hover:bg-darkBlue duration-300 transition-colors ease-linear py-2 gap-3 items-center px-3"
         >
-          <HelpCenterIcon className="scale-110" /> Help or Support
+          <HelpCenterIcon /> Help or Support
         </Link>
         <li
           onClick={logoutUser}
-          className="flex gap-3 hover:bg-darkBlue duration-300 transition-colors ease-linear py-3 items-center px-3"
+          className="flex gap-3 hover:bg-darkBlue duration-300 transition-colors ease-linear py-2 items-center px-3"
         >
-          <ExitToAppIcon className="scale-110" /> Sign Out
+          <ExitToAppIcon /> Sign Out
         </li>
       </ul>
     </motion.div>

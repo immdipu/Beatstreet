@@ -12,6 +12,7 @@ import {
   LogIn,
   ForgotPwd,
   ResetPwd,
+  UserAccountSetting,
 } from "./Page";
 
 import { AnimatePresence } from "framer-motion";
@@ -35,6 +36,7 @@ const AnimateRoutes = () => {
         <Route path="search/playlists/:id" element={<SinglePlayLists />} />
         <Route path="search/songs/:keyword" element={<ViewAllSongList />} />
         <Route path="search/albums/:keyword" element={<ViewAllAlbums />} />
+        <Route path="/useraccount" element={<UserAccountSetting />} />
       </Routes>
     </AnimatePresence>
   );

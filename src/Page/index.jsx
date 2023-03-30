@@ -9,6 +9,7 @@ import SignUp from "./SignUp";
 import LogIn from "./LogIn";
 import ForgotPwd from "./ForgotPwd";
 import ResetPwd from "./ResetPwd";
+import UserAccountSetting from "./UserAccountSetting";
 
 export {
   Home,
@@ -22,4 +23,5 @@ export {
   LogIn,
   ForgotPwd,
   ResetPwd,
+  UserAccountSetting,
 };

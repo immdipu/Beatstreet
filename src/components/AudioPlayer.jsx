@@ -9,10 +9,23 @@ import FastRewindRounded from "@mui/icons-material/FastRewindRounded";
 import { usePlayerContext } from "../Context/PlayerContext";
 import { AudioLinkSelector, ImageFetch } from "../Utils/Helper";
 import SongDownloader from "./downloader/SongDownloader";
+import { useUserContext } from "../Context/UserContext";
 
 const AudioPlayer = () => {
   const { current_song, audio_playing, current_playing_lists, singleSong } =
     usePlayerContext();
+  const { sendRecentPlayedSong, User_id, signup_success } = useUserContext();
+
+  useEffect(() => {
+    if (current_song.id && User_id && signup_success) {
+      let data = {
+        songId: current_song.id,
+      };
+
+      sendRecentPlayedSong(User_id, data);
+    }
+  }, [current_song]);
+
   const [audioProgress, setAudioProgress] = useState(0);
   const [paused, setPaused] = useState(false);
   const [musicTotalLength, setMusicTotalLength] = useState("00:00");
@@ -25,6 +38,13 @@ const AudioPlayer = () => {
     currentAudio.current.currentTime =
       (e.target.value * currentAudio.current.duration) / 100;
   };
+
+  // if (login_success && User_id) {
+  //   data = {
+  //     songId: id,
+  //   };
+  //   sendRecentPlayedSong(User_id, data);
+  // }
 
   const currentAudio = useRef();
 

@@ -14,7 +14,7 @@ import { useUserContext } from "../Context/UserContext";
 const AudioPlayer = () => {
   const { current_song, audio_playing, current_playing_lists, singleSong } =
     usePlayerContext();
-  const { sendRecentPlayedSong, User_id, signup_success } = useUserContext();
+  const { sendRecentPlayedSong, User_id, USER_LOGIN_SUCESS } = useUserContext();
 
   useEffect(() => {
     if (current_song.id && User_id && USER_LOGIN_SUCESS) {

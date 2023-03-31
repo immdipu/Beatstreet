@@ -17,7 +17,7 @@ const AudioPlayer = () => {
   const { sendRecentPlayedSong, User_id, signup_success } = useUserContext();
 
   useEffect(() => {
-    if (current_song.id && User_id && signup_success) {
+    if (current_song.id && User_id && USER_LOGIN_SUCESS) {
       let data = {
         songId: current_song.id,
       };

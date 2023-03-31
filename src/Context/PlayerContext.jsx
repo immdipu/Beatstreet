@@ -54,15 +54,14 @@ const initialState = {
   current_playing_lists: [],
 };
 
-import { useUserContext } from "./UserContext";
-
 const axiosInstance = axios.create({ withCredentials: true });
 
 import { useMusicContext } from "../Context/MusicContext";
+import { useUserContext } from "./UserContext";
 export const PlayerProvider = ({ children }) => {
   const { currentAlbum, single_artist_songs, currentPlaylists } =
     useMusicContext();
-  const { login_success, User_id, user_name } = useUserContext();
+  const { login_success, User_id } = useUserContext();
   const [state, dispatch] = useReducer(reducer, initialState);
   const [inputValue, setInputValue] = useState("");
 

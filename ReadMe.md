@@ -39,13 +39,13 @@ To use the Music Streaming Website, simply click on the following link: [Beatstr
 
 #### Playlist
 
-![Playlist Creation](/images/DesktopPlaylist.png)
+![Playlist Creation](public/images/DesktopPlaylist.png)
 
 ### Mobile View
 
 #### Homepage
 
-<img src="/images/MobileHomepage.png" width="300">
+<img src="public/images/MobileHomepage.png" width="300">
 
 #### Search Results
 

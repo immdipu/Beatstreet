@@ -57,11 +57,10 @@ const initialState = {
 const axiosInstance = axios.create({ withCredentials: true });
 
 import { useMusicContext } from "../Context/MusicContext";
-import { useUserContext } from "./UserContext";
 export const PlayerProvider = ({ children }) => {
   const { currentAlbum, single_artist_songs, currentPlaylists } =
     useMusicContext();
-  const { login_success, User_id } = useUserContext();
+
   const [state, dispatch] = useReducer(reducer, initialState);
   const [inputValue, setInputValue] = useState("");
 
@@ -73,12 +72,12 @@ export const PlayerProvider = ({ children }) => {
       const res = await axios.get(`https://saavn.me/songs?id=${id}`);
       const result = res.data.data[0];
       dispatch({ type: PLAY_SONG_SUCESS, payload: result });
-      if (login_success && User_id) {
-        data = {
-          songId: id,
-        };
-        sendRecentPlayedSong(User_id, data);
-      }
+      // if (login_success && User_id) {
+      //   data = {
+      //     songId: id,
+      //   };
+      //   sendRecentPlayedSong(User_id, data);
+      // }
     } catch (error) {
       dispatch({ type: PLAY_SONG_ERROR });
     }

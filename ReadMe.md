@@ -31,11 +31,11 @@ To use the Music Streaming Website, simply click on the following link: [Beatstr
 
 #### Homepage
 
-![Homepage](/images/DesktopHomepageSS.png)
+![Homepage](public/images/DesktopHomepageSS.png)
 
 #### Search Results
 
-![Search Results](/images/DesktopSearchresult.png)
+![Search Results](public/images/DesktopSearchresult.png)
 
 #### Playlist
 
@@ -49,11 +49,11 @@ To use the Music Streaming Website, simply click on the following link: [Beatstr
 
 #### Search Results
 
-<img src="/images/MobileSearch.png" width="300">
+<img src="public/images/MobileSearch.png" width="300">
 
 #### Playlist
 
-<img src="/images/MobilePlaylist.png" width="300">
+<img src="public/images/MobilePlaylist.png" width="300">
 
 ## Support
 

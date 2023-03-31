@@ -59,6 +59,8 @@ To use the Music Streaming Website, simply click on the following link: [Beatstr
 
 If you like Beatstreet and find it useful, please consider giving it a star on GitHub. Your support is greatly appreciated!
 
+<a href="https://www.buymeacoffee.com/immdipu" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
+
 If you have any issues or feature requests, please submit them on the GitHub repository as well. We're always looking to improve the user experience and welcome any feedback you may have.
 
 Thank you for using Beatstreet!

@@ -14,7 +14,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/",
+  "start_url": "https://beatstreet.netlify.app/",
   "display": "standalone",
   "background_color": "#16191e",
   "theme_color": "#1d242c"

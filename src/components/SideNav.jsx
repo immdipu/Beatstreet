@@ -64,7 +64,7 @@ const SideNav = () => {
           </h3>
           <ul className="flex flex-col gap-6 mt-5">
             <NavLink
-              to={"recentsongs/:id"}
+              to={"/recentsongs"}
               className="flex items-center gap-4 text-sm max-md:text-base font-medium"
             >
               <DonutSmallIcon />

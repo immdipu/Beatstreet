@@ -38,7 +38,7 @@ const AnimateRoutes = () => {
         <Route path="search/songs/:keyword" element={<ViewAllSongList />} />
         <Route path="search/albums/:keyword" element={<ViewAllAlbums />} />
         <Route path="/useraccount" element={<UserAccountSetting />} />
-        <Route path="recentsongs/:id" element={<RecentSongs />} />
+        <Route path="/recentsongs" element={<RecentSongs />} />
       </Routes>
     </AnimatePresence>
   );

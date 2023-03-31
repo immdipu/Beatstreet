@@ -30,6 +30,7 @@ import {
   GET_RECENT_SONGS_BEGIN,
   GET_RECENT_SONGS_SUCCESS,
   GET_RECENT_SONGS_FAILED,
+  PLAYING_RECENT_PLAYED_LISTS,
 } from "../Actions";
 
 const playerContext = React.createContext();
@@ -176,6 +177,11 @@ export const PlayerProvider = ({ children }) => {
     if (current === "ViewAllSong") {
       dispatch({
         type: PLAYING_VIEWALLSONGS_LISTS,
+      });
+    }
+    if (current === "RecentSongs") {
+      dispatch({
+        type: PLAYING_RECENT_PLAYED_LISTS,
       });
     }
     singleSong(id);

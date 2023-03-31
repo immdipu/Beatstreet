@@ -19,6 +19,7 @@ import {
   PLAYING_CURRENT_ARTIST,
   PLAYING_CURRENT_PLAYLIST,
   PLAYING_VIEWALLSONGS_LISTS,
+  PLAYING_RECENT_PLAYED_LISTS,
   GET_RECENT_SONGS_BEGIN,
   GET_RECENT_SONGS_SUCCESS,
   GET_RECENT_SONGS_FAILED,
@@ -136,6 +137,11 @@ const Player_Reducer = (state, action) => {
   }
   if (action.type === PLAYING_VIEWALLSONGS_LISTS) {
     const data = state.search_songs;
+    const id = data.map((song) => song.id);
+    return { ...state, current_playing_lists: id };
+  }
+  if (action.type === PLAYING_RECENT_PLAYED_LISTS) {
+    const data = state.recent_songs;
     const id = data.map((song) => song.id);
     return { ...state, current_playing_lists: id };
   }

@@ -145,7 +145,8 @@ const Player_Reducer = (state, action) => {
   }
 
   if (action.type === GET_RECENT_SONGS_SUCCESS) {
-    return { ...state, recent_song_loading: false };
+    const data = action.payload;
+    return { ...state, recent_song_loading: false, recent_songs: data };
   }
 
   if (action.type === GET_RECENT_SONGS_FAILED) {

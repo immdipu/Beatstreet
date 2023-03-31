@@ -188,11 +188,10 @@ export const PlayerProvider = ({ children }) => {
         `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/recentsongs/${id}`
       );
       const results = response.data.data;
-      console.log(results);
-      // const ids = results.join();
-      // const getSongs = await axios.get(`https://saavn.me/songs?id=${ids}`);
-      console.log(getSongs.data);
-      dispatch({ type: GET_RECENT_SONGS_SUCCESS });
+      const ids = results.join();
+      const getSongs = await axios.get(`https://saavn.me/songs?id=${ids}`);
+      const songs = getSongs.data.data;
+      dispatch({ type: GET_RECENT_SONGS_SUCCESS, payload: songs });
     } catch (error) {
       dispatch({ type: GET_RECENT_SONGS_FAILED });
       console.log(error);

@@ -189,12 +189,10 @@ export const UserProvider = ({ children }) => {
 
   const sendRecentPlayedSong = async (id, data) => {
     try {
-      const response = await axiosInstance.post(
+      await axiosInstance.post(
         `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/recentsongs/${id}`,
         data
       );
-      const result = response.data;
-      console.log(result);
     } catch (error) {
       console.log(error);
     }

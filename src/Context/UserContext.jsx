@@ -209,7 +209,6 @@ export const UserProvider = ({ children }) => {
         userVerification,
         sendVerificationCode,
         resetPassword,
-        sendRecentPlayedSong,
       }}
     >
       {children}

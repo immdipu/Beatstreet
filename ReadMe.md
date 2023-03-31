@@ -1,6 +1,6 @@
 # Beatstreet
 
-Welcome to the Music Streaming Website, a free website where you can listen to your favorite music anytime, anywhere. This website has been developed using the MERN stack, which stands for MongoDB, Express, React, and Node.js.
+Welcome to Beatstreet, a free website where you can listen to your favorite music anytime, anywhere. This website has been developed using the MERN stack, which stands for MongoDB, Express, React, and Node.js.
 
 ## Features
 

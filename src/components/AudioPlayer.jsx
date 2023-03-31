@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useTheme } from "@mui/material/styles";
 import Slider from "@mui/material/Slider";
 import IconButton from "@mui/material/IconButton";
@@ -6,7 +6,6 @@ import PauseRounded from "@mui/icons-material/PauseRounded";
 import PlayArrowRounded from "@mui/icons-material/PlayArrowRounded";
 import FastForwardRounded from "@mui/icons-material/FastForwardRounded";
 import FastRewindRounded from "@mui/icons-material/FastRewindRounded";
-
 import { usePlayerContext } from "../Context/PlayerContext";
 import { AudioLinkSelector, ImageFetch } from "../Utils/Helper";
 import SongDownloader from "./downloader/SongDownloader";

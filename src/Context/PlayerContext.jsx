@@ -53,10 +53,16 @@ const initialState = {
   current_page_count_albums: 1,
   current_playing_lists: [],
 };
+
+import { useUserContext } from "./UserContext";
+
+const axiosInstance = axios.create({ withCredentials: true });
+
 import { useMusicContext } from "../Context/MusicContext";
 export const PlayerProvider = ({ children }) => {
   const { currentAlbum, single_artist_songs, currentPlaylists } =
     useMusicContext();
+  const { login_success, User_id, user_name } = useUserContext();
   const [state, dispatch] = useReducer(reducer, initialState);
   const [inputValue, setInputValue] = useState("");
 
@@ -68,6 +74,12 @@ export const PlayerProvider = ({ children }) => {
       const res = await axios.get(`https://saavn.me/songs?id=${id}`);
       const result = res.data.data[0];
       dispatch({ type: PLAY_SONG_SUCESS, payload: result });
+      if (login_success && User_id) {
+        data = {
+          songId: id,
+        };
+        sendRecentPlayedSong(User_id, data);
+      }
     } catch (error) {
       dispatch({ type: PLAY_SONG_ERROR });
     }
@@ -174,6 +186,19 @@ export const PlayerProvider = ({ children }) => {
       });
     }
     singleSong(id);
+  };
+
+  const sendRecentPlayedSong = async (id, data) => {
+    try {
+      const response = await axiosInstance.post(
+        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/recentsongs/${id}`,
+        data
+      );
+      const result = response.data;
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

@@ -10,6 +10,7 @@ import LogIn from "./LogIn";
 import ForgotPwd from "./ForgotPwd";
 import ResetPwd from "./ResetPwd";
 import UserAccountSetting from "./UserAccountSetting";
+import RecentSongs from "./RecentSongs";
 
 export {
   Home,
@@ -24,4 +25,5 @@ export {
   ForgotPwd,
   ResetPwd,
   UserAccountSetting,
+  RecentSongs,
 };

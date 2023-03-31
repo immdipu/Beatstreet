@@ -63,10 +63,13 @@ const SideNav = () => {
             Library
           </h3>
           <ul className="flex flex-col gap-6 mt-5">
-            <li className="flex items-center gap-4 text-sm max-md:text-base font-medium">
+            <NavLink
+              to={"recentsongs/:id"}
+              className="flex items-center gap-4 text-sm max-md:text-base font-medium"
+            >
               <DonutSmallIcon />
               Recent
-            </li>
+            </NavLink>
             <li className="flex items-center gap-4 text-sm max-md:text-base font-medium">
               <SubscriptionsIcon />
               Playlists

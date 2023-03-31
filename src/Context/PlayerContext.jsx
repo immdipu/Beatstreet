@@ -27,6 +27,9 @@ import {
   PLAYING_CURRENT_ARTIST,
   PLAYING_CURRENT_PLAYLIST,
   PLAYING_VIEWALLSONGS_LISTS,
+  GET_RECENT_SONGS_BEGIN,
+  GET_RECENT_SONGS_SUCCESS,
+  GET_RECENT_SONGS_FAILED,
 } from "../Actions";
 
 const playerContext = React.createContext();
@@ -47,9 +50,14 @@ const initialState = {
   current_page_count: 1,
   current_page_count_albums: 1,
   current_playing_lists: [],
+  recent_songs: [],
+  recent_song_loading: false,
 };
 
 import { useMusicContext } from "../Context/MusicContext";
+
+const axiosInstance = axios.create({ withCredentials: true });
+
 export const PlayerProvider = ({ children }) => {
   const { currentAlbum, single_artist_songs, currentPlaylists } =
     useMusicContext();
@@ -173,6 +181,24 @@ export const PlayerProvider = ({ children }) => {
     singleSong(id);
   };
 
+  const getRecentSongs = async (id) => {
+    dispatch({ type: GET_RECENT_SONGS_BEGIN });
+    try {
+      const response = await axiosInstance.get(
+        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/recentsongs/${id}`
+      );
+      const results = response.data.data;
+      console.log(results);
+      // const ids = results.join();
+      // const getSongs = await axios.get(`https://saavn.me/songs?id=${ids}`);
+      console.log(getSongs.data);
+      dispatch({ type: GET_RECENT_SONGS_SUCCESS });
+    } catch (error) {
+      dispatch({ type: GET_RECENT_SONGS_FAILED });
+      console.log(error);
+    }
+  };
+
   return (
     <playerContext.Provider
       value={{
@@ -190,6 +216,7 @@ export const PlayerProvider = ({ children }) => {
         AlbumsPageChange,
         HandleNextPageBtn_Albums,
         HandlePlaySong,
+        getRecentSongs,
       }}
     >
       {children}

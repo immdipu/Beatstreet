@@ -38,13 +38,6 @@ const AudioPlayer = () => {
       (e.target.value * currentAudio.current.duration) / 100;
   };
 
-  // if (login_success && User_id) {
-  //   data = {
-  //     songId: id,
-  //   };
-  //   sendRecentPlayedSong(User_id, data);
-  // }
-
   const currentAudio = useRef();
 
   const handleAudioPlay = () => {

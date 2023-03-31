@@ -14,14 +14,13 @@ import { useUserContext } from "../Context/UserContext";
 const AudioPlayer = () => {
   const { current_song, audio_playing, current_playing_lists, singleSong } =
     usePlayerContext();
-  const { sendRecentPlayedSong, User_id, USER_LOGIN_SUCESS } = useUserContext();
+  const { sendRecentPlayedSong, User_id, login_success } = useUserContext();
 
   useEffect(() => {
-    if (current_song.id && USER_LOGIN_SUCESS) {
+    if (current_song.id && login_success) {
       let data = {
         songId: current_song.id,
       };
-
       sendRecentPlayedSong(User_id, data);
     }
   }, [current_song]);

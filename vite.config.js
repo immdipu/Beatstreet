@@ -30,7 +30,6 @@ export default defineConfig({
             purpose: "maskable",
           },
         ],
-        start_url: "/",
         display: "standalone",
         background_color: "#16191e",
         theme_color: "#1d242c",

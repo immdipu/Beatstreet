@@ -10,7 +10,7 @@ export default defineConfig({
       registerType: "autoUpdate",
       manifest: {
         name: "BeatStreet",
-        short_name: "B",
+        short_name: "Beatstreet",
         description:
           "Beatstreet is the ultimate destination for streaming and downloading music for free.",
         icons: [

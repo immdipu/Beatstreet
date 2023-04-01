@@ -15,7 +15,7 @@ export default defineConfig({
           "Beatstreet is the ultimate destination for streaming and downloading music for free.",
         icons: [
           {
-            src: "/images/logo.png",
+            src: "/images/logo-192.png",
             sizes: "192x192",
             type: "image/png",
           },

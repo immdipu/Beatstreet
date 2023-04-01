@@ -7,10 +7,6 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      workbox: {
-        globPatterns: ["**/*"],
-      },
-      includeAssets: ["**/*"],
       manifest: {
         name: "BeatStreet",
         short_name: "B",

@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      registerType: "autoUpdate",
       manifest: {
         name: "BeatStreet",
         short_name: "B",

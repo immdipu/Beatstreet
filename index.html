@@ -7,7 +7,9 @@
   <link rel="manifest" href="/manifest.json">
   <meta name="description"
     content="Beatstreet is the ultimate destination for streaming and downloading music for free. Enjoy unlimited access to a vast collection of songs, playlists, and albums, all available with a single click. Beatstreet is constantly evolving with new features and updates to enhance your music experience. Discover your new favorite tunes today!">
+  <meta name="theme-color" content="#16191e">
   <meta property="og:title" content="Beatstreet">
+  <link rel="apple-touch-icon" sizes="192x192" href="/images/logo.png">
   <meta property="og:description"
     content="Beatstreet is the ultimate destination for streaming and downloading music for free. Enjoy unlimited access to a vast collection of songs, playlists, and albums, all available with a single click. Beatstreet is constantly evolving with new features and updates to enhance your music experience. Discover your new favorite tunes today!">
   <meta property="og:image" content="/images/logo.png">
@@ -23,7 +25,19 @@
 
 <body>
   <div id="root"></div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./serviceWorker.js').then((reg) => {
+          console.log('worker Registered')
+        }).catch((err) => {
+          console.log(err)
+        })
+      })
+    }
+  </script>
   <script type="module" src="/src/main.jsx"></script>
+
 </body>
 
 </html>

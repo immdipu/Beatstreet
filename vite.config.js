@@ -20,7 +20,7 @@ export default defineConfig({
             type: "image/png",
           },
           {
-            src: "/images/logo.png",
+            src: "/images/logo-512.png",
             sizes: "512x512",
             type: "image/png",
           },

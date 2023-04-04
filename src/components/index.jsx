@@ -27,6 +27,9 @@ import LoginAlert from "./LoginAlert";
 import EyeVisibility from "./assets/EyeVisibility";
 import EyeNotVisibility from "./assets/EyeNotVisibility";
 import UserVerify from "./UserVerify";
+import SingleTopPlaylists from "./SingleTopPlaylists";
+import HindiPlaylist from "./playlists/HindiPlaylist";
+import BhojpuriPlaylist from "./playlists/BhojpuriPlaylist";
 
 export {
   AudiPlayer,
@@ -58,4 +61,7 @@ export {
   EyeNotVisibility,
   EyeVisibility,
   UserVerify,
+  SingleTopPlaylists,
+  HindiPlaylist,
+  BhojpuriPlaylist,
 };

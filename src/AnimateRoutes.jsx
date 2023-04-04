@@ -16,6 +16,7 @@ import {
   RecentSongs,
   TopPlaylists,
 } from "./Page";
+import { HindiPlaylist, BhojpuriPlaylist } from "./components";
 
 import { AnimatePresence } from "framer-motion";
 
@@ -40,7 +41,8 @@ const AnimateRoutes = () => {
         <Route path="search/albums/:keyword" element={<ViewAllAlbums />} />
         <Route path="/useraccount" element={<UserAccountSetting />} />
         <Route path="/recentsongs" element={<RecentSongs />} />
-        <Route path="/topplaylists" element={<TopPlaylists />} />
+        <Route path="/topplaylists/Hindi" element={<HindiPlaylist />} />
+        <Route path="/topplaylists/Bhojpuri" element={<BhojpuriPlaylist />} />
       </Routes>
     </AnimatePresence>
   );

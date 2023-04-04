@@ -41,7 +41,7 @@ const SideNav = () => {
                 Discover
               </NavLink>
               <NavLink
-                to={"/topplaylists"}
+                to={"topplaylists/Hindi"}
                 className="flex items-center gap-4 text-sm max-md:text-base font-medium"
               >
                 <AssessmentIcon />

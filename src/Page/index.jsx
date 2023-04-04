@@ -11,6 +11,7 @@ import ForgotPwd from "./ForgotPwd";
 import ResetPwd from "./ResetPwd";
 import UserAccountSetting from "./UserAccountSetting";
 import RecentSongs from "./RecentSongs";
+import TopPlaylists from "./TopPlaylists";
 
 export {
   Home,
@@ -26,4 +27,5 @@ export {
   ResetPwd,
   UserAccountSetting,
   RecentSongs,
+  TopPlaylists,
 };

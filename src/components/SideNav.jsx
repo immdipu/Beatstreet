@@ -40,10 +40,13 @@ const SideNav = () => {
                 <ExploreIcon />
                 Discover
               </NavLink>
-              <li className="flex items-center gap-4 text-sm max-md:text-base font-medium">
+              <NavLink
+                to={"/topplaylists"}
+                className="flex items-center gap-4 text-sm max-md:text-base font-medium"
+              >
                 <AssessmentIcon />
-                Trending
-              </li>
+                Top Playlists
+              </NavLink>
               <li className="flex items-center gap-4 text-sm max-md:text-base font-medium">
                 <AccountBoxIcon />
                 Album

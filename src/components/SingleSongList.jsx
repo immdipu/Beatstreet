@@ -115,11 +115,11 @@ const SingleSongList = ({
             (duration ? " max-md:right-16" : "max-md:right-3 ")
           }
         >
-          {/* {login_success && ( */}
-          <div className="-translate-y-1">
-            <Favorite songId={id} />
-          </div>
-          {/* )} */}
+          {login_success && (
+            <div className="-translate-y-[12px]">
+              <Favorite songId={id} />
+            </div>
+          )}
           {login_success ? (
             <SongDownloader songId={id} />
           ) : (

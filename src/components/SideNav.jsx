@@ -77,9 +77,12 @@ const SideNav = () => {
               <SubscriptionsIcon />
               Playlists
             </li>
-            <li className="flex items-center gap-4 text-sm max-md:text-base font-medium">
+            <NavLink
+              to={"/favoritessongs"}
+              className="flex items-center gap-4 text-sm max-md:text-base font-medium"
+            >
               <FavoriteIcon /> Favorites
-            </li>
+            </NavLink>
           </ul>
         </section>
         <section className="px-7 max-md:px-10 mt-10">

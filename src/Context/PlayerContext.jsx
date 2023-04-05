@@ -31,6 +31,10 @@ import {
   GET_RECENT_SONGS_SUCCESS,
   GET_RECENT_SONGS_FAILED,
   PLAYING_RECENT_PLAYED_LISTS,
+  GET_FAVORITE_SONGS_BEGIN,
+  GET_FAVORITE_SONGS_SUCCESS,
+  GET_FAVORITE_SONGS_FAILED,
+  PLAYING_FAVORITES_LISTS,
 } from "../Actions";
 
 const playerContext = React.createContext();
@@ -52,7 +56,9 @@ const initialState = {
   current_page_count_albums: 1,
   current_playing_lists: [],
   recent_songs: [],
+  favorites_songs: [],
   recent_song_loading: false,
+  favorite_songs_loading: false,
 };
 
 import { useMusicContext } from "../Context/MusicContext";
@@ -184,6 +190,11 @@ export const PlayerProvider = ({ children }) => {
         type: PLAYING_RECENT_PLAYED_LISTS,
       });
     }
+
+    if (current === "FavoritesSongs") {
+      dispatch({ type: PLAYING_FAVORITES_LISTS });
+    }
+
     singleSong(id);
   };
 
@@ -200,6 +211,22 @@ export const PlayerProvider = ({ children }) => {
       dispatch({ type: GET_RECENT_SONGS_SUCCESS, payload: songs });
     } catch (error) {
       dispatch({ type: GET_RECENT_SONGS_FAILED });
+      console.log(error);
+    }
+  };
+  const getFavoritesSongs = async (id) => {
+    dispatch({ type: GET_FAVORITE_SONGS_BEGIN });
+    try {
+      const response = await axiosInstance.get(
+        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/favoritesongs/${id}`
+      );
+      const results = response.data.data;
+      const ids = results.join();
+      const getSongs = await axios.get(`https://saavn.me/songs?id=${ids}`);
+      const songs = getSongs.data.data;
+      dispatch({ type: GET_FAVORITE_SONGS_SUCCESS, payload: songs });
+    } catch (error) {
+      dispatch({ type: GET_FAVORITE_SONGS_FAILED });
       console.log(error);
     }
   };
@@ -222,6 +249,7 @@ export const PlayerProvider = ({ children }) => {
         HandleNextPageBtn_Albums,
         HandlePlaySong,
         getRecentSongs,
+        getFavoritesSongs,
       }}
     >
       {children}

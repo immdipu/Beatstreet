@@ -12,7 +12,7 @@ import ResetPwd from "./ResetPwd";
 import UserAccountSetting from "./UserAccountSetting";
 import RecentSongs from "./RecentSongs";
 import TopPlaylists from "./TopPlaylists";
-
+import FavoritesSongs from "./FavoritesSongs";
 export {
   Home,
   SingleAlbum,
@@ -28,4 +28,5 @@ export {
   UserAccountSetting,
   RecentSongs,
   TopPlaylists,
+  FavoritesSongs,
 };

@@ -14,6 +14,7 @@ import {
   ResetPwd,
   UserAccountSetting,
   RecentSongs,
+  FavoritesSongs,
   TopPlaylists,
 } from "./Page";
 import { HindiPlaylist, BhojpuriPlaylist } from "./components";
@@ -41,6 +42,7 @@ const AnimateRoutes = () => {
         <Route path="search/albums/:keyword" element={<ViewAllAlbums />} />
         <Route path="/useraccount" element={<UserAccountSetting />} />
         <Route path="/recentsongs" element={<RecentSongs />} />
+        <Route path="/favoritessongs" element={<FavoritesSongs />} />
         <Route path="/topplaylists/Hindi" element={<HindiPlaylist />} />
         <Route path="/topplaylists/Bhojpuri" element={<BhojpuriPlaylist />} />
       </Routes>

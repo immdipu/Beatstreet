@@ -23,6 +23,10 @@ import {
   GET_RECENT_SONGS_BEGIN,
   GET_RECENT_SONGS_SUCCESS,
   GET_RECENT_SONGS_FAILED,
+  GET_FAVORITE_SONGS_BEGIN,
+  GET_FAVORITE_SONGS_SUCCESS,
+  GET_FAVORITE_SONGS_FAILED,
+  PLAYING_FAVORITES_LISTS,
 } from "../Actions";
 const Player_Reducer = (state, action) => {
   if (action.type === PLAY_SONG_BEGIN) {
@@ -145,6 +149,11 @@ const Player_Reducer = (state, action) => {
     const id = data.map((song) => song.id);
     return { ...state, current_playing_lists: id };
   }
+  if (action.type === PLAYING_FAVORITES_LISTS) {
+    const data = state.favorites_songs;
+    const id = data.map((song) => song.id);
+    return { ...state, current_playing_lists: id };
+  }
 
   if (action.type === GET_RECENT_SONGS_BEGIN) {
     return { ...state, recent_song_loading: true };
@@ -157,6 +166,19 @@ const Player_Reducer = (state, action) => {
 
   if (action.type === GET_RECENT_SONGS_FAILED) {
     return { ...state, recent_song_loading: false };
+  }
+
+  if (action.type === GET_FAVORITE_SONGS_BEGIN) {
+    return { ...state, favorite_songs_loading: true };
+  }
+
+  if (action.type === GET_FAVORITE_SONGS_SUCCESS) {
+    const data = action.payload;
+    return { ...state, favorite_songs_loading: false, favorites_songs: data };
+  }
+
+  if (action.type === GET_FAVORITE_SONGS_FAILED) {
+    return { ...state, favorite_songs_loading: false };
   }
 
   throw new Error(`No Matching "${action.type}" -action type`);

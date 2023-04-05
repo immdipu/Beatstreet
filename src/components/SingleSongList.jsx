@@ -4,10 +4,9 @@ import ListItemButton from "@mui/material/ListItemButton";
 import { SongDurtionFormat } from "../Utils/Helper";
 import { SongDownloader } from "../components";
 import Skeleton from "@mui/material/Skeleton";
-import Tooltip from "@mui/material/Tooltip";
 import { useUserContext } from "../Context/UserContext";
 import DownloadLogo from "../components/downloader/DownloadLogo";
-import { LoginAlert } from "../components";
+import { LoginAlert, Favorite } from "../components";
 
 const SingleSongList = ({
   id,
@@ -51,7 +50,7 @@ const SingleSongList = ({
             {
               display: "grid",
               borderRadius: 2,
-              gridTemplateColumns: "max-content 1fr max-content",
+              gridTemplateColumns: "max-content 1fr max-content max-content",
               overflow: "hidden",
             },
             (theme) => ({
@@ -83,7 +82,7 @@ const SingleSongList = ({
           />
           <div className="ml-4 overflow-hidden ">
             <h3
-              className="text-slate-200 text-sm whitespace-nowrap text-ellipsis overflow-hidden w-[90%]"
+              className="text-slate-200 text-sm whitespace-nowrap text-ellipsis overflow-hidden w-[90%] max-md:w-[75%]"
               dangerouslySetInnerHTML={{
                 __html: `${name || title}`,
               }}
@@ -97,7 +96,7 @@ const SingleSongList = ({
             />
           </div>
 
-          <div className="mr-20 max-md:mr-2 max-md:ml-5">
+          <div className="mr-28 max-md:mr-2 max-md:ml-5">
             {duration && (
               <div className="text-slate-200 text-sm opacity-70">
                 {SongDurtionFormat(duration)}
@@ -106,26 +105,25 @@ const SingleSongList = ({
           </div>
         </ListItemButton>
 
-        <Tooltip
-          title={login_success ? "" : "Login to Download"}
-          className="text-red-700"
-          arrow
+        <div
+          className={
+            "absolute right-4 top-3 z-10 flex items-center gap-3 pt-[15px]  " +
+            (duration ? " max-md:right-20" : "max-md:right-3 ")
+          }
         >
-          <div
-            className={
-              "absolute right-4 top-3 z-10 pt-[15px]  " +
-              (duration ? " max-md:right-20" : "max-md:right-3 ")
-            }
-          >
-            {login_success ? (
-              <SongDownloader songId={id} />
-            ) : (
-              <div onClick={HandleAlert}>
-                <DownloadLogo />
-              </div>
-            )}
-          </div>
-        </Tooltip>
+          {login_success && (
+            <div>
+              <Favorite songId={id} />
+            </div>
+          )}
+          {login_success ? (
+            <SongDownloader songId={id} />
+          ) : (
+            <div onClick={HandleAlert}>
+              <DownloadLogo />
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

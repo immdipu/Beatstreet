@@ -30,6 +30,7 @@ import UserVerify from "./UserVerify";
 import SingleTopPlaylists from "./SingleTopPlaylists";
 import HindiPlaylist from "./playlists/HindiPlaylist";
 import BhojpuriPlaylist from "./playlists/BhojpuriPlaylist";
+import Favorite from "./Favorite";
 
 export {
   AudiPlayer,
@@ -64,4 +65,5 @@ export {
   SingleTopPlaylists,
   HindiPlaylist,
   BhojpuriPlaylist,
+  Favorite,
 };

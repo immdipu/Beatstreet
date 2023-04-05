@@ -57,10 +57,14 @@ const SingleSongList = ({
               "&:hover": {
                 backgroundColor: "#1d242ca3",
               },
+              [theme.breakpoints.down("sm")]: {
+                paddingLeft: 1,
+                paddingRight: "3px",
+              },
             }),
           ]}
           data-id={id}
-          className="grid relative overflow-hidden gap-3 cursor-pointer  items-center px-5 max-md:px-3"
+          className="grid relative overflow-hidden gap-3  max-md:gap-2 cursor-pointer  items-center px-5"
           onClick={() => HandlePlaySong(id, CURRENT)}
         >
           {ImageLoading && (
@@ -82,21 +86,21 @@ const SingleSongList = ({
           />
           <div className="ml-4 overflow-hidden ">
             <h3
-              className="text-slate-200 text-sm whitespace-nowrap text-ellipsis overflow-hidden w-[90%] max-md:w-[75%]"
+              className="text-slate-200 max-md:font-medium text-sm  whitespace-nowrap text-ellipsis overflow-hidden w-[90%] max-md:w-8/12 max-xxs:w-2/4"
               dangerouslySetInnerHTML={{
                 __html: `${name || title}`,
               }}
             />
 
             <p
-              className="text-xs max-md:text-[11px]  opacity-90 mt-[2px] max-w-xs max-md:max-w-[70%] overflow-hidden whitespace-nowrap text-ellipsis text-darkTextColor tracking-wide"
+              className="text-xs max-md:text-[10px]  opacity-90 mt-[2px] max-w-xs max-md:max-w-[70%] overflow-hidden whitespace-nowrap text-ellipsis text-darkTextColor tracking-wide"
               dangerouslySetInnerHTML={{
                 __html: `${primaryArtists}`,
               }}
             />
           </div>
 
-          <div className="mr-28 max-md:mr-2 max-md:ml-5">
+          <div className="mr-28 max-md:mr-1 max-md:ml-8">
             {duration && (
               <div className="text-slate-200 text-sm opacity-70">
                 {SongDurtionFormat(duration)}
@@ -108,14 +112,14 @@ const SingleSongList = ({
         <div
           className={
             "absolute right-4 top-3 z-10 flex items-center gap-3 pt-[15px]  " +
-            (duration ? " max-md:right-20" : "max-md:right-3 ")
+            (duration ? " max-md:right-16" : "max-md:right-3 ")
           }
         >
-          {login_success && (
-            <div>
-              <Favorite songId={id} />
-            </div>
-          )}
+          {/* {login_success && ( */}
+          <div className="-translate-y-1">
+            <Favorite songId={id} />
+          </div>
+          {/* )} */}
           {login_success ? (
             <SongDownloader songId={id} />
           ) : (

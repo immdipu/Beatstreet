@@ -12,19 +12,15 @@ const Favorite = ({ songId }) => {
       songId,
     };
     if (login_success) {
-      sendFavoriteSong(User_id);
+      sendFavoriteSong(User_id, data);
     }
-    console.log("favorite");
     setFav((prev) => !prev);
   };
 
   return (
     <div onClick={HandleFavorite}>
       {fav ? (
-        <FavoriteIcon
-          className="text-red-600"
-          sx={{ fontSize: 28, fillOpacity: "1" }}
-        />
+        <FavoriteIcon className="text-red-600" sx={{ fontSize: 25 }} />
       ) : (
         <FavoriteBorderIcon
           className="text-neutral-400"

@@ -9,7 +9,8 @@ const UserAvatar = () => {
   const imageRef = useRef();
 
   let Imagelink = `https://api.dicebear.com/5.x/initials/svg?seed=${user_name}`;
-  if (User_id === process.env.ID) {
+
+  if (User_id === import.meta.env.VITE_ID) {
     Imagelink = "https://avatars.githubusercontent.com/u/103568666?v=4";
   }
   return (

@@ -1333,3 +1333,1142 @@ export const topBhojpuriPlaylist = [
     mini_obj: true,
   },
 ];
+
+export const topEnglishPlaylist = [
+  {
+    id: "107320028",
+    title: "Hello K-Pop",
+    subtitle: "29.1K Followers",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/HelloKPop_20230324124555.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/hello-k-pop/qmcsGAI9mRFFo9wdEAzFBA__",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "29080",
+      last_updated: "1680483061",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "158224864",
+    title: "Todays Top Hits",
+    subtitle: "11K Followers",
+    type: "playlist",
+    image:
+      "http://c.saavncdn.com/editorial/logo/TodaysTopHits_20190502065839.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/todays-top-hits/Tpi7AUqAq8nufxkxMEIbIw__",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "11010",
+      last_updated: "1674535665",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "48189087",
+    title: "English Viral Hits",
+    subtitle: "130.4K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/EnglishViralHits_20230228043826.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/english-viral-hits/pm49jiq,CNs_",
+    more_info: {
+      song_count: "20",
+      firstname: "JioSaavn",
+      follower_count: "130371",
+      last_updated: "1680247817",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "59583701",
+    title: "Let's Play - Bob Marley",
+    subtitle: "2.3K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/BobMarleyATribute_20210128182858.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/lets-play---bob-marley/uGrA,YVqqn4_",
+    more_info: {
+      song_count: "20",
+      firstname: "JioSaavn",
+      follower_count: "2254",
+      last_updated: "1665092505",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "33085749",
+    title: "90s Boy Bands",
+    subtitle: "5.3K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/90sBoyBands_20210817063254.jpg",
+    perma_url: "https://www.jiosaavn.com/featured/90s-boy-bands/GJYfME1bv,4_",
+    more_info: {
+      song_count: "35",
+      firstname: "JioSaavn",
+      follower_count: "5312",
+      last_updated: "1680555806",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "110268793",
+    title: "Let's Play - Drake",
+    subtitle: "2.2K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/RapRoyaltyDrake_20201110053659.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/lets-play---drake/MBMuHZ,FJygwkg5tVhI3fw__",
+    more_info: {
+      song_count: "50",
+      firstname: "JioSaavn",
+      follower_count: "2244",
+      last_updated: "1680561696",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "84909952",
+    title: "Retro Workout",
+    subtitle: "3.1K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/ThrowbackThrust_20220427182658.jpg",
+    perma_url: "https://www.jiosaavn.com/featured/retro-workout/xfuqSXKF,Ao_",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "3090",
+      last_updated: "1678064667",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "81555150",
+    title: "And the Award Goes To",
+    subtitle: "3.9K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/AndtheAwardGoesTo_20230206075215.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/and-the-award-goes-to/HfSVfKooRxo_",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "3918",
+      last_updated: "1675655064",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "86183802",
+    title: "Rap Cypher - English",
+    subtitle: "Just Updated",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/RapCypherEnglish_20230310101158.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/rap-cypher---english/nc,LQ5hFF2I_",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "73654",
+      last_updated: "1680663606",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "146434735",
+    title: "Latest Latin",
+    subtitle: "16.7K Followers",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/LatestLatin_20230324125036.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/latest-latin/iZf3wDHw2nTuCJW60TJk1Q__",
+    more_info: {
+      song_count: "25",
+      firstname: "JioSaavn",
+      follower_count: "16686",
+      last_updated: "1680238793",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "159451264",
+    title: "TV Tunes",
+    subtitle: "863 Followers",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/TVTunes_20221019054419.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/tv-tunes/Ycxx-Ge0j0jufxkxMEIbIw__",
+    more_info: {
+      song_count: "25",
+      firstname: "JioSaavn",
+      follower_count: "863",
+      last_updated: "1675806624",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "286074037",
+    title: "Let's Play - Billie Eilish",
+    subtitle: "2.7K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/DarkRoomPopBillieEilish_20210603183306.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/lets-play---billie-eilish/9FW8zUEIHh9ieSJqt9HmOQ__",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "2716",
+      last_updated: "1680553785",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "84902960",
+    title: "Treadmill Pop",
+    subtitle: "Just Updated",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/TreadmillPop_20230405091021.jpg",
+    perma_url: "https://www.jiosaavn.com/featured/treadmill-pop/SF9VDfc5vr4_",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "10782",
+      last_updated: "1680649874",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "103330400",
+    title: "Rock Of New Ages",
+    subtitle: "8.9K Followers",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/RockOfNewAges_20230313064220.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/rock-of-new-ages/LlG94Or10VVuOxiEGmm6lQ__",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "8899",
+      last_updated: "1680239015",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "741760391",
+    title: "80s Romance - English",
+    subtitle: "2.7K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/80sRomanceEnglish_20210204191709.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/80s-romance---english/G5BejXQjQ-gGSw2I1RxdhQ__",
+    more_info: {
+      song_count: "35",
+      firstname: "JioSaavn",
+      follower_count: "2724",
+      last_updated: "1678829173",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "81399744",
+    title: "Heartbeats",
+    subtitle: "Just Updated",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/Heartbeats_20230315111556.jpg",
+    perma_url: "https://www.jiosaavn.com/featured/heartbeats/8j,bJexTYcE_",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "108469",
+      last_updated: "1680663038",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "85714422",
+    title: "Pop Hits Remixed",
+    subtitle: "2.7K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/PopHitsRemixed_20211006114953.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/pop-hits-remixed/vmU7Qe,EtZg_",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "2667",
+      last_updated: "1680560831",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "89593838",
+    title: "So Fresh Dance Hits",
+    subtitle: "10.1K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/SoFreshDanceHits_20230331124435.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/so-fresh-dance-hits/rEDxb7swgvE_",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "10127",
+      last_updated: "1680232043",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "41706960",
+    title: "Movie Award Winners 2022",
+    subtitle: "1.1K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/MovieAwardNominees2022_20220328061005.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/movie-award-winners-2022/jxG2mkx1Wu4_",
+    more_info: {
+      song_count: "12",
+      firstname: "JioSaavn",
+      follower_count: "1099",
+      last_updated: "1648412642",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "84639340",
+    title: "Just Dance",
+    subtitle: "Just Updated",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/JustDance_20230331141830.jpg",
+    perma_url: "https://www.jiosaavn.com/featured/just-dance/ykq09QJIZlU_",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "41678",
+      last_updated: "1680663268",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "772653250",
+    title: "Best Of 2010s - English",
+    subtitle: "21.9K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/BestOf2010sEnglish_20221107122026.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/best-of-2010s---english/NU7Htu23ulBuOxiEGmm6lQ__",
+    more_info: {
+      song_count: "50",
+      firstname: "JioSaavn",
+      follower_count: "21875",
+      last_updated: "1680550983",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "173255392",
+    title: "The Drop",
+    subtitle: "Just Updated",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/TheDrop_20230331142031.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/the-drop/NkWn3dHw0Krc1EngHtQQ2g__",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "72864",
+      last_updated: "1680663454",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "81169234",
+    title: "Now Playing Pop",
+    subtitle: "Just Updated",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/NowPlayingPop_20230331140958.jpg",
+    perma_url: "https://www.jiosaavn.com/featured/now-playing-pop/IQO11xk800E_",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "178153",
+      last_updated: "1680664187",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "71278304",
+    title: "Dubstep District",
+    subtitle: "1.4K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/DubstepDistrict_20210514032600.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/dubstep-district/AGUCsyIl7Ys_",
+    more_info: {
+      song_count: "35",
+      firstname: "JioSaavn",
+      follower_count: "1404",
+      last_updated: "1623371491",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "318905009",
+    title: "Global Hip Hop - Inspired By India",
+    subtitle: "686 Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/GlobalHipHopMadeByIndia_20210119080526.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/global-hip-hop---inspired-by-india/SMmnECM1DXuO0eMLZZxqsA__",
+    more_info: {
+      song_count: "26",
+      firstname: "JioSaavn",
+      follower_count: "686",
+      last_updated: "1611003972",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "802132644",
+    title: "Best Of 90s - English",
+    subtitle: "2.1K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/AllDayShuffle90sEnglish_20221107115652.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/best-of-90s---english/dO89Ji-UF1vufxkxMEIbIw__",
+    more_info: {
+      song_count: "50",
+      firstname: "JioSaavn",
+      follower_count: "2128",
+      last_updated: "1680551296",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "154872459",
+    title: "Let's Play - Marshmello",
+    subtitle: "5.8K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/FlywithMarshmello_20210128182903.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/lets-play---marshmello/jzouuupZPvuO0eMLZZxqsA__",
+    more_info: {
+      song_count: "40",
+      firstname: "JioSaavn",
+      follower_count: "5800",
+      last_updated: "1680561389",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "157562317",
+    title: "Let's Play - Cardi B",
+    subtitle: "1.4K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/InvasionofCardiB_20210205172855.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/lets-play---cardi-b/-J9EgReCYDVieSJqt9HmOQ__",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "1382",
+      last_updated: "1680555236",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "85481065",
+    title: "Fresh Tunes",
+    subtitle: "Just Updated",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/FreshTunes_20230331124246.jpg",
+    perma_url: "https://www.jiosaavn.com/featured/fresh-tunes/Ns2UZo9qDvI_",
+    more_info: {
+      song_count: "50",
+      firstname: "JioSaavn",
+      follower_count: "216636",
+      last_updated: "1680750586",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "109726651",
+    title: "Let's Play - Zayn Malik",
+    subtitle: "4.3K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/UltimateZAYNPlaylist_20210110155236.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/lets-play---zayn-malik/xNUHVoEiYDYGSw2I1RxdhQ__",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "4319",
+      last_updated: "1680553505",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "812596167",
+    title: "RnB Hits 2020 - English",
+    subtitle: "348 Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/RnBHits2020English_20201205044650.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/rnb-hits-2020---english/5YEMPRyXvhFieSJqt9HmOQ__",
+    more_info: {
+      song_count: "20",
+      firstname: "JioSaavn",
+      follower_count: "348",
+      last_updated: "1607643363",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "103330255",
+    title: "Discover Covers",
+    subtitle: "721 Followers",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/DiscoverCovers_20220315102040.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/discover-covers/H9kXTTo5JLDuCJW60TJk1Q__",
+    more_info: {
+      song_count: "31",
+      firstname: "JioSaavn",
+      follower_count: "721",
+      last_updated: "1669332158",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "111073796",
+    title: "Be Your Queen",
+    subtitle: "2.5K Followers",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/BeyourQueen_20230306100836.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/be-your-queen/6Adca9tTv3zfemJ68FuXsA__",
+    more_info: {
+      song_count: "46",
+      firstname: "JioSaavn",
+      follower_count: "2511",
+      last_updated: "1679881400",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "109434663",
+    title: "Kids Movie Hits",
+    subtitle: "3.3K Followers",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/KidsMovieHits_20221101073055.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/kids-movie-hits/B9ntHBM3OGwwkg5tVhI3fw__",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "3311",
+      last_updated: "1668537439",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "85897886",
+    title: "Let's Play - The Weeknd",
+    subtitle: "3.3K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/TheWeekndIsHere_20201110054009.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/lets-play---the-weeknd/TDgTn0rFX18_",
+    more_info: {
+      song_count: "50",
+      firstname: "JioSaavn",
+      follower_count: "3253",
+      last_updated: "1680553010",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "81852466",
+    title: "Fresh RnB",
+    subtitle: "13.4K Followers",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/FreshRnB_20230331132803.jpg",
+    perma_url: "https://www.jiosaavn.com/featured/fresh-rnb/kwJkRwJz89k_",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "13449",
+      last_updated: "1680233408",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "66391811",
+    title: "Let's Play - Selena Gomez",
+    subtitle: "12.6K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/SelenaGomezAllHerHits_20210110182136.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/lets-play---selena-gomez/XvrpnngQRBE_",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "12582",
+      last_updated: "1680554469",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "799932331",
+    title: "Let's Play - Megan Thee Stallion",
+    subtitle: "JioSaavn",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/LetsPlayMeganTheeStallion_20220812161111.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/lets-play---megan-thee-stallion/IMPn6laNLLsGSw2I1RxdhQ__",
+    more_info: {
+      song_count: "35",
+      firstname: "JioSaavn",
+      follower_count: "88",
+      last_updated: "1675735062",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "155226430",
+    title: "Lets Play - Shawn Mendes",
+    subtitle: "8.4K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/ShawnMendesAllHisHits_20201110054000.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/lets-play---shawn-mendes/z3KHq,9yCQ9uOxiEGmm6lQ__",
+    more_info: {
+      song_count: "26",
+      firstname: "JioSaavn",
+      follower_count: "8372",
+      last_updated: "1671497126",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "109952398",
+    title: "Tales and Stories",
+    subtitle: "706 Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/TalesandStories_20220427182320.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/tales-and-stories/Seeo,Cc2CERFo9wdEAzFBA__",
+    more_info: {
+      song_count: "11",
+      firstname: "JioSaavn",
+      follower_count: "706",
+      last_updated: "1651047961",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "102635026",
+    title: "Rainy Day Rock",
+    subtitle: "3K Followers",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/RainyDayRock_20220701140721.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/rainy-day-rock/dJHXbtH,ADnfemJ68FuXsA__",
+    more_info: {
+      song_count: "35",
+      firstname: "JioSaavn",
+      follower_count: "2985",
+      last_updated: "1656648602",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "78211018",
+    title: "Best of Dance - English",
+    subtitle: "6.2K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/BestofDanceEnglish_20230207045231.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/best-of-dance----english/l-B,YKTNVVc_",
+    more_info: {
+      song_count: "50",
+      firstname: "JioSaavn",
+      follower_count: "6172",
+      last_updated: "1680550969",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "61632629",
+    title: "EDM Night Out",
+    subtitle: "14.9K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/EDMNightOut_20210611083537.jpg",
+    perma_url: "https://www.jiosaavn.com/featured/edm-night-out/-OGAOpzET6c_",
+    more_info: {
+      song_count: "35",
+      firstname: "JioSaavn",
+      follower_count: "14860",
+      last_updated: "1678761549",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "159876283",
+    title: "Let's Play - Travis Scott",
+    subtitle: "694 Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/TheTravisScottEffect_20211105052332.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/lets-play---travis-scott/j1ao1d,C8XAwkg5tVhI3fw__",
+    more_info: {
+      song_count: "35",
+      firstname: "JioSaavn",
+      follower_count: "694",
+      last_updated: "1680557013",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "159653569",
+    title: "Brisk Aerobics",
+    subtitle: "5.4K Followers",
+    type: "playlist",
+    image: "https://c.saavncdn.com/editorial/BriskAerobics_20220427183418.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/brisk-aerobics/9-C8fpfYI,SO0eMLZZxqsA__",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "5359",
+      last_updated: "1678838770",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "818945493",
+    title: "Virtual Party",
+    subtitle: "280 Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/VirtualParty_20211227174946.jpg",
+    perma_url:
+      "https://www.jiosaavn.com/featured/virtual-party/klDihi9HY7Mwkg5tVhI3fw__",
+    more_info: {
+      song_count: "25",
+      firstname: "JioSaavn",
+      follower_count: "280",
+      last_updated: "1640901830",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+  {
+    id: "79579889",
+    title: "Let's Play - Sia",
+    subtitle: "10.7K Followers",
+    type: "playlist",
+    image:
+      "https://c.saavncdn.com/editorial/logo/SiaTheGreatest_20201215042804.jpg",
+    perma_url: "https://www.jiosaavn.com/featured/lets-play---sia/ZFD-DFK14YY_",
+    more_info: {
+      song_count: "30",
+      firstname: "JioSaavn",
+      follower_count: "10739",
+      last_updated: "1680553518",
+      uid: "phulki_user",
+    },
+    explicit_content: "0",
+    mini_obj: true,
+  },
+];
+
+export const Artists = [
+  {
+    id: "568707",
+    name: "Sia",
+    url: "https://www.jiosaavn.com/artist/sia-/C4hxFiXrHws_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Sia_002_20200921152829_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Sia_002_20200921152829_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Sia_002_20200921152829_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "459320",
+    name: "Arijit Singh",
+    url: "https://www.jiosaavn.com/artist/arijit-singh-/LlRWpHzy3Hk_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Arijit_Singh_002_20230323062147_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Arijit_Singh_002_20230323062147_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Arijit_Singh_002_20230323062147_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "464932",
+    name: "Neha Kakkar",
+    url: "https://www.jiosaavn.com/artist/neha-kakkar-/EkEBV7JAU-I_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Neha_Kakkar_006_20200822042626_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Neha_Kakkar_006_20200822042626_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Neha_Kakkar_006_20200822042626_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "568565",
+    name: "Justin Bieber",
+    url: "https://www.jiosaavn.com/artist/justin-bieber-/deJJWFd1ItE_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Justin_Bieber_005_20201127112218_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Justin_Bieber_005_20201127112218_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Justin_Bieber_005_20201127112218_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "459633",
+    name: "Atif Aslam",
+    url: "https://www.jiosaavn.com/artist/atif-aslam-/MXn8bhT308U_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Atif_Aslam_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Atif_Aslam_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Atif_Aslam_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "459633",
+    name: "Atif Aslam",
+    url: "https://www.jiosaavn.com/artist/atif-aslam-/MXn8bhT308U_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Atif_Aslam_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Atif_Aslam_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Atif_Aslam_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "456863",
+    name: "Badshah",
+    url: "https://www.jiosaavn.com/artist/badshah-/d4OwAaEcnD0_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Badshah_004_20191118143638_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Badshah_004_20191118143638_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Badshah_004_20191118143638_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "455132",
+    name: "Himesh Reshammiya",
+    url: "https://www.jiosaavn.com/artist/himesh-reshammiya-/N,m6H0-rqiY_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Himesh_Reshammiya_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Himesh_Reshammiya_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Himesh_Reshammiya_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "455125",
+    name: "Sonu Nigam",
+    url: "https://www.jiosaavn.com/artist/sonu-nigam-/,kuQK6K6u0I_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Sonu_Nigam_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Sonu_Nigam_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Sonu_Nigam_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "455130",
+    name: "Shreya Ghoshal",
+    url: "https://www.jiosaavn.com/artist/shreya-ghoshal-/lIHlwHaxTZ0_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Shreya_Ghoshal_004_20230228102304_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Shreya_Ghoshal_004_20230228102304_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Shreya_Ghoshal_004_20230228102304_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "674886",
+    name: "Sanam Puri",
+    url: "https://www.jiosaavn.com/artist/sanam-puri-/SkNEv3qRhDE_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Sanam_Puri_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Sanam_Puri_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Sanam_Puri_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "458918",
+    name: "Raftaar",
+    url: "https://www.jiosaavn.com/artist/raftaar-/ZYd,kDiZhJg_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Raftaar_009_20230223100912_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Raftaar_009_20230223100912_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Raftaar_009_20230223100912_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "464656",
+    name: "Armaan Malik",
+    url: "https://www.jiosaavn.com/artist/armaan-malik-/1iZ7Gi0bi1Y_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Armaan_Malik_003_20220107135753_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Armaan_Malik_003_20220107135753_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Armaan_Malik_003_20220107135753_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "578407",
+    name: "Ed Sheeran",
+    url: "https://www.jiosaavn.com/artist/ed-sheeran-/bWIDsVrU6DE_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Ed_Sheeran_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Ed_Sheeran_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Ed_Sheeran_500x500.jpg",
+      },
+    ],
+  },
+];

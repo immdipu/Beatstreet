@@ -8,6 +8,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import RippleButton from "ripple-effect-reactjs";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Artist = () => {
   const { id } = useParams();

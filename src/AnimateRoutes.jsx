@@ -17,7 +17,11 @@ import {
   FavoritesSongs,
   TopPlaylists,
 } from "./Page";
-import { HindiPlaylist, BhojpuriPlaylist } from "./components";
+import {
+  HindiPlaylist,
+  BhojpuriPlaylist,
+  EnglishPlaylists,
+} from "./components";
 
 import { AnimatePresence } from "framer-motion";
 
@@ -45,6 +49,7 @@ const AnimateRoutes = () => {
         <Route path="/favoritessongs" element={<FavoritesSongs />} />
         <Route path="/topplaylists/Hindi" element={<HindiPlaylist />} />
         <Route path="/topplaylists/Bhojpuri" element={<BhojpuriPlaylist />} />
+        <Route path="/topplaylists/English" element={<EnglishPlaylists />} />
       </Routes>
     </AnimatePresence>
   );

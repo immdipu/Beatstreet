@@ -30,6 +30,7 @@ import UserVerify from "./UserVerify";
 import SingleTopPlaylists from "./SingleTopPlaylists";
 import HindiPlaylist from "./playlists/HindiPlaylist";
 import BhojpuriPlaylist from "./playlists/BhojpuriPlaylist";
+import EnglishPlaylists from "./playlists/EnglishPlaylists";
 import Favorite from "./Favorite";
 
 export {
@@ -66,4 +67,5 @@ export {
   HindiPlaylist,
   BhojpuriPlaylist,
   Favorite,
+  EnglishPlaylists,
 };

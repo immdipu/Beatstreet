@@ -13,6 +13,7 @@ import UserAccountSetting from "./UserAccountSetting";
 import RecentSongs from "./RecentSongs";
 import TopPlaylists from "./TopPlaylists";
 import FavoritesSongs from "./FavoritesSongs";
+import TopArtist from "./TopArtist";
 export {
   Home,
   SingleAlbum,
@@ -29,4 +30,5 @@ export {
   RecentSongs,
   TopPlaylists,
   FavoritesSongs,
+  TopArtist,
 };

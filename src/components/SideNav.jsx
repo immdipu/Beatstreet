@@ -34,6 +34,7 @@ const SideNav = () => {
             </h3>
             <ul className="flex flex-col gap-6 mt-5">
               <NavLink
+                onClick={HandleSideNav}
                 to={"/"}
                 className="flex items-center gap-4 text-sm max-md:text-base font-medium"
               >
@@ -41,20 +42,21 @@ const SideNav = () => {
                 Discover
               </NavLink>
               <NavLink
+                onClick={HandleSideNav}
+                to={"/topartist"}
+                className="flex items-center gap-4 text-sm max-md:text-base font-medium"
+              >
+                <AccountBoxIcon />
+                Top Artists
+              </NavLink>
+              <NavLink
+                onClick={HandleSideNav}
                 to={"topplaylists/Hindi"}
                 className="flex items-center gap-4 text-sm max-md:text-base font-medium"
               >
                 <AssessmentIcon />
                 Top Playlists
               </NavLink>
-              <li className="flex items-center gap-4 text-sm max-md:text-base font-medium">
-                <AccountBoxIcon />
-                Album
-              </li>
-              <li className="flex items-center gap-4 text-sm max-md:text-base font-medium">
-                <SourceIcon />
-                Genre
-              </li>
             </ul>
           </section>
         </section>
@@ -67,6 +69,7 @@ const SideNav = () => {
           </h3>
           <ul className="flex flex-col gap-6 mt-5">
             <NavLink
+              onClick={HandleSideNav}
               to={"/recentsongs"}
               className="flex items-center gap-4 text-sm max-md:text-base font-medium"
             >
@@ -78,6 +81,7 @@ const SideNav = () => {
               Playlists
             </li>
             <NavLink
+              onClick={HandleSideNav}
               to={"/favoritessongs"}
               className="flex items-center gap-4 text-sm max-md:text-base font-medium"
             >
@@ -92,6 +96,7 @@ const SideNav = () => {
           <section className="px-7  mt-10 hidden gap-2 max-md:flex">
             <RippleButton color={"#519aff2e"} speed={500}>
               <Link
+                onClick={HandleSideNav}
                 to={"/login"}
                 className="text-white text-lg block hover:opacity-90 bg-[#519aff2e] w-full pl-5 py-3 rounded-md"
               >
@@ -100,6 +105,7 @@ const SideNav = () => {
             </RippleButton>
             <RippleButton color={"#959aff8e"} radius={6} speed={500}>
               <Link
+                onClick={HandleSideNav}
                 to={"/signup"}
                 className="bg-skyBlue bg-opacity-70 block text-lg text-white rounded-md pl-4 py-3  "
               >

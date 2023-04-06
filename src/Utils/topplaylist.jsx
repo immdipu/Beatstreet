@@ -2204,7 +2204,7 @@ export const topEnglishPlaylist = [
   },
 ];
 
-export const Artists = [
+export const TopArtists = [
   {
     id: "568707",
     name: "Sia",
@@ -2281,6 +2281,7 @@ export const Artists = [
       },
     ],
   },
+
   {
     id: "459633",
     name: "Atif Aslam",
@@ -2301,24 +2302,139 @@ export const Artists = [
     ],
   },
   {
-    id: "459633",
-    name: "Atif Aslam",
-    url: "https://www.jiosaavn.com/artist/atif-aslam-/MXn8bhT308U_",
+    id: "672167",
+    name: "Harrdy Sandhu",
+    url: "https://www.jiosaavn.com/artist/harrdy-sandhu-/rO,WF5NKKsQ_",
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Atif_Aslam_50x50.jpg",
+        link: "https://c.saavncdn.com/artists/Hardy_Sandhu_001_20190913112018_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Atif_Aslam_150x150.jpg",
+        link: "https://c.saavncdn.com/artists/Hardy_Sandhu_001_20190913112018_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Atif_Aslam_500x500.jpg",
+        link: "https://c.saavncdn.com/artists/Hardy_Sandhu_001_20190913112018_500x500.jpg",
       },
     ],
   },
+  {
+    id: "457146",
+    name: "Rahat Fateh Ali Khan",
+    url: "https://www.jiosaavn.com/artist/rahat-fateh-ali-khan-/EesgMPGWL90_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Rahat_Fateh_Ali_Khan_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Rahat_Fateh_Ali_Khan_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Rahat_Fateh_Ali_Khan_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "455782",
+    name: "KK",
+    url: "https://www.jiosaavn.com/artist/kk-/K,5uNVM,qpM_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/KK_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/KK_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/KK_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "456269",
+    name: "A.R. Rahman",
+    url: "https://www.jiosaavn.com/artist/a.r.-rahman-/HhFyPLvlKN0_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/AR_Rahman_002_20210120084455_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/AR_Rahman_002_20210120084455_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/AR_Rahman_002_20210120084455_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "455124",
+    name: "Mohit Chauhan",
+    url: "https://www.jiosaavn.com/artist/mohit-chauhan-/YNIh2poJKsY_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Mohit_Chauhan_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Mohit_Chauhan_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Mohit_Chauhan_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "888127",
+    name: "Darshan Raval",
+    url: "https://www.jiosaavn.com/artist/darshan-raval-/a8luI6aaFas_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Darshan_Raval_005_20201029161434_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Darshan_Raval_005_20201029161434_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Darshan_Raval_005_20201029161434_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "484852",
+    name: "Ankit Tiwari",
+    url: "https://www.jiosaavn.com/artist/ankit-tiwari-/eHCWDfgAqlg_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Ankit_Tiwari_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Ankit_Tiwari_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Ankit_Tiwari_500x500.jpg",
+      },
+    ],
+  },
+
   {
     id: "456863",
     name: "Badshah",
@@ -2468,6 +2584,63 @@ export const Artists = [
       {
         quality: "500x500",
         link: "https://c.saavncdn.com/artists/Ed_Sheeran_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "638879",
+    name: "Raxstar",
+    url: "https://www.jiosaavn.com/artist/raxstar-/rL5K8UopeWI_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Raxstar_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Raxstar_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Raxstar_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "1289105",
+    name: "Imran Khan",
+    url: "https://www.jiosaavn.com/artist/imran-khan-/WwASRFS4us8_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Imran_Khan_-Singer-_20191129135926_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Imran_Khan_-Singer-_20191129135926_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Imran_Khan_-Singer-_20191129135926_500x500.jpg",
+      },
+    ],
+  },
+  {
+    id: "772872",
+    name: "Zack Knight",
+    url: "https://www.jiosaavn.com/artist/zack-knight-/zpChejA520I_",
+    image: [
+      {
+        quality: "50x50",
+        link: "https://c.saavncdn.com/artists/Zack_Knight_20171024121255_50x50.jpg",
+      },
+      {
+        quality: "150x150",
+        link: "https://c.saavncdn.com/artists/Zack_Knight_20171024121255_150x150.jpg",
+      },
+      {
+        quality: "500x500",
+        link: "https://c.saavncdn.com/artists/Zack_Knight_20171024121255_500x500.jpg",
       },
     ],
   },

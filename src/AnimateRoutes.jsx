@@ -15,6 +15,7 @@ import {
   UserAccountSetting,
   RecentSongs,
   FavoritesSongs,
+  TopArtist,
   TopPlaylists,
 } from "./Page";
 import {
@@ -50,6 +51,7 @@ const AnimateRoutes = () => {
         <Route path="/topplaylists/Hindi" element={<HindiPlaylist />} />
         <Route path="/topplaylists/Bhojpuri" element={<BhojpuriPlaylist />} />
         <Route path="/topplaylists/English" element={<EnglishPlaylists />} />
+        <Route path="/topartist" element={<TopArtist />} />
       </Routes>
     </AnimatePresence>
   );

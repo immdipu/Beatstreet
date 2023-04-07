@@ -31,6 +31,9 @@ import {
   PASSWORD_RESET_BEGIN,
   PASSWORD_RESET_SUCCESS,
   PASSWORD_RESET_FAILED,
+  PLAYLIST_SEND_SUCCESS,
+  PLAYLIST_SEND_FAILED,
+  PLAYLIST_SEND_BEGIN,
 } from "../Actions";
 
 const userContext = React.createContext();
@@ -60,6 +63,8 @@ const initialState = {
   password_reset_begin: false,
   password_reset_success: false,
   password_reset_failed: false,
+  playlistSendSuccess: false,
+  playlistSendFailed: false,
 };
 
 export const UserProvider = ({ children }) => {
@@ -208,14 +213,16 @@ export const UserProvider = ({ children }) => {
     }
   };
   const sendNewPlaylist = async (id, data) => {
+    dispatch({ type: PLAYLIST_SEND_BEGIN });
     try {
       const res = await axiosInstance.post(
         `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/addnewplaylis/${id}`,
         data
       );
       const result = res.data;
-      console.log(result);
+      dispatch({ type: PLAYLIST_SEND_SUCCESS });
     } catch (error) {
+      dispatch({ type: PLAYLIST_SEND_FAILED });
       console.log(error);
     }
   };

@@ -10,7 +10,12 @@ import {
 const PlaylistReducer = (state, action) => {
   if (action.type === GET_USER_SPOTIFY_PLAYLIST_BEGIN) {
     const tok = action.payload;
-    return { ...state, all_playlists_loading: true, token: tok };
+    return {
+      ...state,
+      all_playlists_loading: true,
+      token: tok,
+      new_playlist: [],
+    };
   }
   if (action.type === GET_USER_SPOTIFY_PLAYLIST_SUCCESS) {
     const data = action.payload;
@@ -20,14 +25,14 @@ const PlaylistReducer = (state, action) => {
     return { ...state, all_playlists_loading: false };
   }
   if (action.type === ADD_SONGS_BEGIN) {
-    return { ...state, new_playlist: [] };
+    return { ...state, new_playlist: [], add_songs_loading: true };
   }
   if (action.type === ADD_SONGS_SUCCESS) {
     const data = action.payload;
-    return { ...state, new_playlist: data };
+    return { ...state, new_playlist: data, add_songs_loading: false };
   }
   if (action.type === ADD_SONGS_FAILED) {
-    return { ...state };
+    return { ...state, add_songs_loading: false };
   }
 };
 

@@ -104,3 +104,7 @@ export const GET_USER_SPOTIFY_PLAYLIST_FAILED =
 export const ADD_SONGS_BEGIN = "ADD_SONGS_BEGIN";
 export const ADD_SONGS_SUCCESS = "ADD_SONGS_SUCCESS";
 export const ADD_SONGS_FAILED = "ADD_SONGS_FAILED";
+//////////////////////////////////////////////
+export const PLAYLIST_SEND_BEGIN = "PLAYLIST_SEND_BEGIN";
+export const PLAYLIST_SEND_SUCCESS = "PLAYLIST_SEND_SUCCESS";
+export const PLAYLIST_SEND_FAILED = "PLAYLIST_SEND_FAILED";

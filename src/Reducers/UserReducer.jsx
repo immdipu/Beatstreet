@@ -28,6 +28,9 @@ import {
   PASSWORD_RESET_BEGIN,
   PASSWORD_RESET_SUCCESS,
   PASSWORD_RESET_FAILED,
+  PLAYLIST_SEND_SUCCESS,
+  PLAYLIST_SEND_FAILED,
+  PLAYLIST_SEND_BEGIN,
 } from "../Actions";
 
 const User_Reducer = (state, action) => {
@@ -303,6 +306,29 @@ const User_Reducer = (state, action) => {
     return {
       ...state,
       user_verification: false,
+    };
+  }
+
+  //////////////////////////////////////////////////////
+  if (action.type === PLAYLIST_SEND_BEGIN) {
+    return {
+      ...state,
+      playlistSendSuccess: false,
+      playlistSendFailed: false,
+    };
+  }
+  if (action.type === PLAYLIST_SEND_SUCCESS) {
+    return {
+      ...state,
+      playlistSendSuccess: true,
+      playlistSendFailed: false,
+    };
+  }
+  if (action.type === PLAYLIST_SEND_FAILED) {
+    return {
+      ...state,
+      playlistSendSuccess: false,
+      playlistSendFailed: true,
     };
   }
 };

@@ -17,6 +17,7 @@ import {
 const initialState = {
   token: null,
   all_playlists_loading: false,
+  add_songs_loading: false,
   all_Playlists: [],
   new_playlist: [],
 };
@@ -75,14 +76,14 @@ export const PlaylistProvider = ({ children }) => {
       );
       const result = response.data.items;
       let newplayList = [];
-      for (let i = 0; i < result.length - 1; i++) {
-        let track = result[i].track;
+      let promises = result.map((item) => {
+        let track = item.track;
         if (track.track) {
           let data = {
             name: track.name,
             artistName: track.artists[0].name,
           };
-          getSongFromSaavn(data.name).then((res) => {
+          return getSongFromSaavn(data.name).then((res) => {
             let newTrack = res.find((item) => {
               if (
                 item.name === data.name &&
@@ -94,19 +95,24 @@ export const PlaylistProvider = ({ children }) => {
               }
             });
             if (newTrack) {
-              newplayList.push(newTrack.id);
+              return newTrack.id;
             } else {
               console.log(data.name + "Song not found");
             }
           });
+        } else {
+          return null;
         }
-      }
+      });
+      let songIds = await Promise.all(promises);
+      newplayList = songIds.filter((item) => item !== null);
 
       let newdata = {
         name,
         image,
         songsIds: newplayList,
       };
+
       if (login_success) {
         sendNewPlaylist(User_id, newdata);
       }

@@ -78,7 +78,7 @@ const SideNav = () => {
             </NavLink>
             <NavLink
               to={"/userplaylists"}
-              className="flex items-center gap-4 text-sm max-md:text-base font-medium"
+              className="flex items-center pointer-events-none select-none gap-4 text-sm max-md:text-base font-medium"
             >
               <SubscriptionsIcon />
               Your Playlists

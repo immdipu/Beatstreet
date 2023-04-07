@@ -105,7 +105,10 @@ export const PlaylistProvider = ({ children }) => {
         }
       });
       let songIds = await Promise.all(promises);
-      newplayList = songIds.filter((item) => item !== null);
+      newplayList = songIds.filter(
+        (item) => item !== null && item !== undefined
+      );
+      console.log(newplayList);
 
       let newdata = {
         name,

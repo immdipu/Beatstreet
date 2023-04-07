@@ -113,7 +113,7 @@ export const PlaylistProvider = ({ children }) => {
         songsIds: newplayList,
       };
 
-      if (login_success) {
+      if (login_success && newdata.songsIds.length !== 0) {
         sendNewPlaylist(User_id, newdata);
       }
       dispatch({ type: ADD_SONGS_SUCCESS, payload: newdata });

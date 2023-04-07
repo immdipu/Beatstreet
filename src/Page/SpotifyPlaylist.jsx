@@ -32,11 +32,11 @@ const SpotifyPlaylist = () => {
 
   let loader = null;
   let alert = null;
-  if (playlistSendSuccess) {
+  if (playlistSendSuccess && new_playlist.length !== 0) {
     alert = (
       <div className="fixed top-32 w-full left-1/2 max-md:left-0">
         <LoginAlert
-          message={new_playlist.songsIds.length + "has been added"}
+          message={new_playlist.songsIds.length + " songs has been added"}
           alertClass={"success"}
         />
       </div>

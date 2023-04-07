@@ -14,6 +14,10 @@ import RecentSongs from "./RecentSongs";
 import TopPlaylists from "./TopPlaylists";
 import FavoritesSongs from "./FavoritesSongs";
 import TopArtist from "./TopArtist";
+import UserPlaylists from "./UserPlaylists";
+import SpotifyLogin from "./SpotifyLogin";
+import ImportPlaylist from "./ImportPlaylist";
+import SpotifyPlaylist from "./SpotifyPlaylist";
 export {
   Home,
   SingleAlbum,
@@ -31,4 +35,8 @@ export {
   TopPlaylists,
   FavoritesSongs,
   TopArtist,
+  UserPlaylists,
+  ImportPlaylist,
+  SpotifyLogin,
+  SpotifyPlaylist,
 };

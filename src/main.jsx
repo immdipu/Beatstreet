@@ -5,13 +5,16 @@ import "./index.css";
 import { MusicProvider } from "./Context/MusicContext";
 import { PlayerProvider } from "./Context/PlayerContext";
 import { UserProvider } from "./Context/UserContext";
+import { PlaylistProvider } from "./Context/ImportPlaylistContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <MusicProvider>
       <PlayerProvider>
         <UserProvider>
-          <App />
+          <PlaylistProvider>
+            <App />
+          </PlaylistProvider>
         </UserProvider>
       </PlayerProvider>
     </MusicProvider>

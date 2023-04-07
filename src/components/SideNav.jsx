@@ -76,10 +76,13 @@ const SideNav = () => {
               <DonutSmallIcon />
               Recent
             </NavLink>
-            <li className="flex items-center gap-4 text-sm max-md:text-base font-medium">
+            <NavLink
+              to={"/userplaylists"}
+              className="flex items-center gap-4 text-sm max-md:text-base font-medium"
+            >
               <SubscriptionsIcon />
-              Playlists
-            </li>
+              Your Playlists
+            </NavLink>
             <NavLink
               onClick={HandleSideNav}
               to={"/favoritessongs"}

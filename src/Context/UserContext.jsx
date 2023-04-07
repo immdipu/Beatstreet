@@ -207,6 +207,18 @@ export const UserProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const sendNewPlaylist = async (id, data) => {
+    try {
+      const res = await axiosInstance.post(
+        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/addnewplaylis/${id}`,
+        data
+      );
+      const result = res.data;
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const HandleUserDropDown = () => {
     dispatch({ type: USER_DROP_DOWN_TOGGLE });
@@ -232,6 +244,7 @@ export const UserProvider = ({ children }) => {
         resetPassword,
         sendRecentPlayedSong,
         sendFavoriteSong,
+        sendNewPlaylist,
       }}
     >
       {children}

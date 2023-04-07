@@ -16,7 +16,11 @@ import {
   RecentSongs,
   FavoritesSongs,
   TopArtist,
+  UserPlaylists,
+  ImportPlaylist,
   TopPlaylists,
+  SpotifyLogin,
+  SpotifyPlaylist,
 } from "./Page";
 import {
   HindiPlaylist,
@@ -52,6 +56,10 @@ const AnimateRoutes = () => {
         <Route path="/topplaylists/Bhojpuri" element={<BhojpuriPlaylist />} />
         <Route path="/topplaylists/English" element={<EnglishPlaylists />} />
         <Route path="/topartist" element={<TopArtist />} />
+        <Route path="/userplaylists" element={<UserPlaylists />} />
+        <Route path="/importplaylists" element={<ImportPlaylist />} />
+        <Route path="/spotifylogin" element={<SpotifyLogin />} />
+        <Route path="/spotifyplaylist" element={<SpotifyPlaylist />} />
       </Routes>
     </AnimatePresence>
   );

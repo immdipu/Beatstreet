@@ -32,6 +32,8 @@ import HindiPlaylist from "./playlists/HindiPlaylist";
 import BhojpuriPlaylist from "./playlists/BhojpuriPlaylist";
 import EnglishPlaylists from "./playlists/EnglishPlaylists";
 import Favorite from "./Favorite";
+import SpotifyIcon from "./assets/SpotifyIcon";
+import SingleSpotifylist from "./SingleSpotifylist";
 
 export {
   AudiPlayer,
@@ -68,4 +70,6 @@ export {
   BhojpuriPlaylist,
   Favorite,
   EnglishPlaylists,
+  SpotifyIcon,
+  SingleSpotifylist,
 };

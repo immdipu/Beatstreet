@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const SinglePlaylistCard = ({ name, image, songsLength = 0, playlistId }) => {
   return (
-    <Link>
+    <div>
       <div className="flex overflow-hidden cursor-pointer hover:bg-lightBlue rounded-md items-center pr-3">
         <div className="flex  w-full items-center gap-5 ">
           {image ? (
@@ -19,7 +19,7 @@ const SinglePlaylistCard = ({ name, image, songsLength = 0, playlistId }) => {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

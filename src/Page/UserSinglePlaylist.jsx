@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { usePlayerContext } from "../Context/PlayerContext";
 import { useUserContext } from "../Context/UserContext";
-import { LoadingSpinner } from "../components";
+import { LoadingSpinner, SongsList } from "../components";
+import { Logo, LogoText } from "../components";
 
 const UserSinglePlaylist = () => {
   let { id } = useParams();
@@ -29,7 +30,24 @@ const UserSinglePlaylist = () => {
     );
   }
 
-  return <div>UserSinglePlaylist</div>;
+  return (
+    <div>
+      <section className=" flex justify-center items-center py-20  rounded-b-2xl mb-16 relative h-48">
+        <div className=" absolute inset-0 flex justify-end viewall rounded-b-2xl">
+          <Logo />
+        </div>
+        <div className="ml-3 max-lg:ml-11 ">
+          <LogoText />
+        </div>
+      </section>
+      <section className=" px-14 max-md:px-2 overflow-auto">
+        <h3 className="text-neutral-50  text-2xl max-md:text-xl px-4 mb-5">
+          Playlist
+        </h3>
+        <SongsList songs={user_single_playlist} current={"Userplaylist"} />
+      </section>
+    </div>
+  );
 };
 
 export default UserSinglePlaylist;

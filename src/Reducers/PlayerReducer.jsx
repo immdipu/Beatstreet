@@ -20,6 +20,7 @@ import {
   PLAYING_CURRENT_PLAYLIST,
   PLAYING_VIEWALLSONGS_LISTS,
   PLAYING_RECENT_PLAYED_LISTS,
+  PLAYING_USER_PLAYLIST,
   GET_RECENT_SONGS_BEGIN,
   GET_RECENT_SONGS_SUCCESS,
   GET_RECENT_SONGS_FAILED,
@@ -157,6 +158,11 @@ const Player_Reducer = (state, action) => {
   }
   if (action.type === PLAYING_FAVORITES_LISTS) {
     const data = state.favorites_songs;
+    const id = data.map((song) => song.id);
+    return { ...state, current_playing_lists: id };
+  }
+  if (action.type === PLAYING_USER_PLAYLIST) {
+    const data = state.user_single_playlist;
     const id = data.map((song) => song.id);
     return { ...state, current_playing_lists: id };
   }

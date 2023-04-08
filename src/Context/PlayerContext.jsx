@@ -26,6 +26,7 @@ import {
   PLAYING_CURRENT_ALBUM,
   PLAYING_CURRENT_ARTIST,
   PLAYING_CURRENT_PLAYLIST,
+  PLAYING_USER_PLAYLIST,
   PLAYING_VIEWALLSONGS_LISTS,
   GET_RECENT_SONGS_BEGIN,
   GET_RECENT_SONGS_SUCCESS,
@@ -200,9 +201,11 @@ export const PlayerProvider = ({ children }) => {
         type: PLAYING_RECENT_PLAYED_LISTS,
       });
     }
-
     if (current === "FavoritesSongs") {
       dispatch({ type: PLAYING_FAVORITES_LISTS });
+    }
+    if (current === "Userplaylist") {
+      dispatch({ type: PLAYING_USER_PLAYLIST });
     }
 
     singleSong(id);

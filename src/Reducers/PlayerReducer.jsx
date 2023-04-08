@@ -190,9 +190,8 @@ const Player_Reducer = (state, action) => {
     let data = action.payload;
     return { ...state, all_playlists_loading: false, all_playlists: data };
   }
-  if (action.type === GET_ALL_PLAYLISTS_SUCCESS) {
-    let data = action.payload;
-    return { ...state, all_playlists_loading: true };
+  if (action.type === GET_ALL_PLAYLISTS_FAILED) {
+    return { ...state, all_playlists_loading: false };
   }
 
   throw new Error(`No Matching "${action.type}" -action type`);

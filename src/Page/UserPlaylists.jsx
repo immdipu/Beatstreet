@@ -36,8 +36,9 @@ const UserPlaylists = () => {
           </div>
         ) : (
           <>
-            {all_playlists.length !== 0 &&
-              all_playlists.map((item) => <SinglePlaylistCard {...item} />)}
+            {all_playlists.length !== 0
+              ? all_playlists.map((item) => <SinglePlaylistCard {...item} />)
+              : null}
           </>
         )}
       </section>

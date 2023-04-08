@@ -248,6 +248,7 @@ export const PlayerProvider = ({ children }) => {
         `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/allplaylist/${id}`
       );
       const results = response.data.data;
+
       dispatch({ type: GET_ALL_PLAYLISTS_SUCCESS, payload: results });
     } catch (error) {
       dispatch({ type: GET_ALL_PLAYLISTS_FAILED });
@@ -263,8 +264,11 @@ export const PlayerProvider = ({ children }) => {
         data
       );
       const results = response.data.data;
-      console.log(results);
-      dispatch({ type: GET_USER_SINGLE_PLAYLIST_SUCCESS, payload: results });
+      let Ids = results.songsIds.join();
+      const getSongs = await axios.get(`https://saavn.me/songs?id=${Ids}`);
+      const songs = getSongs.data.data;
+      console.log(songs);
+      dispatch({ type: GET_USER_SINGLE_PLAYLIST_SUCCESS, payload: songs });
     } catch (error) {
       dispatch({ type: GET_USER_SINGLE_PLAYLIST_FAILED });
       console.log(error);

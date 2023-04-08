@@ -216,7 +216,7 @@ export const UserProvider = ({ children }) => {
     dispatch({ type: PLAYLIST_SEND_BEGIN });
     try {
       const res = await axiosInstance.post(
-        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/addnewplaylis/${id}`,
+        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/addnewplaylist/${id}`,
         data
       );
       const result = res.data;

@@ -25,7 +25,7 @@ const SingleSpotifylist = ({ image, name, songs, id }) => {
         )}
         <div className="">
           <h3 className="text-neutral-200 tracking-wide text-lg">{name}</h3>
-          <p className="text-neutral-400 text-xs mt-1">{songs}</p>
+          <p className="text-neutral-400 text-xs mt-1">{songs} songs</p>
         </div>
       </div>
       <button

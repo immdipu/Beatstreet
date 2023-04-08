@@ -35,6 +35,9 @@ import {
   GET_FAVORITE_SONGS_SUCCESS,
   GET_FAVORITE_SONGS_FAILED,
   PLAYING_FAVORITES_LISTS,
+  GET_ALL_PLAYLISTS_BEGIN,
+  GET_ALL_PLAYLISTS_SUCCESS,
+  GET_ALL_PLAYLISTS_FAILED,
 } from "../Actions";
 
 const playerContext = React.createContext();
@@ -59,6 +62,8 @@ const initialState = {
   favorites_songs: [],
   recent_song_loading: false,
   favorite_songs_loading: false,
+  all_playlists_loading: false,
+  all_playlists: [],
 };
 
 import { useMusicContext } from "../Context/MusicContext";
@@ -199,7 +204,7 @@ export const PlayerProvider = ({ children }) => {
   };
 
   const getRecentSongs = async (id) => {
-    dispatch({ type: GET_RECENT_SONGS_BEGIN });
+    dispatch({ type: GET_ALL_PLAYLISTS_BEGIN });
     try {
       const response = await axiosInstance.get(
         `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/recentsongs/${id}`
@@ -231,6 +236,21 @@ export const PlayerProvider = ({ children }) => {
     }
   };
 
+  const getAllPlaylist = async (id) => {
+    dispatch({ type: GET_FAVORITE_SONGS_BEGIN });
+    try {
+      const response = await axiosInstance.get(
+        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/allplaylist/${id}`
+      );
+      const results = response.data.data;
+      console.log(results);
+      dispatch({ type: GET_ALL_PLAYLISTS_SUCCESS, payload: results });
+    } catch (error) {
+      dispatch({ type: GET_ALL_PLAYLISTS_FAILED });
+      console.log(error);
+    }
+  };
+
   return (
     <playerContext.Provider
       value={{
@@ -250,6 +270,7 @@ export const PlayerProvider = ({ children }) => {
         HandlePlaySong,
         getRecentSongs,
         getFavoritesSongs,
+        getAllPlaylist,
       }}
     >
       {children}

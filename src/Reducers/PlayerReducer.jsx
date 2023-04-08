@@ -27,6 +27,9 @@ import {
   GET_FAVORITE_SONGS_SUCCESS,
   GET_FAVORITE_SONGS_FAILED,
   PLAYING_FAVORITES_LISTS,
+  GET_ALL_PLAYLISTS_BEGIN,
+  GET_ALL_PLAYLISTS_SUCCESS,
+  GET_ALL_PLAYLISTS_FAILED,
 } from "../Actions";
 const Player_Reducer = (state, action) => {
   if (action.type === PLAY_SONG_BEGIN) {
@@ -179,6 +182,17 @@ const Player_Reducer = (state, action) => {
 
   if (action.type === GET_FAVORITE_SONGS_FAILED) {
     return { ...state, favorite_songs_loading: false };
+  }
+  if (action.type === GET_ALL_PLAYLISTS_BEGIN) {
+    return { ...state, all_playlists_loading: true };
+  }
+  if (action.type === GET_ALL_PLAYLISTS_SUCCESS) {
+    let data = action.payload;
+    return { ...state, all_playlists_loading: false, all_playlists: data };
+  }
+  if (action.type === GET_ALL_PLAYLISTS_SUCCESS) {
+    let data = action.payload;
+    return { ...state, all_playlists_loading: true };
   }
 
   throw new Error(`No Matching "${action.type}" -action type`);

@@ -264,7 +264,7 @@ export const PlayerProvider = ({ children }) => {
         data
       );
       const results = response.data.data;
-      let Ids = results.songsIds.join();
+      let Ids = results.songIds.join();
       const getSongs = await axios.get(`https://saavn.me/songs?id=${Ids}`);
       const songs = getSongs.data.data;
       console.log(songs);

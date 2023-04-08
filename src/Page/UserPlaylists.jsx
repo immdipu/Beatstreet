@@ -29,7 +29,8 @@ const UserPlaylists = () => {
           <LibraryMusicIcon /> Import Playlist
         </Link>
       </div>
-      <section className="mt-4 ml-4 flex gap-1 flex-col">
+      <section className="mt-4 ml-4 flex gap-5 flex-col">
+        <h3 className="text-xl text-neutral-200 mb-2 mt-3">Your Playlists</h3>
         {loading ? (
           <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
             <LoadingSpinner size={80} />

@@ -30,6 +30,9 @@ import {
   GET_ALL_PLAYLISTS_BEGIN,
   GET_ALL_PLAYLISTS_SUCCESS,
   GET_ALL_PLAYLISTS_FAILED,
+  GET_USER_SINGLE_PLAYLIST_BEGIN,
+  GET_USER_SINGLE_PLAYLIST_SUCCESS,
+  GET_USER_SINGLE_PLAYLIST_FAILED,
 } from "../Actions";
 const Player_Reducer = (state, action) => {
   if (action.type === PLAY_SONG_BEGIN) {
@@ -192,6 +195,20 @@ const Player_Reducer = (state, action) => {
   }
   if (action.type === GET_ALL_PLAYLISTS_FAILED) {
     return { ...state, all_playlists_loading: false };
+  }
+  if (action.type === GET_USER_SINGLE_PLAYLIST_BEGIN) {
+    return { ...state, user_single_playlist_loading: true };
+  }
+  if (action.type === GET_USER_SINGLE_PLAYLIST_SUCCESS) {
+    let data = action.payload;
+    return {
+      ...state,
+      user_single_playlist_loading: false,
+      user_single_playlist: data,
+    };
+  }
+  if (action.type === GET_USER_SINGLE_PLAYLIST_FAILED) {
+    return { ...state, user_single_playlist_loading: false };
   }
 
   throw new Error(`No Matching "${action.type}" -action type`);

@@ -38,6 +38,9 @@ import {
   GET_ALL_PLAYLISTS_BEGIN,
   GET_ALL_PLAYLISTS_SUCCESS,
   GET_ALL_PLAYLISTS_FAILED,
+  GET_USER_SINGLE_PLAYLIST_BEGIN,
+  GET_USER_SINGLE_PLAYLIST_SUCCESS,
+  GET_USER_SINGLE_PLAYLIST_FAILED,
 } from "../Actions";
 
 const playerContext = React.createContext();
@@ -64,6 +67,8 @@ const initialState = {
   favorite_songs_loading: false,
   all_playlists_loading: false,
   all_playlists: [],
+  user_single_playlist_loading: false,
+  user_single_playlist: [],
 };
 
 import { useMusicContext } from "../Context/MusicContext";
@@ -243,10 +248,25 @@ export const PlayerProvider = ({ children }) => {
         `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/allplaylist/${id}`
       );
       const results = response.data.data;
-      console.log(results);
       dispatch({ type: GET_ALL_PLAYLISTS_SUCCESS, payload: results });
     } catch (error) {
       dispatch({ type: GET_ALL_PLAYLISTS_FAILED });
+      console.log(error);
+    }
+  };
+
+  const getSinglePlaylist = async (id, data) => {
+    dispatch({ type: GET_USER_SINGLE_PLAYLIST_BEGIN });
+    try {
+      const response = await axiosInstance.post(
+        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/getsingleplaylist/${id}`,
+        data
+      );
+      const results = response.data.data;
+      console.log(results);
+      dispatch({ type: GET_USER_SINGLE_PLAYLIST_SUCCESS, payload: results });
+    } catch (error) {
+      dispatch({ type: GET_USER_SINGLE_PLAYLIST_FAILED });
       console.log(error);
     }
   };
@@ -271,6 +291,7 @@ export const PlayerProvider = ({ children }) => {
         getRecentSongs,
         getFavoritesSongs,
         getAllPlaylist,
+        getSinglePlaylist,
       }}
     >
       {children}

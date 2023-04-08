@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import ClipLoader from "react-spinners/ClipLoader";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import { SinglePlaylistCard, LoadingSpinner } from "../components";
 import { usePlayerContext } from "../Context/PlayerContext";

@@ -18,6 +18,7 @@ import UserPlaylists from "./UserPlaylists";
 import SpotifyLogin from "./SpotifyLogin";
 import ImportPlaylist from "./ImportPlaylist";
 import SpotifyPlaylist from "./SpotifyPlaylist";
+import UserSinglePlaylist from "./UserSinglePlaylist";
 export {
   Home,
   SingleAlbum,
@@ -39,4 +40,5 @@ export {
   ImportPlaylist,
   SpotifyLogin,
   SpotifyPlaylist,
+  UserSinglePlaylist,
 };

@@ -21,6 +21,7 @@ import {
   TopPlaylists,
   SpotifyLogin,
   SpotifyPlaylist,
+  UserSinglePlaylist,
 } from "./Page";
 import {
   HindiPlaylist,
@@ -60,6 +61,7 @@ const AnimateRoutes = () => {
         <Route path="/importplaylists" element={<ImportPlaylist />} />
         <Route path="/spotifylogin" element={<SpotifyLogin />} />
         <Route path="/spotifyplaylist" element={<SpotifyPlaylist />} />
+        <Route path="/userplaylist/:id" element={<UserSinglePlaylist />} />
       </Routes>
     </AnimatePresence>
   );

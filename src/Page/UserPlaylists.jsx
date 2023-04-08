@@ -29,7 +29,7 @@ const UserPlaylists = () => {
           <LibraryMusicIcon /> Import Playlist
         </Link>
       </div>
-      <section>
+      <section className="mt-4 ml-4 flex gap-1">
         {loading ? (
           <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
             <LoadingSpinner size={80} />

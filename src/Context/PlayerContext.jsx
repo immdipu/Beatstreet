@@ -277,7 +277,6 @@ export const PlayerProvider = ({ children }) => {
         name: results.name,
         songs,
       };
-      console.log(playlist);
       dispatch({ type: GET_USER_SINGLE_PLAYLIST_SUCCESS, payload: playlist });
     } catch (error) {
       dispatch({ type: GET_USER_SINGLE_PLAYLIST_FAILED });

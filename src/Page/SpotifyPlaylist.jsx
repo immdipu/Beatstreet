@@ -17,7 +17,9 @@ const SpotifyPlaylist = () => {
   useEffect(() => {
     const url = window.location.hash;
     if (url) {
+      console.log({ url });
       let token = url.substring(1).split("&")[0].split("=")[1];
+      console.log({ token });
       getSpotifyPlaylists(token);
     }
   }, []);

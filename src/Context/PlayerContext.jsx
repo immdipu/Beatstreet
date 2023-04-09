@@ -270,11 +270,12 @@ export const PlayerProvider = ({ children }) => {
       let Ids = results.songIds.join();
       const getSongs = await axios.get(`https://saavn.me/songs?id=${Ids}`);
       const songs = getSongs.data.data;
-      let playlsit = {
+      let playlist = {
         name: results.name,
         songs,
       };
-      dispatch({ type: GET_USER_SINGLE_PLAYLIST_SUCCESS, payload: playlsit });
+      console.log(playlist);
+      dispatch({ type: GET_USER_SINGLE_PLAYLIST_SUCCESS, payload: playlist });
     } catch (error) {
       dispatch({ type: GET_USER_SINGLE_PLAYLIST_FAILED });
       console.log(error);

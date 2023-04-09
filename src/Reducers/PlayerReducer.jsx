@@ -162,7 +162,7 @@ const Player_Reducer = (state, action) => {
     return { ...state, current_playing_lists: id };
   }
   if (action.type === PLAYING_USER_PLAYLIST) {
-    const data = state.user_single_playlist;
+    const data = state.user_single_playlist.songs;
     const id = data.map((song) => song.id);
     return { ...state, current_playing_lists: id };
   }

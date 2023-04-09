@@ -69,7 +69,7 @@ const initialState = {
   all_playlists_loading: false,
   all_playlists: [],
   user_single_playlist_loading: false,
-  user_single_playlist: [],
+  user_single_playlist: {},
 };
 
 import { useMusicContext } from "../Context/MusicContext";

@@ -41,9 +41,11 @@ const UserSinglePlaylist = () => {
         </div>
       </section>
       <section className=" px-14 max-md:px-2 overflow-auto pb-8">
-        <h3 className="text-neutral-50  text-2xl max-md:text-xl px-4 mb-5">
+        <h3 className="text-neutral-50  text-2xl flex items-center max-md:text-xl px-4 mb-5">
           {user_single_playlist.name} -
-          <span className="text-base">{user_single_playlist.songs.length}</span>
+          <span className="text-base">
+            {user_single_playlist.songs.length} songs
+          </span>
         </h3>
         <SongsList
           songs={user_single_playlist.songs}

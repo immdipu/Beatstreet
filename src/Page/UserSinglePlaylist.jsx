@@ -50,7 +50,7 @@ const UserSinglePlaylist = () => {
         </div>
       </section>
       <section className=" px-14 max-md:px-2 overflow-auto pb-8">
-        <section className="flex justify-between items-center">
+        <section className="flex justify-between items-center pr-6">
           <h3 className="text-neutral-50  text-2xl flex items-center max-md:text-xl px-4 mb-5">
             {user_single_playlist.name} -{" "}
             <span className="text-sm text-neutral-300">

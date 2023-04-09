@@ -75,7 +75,6 @@ export const PlaylistProvider = ({ children }) => {
         }
       );
       const result = response.data.items;
-      console.log(result);
       let newplayList = [];
       let promises = result.map((item) => {
         let track = item.track;
@@ -120,8 +119,6 @@ export const PlaylistProvider = ({ children }) => {
       newplayList = songIds.filter(
         (item) => item !== null && item !== undefined
       );
-      console.log(newplayList);
-
       let newdata = {
         name,
         image,

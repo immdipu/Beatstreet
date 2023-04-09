@@ -75,30 +75,42 @@ export const PlaylistProvider = ({ children }) => {
         }
       );
       const result = response.data.items;
+      console.log(result);
       let newplayList = [];
       let promises = result.map((item) => {
         let track = item.track;
-        if (track.track) {
+        if (track.track && track.name !== "") {
+          let formattedTerm = track.name.replace(/\([^)]*\)/g, "").trim();
           let data = {
-            name: track.name,
+            name: formattedTerm,
             artistName: track.artists[0].name,
           };
-          return getSongFromSaavn(data.name).then((res) => {
-            let newTrack = res.find((item) => {
-              if (
-                item.name === data.name &&
-                item.primaryArtists.includes(data.artistName)
-              ) {
-                return item;
-              } else if (item.name === data.name) {
-                return item;
-              }
-            });
-            if (newTrack) {
-              return newTrack.id;
-            } else {
-              console.log(data.name + "Song not found");
-            }
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              getSongFromSaavn(data.name)
+                .then((res) => {
+                  let newTrack = res.find((item) => {
+                    if (
+                      item.name === data.name &&
+                      item.primaryArtists.includes(data.artistName)
+                    ) {
+                      return item;
+                    } else if (item.name === data.name) {
+                      return item;
+                    }
+                  });
+                  if (newTrack) {
+                    resolve(newTrack.id);
+                  } else {
+                    console.log(data.name + "Song not found");
+                    resolve(null);
+                  }
+                })
+                .catch((error) => {
+                  console.log(error);
+                  resolve(null);
+                });
+            }, 2000);
           });
         } else {
           return null;

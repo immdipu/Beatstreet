@@ -154,7 +154,7 @@ const SingleSongList = ({
         </ListItemButton>
 
         <div className="absolute right-4 max-md:right-0 top-3 z-10 flex items-center gap-3 ">
-          {!login_success && (
+          {login_success && (
             <div>
               <Favorite songId={id} />
             </div>

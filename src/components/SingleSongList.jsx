@@ -61,6 +61,14 @@ const SingleSongList = ({
         getAllPlaylist(User_id);
         if (all_playlists_loading) {
           userPlaylist = <div>Loading...</div>;
+        } else {
+          userPlaylist = (
+            <>
+              {all_playlists.map((item) => (
+                <ListItemButton>{item.name}</ListItemButton>
+              ))}
+            </>
+          );
         }
       }
       if (all_playlists && all_playlists.length !== 0) {

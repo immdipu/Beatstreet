@@ -71,6 +71,7 @@ const SingleSongList = ({
                 ))}
               </>
             );
+            console.log(userPlaylist);
           } else {
             userPlaylist = null;
           }
@@ -84,6 +85,7 @@ const SingleSongList = ({
             ))}
           </>
         );
+        console.log(userPlaylist);
       }
     }
 

@@ -54,10 +54,10 @@ const SingleSongList = ({
   };
 
   const HandleAddtoPlaylist = () => {
-    setShowPlaylist((prev) => !prev);
-    if (login_success && showPlaylist && all_playlists.length === 0) {
+    if (login_success && !showPlaylist && all_playlists.length === 0) {
       getAllPlaylist(User_id);
     }
+    setShowPlaylist((prev) => !prev);
   };
 
   const handleClose = () => {
@@ -202,7 +202,7 @@ const SingleSongList = ({
                   <ListItemButton>Create new playlist</ListItemButton>
                   <>
                     {all_playlists_loading ? (
-                      <div>Loading...</div>
+                      <div className="text-neutral-100">Loading...</div>
                     ) : (
                       all_playlists.length !== 0 &&
                       all_playlists.map((item) => (

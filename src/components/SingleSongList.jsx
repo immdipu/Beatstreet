@@ -202,7 +202,7 @@ const SingleSongList = ({
                   <ListItemButton>Create new playlist</ListItemButton>
                   <>
                     {all_playlists_loading ? (
-                      <div className="text-neutral-100">Loading...</div>
+                      <div className="text-neutral-100 w-full">Loading...</div>
                     ) : (
                       all_playlists.length !== 0 &&
                       all_playlists.map((item) => (

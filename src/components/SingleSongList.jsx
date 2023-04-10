@@ -201,10 +201,14 @@ const SingleSongList = ({
                 >
                   <ListItemButton>Create new playlist</ListItemButton>
                   <>
-                    {all_playlists.length !== 0 &&
+                    {all_playlists_loading ? (
+                      <div>Loading...</div>
+                    ) : (
+                      all_playlists.length !== 0 &&
                       all_playlists.map((item) => (
                         <ListItemButton>{item.name}</ListItemButton>
-                      ))}
+                      ))
+                    )}
                   </>
                 </motion.div>
               )}

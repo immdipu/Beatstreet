@@ -57,21 +57,26 @@ const SingleSongList = ({
 
   const HandleAddtoPlaylist = () => {
     if (login_success) {
-      if (all_playlists && all_playlists.length == 0) {
+      if (all_playlists.length == 0) {
+        console.log("all playlits is zero");
         getAllPlaylist(User_id);
         if (all_playlists_loading) {
           userPlaylist = <div>Loading...</div>;
         } else {
-          userPlaylist = (
-            <>
-              {all_playlists.map((item) => (
-                <ListItemButton>{item.name}</ListItemButton>
-              ))}
-            </>
-          );
+          if (all_playlists.length !== 0) {
+            userPlaylist = (
+              <>
+                {all_playlists.map((item) => (
+                  <ListItemButton>{item.name}</ListItemButton>
+                ))}
+              </>
+            );
+          } else {
+            userPlaylist = null;
+          }
         }
-      }
-      if (all_playlists && all_playlists.length !== 0) {
+      } else {
+        console.log("all playlits is not zero");
         userPlaylist = (
           <>
             {all_playlists.map((item) => (

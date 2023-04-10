@@ -51,6 +51,9 @@ const SingleSongList = ({
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    if (showPlaylist) {
+      setShowPlaylist(false);
+    }
   };
 
   const HandleAddtoPlaylist = () => {
@@ -199,17 +202,21 @@ const SingleSongList = ({
                   }}
                   className="absolute -left-60 w-56 top-0 bg-[#282a2e] text-neutral-200 text-sm px-2 py-2 rounded-md"
                 >
-                  <ListItemButton>Create new playlist</ListItemButton>
-                  <>
-                    {all_playlists_loading ? (
-                      <div className="text-neutral-100 w-full">Loading...</div>
-                    ) : (
-                      all_playlists.length !== 0 &&
-                      all_playlists.map((item) => (
-                        <ListItemButton>{item.name}</ListItemButton>
-                      ))
-                    )}
-                  </>
+                  <div>
+                    <ListItemButton>Create new playlist</ListItemButton>
+                    <>
+                      {all_playlists_loading ? (
+                        <div className="text-neutral-100 w-full">
+                          Loading...
+                        </div>
+                      ) : (
+                        all_playlists.length !== 0 &&
+                        all_playlists.map((item) => (
+                          <ListItemButton>{item.name}</ListItemButton>
+                        ))
+                      )}
+                    </>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>

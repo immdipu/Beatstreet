@@ -53,29 +53,12 @@ const SingleSongList = ({
     setAnchorEl(event.currentTarget);
   };
 
-  let userPlaylist = null;
-
   const HandleAddtoPlaylist = () => {
     setShowPlaylist((prev) => !prev);
     if (login_success && showPlaylist && all_playlists.length === 0) {
       getAllPlaylist(User_id);
     }
   };
-
-  if (login_success && showPlaylist) {
-    if (all_playlists_loading) {
-      userPlaylist = <div>Loading...</div>;
-    }
-    if (all_playlists.length !== 0) {
-      userPlaylist = (
-        <>
-          {all_playlists.map((item) => (
-            <ListItemButton>{item.name}</ListItemButton>
-          ))}
-        </>
-      );
-    }
-  }
 
   const handleClose = () => {
     setAnchorEl(null);
@@ -217,7 +200,12 @@ const SingleSongList = ({
                   className="absolute -left-60 w-56 top-0 bg-[#282a2e] text-neutral-200 text-sm px-2 py-2 rounded-md"
                 >
                   <ListItemButton>Create new playlist</ListItemButton>
-                  <>{userPlaylist}</>
+                  <>
+                    {all_playlists.length !== 0 &&
+                      all_playlists.map((item) => (
+                        <ListItemButton>{item.name}</ListItemButton>
+                      ))}
+                  </>
                 </motion.div>
               )}
             </AnimatePresence>

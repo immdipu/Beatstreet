@@ -56,20 +56,20 @@ const SingleSongList = ({
   let userPlaylist = null;
 
   const HandleAddtoPlaylist = () => {
-    if (!all_playlists) {
+    if (all_playlists && all_playlists.length == 0) {
       getAllPlaylist();
       if (all_playlists_loading) {
         userPlaylist = <div>Loading...</div>;
       }
-      if (all_playlists && all_playlists.length !== 0) {
-        userPlaylist = (
-          <>
-            {all_playlists.map((item) => (
-              <ListItemButton>{item.name}</ListItemButton>
-            ))}
-          </>
-        );
-      }
+    }
+    if (all_playlists && all_playlists.length !== 0) {
+      userPlaylist = (
+        <>
+          {all_playlists.map((item) => (
+            <ListItemButton>{item.name}</ListItemButton>
+          ))}
+        </>
+      );
     }
 
     setShowPlaylist((prev) => !prev);

@@ -29,7 +29,7 @@ const SingleSongList = ({
     all_playlists,
     all_playlists_loading,
   } = usePlayerContext();
-  const { login_success } = useUserContext();
+  const { login_success, User_id } = useUserContext();
   const [alert, setAlert] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -56,20 +56,22 @@ const SingleSongList = ({
   let userPlaylist = null;
 
   const HandleAddtoPlaylist = () => {
-    if (all_playlists && all_playlists.length == 0) {
-      getAllPlaylist();
-      if (all_playlists_loading) {
-        userPlaylist = <div>Loading...</div>;
+    if (login_success) {
+      if (all_playlists && all_playlists.length == 0) {
+        getAllPlaylist(User_id);
+        if (all_playlists_loading) {
+          userPlaylist = <div>Loading...</div>;
+        }
       }
-    }
-    if (all_playlists && all_playlists.length !== 0) {
-      userPlaylist = (
-        <>
-          {all_playlists.map((item) => (
-            <ListItemButton>{item.name}</ListItemButton>
-          ))}
-        </>
-      );
+      if (all_playlists && all_playlists.length !== 0) {
+        userPlaylist = (
+          <>
+            {all_playlists.map((item) => (
+              <ListItemButton>{item.name}</ListItemButton>
+            ))}
+          </>
+        );
+      }
     }
 
     setShowPlaylist((prev) => !prev);

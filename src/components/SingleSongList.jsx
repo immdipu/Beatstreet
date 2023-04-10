@@ -56,41 +56,26 @@ const SingleSongList = ({
   let userPlaylist = null;
 
   const HandleAddtoPlaylist = () => {
-    if (login_success) {
-      if (all_playlists.length == 0) {
-        console.log("all playlits is zero");
-        getAllPlaylist(User_id);
-        if (all_playlists_loading) {
-          userPlaylist = <div>Loading...</div>;
-        } else {
-          if (all_playlists.length !== 0) {
-            userPlaylist = (
-              <>
-                {all_playlists.map((item) => (
-                  <ListItemButton>{item.name}</ListItemButton>
-                ))}
-              </>
-            );
-            console.log(userPlaylist);
-          } else {
-            userPlaylist = null;
-          }
-        }
-      } else {
-        console.log("all playlits is not zero");
-        userPlaylist = (
-          <>
-            {all_playlists.map((item) => (
-              <ListItemButton>{item.name}</ListItemButton>
-            ))}
-          </>
-        );
-        console.log(userPlaylist);
-      }
-    }
-
     setShowPlaylist((prev) => !prev);
+    if (login_success && showPlaylist && all_playlists.length === 0) {
+      getAllPlaylist(User_id);
+    }
   };
+
+  if (login_success && showPlaylist) {
+    if (all_playlists_loading) {
+      userPlaylist = <div>Loading...</div>;
+    }
+    if (all_playlists.length !== 0) {
+      userPlaylist = (
+        <>
+          {all_playlists.map((item) => (
+            <ListItemButton>{item.name}</ListItemButton>
+          ))}
+        </>
+      );
+    }
+  }
 
   const handleClose = () => {
     setAnchorEl(null);

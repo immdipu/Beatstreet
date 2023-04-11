@@ -25,7 +25,7 @@ const UserPlaylists = () => {
     if (login_success) {
       getAllPlaylist(User_id);
     }
-  }, [all_playlists]);
+  }, []);
 
   if (!login_success) {
     return (

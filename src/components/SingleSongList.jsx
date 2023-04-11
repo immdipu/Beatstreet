@@ -12,6 +12,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import IconButton from "@mui/material/IconButton";
 import { motion, AnimatePresence } from "framer-motion";
+import PopoverPlaylist from "./PopoverPlaylist";
 
 const SingleSongList = ({
   id,
@@ -58,10 +59,6 @@ const SingleSongList = ({
 
   const HandleAddtoPlaylist = () => {
     setShowPlaylist((prev) => !prev);
-
-    if (login_success && showPlaylist && all_playlists.length === 0) {
-      getAllPlaylist(User_id);
-    }
   };
 
   const handleClose = () => {
@@ -206,16 +203,7 @@ const SingleSongList = ({
                   <div>
                     <ListItemButton>Create new playlist</ListItemButton>
                     <>
-                      {all_playlists_loading ? (
-                        <div className="text-neutral-100 w-full">
-                          Loading...
-                        </div>
-                      ) : (
-                        all_playlists.length !== 0 &&
-                        all_playlists.map((item) => (
-                          <ListItemButton>{item.name}</ListItemButton>
-                        ))
-                      )}
+                      <PopoverPlaylist />
                     </>
                   </div>
                 </motion.div>

@@ -203,7 +203,7 @@ const SingleSongList = ({
                       </div>
                       Create new playlist
                     </ListItemButton>
-                    <PopoverPlaylist />
+                    <PopoverPlaylist songId={id} handleclose={handleClose} />
                   </div>
                 </motion.div>
               )}

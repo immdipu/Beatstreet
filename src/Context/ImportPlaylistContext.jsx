@@ -163,6 +163,19 @@ export const PlaylistProvider = ({ children }) => {
     }
   };
 
+  const AddSongToPlayllist = async (id, data) => {
+    try {
+      const res = await axiosInstance.post(
+        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/addsongsplaylist/${id}`,
+        data
+      );
+      const result = res.data;
+      getAllPlaylist(id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <playlistContext.Provider
       value={{
@@ -170,6 +183,7 @@ export const PlaylistProvider = ({ children }) => {
         getSpotifyPlaylists,
         getSpotifyPlaylistSongs,
         createPlaylist,
+        AddSongToPlayllist,
       }}
     >
       {children}

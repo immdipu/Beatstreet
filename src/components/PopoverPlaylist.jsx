@@ -3,11 +3,14 @@ import ListItemButton from "@mui/material/ListItemButton";
 import { useUserContext } from "../Context/UserContext";
 import { usePlayerContext } from "../Context/PlayerContext";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
+import { usePlaylistContext } from "../Context/ImportPlaylistContext";
 
-const PopoverPlaylist = React.memo(() => {
+const PopoverPlaylist = React.memo(({ songId, handleclose }) => {
   const { login_success, User_id } = useUserContext();
   const { getAllPlaylist, all_playlists, all_playlists_loading } =
     usePlayerContext();
+  const { AddSongToPlayllist } = usePlaylistContext();
+
   useEffect(() => {
     if (login_success && all_playlists.length === 0) {
       getAllPlaylist(User_id);
@@ -20,6 +23,18 @@ const PopoverPlaylist = React.memo(() => {
     );
   }
 
+  const HandleSongAdd = (e) => {
+    let data = {
+      playlistId: e.target.dataset.playlistid,
+      songId,
+    };
+    if (login_success) {
+      AddSongToPlayllist(User_id, data).then(() => {
+        handleclose();
+      });
+    }
+  };
+
   if (all_playlists.length === 0) {
     return (
       <div className="text-neutral-100 text-center mb-3 mt-2">No playlist</div>
@@ -29,7 +44,12 @@ const PopoverPlaylist = React.memo(() => {
   return (
     <>
       {all_playlists.map((item, index) => (
-        <ListItemButton key={index} className="gap-3 flex">
+        <ListItemButton
+          key={index}
+          data-playlistid={item.id}
+          className="gap-3 flex"
+          onClick={HandleSongAdd}
+        >
           {item.image ? (
             <img src={item.image} alt="image" className="w-10 rounded-md" />
           ) : (

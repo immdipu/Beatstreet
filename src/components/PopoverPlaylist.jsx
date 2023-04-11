@@ -3,7 +3,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import { useUserContext } from "../Context/UserContext";
 import { usePlayerContext } from "../Context/PlayerContext";
 
-const PopoverPlaylist = () => {
+const PopoverPlaylist = React.memo(() => {
   const { login_success, User_id } = useUserContext();
   const { getAllPlaylist, all_playlists, all_playlists_loading } =
     usePlayerContext();
@@ -32,6 +32,6 @@ const PopoverPlaylist = () => {
       ))}
     </>
   );
-};
+});
 
 export default PopoverPlaylist;

@@ -155,7 +155,7 @@ export const PlaylistProvider = ({ children }) => {
         data
       );
       const result = res.data;
-      getAllPlaylist();
+      getAllPlaylist(id);
       dispatch({ type: PLAYLIST_CREATION_SUCCESS });
     } catch (error) {
       console.log(error);

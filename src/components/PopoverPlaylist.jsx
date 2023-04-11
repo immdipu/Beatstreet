@@ -19,8 +19,10 @@ const PopoverPlaylist = () => {
     );
   }
 
-  if (all.all_playlists.length === 0) {
-    return null;
+  if (all_playlists.length === 0) {
+    return (
+      <div className="text-neutral-100 w-full text-center">No playlist</div>
+    );
   }
 
   return (

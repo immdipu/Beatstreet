@@ -5,6 +5,7 @@ import axios from "axios";
 const playlistContext = React.createContext();
 
 import { useUserContext } from "../Context/UserContext";
+import { usePlayerContext } from "./PlayerContext";
 import {
   GET_USER_SPOTIFY_PLAYLIST_BEGIN,
   GET_USER_SPOTIFY_PLAYLIST_SUCCESS,
@@ -12,6 +13,9 @@ import {
   ADD_SONGS_BEGIN,
   ADD_SONGS_SUCCESS,
   ADD_SONGS_FAILED,
+  PLAYLIST_CREATION_BEGIN,
+  PLAYLIST_CREATION_SUCCESS,
+  PLAYLIST_CREATION_FAILED,
 } from "./../Actions";
 
 const initialState = {
@@ -20,11 +24,15 @@ const initialState = {
   add_songs_loading: false,
   all_Playlists: [],
   new_playlist: [],
+  new_playlist_creation: false,
+  new_playlist_creation_response: null,
 };
 
 export const PlaylistProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { User_id, login_success, sendNewPlaylist } = useUserContext();
+  const { getAllPlaylist } = usePlayerContext();
+  const axiosInstance = axios.create({ withCredentials: true });
 
   const getSpotifyPlaylists = async (token) => {
     try {
@@ -135,9 +143,34 @@ export const PlaylistProvider = ({ children }) => {
     }
   };
 
+  const createPlaylist = async (id, name) => {
+    let data = {
+      name,
+      songIds: [],
+    };
+    try {
+      dispatch({ type: PLAYLIST_CREATION_BEGIN });
+      const res = await axiosInstance.post(
+        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/addnewplaylist/${id}`,
+        data
+      );
+      const result = res.data;
+      getAllPlaylist();
+      dispatch({ type: PLAYLIST_CREATION_SUCCESS });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: PLAYLIST_CREATION_FAILED });
+    }
+  };
+
   return (
     <playlistContext.Provider
-      value={{ ...state, getSpotifyPlaylists, getSpotifyPlaylistSongs }}
+      value={{
+        ...state,
+        getSpotifyPlaylists,
+        getSpotifyPlaylistSongs,
+        createPlaylist,
+      }}
     >
       {children}
     </playlistContext.Provider>

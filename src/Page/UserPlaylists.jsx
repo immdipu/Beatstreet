@@ -1,9 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
-import { SinglePlaylistCard, LoadingSpinner } from "../components";
+import {
+  SinglePlaylistCard,
+  LoadingSpinner,
+  CreatePlaylistModal,
+} from "../components";
 import { usePlayerContext } from "../Context/PlayerContext";
 import { useUserContext } from "../Context/UserContext";
+import AddIcon from "@mui/icons-material/Add";
+import ListItemButton from "@mui/material/ListItemButton";
+import { AnimatePresence } from "framer-motion";
 
 const UserPlaylists = () => {
   const { User_id, login_success } = useUserContext();
@@ -12,12 +19,13 @@ const UserPlaylists = () => {
     all_playlists_loading: loading,
     all_playlists,
   } = usePlayerContext();
+  const [showCreatePlaylistModal, setShowCreatePlaylistModal] = useState(false);
 
   useEffect(() => {
     if (login_success) {
       getAllPlaylist(User_id);
     }
-  }, []);
+  }, [all_playlists]);
 
   if (!login_success) {
     return (
@@ -42,6 +50,16 @@ const UserPlaylists = () => {
         >
           <LibraryMusicIcon /> Import Playlist
         </Link>
+        <ListItemButton
+          className="flex gap-3 items-center"
+          sx={[{ borderRadius: 2 }]}
+          onClick={() => setShowCreatePlaylistModal(true)}
+        >
+          <div className="grid place-items-center bg-[#34343275] rounded-md p-2 scale-90">
+            <AddIcon className="text-neutral-200" />
+          </div>
+          <p className="text-neutral-300"> Create new playlist</p>
+        </ListItemButton>
       </div>
       <section className="mt-4 ml-4 flex gap-5 flex-col mb-12">
         <h3 className="text-xl text-neutral-200 mb-2 mt-3">Your Playlists</h3>
@@ -57,6 +75,11 @@ const UserPlaylists = () => {
           </>
         )}
       </section>
+      <AnimatePresence>
+        {showCreatePlaylistModal && (
+          <CreatePlaylistModal hidePlaylist={setShowCreatePlaylistModal} />
+        )}
+      </AnimatePresence>
     </div>
   );
 };

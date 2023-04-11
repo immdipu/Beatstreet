@@ -5,6 +5,9 @@ import {
   ADD_SONGS_BEGIN,
   ADD_SONGS_SUCCESS,
   ADD_SONGS_FAILED,
+  PLAYLIST_CREATION_BEGIN,
+  PLAYLIST_CREATION_SUCCESS,
+  PLAYLIST_CREATION_FAILED,
 } from "./../Actions";
 
 const PlaylistReducer = (state, action) => {
@@ -33,6 +36,15 @@ const PlaylistReducer = (state, action) => {
   }
   if (action.type === ADD_SONGS_FAILED) {
     return { ...state, add_songs_loading: false };
+  }
+  if (action.type === PLAYLIST_CREATION_BEGIN) {
+    return { ...state, new_playlist_creation: false };
+  }
+  if (action.type === PLAYLIST_CREATION_SUCCESS) {
+    return { ...state, new_playlist_creation: true };
+  }
+  if (action.type === PLAYLIST_CREATION_FAILED) {
+    return { ...state, new_playlist_creation: false };
   }
 };
 

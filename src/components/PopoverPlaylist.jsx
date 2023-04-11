@@ -27,8 +27,8 @@ const PopoverPlaylist = React.memo(() => {
 
   return (
     <>
-      {all_playlists.map((item) => (
-        <ListItemButton>{item.name}</ListItemButton>
+      {all_playlists.map((item, index) => (
+        <ListItemButton key={index}>{item.name}</ListItemButton>
       ))}
     </>
   );

@@ -57,10 +57,11 @@ const SingleSongList = ({
   };
 
   const HandleAddtoPlaylist = () => {
-    if (login_success && !showPlaylist && all_playlists.length === 0) {
+    setShowPlaylist((prev) => !prev);
+
+    if (login_success && showPlaylist && all_playlists.length === 0) {
       getAllPlaylist(User_id);
     }
-    setShowPlaylist((prev) => !prev);
   };
 
   const handleClose = () => {

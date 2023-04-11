@@ -13,6 +13,7 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import IconButton from "@mui/material/IconButton";
 import { motion, AnimatePresence } from "framer-motion";
 import PopoverPlaylist from "./PopoverPlaylist";
+import AddIcon from "@mui/icons-material/Add";
 
 const SingleSongList = ({
   id,
@@ -24,12 +25,7 @@ const SingleSongList = ({
   title,
   CURRENT = null,
 }) => {
-  const {
-    HandlePlaySong,
-    getAllPlaylist,
-    all_playlists,
-    all_playlists_loading,
-  } = usePlayerContext();
+  const { HandlePlaySong } = usePlayerContext();
   const { login_success, User_id } = useUserContext();
   const [alert, setAlert] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
@@ -52,17 +48,18 @@ const SingleSongList = ({
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
-    if (showPlaylist) {
-      setShowPlaylist(false);
-    }
   };
-
   const HandleAddtoPlaylist = () => {
     setShowPlaylist((prev) => !prev);
   };
 
   const handleClose = () => {
-    setAnchorEl(null);
+    if (showPlaylist) {
+      setShowPlaylist(false);
+    }
+    setTimeout(() => {
+      setAnchorEl(null);
+    }, 210);
   };
   const open = Boolean(anchorEl);
   const idd = open ? "simple-popover" : undefined;
@@ -155,6 +152,7 @@ const SingleSongList = ({
           <IconButton size="large" onClick={handleClick}>
             <MoreVertIcon className="text-slate-200 opacity-60" />
           </IconButton>
+
           <Popover
             id={idd}
             open={open}
@@ -173,7 +171,6 @@ const SingleSongList = ({
                 backgroundColor: "#282a2e",
                 paddingY: 1,
                 overflow: "visible",
-                position: "relative",
                 width: "fit-content",
               },
             }}
@@ -191,20 +188,22 @@ const SingleSongList = ({
             <AnimatePresence>
               {showPlaylist && (
                 <motion.div
-                  initial={{ opacity: 0, x: "50%", scale: 0.2 }}
-                  animate={{ opacity: 1, x: "0%", y: "0%", scale: 1 }}
+                  initial={{ y: "90%" }}
+                  animate={{ y: "0%" }}
                   exit={{
                     opacity: 0,
-                    x: "60%",
-                    scale: 0,
+                    y: "90%",
                   }}
-                  className="absolute -left-60 w-56 top-0 bg-[#282a2e] text-neutral-200 text-sm px-2 py-2 rounded-md"
+                  className="fixed left-0 right-0 flex bg-opacity-70 backdrop-blur-sm items-center justify-center bottom-0 bg-[#282a2e]   text-neutral-200 text-sm px-2 py-2 rounded-md"
                 >
                   <div>
-                    <ListItemButton>Create new playlist</ListItemButton>
-                    <>
-                      <PopoverPlaylist />
-                    </>
+                    <ListItemButton className="flex gap-3 items-center">
+                      <div className="grid place-items-center bg-[#34343246] rounded-md p-2 scale-90">
+                        <AddIcon />
+                      </div>
+                      Create new playlist
+                    </ListItemButton>
+                    <PopoverPlaylist />
                   </div>
                 </motion.div>
               )}

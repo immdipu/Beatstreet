@@ -46,7 +46,7 @@ const PopoverPlaylist = React.memo(({ songId, handleclose }) => {
       {all_playlists.map((item, index) => (
         <ListItemButton
           key={index}
-          data-playlistid={item.id}
+          data-playlistid={item.playlistId}
           className="gap-3 flex"
           onClick={HandleSongAdd}
         >

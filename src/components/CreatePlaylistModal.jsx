@@ -16,7 +16,9 @@ const CreatePlaylistModal = ({ hidePlaylist }) => {
     } else {
       document.querySelector(".alert").style.display = "none";
       if (login_success) {
-        createPlaylist(User_id, playlistname.current.value.trim());
+        createPlaylist(User_id, playlistname.current.value.trim()).then(() => {
+          hidePlaylist(false);
+        });
       }
     }
   };

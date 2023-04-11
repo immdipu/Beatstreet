@@ -46,9 +46,12 @@ const UserPlaylists = () => {
       <div>
         <Link
           to={"/importplaylists"}
-          className="flex items-center text-xl hover:bg-lightBlue hover:bg-opacity-60 transition-all duration-300 rounded-md py-4 px-5 gap-3 text-neutral-300 f"
+          className="flex items-center text-base hover:bg-lightBlue hover:bg-opacity-60 transition-all duration-300 rounded-md py-4 px-4  gap-3 text-neutral-300 f"
         >
-          <LibraryMusicIcon /> Import Playlist
+          <div className="grid place-items-center bg-[#34343275] rounded-md p-2 scale-90">
+            <LibraryMusicIcon className="text-neutral-200" />
+          </div>
+          Import Playlist
         </Link>
         <ListItemButton
           className="flex gap-3 items-center"

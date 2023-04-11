@@ -215,7 +215,7 @@ export const PlayerProvider = ({ children }) => {
   };
 
   const getRecentSongs = async (id) => {
-    dispatch({ type: GET_ALL_PLAYLISTS_BEGIN });
+    dispatch({ type: GET_RECENT_SONGS_BEGIN });
     try {
       const response = await axiosInstance.get(
         `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/recentsongs/${id}`
@@ -248,7 +248,7 @@ export const PlayerProvider = ({ children }) => {
   };
 
   const getAllPlaylist = async (id) => {
-    dispatch({ type: GET_FAVORITE_SONGS_BEGIN });
+    dispatch({ type: GET_ALL_PLAYLISTS_BEGIN });
     try {
       const response = await axiosInstance.get(
         `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/allplaylist/${id}`

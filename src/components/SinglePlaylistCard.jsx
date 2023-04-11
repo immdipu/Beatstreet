@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import MusicNoteIcon from "@mui/icons-material/MusicNote";
 
 const SinglePlaylistCard = ({ name, image, songsLength = 0, playlistId }) => {
   return (
@@ -9,8 +10,8 @@ const SinglePlaylistCard = ({ name, image, songsLength = 0, playlistId }) => {
           {image ? (
             <img className="rounded-md w-14" src={image} alt="spotify" />
           ) : (
-            <div className="w-14 rounded-md bg-black text-neutral-300 text-center text-sm h-full">
-              No Cover
+            <div className="grid place-items-center bg-[#343432] rounded-md p-2">
+              <MusicNoteIcon className="text-neutral-300" />
             </div>
           )}
           <div className="">

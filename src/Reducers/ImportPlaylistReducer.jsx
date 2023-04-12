@@ -8,6 +8,9 @@ import {
   PLAYLIST_CREATION_BEGIN,
   PLAYLIST_CREATION_SUCCESS,
   PLAYLIST_CREATION_FAILED,
+  RENAME_PLAYLIST_BEGIN,
+  RENAME_PLAYLIST_SUCCESS,
+  RENAME_PLAYLIST_FAILED,
 } from "./../Actions";
 
 const PlaylistReducer = (state, action) => {
@@ -45,6 +48,15 @@ const PlaylistReducer = (state, action) => {
   }
   if (action.type === PLAYLIST_CREATION_FAILED) {
     return { ...state, new_playlist_creation: false };
+  }
+  if (action.type === RENAME_PLAYLIST_BEGIN) {
+    return { ...state, rename_playlist_loading: true };
+  }
+  if (action.type === RENAME_PLAYLIST_SUCCESS) {
+    return { ...state, rename_playlist_loading: false };
+  }
+  if (action.type === RENAME_PLAYLIST_FAILED) {
+    return { ...state, rename_playlist_loading: false };
   }
 };
 

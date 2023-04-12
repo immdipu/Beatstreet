@@ -16,6 +16,9 @@ import {
   PLAYLIST_CREATION_BEGIN,
   PLAYLIST_CREATION_SUCCESS,
   PLAYLIST_CREATION_FAILED,
+  RENAME_PLAYLIST_BEGIN,
+  RENAME_PLAYLIST_SUCCESS,
+  RENAME_PLAYLIST_FAILED,
 } from "./../Actions";
 
 const initialState = {
@@ -26,6 +29,7 @@ const initialState = {
   new_playlist: [],
   new_playlist_creation: false,
   new_playlist_creation_response: null,
+  rename_playlist_loading: false,
 };
 
 export const PlaylistProvider = ({ children }) => {
@@ -176,6 +180,22 @@ export const PlaylistProvider = ({ children }) => {
     }
   };
 
+  const RenamePlaylist = async (id, data) => {
+    dispatch({ type: RENAME_PLAYLIST_BEGIN });
+    try {
+      const res = await axiosInstance.post(
+        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/updateplaylist/${id}`,
+        data
+      );
+      const results = res.data;
+      console.log(results);
+      dispatch({ type: RENAME_PLAYLIST_SUCCESS });
+    } catch (error) {
+      dispatch({ type: RENAME_PLAYLIST_FAILED });
+      console.log(error);
+    }
+  };
+
   return (
     <playlistContext.Provider
       value={{
@@ -184,6 +204,7 @@ export const PlaylistProvider = ({ children }) => {
         getSpotifyPlaylistSongs,
         createPlaylist,
         AddSongToPlayllist,
+        RenamePlaylist,
       }}
     >
       {children}

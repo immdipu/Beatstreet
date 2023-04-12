@@ -75,7 +75,9 @@ const UserPlaylists = () => {
         ) : (
           <>
             {all_playlists.length !== 0
-              ? all_playlists.map((item) => <SinglePlaylistCard {...item} />)
+              ? all_playlists.map((item, index) => (
+                  <SinglePlaylistCard key={index} {...item} />
+                ))
               : null}
           </>
         )}

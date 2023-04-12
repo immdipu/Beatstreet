@@ -36,6 +36,7 @@ import SpotifyIcon from "./assets/SpotifyIcon";
 import SingleSpotifylist from "./SingleSpotifylist";
 import SinglePlaylistCard from "./SinglePlaylistCard";
 import CreatePlaylistModal from "./CreatePlaylistModal";
+import PlalylistRenameModal from "./PlalylistRenameModal";
 
 export {
   AudiPlayer,
@@ -76,4 +77,5 @@ export {
   SingleSpotifylist,
   SinglePlaylistCard,
   CreatePlaylistModal,
+  PlalylistRenameModal,
 };

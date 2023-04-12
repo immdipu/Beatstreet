@@ -4,10 +4,12 @@ import RippleButton from "ripple-effect-reactjs";
 import { motion } from "framer-motion";
 import { usePlaylistContext } from "../Context/ImportPlaylistContext";
 import { useUserContext } from "../Context/UserContext";
+import { usePlayerContext } from "../Context/PlayerContext";
 
 const CreatePlaylistModal = ({ hidePlaylist }) => {
   const { createPlaylist } = usePlaylistContext();
   const { login_success, User_id } = useUserContext();
+  const { getAllPlaylist } = usePlayerContext();
   const playlistname = useRef(null);
 
   const HandleCreate = () => {
@@ -17,6 +19,7 @@ const CreatePlaylistModal = ({ hidePlaylist }) => {
       document.querySelector(".alert").style.display = "none";
       if (login_success) {
         createPlaylist(User_id, playlistname.current.value.trim()).then(() => {
+          getAllPlaylist(User_id);
           hidePlaylist(false);
         });
       }
@@ -56,7 +59,7 @@ const CreatePlaylistModal = ({ hidePlaylist }) => {
 
           <RippleButton width={30} radius={6} color={"#060b1c"} speed={500}>
             <button
-              className="text-neutral-200 font-extralight text-sm  tracking-wider rounded-md bg-darkBlue px-4 py-2"
+              className="text-neutral-200 font-extralight select-none text-sm  tracking-wider rounded-md bg-darkBlue px-4 py-2"
               onClick={HandleCreate}
             >
               Create

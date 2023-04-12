@@ -7,13 +7,14 @@ import Popover from "@mui/material/Popover";
 import Skeleton from "@mui/material/Skeleton";
 import { useUserContext } from "../Context/UserContext";
 import DownloadLogo from "../components/downloader/DownloadLogo";
-import { LoginAlert, Favorite } from "../components";
+import { LoginAlert, Favorite, CreatePlaylistModal } from "../components";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import IconButton from "@mui/material/IconButton";
 import { motion, AnimatePresence } from "framer-motion";
 import PopoverPlaylist from "./PopoverPlaylist";
 import AddIcon from "@mui/icons-material/Add";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const SingleSongList = ({
   id,
@@ -29,6 +30,7 @@ const SingleSongList = ({
   const { login_success, User_id } = useUserContext();
   const [alert, setAlert] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
+  const [showCreatePlaylist, setshowCreatePlaylist] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [ImageLoading, SetImageLoading] = useState(true);
   const handleImageLoad = () => {
@@ -195,10 +197,20 @@ const SingleSongList = ({
                     opacity: 0,
                     y: "90%",
                   }}
-                  className="fixed left-0 right-0 flex bg-opacity-70 backdrop-blur-sm items-center justify-center bottom-0 bg-[#282a2e]   text-neutral-200 text-sm px-2 py-2 rounded-md"
+                  className="fixed rounded-t-2xl left-0 right-0 flex bg-opacity-80 backdrop-blur-sm items-center justify-center bottom-0 bg-[#282a2e]   text-neutral-200 text-sm px-2 py-2 rounded-md"
                 >
                   <div>
-                    <ListItemButton className="flex gap-3 items-center">
+                    <div className="w-full flex justify-center">
+                      <div
+                        className=" bg-neutral-400 rounded-full w-7 mt-1 h-1 mb-3 cursor-pointer"
+                        onClick={handleClose}
+                      ></div>
+                    </div>
+
+                    <ListItemButton
+                      className="flex gap-3 items-center"
+                      onClick={() => setshowCreatePlaylist(true)}
+                    >
                       <div className="grid place-items-center bg-[#34343246] rounded-md p-2 scale-90">
                         <AddIcon />
                       </div>
@@ -207,6 +219,9 @@ const SingleSongList = ({
                     <PopoverPlaylist songId={id} handleclose={handleClose} />
                   </div>
                 </motion.div>
+              )}
+              {showCreatePlaylist && (
+                <CreatePlaylistModal hidePlaylist={setshowCreatePlaylist} />
               )}
             </AnimatePresence>
           </Popover>

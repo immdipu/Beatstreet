@@ -6,7 +6,7 @@ const SinglePlaylistCard = ({ name, image, songsLength = 0, playlistId }) => {
   return (
     <Link
       to={`/userplaylist/${playlistId}`}
-      className="hover:bg-lightBlue hover:bg-opacity-60 transition-all duration-300 ease-linear py-4 px-4"
+      className="hover:bg-lightBlue hover:bg-opacity-60 transition-all duration-300 ease-linear py-3 px-4"
     >
       <div className="flex overflow-hidden cursor-pointer  rounded-md items-center">
         <div className="flex  w-full items-center gap-5 ">

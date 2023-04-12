@@ -11,6 +11,9 @@ import {
   RENAME_PLAYLIST_BEGIN,
   RENAME_PLAYLIST_SUCCESS,
   RENAME_PLAYLIST_FAILED,
+  DELETE_PLAYLIST_BEGIN,
+  DELETE_PLAYLIST_SUCCESS,
+  DELETE_PLAYLIST_FAILED,
 } from "./../Actions";
 
 const PlaylistReducer = (state, action) => {
@@ -57,6 +60,15 @@ const PlaylistReducer = (state, action) => {
   }
   if (action.type === RENAME_PLAYLIST_FAILED) {
     return { ...state, rename_playlist_loading: false };
+  }
+  if (action.type === DELETE_PLAYLIST_BEGIN) {
+    return { ...state, delete_playlist_loading: true };
+  }
+  if (action.type === DELETE_PLAYLIST_SUCCESS) {
+    return { ...state, delete_playlist_loading: false };
+  }
+  if (action.type === DELETE_PLAYLIST_FAILED) {
+    return { ...state, delete_playlist_loading: false };
   }
 };
 

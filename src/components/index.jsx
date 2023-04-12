@@ -37,6 +37,7 @@ import SingleSpotifylist from "./SingleSpotifylist";
 import SinglePlaylistCard from "./SinglePlaylistCard";
 import CreatePlaylistModal from "./CreatePlaylistModal";
 import PlalylistRenameModal from "./PlalylistRenameModal";
+import PlaylistDeleteModal from "./PlaylistDeleteModal";
 
 export {
   AudiPlayer,
@@ -78,4 +79,5 @@ export {
   SinglePlaylistCard,
   CreatePlaylistModal,
   PlalylistRenameModal,
+  PlaylistDeleteModal,
 };

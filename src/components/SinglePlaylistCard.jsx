@@ -8,11 +8,12 @@ import Popover from "@mui/material/Popover";
 import { AnimatePresence } from "framer-motion";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import PlalylistRenameModal from "./PlalylistRenameModal";
+import { PlalylistRenameModal, PlaylistDeleteModal } from "../components";
 
 const SinglePlaylistCard = ({ name, image, songsLength = 0, playlistId }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [ShowRename, setShowRename] = useState(false);
+  const [ShowDelete, setShowDelete] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -23,10 +24,16 @@ const SinglePlaylistCard = ({ name, image, songsLength = 0, playlistId }) => {
   const HandleRename = () => {
     setShowRename((prev) => !prev);
   };
+  const HandleDeleteModal = () => {
+    setShowDelete((prev) => !prev);
+  };
 
   const handleClose = () => {
     if (ShowRename) {
       setShowRename(false);
+    }
+    if (ShowDelete) {
+      setShowDelete(false);
     }
     setTimeout(() => {
       setAnchorEl(null);
@@ -96,7 +103,7 @@ const SinglePlaylistCard = ({ name, image, songsLength = 0, playlistId }) => {
             <p className="tracking-wider">Rename</p>
           </li>
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton onClick={HandleDeleteModal}>
           <li className="flex gap-2 text-neutral-200 py-1 font-light text-sm">
             <DeleteIcon />
             <p className="tracking-wider">Delete</p>
@@ -109,6 +116,13 @@ const SinglePlaylistCard = ({ name, image, songsLength = 0, playlistId }) => {
               setShowRename={setShowRename}
               playlistId={playlistId}
               name={name}
+            />
+          )}
+          {ShowDelete && (
+            <PlaylistDeleteModal
+              handleClose={handleClose}
+              setShowDelete={setShowDelete}
+              playlistId={playlistId}
             />
           )}
         </AnimatePresence>

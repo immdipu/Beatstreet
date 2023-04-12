@@ -19,6 +19,9 @@ import {
   RENAME_PLAYLIST_BEGIN,
   RENAME_PLAYLIST_SUCCESS,
   RENAME_PLAYLIST_FAILED,
+  DELETE_PLAYLIST_BEGIN,
+  DELETE_PLAYLIST_SUCCESS,
+  DELETE_PLAYLIST_FAILED,
 } from "./../Actions";
 
 const initialState = {
@@ -30,6 +33,7 @@ const initialState = {
   new_playlist_creation: false,
   new_playlist_creation_response: null,
   rename_playlist_loading: false,
+  delete_playlist_loading: false,
 };
 
 export const PlaylistProvider = ({ children }) => {
@@ -195,6 +199,22 @@ export const PlaylistProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const DeletePlaylist = async (id, data) => {
+    dispatch({ type: DELETE_PLAYLIST_BEGIN });
+    try {
+      const res = await axiosInstance.post(
+        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/removesongsplaylist/${id}`,
+        data
+      );
+      const results = res.data;
+      console.log(results);
+      dispatch({ type: DELETE_PLAYLIST_SUCCESS });
+    } catch (error) {
+      dispatch({ type: DELETE_PLAYLIST_FAILED });
+      DELETE_PLAYLIST_FAILED;
+      console.log(error);
+    }
+  };
 
   return (
     <playlistContext.Provider
@@ -205,6 +225,7 @@ export const PlaylistProvider = ({ children }) => {
         createPlaylist,
         AddSongToPlayllist,
         RenamePlaylist,
+        DeletePlaylist,
       }}
     >
       {children}

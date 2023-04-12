@@ -39,10 +39,12 @@ const PlaylistDeleteModal = ({ handleClose, setShowDelete, playlistId }) => {
           Delete Playlist
         </p>
 
-        <div className="flex flex-col justify-center">
-          <h3 className="text-center text-neutral-100">Are you sure ?</h3>
+        <div className="flex flex-col justify-center gap-2">
+          <h3 className="text-center text-neutral-100 text-2xl">
+            Are you sure ?
+          </h3>
           <p className="text-center text-neutral-400">
-            You will not be able to recover this playlist
+            You will not be able to recover this playlist!
           </p>
         </div>
 
@@ -58,7 +60,7 @@ const PlaylistDeleteModal = ({ handleClose, setShowDelete, playlistId }) => {
 
           <RippleButton width={30} radius={6} color={"#060b1c"} speed={500}>
             <button
-              className="text-neutral-200 font-extralight text-sm  tracking-wider rounded-md bg-darkBlue px-4 py-2"
+              className="text-[#ff9a9a] font-extralight text-sm  tracking-wider rounded-md bg-[#f74b4b38] px-4 py-2"
               onClick={HandleDelete}
             >
               Delete

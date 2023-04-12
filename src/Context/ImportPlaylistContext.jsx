@@ -203,7 +203,7 @@ export const PlaylistProvider = ({ children }) => {
     dispatch({ type: DELETE_PLAYLIST_BEGIN });
     try {
       const res = await axiosInstance.post(
-        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/removesongsplaylist/${id}`,
+        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/removeplaylist/${id}`,
         data
       );
       const results = res.data;

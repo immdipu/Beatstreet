@@ -254,7 +254,6 @@ export const PlayerProvider = ({ children }) => {
         `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/allplaylist/${id}`
       );
       const results = response.data.data;
-
       dispatch({ type: GET_ALL_PLAYLISTS_SUCCESS, payload: results });
     } catch (error) {
       dispatch({ type: GET_ALL_PLAYLISTS_FAILED });

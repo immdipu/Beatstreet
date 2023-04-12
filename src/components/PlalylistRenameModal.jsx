@@ -4,6 +4,7 @@ import RippleButton from "ripple-effect-reactjs";
 import { motion } from "framer-motion";
 import { usePlaylistContext } from "../Context/ImportPlaylistContext";
 import { useUserContext } from "../Context/UserContext";
+import { usePlayerContext } from "../Context/PlayerContext";
 
 const PlalylistRenameModal = ({
   playlistId,
@@ -13,6 +14,7 @@ const PlalylistRenameModal = ({
 }) => {
   const { RenamePlaylist } = usePlaylistContext();
   const { login_success, User_id } = useUserContext();
+  const { getAllPlaylist } = usePlayerContext();
   const [rename, setRename] = useState(name);
 
   const HandleCreate = () => {
@@ -26,6 +28,7 @@ const PlalylistRenameModal = ({
           playlistId,
         };
         RenamePlaylist(User_id, data).then(() => {
+          getAllPlaylist(User_id);
           handleClose();
         });
       }

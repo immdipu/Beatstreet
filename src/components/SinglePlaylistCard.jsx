@@ -98,13 +98,13 @@ const SinglePlaylistCard = ({ name, image, songsLength = 0, playlistId }) => {
         }}
       >
         <ListItemButton onClick={HandleRename}>
-          <li className="flex gap-1 items-center text-neutral-200 py-1 font-light text-sm">
+          <li className="flex gap-3 items-center text-neutral-200 py-1 font-normal text-sm">
             <EditIcon />
             <p className="tracking-wider">Rename</p>
           </li>
         </ListItemButton>
         <ListItemButton onClick={HandleDeleteModal}>
-          <li className="flex gap-2 text-neutral-200 py-1 font-light text-sm">
+          <li className="flex gap-3 text-neutral-200 py-1 font-normal text-sm">
             <DeleteIcon />
             <p className="tracking-wider">Delete</p>
           </li>

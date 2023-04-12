@@ -43,7 +43,7 @@ const PlaylistDeleteModal = ({ handleClose, setShowDelete, playlistId }) => {
           <h3 className="text-center text-neutral-100 text-2xl">
             Are you sure ?
           </h3>
-          <p className="text-center text-neutral-400">
+          <p className="text-center text-neutral-400 text-xs">
             You will not be able to recover this playlist!
           </p>
         </div>

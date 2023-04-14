@@ -74,6 +74,7 @@ const UserSinglePlaylist = () => {
         <SongsList
           songs={user_single_playlist.songs}
           current={"Userplaylist"}
+          playlistId={id}
         />
       </section>
     </div>

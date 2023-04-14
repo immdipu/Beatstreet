@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { usePlayerContext } from "../Context/PlayerContext";
 import ListItemButton from "@mui/material/ListItemButton";
 import { SongDurtionFormat } from "../Utils/Helper";
@@ -25,6 +25,7 @@ const SingleSongList = ({
   image,
   title,
   CURRENT = null,
+  playlistId = null,
 }) => {
   const { HandlePlaySong } = usePlayerContext();
   const { login_success, User_id } = useUserContext();
@@ -62,6 +63,10 @@ const SingleSongList = ({
     setTimeout(() => {
       setAnchorEl(null);
     }, 210);
+  };
+
+  const HandleRemoveSongPlaylist = (e) => {
+    console.log(e);
   };
 
   const open = Boolean(anchorEl);
@@ -178,16 +183,20 @@ const SingleSongList = ({
               },
             }}
           >
-            <ListItemButton onClick={HandleAddtoPlaylist}>
-              <li className="flex gap-2 text-neutral-200 font-light text-sm">
-                <PlaylistAddIcon /> <p>Add to Playlist</p>
-              </li>
-            </ListItemButton>
-            <ListItemButton>
-              <li className="flex gap-2 text-neutral-200 font-light text-sm">
-                <PlaylistAddIcon /> <p>Remove from playlist</p>
-              </li>
-            </ListItemButton>
+            {!playlistId && (
+              <ListItemButton onClick={HandleAddtoPlaylist}>
+                <li className="flex gap-2 text-neutral-200 font-light text-sm">
+                  <PlaylistAddIcon /> <p>Add to Playlist</p>
+                </li>
+              </ListItemButton>
+            )}
+            {playlistId && (
+              <ListItemButton>
+                <li className="flex gap-2 text-neutral-200 font-light text-sm">
+                  <PlaylistAddIcon /> <p>Remove from playlist</p>
+                </li>
+              </ListItemButton>
+            )}
             <AnimatePresence>
               {showPlaylist && (
                 <motion.div

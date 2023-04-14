@@ -59,7 +59,7 @@ const UserDropDown = ({ imageRef }) => {
           Account
         </Link>
         <Link
-          to={"/library"}
+          to={"/userplaylists"}
           className="flex hover:bg-darkBlue duration-300 transition-colors ease-linear py-2 gap-3 items-center px-3"
         >
           <LibraryMusicIcon />

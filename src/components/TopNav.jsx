@@ -4,11 +4,18 @@ import LoginAndSignUp from "./LoginAndSignUp";
 import UserAvatar from "./UserAvatar";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useUserContext } from "../Context/UserContext";
+import { usePlayerContext } from "../Context/PlayerContext";
 
 const TopNav = () => {
-  const { login_success, AutoLogin, auto_login_begin } = useUserContext();
+  const { login_success, User_id, AutoLogin, auto_login_begin } =
+    useUserContext();
+  const { getFavoritesSongs } = usePlayerContext();
   useEffect(() => {
-    AutoLogin();
+    AutoLogin().then(() => {
+      if (login_success) {
+        getFavoritesSongs(User_id);
+      }
+    });
   }, []);
 
   return (

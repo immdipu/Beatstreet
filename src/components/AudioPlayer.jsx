@@ -10,6 +10,8 @@ import { usePlayerContext } from "../Context/PlayerContext";
 import { AudioLinkSelector, ImageFetch } from "../Utils/Helper";
 import SongDownloader from "./downloader/SongDownloader";
 import { useUserContext } from "../Context/UserContext";
+import RepeatIcon from "@mui/icons-material/Repeat";
+import Favorite from "./Favorite";
 
 const AudioPlayer = () => {
   const { current_song, audio_playing, current_playing_lists, singleSong } =
@@ -188,10 +190,31 @@ const AudioPlayer = () => {
         />
 
         <div className="mt-1">
-          <IconButton aria-label="previous song" onClick={HandlePreviousSong}>
-            <FastRewindRounded fontSize="large" htmlColor="#8e9196" />
+          <IconButton
+            sx={{
+              marginRight: "10px",
+            }}
+            aria-label="favsong"
+          >
+            <Favorite songId={current_song.id} />
           </IconButton>
           <IconButton
+            aria-label="previous song"
+            onClick={HandlePreviousSong}
+            sx={{
+              ":hover": {
+                bgcolor: "#2a2a2abf",
+              },
+            }}
+          >
+            <FastRewindRounded fontSize="2rem" htmlColor="#8e9196" />
+          </IconButton>
+          <IconButton
+            sx={{
+              ":hover": {
+                bgcolor: "#2a2a2abf",
+              },
+            }}
             aria-label={paused ? "play" : "pause"}
             onClick={handleAudioPlay}
           >
@@ -201,8 +224,26 @@ const AudioPlayer = () => {
               <PauseRounded sx={{ fontSize: "3rem" }} htmlColor="#8e9196" />
             )}
           </IconButton>
-          <IconButton aria-label="nextsong" onClick={HandleNextSong}>
-            <FastForwardRounded fontSize="large" htmlColor="#8e9196" />
+          <IconButton
+            sx={{
+              ":hover": {
+                bgcolor: "#2a2a2abf",
+              },
+            }}
+            aria-label="nextsong"
+            onClick={HandleNextSong}
+          >
+            <FastForwardRounded fontSize="2rem" htmlColor="#8e9196" />
+          </IconButton>
+          <IconButton
+            sx={{
+              ":hover": {
+                bgcolor: "#2a2a2abf",
+              },
+              marginLeft: "10px",
+            }}
+          >
+            <RepeatIcon fontSize="2rem" htmlColor="#8e9196" />
           </IconButton>
         </div>
 

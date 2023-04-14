@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useUserContext } from "../Context/UserContext";
+import { usePlayerContext } from "../Context/PlayerContext";
 
 const Favorite = ({ songId }) => {
   const { sendFavoriteSong, User_id, login_success } = useUserContext();
+  const { favorites_songs } = usePlayerContext();
   const [fav, setFav] = useState(false);
+
+  useEffect(() => {
+    if (login_success && favorites_songs && favorites_songs.length > 0) {
+      const isFavExist = () => {
+        for (let i = 0; i < favorites_songs.length; i++) {
+          if (favorites_songs[i].id === songId) {
+            return setFav(true);
+          }
+        }
+        return setFav(false);
+      };
+      isFavExist();
+    }
+  }, []);
 
   const HandleFavorite = () => {
     let data = {

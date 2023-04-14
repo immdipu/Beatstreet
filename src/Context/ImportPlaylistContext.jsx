@@ -216,6 +216,18 @@ export const PlaylistProvider = ({ children }) => {
     }
   };
 
+  const RemovePlaylistSong = async (id, data) => {
+    try {
+      const res = await axiosInstance.post(
+        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/removesongsplaylist/${id}`,
+        data
+      );
+      const results = res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <playlistContext.Provider
       value={{
@@ -226,6 +238,7 @@ export const PlaylistProvider = ({ children }) => {
         AddSongToPlayllist,
         RenamePlaylist,
         DeletePlaylist,
+        RemovePlaylistSong,
       }}
     >
       {children}

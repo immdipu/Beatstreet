@@ -13,8 +13,9 @@ import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import IconButton from "@mui/material/IconButton";
 import { motion, AnimatePresence } from "framer-motion";
 import PopoverPlaylist from "./PopoverPlaylist";
+import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import { usePlaylistContext } from "../Context/ImportPlaylistContext";
 
 const SingleSongList = ({
   id,
@@ -29,6 +30,7 @@ const SingleSongList = ({
 }) => {
   const { HandlePlaySong } = usePlayerContext();
   const { login_success, User_id } = useUserContext();
+  const { RemovePlaylistSong } = usePlaylistContext();
   const [alert, setAlert] = useState(false);
   const [showPlaylist, setShowPlaylist] = useState(false);
   const [showCreatePlaylist, setshowCreatePlaylist] = useState(false);
@@ -65,8 +67,20 @@ const SingleSongList = ({
     }, 210);
   };
 
-  const HandleRemoveSongPlaylist = (e) => {
-    console.log(e);
+  const HandleRemoveSongPlaylist = () => {
+    if (login_success) {
+      let data = {
+        playlistId,
+        songId: id,
+      };
+      RemovePlaylistSong(User_id, data).then((res) => {
+        console.log(res);
+        let data2 = {
+          playlistId,
+        };
+        getSinglePlaylist(User_id, data2);
+      });
+    }
   };
 
   const open = Boolean(anchorEl);
@@ -193,7 +207,7 @@ const SingleSongList = ({
             {playlistId && (
               <ListItemButton>
                 <li className="flex gap-2 text-neutral-200 font-light text-sm">
-                  <PlaylistAddIcon /> <p>Remove from playlist</p>
+                  <DeleteIcon /> <p>Remove from playlist</p>
                 </li>
               </ListItemButton>
             )}

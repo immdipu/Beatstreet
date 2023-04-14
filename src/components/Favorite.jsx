@@ -6,7 +6,7 @@ import { usePlayerContext } from "../Context/PlayerContext";
 
 const Favorite = ({ songId }) => {
   const { sendFavoriteSong, User_id, login_success } = useUserContext();
-  const { favorites_songs } = usePlayerContext();
+  const { favorites_songs, getFavoritesSongs } = usePlayerContext();
   const [fav, setFav] = useState(false);
 
   useEffect(() => {
@@ -28,7 +28,9 @@ const Favorite = ({ songId }) => {
       songId,
     };
     if (login_success) {
-      sendFavoriteSong(User_id, data);
+      sendFavoriteSong(User_id, data).then(() => {
+        getFavoritesSongs(User_id);
+      });
     }
     setFav((prev) => !prev);
   };

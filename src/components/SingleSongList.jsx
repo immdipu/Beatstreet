@@ -205,7 +205,7 @@ const SingleSongList = ({
               </ListItemButton>
             )}
             {playlistId && (
-              <ListItemButton>
+              <ListItemButton onClick={HandleRemoveSongPlaylist}>
                 <li className="flex gap-2 text-neutral-200 font-light text-sm">
                   <DeleteIcon /> <p>Remove from playlist</p>
                 </li>

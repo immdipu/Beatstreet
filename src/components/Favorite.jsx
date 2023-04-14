@@ -21,7 +21,7 @@ const Favorite = ({ songId }) => {
       };
       isFavExist();
     }
-  }, []);
+  }, [songId]);
 
   const HandleFavorite = () => {
     let data = {

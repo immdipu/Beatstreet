@@ -74,7 +74,6 @@ const SingleSongList = ({
         songId: id,
       };
       RemovePlaylistSong(User_id, data).then((res) => {
-        console.log(res);
         let data2 = {
           playlistId,
         };

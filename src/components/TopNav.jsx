@@ -15,7 +15,7 @@ const TopNav = () => {
     AutoLogin().then((result) => {
       if (result._id) {
         console.log({ login_success });
-        getFavoritesSongs(User_id);
+        getFavoritesSongs(result._id);
       }
     });
   }, []);

@@ -10,9 +10,12 @@ const TopNav = () => {
   const { login_success, User_id, AutoLogin, auto_login_begin } =
     useUserContext();
   const { getFavoritesSongs } = usePlayerContext();
+
   useEffect(() => {
-    AutoLogin().then(() => {
+    AutoLogin().then((res) => {
+      console.log(res);
       if (login_success) {
+        console.log({ login_success });
         getFavoritesSongs(User_id);
       }
     });

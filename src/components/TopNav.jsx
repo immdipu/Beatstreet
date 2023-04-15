@@ -13,8 +13,7 @@ const TopNav = () => {
 
   useEffect(() => {
     AutoLogin().then((result) => {
-      console.log(result);
-      if (login_success) {
+      if (result._id) {
         console.log({ login_success });
         getFavoritesSongs(User_id);
       }

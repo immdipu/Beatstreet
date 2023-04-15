@@ -81,6 +81,7 @@ export const UserProvider = ({ children }) => {
       const response = await axiosInstance.get(UserEndPoints + "/isloggedin");
       const result = response.data.data.user;
       dispatch({ type: AUTO_LOGIN_SUCCESS, payload: result });
+      return result;
     } catch (error) {
       dispatch({ type: AUTO_LOGIN_FAILED });
       console.log(error);

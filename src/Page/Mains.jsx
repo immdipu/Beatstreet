@@ -21,6 +21,7 @@ const Mains = () => {
       </div>
     );
   }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

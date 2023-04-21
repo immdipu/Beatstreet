@@ -11,12 +11,14 @@ import { AudioLinkSelector, ImageFetch } from "../Utils/Helper";
 import SongDownloader from "./downloader/SongDownloader";
 import { useUserContext } from "../Context/UserContext";
 import RepeatIcon from "@mui/icons-material/Repeat";
+import RepeatOneIcon from "@mui/icons-material/RepeatOne";
 import Favorite from "./Favorite";
 
 const AudioPlayer = () => {
   const { current_song, audio_playing, current_playing_lists, singleSong } =
     usePlayerContext();
   const { sendRecentPlayedSong, User_id, login_success } = useUserContext();
+  const [repeatOne, setRepeatOne] = useState(false);
 
   useEffect(() => {
     if (current_song.id && login_success) {
@@ -54,15 +56,22 @@ const AudioPlayer = () => {
 
   const handleAudioUpdate = () => {
     if (currentAudio.current.currentTime === currentAudio.current.duration) {
-      if (current_playing_lists.length > 0) {
-        let IndexOfCurrentSong = current_playing_lists.indexOf(current_song.id);
-        if (IndexOfCurrentSong !== current_playing_lists.length - 1) {
-          singleSong(current_playing_lists[IndexOfCurrentSong + 1]);
+      if (repeatOne) {
+        singleSong(current_song.id);
+        currentAudio.current.play();
+      } else {
+        if (current_playing_lists.length > 0) {
+          let IndexOfCurrentSong = current_playing_lists.indexOf(
+            current_song.id
+          );
+          if (IndexOfCurrentSong !== current_playing_lists.length - 1) {
+            singleSong(current_playing_lists[IndexOfCurrentSong + 1]);
+          } else {
+            setPaused(true);
+          }
         } else {
           setPaused(true);
         }
-      } else {
-        setPaused(true);
       }
     }
 
@@ -131,6 +140,7 @@ const AudioPlayer = () => {
           ref={currentAudio}
           autoPlay
           onTimeUpdate={handleAudioUpdate}
+          id="myAudio"
         ></audio>
 
         <h3
@@ -242,8 +252,13 @@ const AudioPlayer = () => {
               },
               marginLeft: "10px",
             }}
+            onClick={() => setRepeatOne((prev) => !prev)}
           >
-            <RepeatIcon fontSize="2rem" htmlColor="#8e9196" />
+            {repeatOne ? (
+              <RepeatOneIcon fontSize="2rem" htmlColor="#8e9196" />
+            ) : (
+              <RepeatIcon fontSize="2rem" htmlColor="#8e9196" />
+            )}
           </IconButton>
         </div>
 

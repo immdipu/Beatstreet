@@ -119,7 +119,21 @@ circle {
 
 
 
+.scrolling-text {
+    animation: scroll 10s linear infinite;
+    animation-fill-mode: forwards;
+}
 
+@keyframes scroll {
+    0% {
+        transform: translateX(30%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+
+    }
+}
 
 .slide-in-top {
     -webkit-animation: slide-in-top 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;

@@ -13,12 +13,35 @@ import { useUserContext } from "../Context/UserContext";
 import RepeatIcon from "@mui/icons-material/Repeat";
 import RepeatOneIcon from "@mui/icons-material/RepeatOne";
 import Favorite from "./Favorite";
+import UpNextSongs from "./UpNextSongs";
+import { AnimatePresence, motion } from "framer-motion";
 
 const AudioPlayer = () => {
-  const { current_song, audio_playing, current_playing_lists, singleSong } =
-    usePlayerContext();
+  const {
+    current_song,
+    side_menu_show,
+    audio_playing,
+    current_playing_lists,
+    singleSong,
+  } = usePlayerContext();
   const { sendRecentPlayedSong, User_id, login_success } = useUserContext();
   const [repeatOne, setRepeatOne] = useState(false);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
+  const [showUpNext, setShowUpNext] = useState(false);
+  const songNameContainer = useRef(null);
+  const songName = useRef(null);
+
+  useEffect(() => {
+    const songNameCon = songNameContainer.current;
+    const songNamee = songName.current;
+    if (songNameCon && songNamee) {
+      if (songNamee.clientWidth > 200) {
+        setShouldAnimate(true);
+      } else {
+        setShouldAnimate(false);
+      }
+    }
+  }, [audio_playing, current_song]);
 
   useEffect(() => {
     if (current_song.id && login_success) {
@@ -126,7 +149,12 @@ const AudioPlayer = () => {
     return null;
   }
   return (
-    <div className=" px-7 py-5 mt-10 relative boss ">
+    <div
+      className={
+        " px-7 py-2 mt-5 relative boss " +
+        (side_menu_show ? "opacity-100" : "opacity-0")
+      }
+    >
       <img
         src={ImageFetch(current_song)}
         alt="background"
@@ -143,18 +171,30 @@ const AudioPlayer = () => {
           id="myAudio"
         ></audio>
 
-        <h3
-          className="text-lg text-darkTitle mt-4 text-center"
-          dangerouslySetInnerHTML={{
-            __html: `${current_song.name}`,
-          }}
-        />
-        <marquee
-          className="text-xs opacity-90 whitespace-nowrap"
+        <div
+          className={
+            "text-container  flex justify-center overflow-hidden items-center " +
+            (side_menu_show ? "w-52" : "w-0")
+          }
+          ref={songNameContainer}
+        >
+          <h3
+            className={
+              "text-lg text-darkTitle mt-4  w-max whitespace-pre " +
+              (shouldAnimate ? "scrolling-text text-right" : " text-center")
+            }
+            ref={songName}
+            dangerouslySetInnerHTML={{
+              __html: `${current_song.name}`,
+            }}
+          />
+        </div>
+        <p
+          className="text-xs opacity-90 whitespace-nowrap w-40 overflow-hidden text-ellipsis"
           direction="right"
         >
           {current_song.primaryArtists}
-        </marquee>
+        </p>
         <img
           src={ImageFetch(current_song)}
           alt="song Avatar"
@@ -262,9 +302,32 @@ const AudioPlayer = () => {
           </IconButton>
         </div>
 
-        <div className=" w-full flex justify-end cursor-pointer">
+        <div className=" w-full flex justify-end">
           <SongDownloader songId={current_song.id} />
         </div>
+        <button onClick={() => setShowUpNext((prev) => !prev)}>up Next</button>
+        <AnimatePresence>
+          {showUpNext && (
+            <motion.section
+              initial={{ y: "100%" }}
+              animate={{ y: "0", transition: { ease: "easeInOut" } }}
+              exit={{ y: "100%", transition: { ease: "easeInOut" } }}
+              className="bg-neutral-800  bg-opacity-70 -bottom-8 pb-4 z-[55] backdrop-blur-md absolute
+         px-1 rounded-xl w-full"
+            >
+              <div
+                onClick={() => setShowUpNext((prev) => !prev)}
+                className=" cursor-pointer pt-3"
+              >
+                <div className="bg-neutral-400 w-10 h-1 rounded-xl mx-auto mb-2 cursor-pointer"></div>
+              </div>
+
+              <div className="overflow-auto h-96">
+                <UpNextSongs current_song={current_song} />
+              </div>
+            </motion.section>
+          )}
+        </AnimatePresence>
       </section>
     </div>
   );

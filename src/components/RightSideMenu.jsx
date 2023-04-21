@@ -27,13 +27,6 @@ const RightSideMenu = () => {
         </div>
       )}
       <AudioPlayer />
-      <a
-        href="https://twitter.com/immdipu"
-        target={"_blank"}
-        className="text-white font-light text-xs hover:opacity-80 duration-500 transition-all ease-linear absolute  bottom-0 w-full text-center bg-black bg-opacity-10 opacity-40"
-      >
-        © Created by Dipu
-      </a>
     </section>
   );
 };

@@ -29,6 +29,7 @@ const AudioPlayer = () => {
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [showUpNext, setShowUpNext] = useState(false);
   const songNameContainer = useRef(null);
+  const [coverRadius, setCoverRadius] = useState(false);
   const songName = useRef(null);
 
   useEffect(() => {
@@ -158,7 +159,7 @@ const AudioPlayer = () => {
       <img
         src={ImageFetch(current_song)}
         alt="background"
-        className="absolute inset-0 -z-40 h-full object-cover opacity-20 blur-md rounded-lg
+        className="absolute inset-0 -z-40 h-full  object-cover opacity-20 blur-md rounded-lg
     "
       />
       <h3 className="text-xl opacity-30">player</h3>
@@ -189,16 +190,17 @@ const AudioPlayer = () => {
             }}
           />
         </div>
-        <p
-          className="text-xs opacity-90 whitespace-nowrap w-40 overflow-hidden text-ellipsis"
-          direction="right"
-        >
+        <p className="text-xs opacity-90 text-center whitespace-nowrap w-40 overflow-hidden text-ellipsis">
           {current_song.primaryArtists}
         </p>
         <img
           src={ImageFetch(current_song)}
           alt="song Avatar"
-          className="h-32 w-32 rounded-full object-cover mt-4"
+          onClick={() => setCoverRadius((prev) => !prev)}
+          className={
+            "h-32 w-32   transition-all ease-linear duration-500 cursor-pointer object-cover mt-4 " +
+            (coverRadius ? "rounded-[15%]" : " rounded-[100%]")
+          }
         />
         <div className="flex justify-between w-full mb-2 ">
           <p className="text-xs tracking-normal">{musicCurrentTime}</p>

@@ -95,6 +95,15 @@ const SideNav = () => {
         <section className="px-7 max-md:px-10 mt-10">
           <button>Dark</button>
         </section>
+        <div className="absolute bottom-0  flex justify-center right-0 left-0">
+          <a
+            className="text-xs"
+            href="https://twitter.com/immdipu"
+            target={"_blank"}
+          >
+            Made by <span className="text-neutral-200">Dipu</span>
+          </a>
+        </div>
         {!login_success && (
           <section className="px-7  mt-10 hidden gap-2 max-md:flex">
             <RippleButton color={"#519aff2e"} speed={500}>

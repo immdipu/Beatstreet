@@ -10,12 +10,14 @@ import DownloadLogo from "../components/downloader/DownloadLogo";
 import { LoginAlert, Favorite, CreatePlaylistModal } from "../components";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import AlbumIcon from "@mui/icons-material/Album";
 import IconButton from "@mui/material/IconButton";
 import { motion, AnimatePresence } from "framer-motion";
 import PopoverPlaylist from "./PopoverPlaylist";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import { usePlaylistContext } from "../Context/ImportPlaylistContext";
+import { Link } from "react-router-dom";
 
 const SingleSongList = ({
   id,
@@ -24,6 +26,7 @@ const SingleSongList = ({
   duration,
   index,
   image,
+  album,
   title,
   CURRENT = null,
   playlistId = null,
@@ -180,8 +183,8 @@ const SingleSongList = ({
             anchorEl={anchorEl}
             onClose={handleClose}
             anchorOrigin={{
-              vertical: "center",
-              horizontal: "left",
+              vertical: "top",
+              horizontal: "center",
             }}
             transformOrigin={{
               vertical: "center",
@@ -191,22 +194,51 @@ const SingleSongList = ({
               sx: {
                 backgroundColor: "#282a2e",
                 paddingY: 1,
+                borderRadius: 3,
                 overflow: "visible",
                 width: "fit-content",
               },
             }}
           >
+            {album && album.id && (
+              <Link to={`/album/${album?.id}`}>
+                <ListItemButton
+                  sx={{
+                    paddingRight: 5,
+                    ":hover": {
+                      bgcolor: "#444",
+                    },
+                  }}
+                >
+                  <li className="flex gap-2 text-neutral-200 font-light text-sm ">
+                    <div className="p-1  bg-lightBlue rounded-md">
+                      <AlbumIcon sx={{ fontSize: 20 }} />
+                    </div>
+                    <p>View Album</p>
+                  </li>
+                </ListItemButton>
+              </Link>
+            )}
             {!playlistId && (
-              <ListItemButton onClick={HandleAddtoPlaylist}>
+              <ListItemButton
+                onClick={HandleAddtoPlaylist}
+                sx={{
+                  ":hover": {
+                    bgcolor: "#444",
+                  },
+                }}
+              >
                 <li className="flex gap-2 text-neutral-200 font-light text-sm">
                   <PlaylistAddIcon /> <p>Add to Playlist</p>
                 </li>
               </ListItemButton>
             )}
+
             {playlistId && (
               <ListItemButton onClick={HandleRemoveSongPlaylist}>
                 <li className="flex gap-2 text-neutral-200 font-light text-sm">
-                  <DeleteIcon /> <p>Remove from playlist</p>
+                  <DeleteIcon />
+                  <p>Remove from playlist</p>
                 </li>
               </ListItemButton>
             )}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { usePlayerContext } from "../Context/PlayerContext";
 import ListItemButton from "@mui/material/ListItemButton";
 import { SongDurtionFormat } from "../Utils/Helper";
@@ -12,6 +12,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import AlbumIcon from "@mui/icons-material/Album";
 import IconButton from "@mui/material/IconButton";
+import PersonIcon from "@mui/icons-material/Person";
 import { motion, AnimatePresence } from "framer-motion";
 import PopoverPlaylist from "./PopoverPlaylist";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -23,6 +24,7 @@ const SingleSongList = ({
   id,
   name,
   primaryArtists,
+  primaryArtistsId = null,
   duration,
   index,
   image,
@@ -39,12 +41,12 @@ const SingleSongList = ({
   const [showCreatePlaylist, setshowCreatePlaylist] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [ImageLoading, SetImageLoading] = useState(true);
-  const handleImageLoad = () => {
+  const handleImageLoad = useCallback(() => {
     SetImageLoading(false);
-  };
+  }, []);
 
   let timeoutId;
-  const HandleAlert = () => {
+  const HandleAlert = useCallback(() => {
     setAlert(true);
     if (timeoutId) {
       clearTimeout(timeoutId);
@@ -52,25 +54,25 @@ const SingleSongList = ({
     timeoutId = setTimeout(() => {
       setAlert(false);
     }, 5000);
-  };
+  }, []);
 
-  const handleClick = (event) => {
+  const handleClick = useCallback((event) => {
     setAnchorEl(event.currentTarget);
-  };
-  const HandleAddtoPlaylist = () => {
+  }, []);
+  const HandleAddtoPlaylist = useCallback(() => {
     setShowPlaylist((prev) => !prev);
-  };
+  }, []);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     if (showPlaylist) {
       setShowPlaylist(false);
     }
     setTimeout(() => {
       setAnchorEl(null);
     }, 210);
-  };
+  }, []);
 
-  const HandleRemoveSongPlaylist = () => {
+  const HandleRemoveSongPlaylist = useCallback(() => {
     if (login_success) {
       let data = {
         playlistId,
@@ -83,7 +85,17 @@ const SingleSongList = ({
         getSinglePlaylist(User_id, data2);
       });
     }
-  };
+  }, []);
+  function ArtistFormatter(text) {
+    let arr = text.split(",");
+    return arr;
+  }
+  let primaryArtistsArr;
+  let primaryArtistsIdArr;
+  if (primaryArtistsId && primaryArtistsId) {
+    primaryArtistsArr = ArtistFormatter(primaryArtists);
+    primaryArtistsIdArr = ArtistFormatter(primaryArtistsId);
+  }
 
   const open = Boolean(anchorEl);
   const idd = open ? "simple-popover" : undefined;
@@ -200,6 +212,30 @@ const SingleSongList = ({
               },
             }}
           >
+            {!playlistId && (
+              <ListItemButton
+                onClick={HandleAddtoPlaylist}
+                sx={{
+                  ":hover": {
+                    bgcolor: "#444",
+                  },
+                }}
+              >
+                <li className="flex gap-4 text-neutral-200 font-light text-sm">
+                  <PlaylistAddIcon /> <p>Add to Playlist</p>
+                </li>
+              </ListItemButton>
+            )}
+
+            {playlistId && (
+              <ListItemButton onClick={HandleRemoveSongPlaylist}>
+                <li className="flex gap-3 text-neutral-200 font-light text-sm">
+                  <DeleteIcon />
+                  <p>Remove from playlist</p>
+                </li>
+              </ListItemButton>
+            )}
+
             {album && album.id && (
               <Link to={`/album/${album?.id}`}>
                 <ListItemButton
@@ -210,7 +246,7 @@ const SingleSongList = ({
                     },
                   }}
                 >
-                  <li className="flex gap-2 text-neutral-200 font-light text-sm ">
+                  <li className="flex gap-3 text-neutral-200 font-light text-sm ">
                     <div className="p-1  bg-lightBlue rounded-md">
                       <AlbumIcon sx={{ fontSize: 20 }} />
                     </div>
@@ -219,29 +255,33 @@ const SingleSongList = ({
                 </ListItemButton>
               </Link>
             )}
-            {!playlistId && (
-              <ListItemButton
-                onClick={HandleAddtoPlaylist}
-                sx={{
-                  ":hover": {
-                    bgcolor: "#444",
-                  },
-                }}
-              >
-                <li className="flex gap-2 text-neutral-200 font-light text-sm">
-                  <PlaylistAddIcon /> <p>Add to Playlist</p>
-                </li>
-              </ListItemButton>
-            )}
 
-            {playlistId && (
-              <ListItemButton onClick={HandleRemoveSongPlaylist}>
-                <li className="flex gap-2 text-neutral-200 font-light text-sm">
-                  <DeleteIcon />
-                  <p>Remove from playlist</p>
-                </li>
-              </ListItemButton>
-            )}
+            {primaryArtistsArr &&
+              primaryArtistsId &&
+              primaryArtistsArr.map((item, index) => {
+                return (
+                  <Link
+                    to={`/artist/${primaryArtistsIdArr[index].trim()}`}
+                    key={index}
+                  >
+                    <ListItemButton
+                      sx={{
+                        paddingRight: 5,
+                        ":hover": {
+                          bgcolor: "#444",
+                        },
+                      }}
+                    >
+                      <li className="flex gap-3 text-neutral-200 items-center font-light text-sm ">
+                        <div className="p-1  bg-lightBlue rounded-md">
+                          <PersonIcon sx={{ fontSize: 20 }} />
+                        </div>
+                        <p>{item}</p>
+                      </li>
+                    </ListItemButton>
+                  </Link>
+                );
+              })}
             <AnimatePresence>
               {showPlaylist && (
                 <motion.div

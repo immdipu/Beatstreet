@@ -77,6 +77,7 @@ const SideNav = () => {
               Recent
             </NavLink>
             <NavLink
+              onClick={HandleSideNav}
               to={"/userplaylists"}
               className="flex items-center  gap-4 text-sm max-md:text-base font-medium"
             >

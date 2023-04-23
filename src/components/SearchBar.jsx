@@ -68,7 +68,7 @@ const SearchBar = () => {
         onClick={HandleSearch}
       >
         <input
-          type="text"
+          type="search"
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={HandleSubmit}

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
-import HelpCenterIcon from "@mui/icons-material/HelpCenter";
+import InfoIcon from "@mui/icons-material/Info";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -66,10 +66,10 @@ const UserDropDown = ({ imageRef }) => {
           My Library
         </Link>
         <Link
-          to={"helpcenter"}
+          to={"/about"}
           className="flex  hover:bg-darkBlue duration-300 transition-colors ease-linear py-2 gap-3 items-center px-3"
         >
-          <HelpCenterIcon /> Help or Support
+          <InfoIcon /> Help & Support
         </Link>
         <li
           onClick={logoutUser}

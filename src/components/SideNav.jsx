@@ -8,6 +8,7 @@ import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { NavLink, Link } from "react-router-dom";
 import { usePlayerContext } from "../Context/PlayerContext";
+import InfoIcon from "@mui/icons-material/Info";
 import LogoText from "./assets/LogoText";
 import RippleButton from "ripple-effect-reactjs";
 import { useUserContext } from "../Context/UserContext";
@@ -28,7 +29,7 @@ const SideNav = () => {
             <LogoText />
           </section>
 
-          <section className="mt-10  ">
+          <section className="mt-6">
             <h3 className="uppercase font-Rubik font-medium tracking-wider max-md:text-lg text-sm">
               Menu
             </h3>
@@ -93,8 +94,18 @@ const SideNav = () => {
             </NavLink>
           </ul>
         </section>
-        <section className="px-7 max-md:px-10 mt-10">
-          <button>Dark</button>
+        <hr className="bg-darkTextColor h-[0.8px] opacity-10 my-6 px-7" />
+        <section className="px-7 max-md:px-10 mt-5">
+          <ul className="flex flex-col gap-6 mt-2">
+            <NavLink
+              onClick={HandleSideNav}
+              to={"/about"}
+              className="flex items-center gap-4 text-sm max-md:text-base font-medium"
+            >
+              <InfoIcon /> Help & Support
+            </NavLink>
+          </ul>
+          {/* <button>Dark</button> */}
         </section>
         <div className="absolute bottom-0  flex justify-center right-0 left-0">
           <a

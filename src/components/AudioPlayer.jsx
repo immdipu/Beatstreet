@@ -152,7 +152,7 @@ const AudioPlayer = () => {
   return (
     <div
       className={
-        " px-7 py-2 mt-5 relative boss " +
+        " px-7 py-2 mt-5 relative boss max-md:h-full " +
         (side_menu_show ? "opacity-100" : "opacity-0")
       }
     >
@@ -162,7 +162,6 @@ const AudioPlayer = () => {
         className="absolute inset-0 -z-40 h-full  object-cover opacity-20 blur-md rounded-lg
     "
       />
-      <h3 className="text-xl opacity-30">player</h3>
       <section className="flex flex-col items-center gap-1 ">
         <audio
           src={AudioLinkSelector(current_song)}
@@ -175,13 +174,13 @@ const AudioPlayer = () => {
         <div
           className={
             "text-container  flex justify-center overflow-hidden items-center " +
-            (side_menu_show ? "w-52" : "w-0")
+            (side_menu_show ? " w-52 max-md:w-72" : "w-0")
           }
           ref={songNameContainer}
         >
           <h3
             className={
-              "text-lg text-darkTitle mt-4  w-max whitespace-pre " +
+              "text-lg text-darkTitle mt-4  max-md:text-xl  w-max whitespace-pre " +
               (shouldAnimate ? "scrolling-text text-right" : " text-center")
             }
             ref={songName}
@@ -190,7 +189,7 @@ const AudioPlayer = () => {
             }}
           />
         </div>
-        <p className="text-xs opacity-90 text-center whitespace-nowrap w-40 overflow-hidden text-ellipsis">
+        <p className="text-xs max-md:text-base opacity-90 text-center whitespace-nowrap w-40 overflow-hidden text-ellipsis">
           {current_song.primaryArtists}
         </p>
         <img
@@ -198,13 +197,17 @@ const AudioPlayer = () => {
           alt="song Avatar"
           onClick={() => setCoverRadius((prev) => !prev)}
           className={
-            "h-32 w-32   transition-all ease-linear duration-500 cursor-pointer object-cover mt-4 " +
+            "h-32 w-32  max-md:h-full max-md:w-72  transition-all ease-linear duration-500 cursor-pointer object-cover mt-4 " +
             (coverRadius ? "rounded-[15%]" : " rounded-[100%]")
           }
         />
-        <div className="flex justify-between w-full mb-2 ">
-          <p className="text-xs tracking-normal">{musicCurrentTime}</p>
-          <p className="text-xs tracking-normal">{musicTotalLength}</p>
+        <div className="flex justify-between w-full mb-2 max-md:mb-0 max-md:mt-6  ">
+          <p className="text-xs max-md:text-sm tracking-normal">
+            {musicCurrentTime}
+          </p>
+          <p className="text-xs max-md:text-sm tracking-normal">
+            {musicTotalLength}
+          </p>
         </div>
 
         <Slider
@@ -241,7 +244,7 @@ const AudioPlayer = () => {
           }}
         />
 
-        <div className="mt-1">
+        <div className="mt-1 max-md:scale-125 max-md:mt-5">
           <IconButton
             sx={{
               marginRight: "10px",
@@ -304,17 +307,29 @@ const AudioPlayer = () => {
           </IconButton>
         </div>
 
-        <div className=" w-full flex justify-end">
+        <div className=" w-full flex justify-end max-md:mr-10">
           <SongDownloader songId={current_song.id} />
         </div>
-        <button onClick={() => setShowUpNext((prev) => !prev)}>up Next</button>
+
+        <button
+          onClick={() => setShowUpNext((prev) => !prev)}
+          className="mt-0 max-md:mt-16 max-md:text-xl"
+        >
+          up Next
+        </button>
+        {showUpNext && (
+          <div
+            className=" fixed  max bg-black inset-0 bg-opacity-20"
+            onClick={() => setShowUpNext(false)}
+          ></div>
+        )}
         <AnimatePresence>
           {showUpNext && (
             <motion.section
               initial={{ y: "100%" }}
               animate={{ y: "0", transition: { ease: "easeInOut" } }}
               exit={{ y: "100%", transition: { ease: "easeInOut" } }}
-              className="bg-neutral-800  bg-opacity-70 -bottom-8 pb-4 z-[55] backdrop-blur-md absolute
+              className="bg-neutral-800  bg-opacity-70 -bottom-8 max-md:bottom-16 pb-4 z-[55] backdrop-blur-md absolute
          px-1 rounded-xl w-full"
             >
               <div

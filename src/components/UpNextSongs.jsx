@@ -13,8 +13,7 @@ const UpNextSongs = ({ current_song }) => {
 
   const getUpNextSongs = async (data) => {
     let IndexOfCurrentSong = current_playing_lists.indexOf(current_song.id);
-    let newdata = data.slice(IndexOfCurrentSong + 1);
-    let Ids = newdata.join();
+    let Ids = data.join();
     setLoading(true);
     try {
       const getSongs = await axios.get(`https://saavn.me/songs?id=${Ids}`);
@@ -29,7 +28,7 @@ const UpNextSongs = ({ current_song }) => {
 
   useEffect(() => {
     getUpNextSongs(current_playing_lists);
-  }, [current_playing_lists, current_song]);
+  }, [current_playing_lists]);
 
   if (loading) {
     return (

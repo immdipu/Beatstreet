@@ -59,14 +59,13 @@ const SingleSongList = ({
   const handleClick = useCallback((event) => {
     setAnchorEl(event.currentTarget);
   }, []);
+
   const HandleAddtoPlaylist = useCallback(() => {
     setShowPlaylist((prev) => !prev);
   }, []);
 
   const handleClose = useCallback(() => {
-    if (showPlaylist) {
-      setShowPlaylist(false);
-    }
+    setShowPlaylist(false);
     setTimeout(() => {
       setAnchorEl(null);
     }, 210);

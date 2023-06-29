@@ -18,6 +18,9 @@ import {
   GET_ARTIST_ALBUMS_BEGIN,
   GET_ARTIST_ALBUMS_SUCESS,
   GET_ARTIST_ALBUMS_ERROR,
+  GET_ARTIST_SONGS_SUCCESS_LoadMore,
+  GET_ARTIST_SONGS_BEGIN_LoadMore,
+  GET_ARTIST_SONGS_FAILED_LoadMore,
 } from "../Actions";
 
 const Music_reducer = (state, action) => {
@@ -81,6 +84,12 @@ const Music_reducer = (state, action) => {
       single_artist_songs_loading: true,
     };
   }
+  if (action.type === GET_ARTIST_SONGS_BEGIN_LoadMore) {
+    return {
+      ...state,
+      loadMoreSong: true,
+    };
+  }
 
   if (action.type === GET_ARTIST_SONGS_SUCESS) {
     let data = action.payload;
@@ -88,6 +97,21 @@ const Music_reducer = (state, action) => {
       ...state,
       single_artist_songs: data,
       single_artist_songs_loading: false,
+    };
+  }
+
+  if (action.type === GET_ARTIST_SONGS_SUCCESS_LoadMore) {
+    let data = action.payload;
+    return {
+      ...state,
+      single_artist_songs: [...state.single_artist_songs, ...data],
+      loadMoreSong: false,
+    };
+  }
+  if (action.type === GET_ARTIST_SONGS_FAILED_LoadMore) {
+    return {
+      ...state,
+      loadMoreSong: false,
     };
   }
 

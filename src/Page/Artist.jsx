@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { LoadingSpinner, SongsList, MusicCard } from "../components";
 import { useParams } from "react-router-dom";
 import { useMusicContext } from "../Context/MusicContext";
@@ -8,10 +8,11 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import RippleButton from "ripple-effect-reactjs";
-import InfiniteScroll from "react-infinite-scroll-component";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Artist = () => {
   const { id } = useParams();
+  const [currentpage, setCurrentPage] = useState(1);
   const {
     SingleArtist,
     single_artist_details: artist,
@@ -20,6 +21,8 @@ const Artist = () => {
     single_artist_songs,
     ArtistAlbums,
     single_artist_albums,
+    ArtistSongsLoadMore,
+    loadMoreSong,
   } = useMusicContext();
   useEffect(() => {
     SingleArtist(id);
@@ -40,6 +43,11 @@ const Artist = () => {
     btns.forEach((btn) => {
       btn.click();
     });
+  };
+
+  const handleLoadMoreSong = () => {
+    setCurrentPage(currentpage + 1);
+    ArtistSongsLoadMore(id, currentpage);
   };
 
   return (
@@ -125,9 +133,24 @@ const Artist = () => {
               </div>
             </div>
           )}
+
           {single_artist_songs && (
             <SongsList songs={single_artist_songs} current={"Artist"} />
           )}
+          <section>
+            {loadMoreSong ? (
+              <div className="px-6 py-3">
+                <ClipLoader size={30} color="#2764eb" speedMultiplier={3} />
+              </div>
+            ) : (
+              <button
+                onClick={handleLoadMoreSong}
+                className="text-neutral-400 my-4 cursor-pointer hover:text-neutral-200 transition-colors duration-150 ease-linear px-3 py-1"
+              >
+                Show more
+              </button>
+            )}
+          </section>
         </section>
 
         <section className="mt-12 mx-14 mb-14 max-md:mx-4">

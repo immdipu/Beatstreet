@@ -21,6 +21,9 @@ import {
   GET_ARTIST_ALBUMS_BEGIN,
   GET_ARTIST_ALBUMS_SUCESS,
   GET_ARTIST_ALBUMS_ERROR,
+  GET_ARTIST_SONGS_SUCCESS_LoadMore,
+  GET_ARTIST_SONGS_BEGIN_LoadMore,
+  GET_ARTIST_SONGS_FAILED_LoadMore,
 } from "../Actions";
 
 const initialState = {
@@ -40,6 +43,7 @@ const initialState = {
   single_artist_details: [],
   single_artist_songs: [],
   single_artist_albums: [],
+  loadMoreSong: false,
 };
 
 const MusicContext = React.createContext();
@@ -96,16 +100,25 @@ export const MusicProvider = ({ children }) => {
   const ArtistSongs = async (id) => {
     dispatch({ type: GET_ARTIST_SONGS_BEGIN });
     try {
-      const [res, res2] = await Promise.all([
-        axios.get(`https://saavn.me/artists/${id}/songs?page=1`),
-        axios.get(`https://saavn.me/artists/${id}/songs?page=2`),
-      ]);
-      const data1 = res.data.data.results;
-      const data2 = res2.data.data.results;
-      const data = [...data1, ...data2];
+      const res = await axios.get(
+        `https://saavn.me/artists/${id}/songs?page=1`
+      );
+      const data = res.data.data.results;
       dispatch({ type: GET_ARTIST_SONGS_SUCESS, payload: data });
     } catch (error) {
       dispatch({ type: GET_ARTIST_SONGS_ERROR });
+    }
+  };
+  const ArtistSongsLoadMore = async (id, pageNumber) => {
+    dispatch({ type: GET_ARTIST_SONGS_BEGIN_LoadMore });
+    try {
+      const res = await axios.get(
+        `https://saavn.me/artists/${id}/songs?page=${pageNumber}`
+      );
+      const data = res.data.data.results;
+      dispatch({ type: GET_ARTIST_SONGS_SUCCESS_LoadMore, payload: data });
+    } catch (error) {
+      dispatch({ type: GET_ARTIST_SONGS_FAILED_LoadMore });
     }
   };
 
@@ -140,6 +153,7 @@ export const MusicProvider = ({ children }) => {
         SingleArtist,
         ArtistSongs,
         ArtistAlbums,
+        ArtistSongsLoadMore,
       }}
     >
       {children}

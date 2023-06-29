@@ -22,6 +22,7 @@ import {
   SpotifyLogin,
   SpotifyPlaylist,
   UserSinglePlaylist,
+  Error,
   CustomizedAccordions,
 } from "./Page";
 import {
@@ -64,6 +65,7 @@ const AnimateRoutes = () => {
         <Route path="/spotifyplaylist" element={<SpotifyPlaylist />} />
         <Route path="/userplaylist/:id" element={<UserSinglePlaylist />} />
         <Route path="/about" element={<CustomizedAccordions />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </AnimatePresence>
   );

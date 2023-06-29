@@ -20,6 +20,7 @@ import ImportPlaylist from "./ImportPlaylist";
 import SpotifyPlaylist from "./SpotifyPlaylist";
 import UserSinglePlaylist from "./UserSinglePlaylist";
 import CustomizedAccordions from "./HelpSupport";
+import Error from "./Error";
 export {
   Home,
   SingleAlbum,
@@ -43,4 +44,5 @@ export {
   SpotifyPlaylist,
   UserSinglePlaylist,
   CustomizedAccordions,
+  Error,
 };

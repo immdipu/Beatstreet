@@ -69,7 +69,7 @@ export const PlaylistProvider = ({ children }) => {
       .join("+");
     try {
       const response = await axios.get(
-        `https://saavn.me/search/songs?query=${formattedTerm}&page=1&limit=10`
+        `https://saavn.dev/search/songs?query=${formattedTerm}&page=1&limit=10`
       );
       const result = response.data.data.results;
       return result;

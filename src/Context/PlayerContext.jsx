@@ -91,7 +91,7 @@ export const PlayerProvider = ({ children }) => {
   const singleSong = async (id) => {
     dispatch({ type: PLAY_SONG_BEGIN });
     try {
-      const res = await axios.get(`https://saavn.me/songs?id=${id}`);
+      const res = await axios.get(`https://saavn.dev/songs?id=${id}`);
       const result = res.data.data[0];
       dispatch({ type: PLAY_SONG_SUCESS, payload: result });
     } catch (error) {
@@ -102,7 +102,7 @@ export const PlayerProvider = ({ children }) => {
   const SearchAll = async (text) => {
     dispatch({ type: NEW_SEARCH_BEGIN });
     try {
-      const res = await axios.get(`https://saavn.me/search/all?query=${text}`);
+      const res = await axios.get(`https://saavn.dev/search/all?query=${text}`);
       const result = res.data.data;
       dispatch({ type: SEARCH_SUCESS, payload: result });
     } catch (error) {
@@ -115,7 +115,7 @@ export const PlayerProvider = ({ children }) => {
     dispatch({ type: NEW_SEARCH_BEGIN });
     try {
       const res = await axios.get(
-        `https://saavn.me/search/songs?query=${keyword}}&page=1`
+        `https://saavn.dev/search/songs?query=${keyword}}&page=1`
       );
 
       const result = res.data.data.results;
@@ -129,7 +129,7 @@ export const PlayerProvider = ({ children }) => {
     dispatch({ type: NEW_SEARCH_BEGIN });
     try {
       const res = await axios.get(
-        `https://saavn.me/search/albums?query=${keyword}}&page=1`
+        `https://saavn.dev/search/albums?query=${keyword}}&page=1`
       );
 
       const result = res.data.data.results;
@@ -142,7 +142,7 @@ export const PlayerProvider = ({ children }) => {
   const PageChange = async (text, page) => {
     try {
       const res = await axios.get(
-        `https://saavn.me/search/songs?query=${text}&page=${page}`
+        `https://saavn.dev/search/songs?query=${text}&page=${page}`
       );
       const result = res.data.data.results;
       dispatch({ type: NEXT_SEARCHED_ARRAY, payload: result });
@@ -154,7 +154,7 @@ export const PlayerProvider = ({ children }) => {
   const AlbumsPageChange = async (text, page) => {
     try {
       const res = await axios.get(
-        `https://saavn.me/search/albums?query=${text}&page=${page}`
+        `https://saavn.dev/search/albums?query=${text}&page=${page}`
       );
       const result = res.data.data.results;
       dispatch({ type: NEXT_SEARCHED_ALBUMS, payload: result });
@@ -222,7 +222,7 @@ export const PlayerProvider = ({ children }) => {
       );
       const results = response.data.data;
       const ids = results.join();
-      const getSongs = await axios.get(`https://saavn.me/songs?id=${ids}`);
+      const getSongs = await axios.get(`https://saavn.dev/songs?id=${ids}`);
       const songs = getSongs.data.data;
       dispatch({ type: GET_RECENT_SONGS_SUCCESS, payload: songs });
     } catch (error) {
@@ -238,7 +238,7 @@ export const PlayerProvider = ({ children }) => {
       );
       const results = response.data.data;
       const ids = results.join();
-      const getSongs = await axios.get(`https://saavn.me/songs?id=${ids}`);
+      const getSongs = await axios.get(`https://saavn.dev/songs?id=${ids}`);
       const songs = getSongs.data.data;
       dispatch({ type: GET_FAVORITE_SONGS_SUCCESS, payload: songs });
     } catch (error) {
@@ -270,7 +270,7 @@ export const PlayerProvider = ({ children }) => {
       );
       const results = response.data.data;
       let Ids = results.songIds.join();
-      const getSongs = await axios.get(`https://saavn.me/songs?id=${Ids}`);
+      const getSongs = await axios.get(`https://saavn.dev/songs?id=${Ids}`);
       const songs = getSongs.data.data;
       let playlist = {
         name: results.name,

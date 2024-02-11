@@ -16,7 +16,7 @@ const UpNextSongs = ({ current_song }) => {
     let Ids = data.join();
     setLoading(true);
     try {
-      const getSongs = await axios.get(`https://saavn.me/songs?id=${Ids}`);
+      const getSongs = await axios.get(`https://saavn.dev/songs?id=${Ids}`);
       const songs = getSongs.data.data;
       setSongsarr(songs);
       setLoading(false);

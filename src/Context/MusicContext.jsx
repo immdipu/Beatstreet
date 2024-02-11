@@ -54,7 +54,7 @@ export const MusicProvider = ({ children }) => {
     dispatch({ type: GET_HOME_DATA_BEGIN });
     try {
       const response = await axios.get(
-        "https://saavn.me/modules?language=hindi,english,Bhojpuri"
+        "https://saavn.dev/modules?language=hindi,english,Bhojpuri"
       );
       let result = response.data.data;
       dispatch({ type: GET_HOME_DATA_SUCESS, payload: result });
@@ -66,7 +66,7 @@ export const MusicProvider = ({ children }) => {
   const singleAlbums = async (id) => {
     dispatch({ type: GET_SINGLE_ALBUM_BEGIN });
     try {
-      const response = await axios.get(`https://saavn.me/albums?id=${id}`);
+      const response = await axios.get(`https://saavn.dev/albums?id=${id}`);
       const result = response.data.data;
 
       dispatch({ type: GET_SINGLE_ALBUM_SUCESS, payload: result });
@@ -78,7 +78,7 @@ export const MusicProvider = ({ children }) => {
   const SinglePlaylist = async (id) => {
     dispatch({ type: GET_SINGLE_PLAYLIST_BEGIN });
     try {
-      const response = await axios.get(`https://saavn.me/playlists?id=${id}`);
+      const response = await axios.get(`https://saavn.dev/playlists?id=${id}`);
       const result = response.data.data;
       dispatch({ type: GET_SINGLE_PLAYLIST_SUCESS, payload: result });
     } catch (error) {
@@ -89,7 +89,7 @@ export const MusicProvider = ({ children }) => {
   const SingleArtist = async (id) => {
     dispatch({ type: GET_ARTIST_DETAILS_BEGIN });
     try {
-      const response = await axios.get(`https://saavn.me/artists?id=${id}`);
+      const response = await axios.get(`https://saavn.dev/artists?id=${id}`);
       const result = response.data.data;
       dispatch({ type: GET_ARTIST_DETAILS_SUCESS, payload: result });
     } catch (error) {
@@ -101,7 +101,7 @@ export const MusicProvider = ({ children }) => {
     dispatch({ type: GET_ARTIST_SONGS_BEGIN });
     try {
       const res = await axios.get(
-        `https://saavn.me/artists/${id}/songs?page=1`
+        `https://saavn.dev/artists/${id}/songs?page=1`
       );
       const data = res.data.data.results;
       dispatch({ type: GET_ARTIST_SONGS_SUCESS, payload: data });
@@ -113,7 +113,7 @@ export const MusicProvider = ({ children }) => {
     dispatch({ type: GET_ARTIST_SONGS_BEGIN_LoadMore });
     try {
       const res = await axios.get(
-        `https://saavn.me/artists/${id}/songs?page=${pageNumber}`
+        `https://saavn.dev/artists/${id}/songs?page=${pageNumber}`
       );
       const data = res.data.data.results;
       dispatch({ type: GET_ARTIST_SONGS_SUCCESS_LoadMore, payload: data });
@@ -126,7 +126,7 @@ export const MusicProvider = ({ children }) => {
     dispatch({ type: GET_ARTIST_ALBUMS_BEGIN });
     try {
       const res = await axios.get(
-        `https://saavn.me/artists/${id}/albums?page=1`
+        `https://saavn.dev/artists/${id}/albums?page=1`
       );
       const data = res.data.data.results;
       dispatch({ type: GET_ARTIST_ALBUMS_SUCESS, payload: data });

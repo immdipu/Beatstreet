@@ -16,7 +16,7 @@ const SongDownloader = ({ songId }) => {
 
   useEffect(() => {
     axios
-      .get(`https://saavn.me/songs?id=${songId}`)
+      .get(`https://saavn.dev/songs?id=${songId}`)
       .then((response) => {
         let result = response.data.data[0];
         setDownloadLink({

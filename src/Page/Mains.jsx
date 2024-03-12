@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useMusicContext } from "../Context/MusicContext";
 import { usePlayerContext } from "../Context/PlayerContext";
+import { ErrorBoundary } from "react-error-boundary";
 
 import { motion } from "framer-motion";
 import {
@@ -36,25 +37,33 @@ const Mains = () => {
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Trending
         </h1>
-        <TrendingAlbums />
+        <ErrorBoundary fallback={<div>Something went wrong</div>}>
+          <TrendingAlbums />
+        </ErrorBoundary>
       </section>
       <section className="w-full my-6">
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Latest Releases
         </h1>
-        <Albums />
+        <ErrorBoundary fallback={<div>Something went wrong</div>}>
+          <Albums />
+        </ErrorBoundary>
       </section>
       <section>
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Top Charts
         </h1>
-        <TopCharts />
+        <ErrorBoundary fallback={<div>Something went wrong</div>}>
+          <TopCharts />
+        </ErrorBoundary>
       </section>
       <section>
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Top Playlist
         </h1>
-        <TopPlaylists />
+        <ErrorBoundary fallback={<div>Something went wrong</div>}>
+          <TopPlaylists />
+        </ErrorBoundary>
       </section>
     </motion.div>
   );

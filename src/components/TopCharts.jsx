@@ -6,9 +6,11 @@ const TopCharts = () => {
   const { charts } = useMusicContext();
   return (
     <div className="flex gap-8 max-md:gap-3 overflow-scroll h-full">
-      {charts.map((item, index) => {
-        return <SingleChart {...item} key={index} />;
-      })}
+      {charts &&
+        charts.length > 0 &&
+        charts.map((item, index) => {
+          return <SingleChart {...item} key={index} />;
+        })}
     </div>
   );
 };

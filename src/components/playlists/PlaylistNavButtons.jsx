@@ -11,9 +11,9 @@ const PlaylistNavButtons = () => {
             Hindi
           </NavLink>
         </li>
-        <li className={"bg-lightBlue rounded-md text-neutral-500 px-3 py-1 "}>
+        {/* <li className={"bg-lightBlue rounded-md text-neutral-500 px-3 py-1 "}>
           <NavLink to="/topplaylists/Bhojpuri">Bhojpuri</NavLink>
-        </li>
+        </li> */}
         <li className={"bg-lightBlue rounded-md text-neutral-500 px-3 py-1 "}>
           <NavLink to="/topplaylists/English">English</NavLink>
         </li>

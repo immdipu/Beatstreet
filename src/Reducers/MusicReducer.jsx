@@ -31,13 +31,17 @@ const Music_reducer = (state, action) => {
     const data = action.payload;
     return {
       ...state,
-      albums: data.albums,
-      playlists: data.playlists,
-      charts: data.charts,
-      trendingAlbums: data.trending.albums,
-      trendingSongs: data.trending.songs,
+      albums: data?.albums,
+      playlists: data?.playlists,
+      charts: data?.charts,
+      trendingAlbums: data?.trending.albums,
+      trendingSongs: data?.trending.songs,
       homeData_loading: false,
     };
+  }
+
+  if (action.type === GET_HOMEDATA_ERROR) {
+    return { ...state, homeData_loading: false };
   }
 
   if (action.type === GET_SINGLE_ALBUM_BEGIN) {

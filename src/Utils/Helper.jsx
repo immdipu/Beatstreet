@@ -3,9 +3,9 @@ export const ImageFetch = (item) => {
   if (item.image) {
     let arrayLength = item.image.length;
     if (arrayLength > 0) {
-      return (imageLink = item.image[arrayLength - 1].link);
+      return (imageLink = item.image[arrayLength - 1].url);
     } else {
-      return (imageLink = item.image[0].link);
+      return (imageLink = item.image[0].url);
     }
   }
 };
@@ -27,9 +27,9 @@ export const AudioLinkSelector = (item) => {
   if (item.downloadUrl) {
     let arrayLength = item.downloadUrl.length;
     if (arrayLength > 0) {
-      return (audioLink = item.downloadUrl[arrayLength - 1].link);
+      return (audioLink = item.downloadUrl[arrayLength - 1].url);
     } else {
-      return (audioLink = item.downloadUrl[0].link);
+      return (audioLink = item.downloadUrl[0].url);
     }
   }
 };

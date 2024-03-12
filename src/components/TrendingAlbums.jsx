@@ -6,9 +6,11 @@ const TrendingAlbums = () => {
   const { trendingAlbums } = useMusicContext();
   return (
     <div className="flex gap-6 overflow-scroll h-full">
-      {trendingAlbums.map((item, index) => {
-        return <MusicCard key={index} {...item} />;
-      })}
+      {trendingAlbums &&
+        trendingAlbums.length > 0 &&
+        trendingAlbums.map((item, index) => {
+          return <MusicCard key={index} {...item} />;
+        })}
     </div>
   );
 };

@@ -26,8 +26,8 @@ const Artist = () => {
   } = useMusicContext();
   useEffect(() => {
     SingleArtist(id);
-    ArtistSongs(id);
-    ArtistAlbums(id);
+    // ArtistSongs(id);
+    // ArtistAlbums(id);
   }, [id]);
 
   if (loading) {
@@ -56,32 +56,36 @@ const Artist = () => {
         <div className="w-full flex gap-6 px-16 pt-7  max-md:flex-col relative overflow-hidden Artistbackground">
           <img
             src={ImageFetch(artist)}
-            className="rounded-xl absolute inset-0 -z-20 w-full blur-md h-full object-contain"
+            className="rounded-xl absolute inset-0 -z-20 w-full blur-md h-full object-cover"
             alt=""
           />
-          <img src={ImageFetch(artist)} className="rounded-xl h-72" alt="" />
+          <img
+            src={ImageFetch(artist)}
+            className="rounded-xl h-72 object-cover"
+            alt=""
+          />
 
           <div className="self-end flex flex-col gap-2 mb-9 max-md:items-center">
             <h2 className="text-white font-medium text-3xl my-2 flex items-center">
-              {artist.name}
-              {artist.isVerified && (
+              {artist?.name}
+              {artist?.isVerified && (
                 <VerifiedIcon color="primary" className="ml-1" />
               )}
             </h2>
             <div className="flex items-center gap-2">
               <p className="text-slate-300 text-xs capitalize">
-                {artist.dominantType}
+                {artist?.dominantType}
               </p>
               <span className="block bg-slate-400 w-1 h-1 rounded-full"></span>
 
               <p className="text-slate-300 text-xs">
-                {FollowersCount(artist.followerCount)} followers
+                {FollowersCount(artist?.followerCount)} followers
               </p>
             </div>
-            {artist.availableLanguages && (
+            {artist?.availableLanguages && (
               <div className="text-slate-200 text-xs flex flex-wrap max-md:justify-center">
                 Languages:
-                {artist.availableLanguages.map((item, index) => {
+                {artist?.availableLanguages.map((item, index) => {
                   return (
                     <span
                       className="px-1 text-slate-300 text-xs capitalize"
@@ -94,7 +98,7 @@ const Artist = () => {
               </div>
             )}
             <div className="flex gap-4 mt-3 ">
-              {artist.fb && (
+              {artist?.fb && (
                 <a href={artist.fb} target="_blank">
                   <FacebookIcon
                     sx={{ color: "white" }}
@@ -102,8 +106,8 @@ const Artist = () => {
                   />
                 </a>
               )}
-              {artist.twitter && (
-                <a href={artist.twitter} target="_blank">
+              {artist?.twitter && (
+                <a href={artist?.twitter} target="_blank">
                   <TwitterIcon
                     sx={{ color: "white" }}
                     className="opacity-70 hover:opacity-95 transition-all duration-700 ease-in-out"
@@ -134,8 +138,8 @@ const Artist = () => {
             </div>
           )}
 
-          {single_artist_songs && (
-            <SongsList songs={single_artist_songs} current={"Artist"} />
+          {artist?.topSongs && (
+            <SongsList songs={artist?.topSongs} current={"Artist"} />
           )}
           <section>
             {loadMoreSong ? (
@@ -154,14 +158,14 @@ const Artist = () => {
         </section>
 
         <section className="mt-12 mx-14 mb-14 max-md:mx-4">
-          {single_artist_albums && (
+          {artist?.topAlbums && (
             <h3 className="text-white text-lg ml-2 mb-4 max-md:font-semibold max-md:text-xl  ">
               Albums
             </h3>
           )}
-          {single_artist_albums && (
+          {artist?.topAlbums && (
             <div className="flex gap-6 overflow-scroll h-full">
-              {single_artist_albums.map((item, index) => {
+              {artist?.topAlbums.map((item, index) => {
                 return <MusicCard key={index} {...item} />;
               })}
             </div>

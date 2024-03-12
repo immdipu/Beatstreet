@@ -29,6 +29,7 @@ const SingleSongList = ({
   index,
   image,
   album,
+  artists,
   title,
   CURRENT = null,
   playlistId = null,
@@ -85,15 +86,21 @@ const SingleSongList = ({
       });
     }
   }, []);
-  function ArtistFormatter(text) {
-    let arr = text.split(",");
+  function ArtistFormatter(artistss) {
+    let arr = artistss.map((item) => item.name);
     return arr;
   }
+
+  function ArtistFormatterId(artistss) {
+    let arr = artistss.map((item) => item.id);
+    return arr;
+  }
+
   let primaryArtistsArr;
   let primaryArtistsIdArr;
-  if (primaryArtistsId && primaryArtistsId) {
-    primaryArtistsArr = ArtistFormatter(primaryArtists);
-    primaryArtistsIdArr = ArtistFormatter(primaryArtistsId);
+  if (artists && artists?.primary) {
+    primaryArtistsArr = ArtistFormatter(artists?.primary);
+    primaryArtistsIdArr = ArtistFormatterId(artists?.primary);
   }
 
   const open = Boolean(anchorEl);
@@ -138,7 +145,7 @@ const SingleSongList = ({
             />
           )}
           <img
-            src={image[1].link}
+            src={image[1].url}
             className={
               "w-14 rounded-lg object-cover " +
               (ImageLoading ? "hidden" : "block")
@@ -157,7 +164,7 @@ const SingleSongList = ({
             <p
               className="text-xs max-md:text-[10px]  opacity-90 mt-[2px] max-w-xs  overflow-hidden whitespace-nowrap text-ellipsis text-darkTextColor tracking-wide"
               dangerouslySetInnerHTML={{
-                __html: `${primaryArtists}`,
+                __html: `${primaryArtistsArr?.join(", ") || "unknown"}`,
               }}
             />
           </div>

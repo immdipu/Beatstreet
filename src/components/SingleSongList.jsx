@@ -7,11 +7,10 @@ import Popover from "@mui/material/Popover";
 import Skeleton from "@mui/material/Skeleton";
 import { useUserContext } from "../Context/UserContext";
 import DownloadLogo from "../components/downloader/DownloadLogo";
-import { LoginAlert, Favorite, CreatePlaylistModal } from "../components";
+import { Favorite, CreatePlaylistModal } from "../components";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton";
-import { motion, AnimatePresence } from "framer-motion";
-import { usePlaylistContext } from "../Context/ImportPlaylistContext";
+import { AnimatePresence } from "framer-motion";
 import SongHeader from "./song/SongHeader";
 const PopOverData = lazy(() => import("./song/popover/PopOverData"));
 const UserPlaylistPopOver = lazy(() =>
@@ -21,10 +20,7 @@ const UserPlaylistPopOver = lazy(() =>
 const SingleSongList = ({
   id,
   name,
-  primaryArtists,
-  primaryArtistsId = null,
   duration,
-  index,
   image,
   album,
   artists,
@@ -32,10 +28,8 @@ const SingleSongList = ({
   CURRENT = null,
   playlistId = null,
 }) => {
-  const { HandlePlaySong, getSinglePlaylist } = usePlayerContext();
-  const { login_success, User_id } = useUserContext();
-  const { RemovePlaylistSong } = usePlaylistContext();
-  const [alert, setAlert] = useState(false);
+  const { HandlePlaySong } = usePlayerContext();
+  const { login_success } = useUserContext();
   const [showPlaylist, setShowPlaylist] = useState(false);
   const [showCreatePlaylist, setshowCreatePlaylist] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -55,27 +49,8 @@ const SingleSongList = ({
     }, 210);
   }, []);
 
-  const HandleRemoveSongPlaylist = useCallback(() => {
-    if (login_success) {
-      let data = {
-        playlistId,
-        songId: id,
-      };
-      RemovePlaylistSong(User_id, data).then((res) => {
-        let data2 = {
-          playlistId,
-        };
-        getSinglePlaylist(User_id, data2);
-      });
-    }
-  }, []);
   function ArtistFormatter(artistss) {
     let arr = artistss.map((item) => item.name);
-    return arr;
-  }
-
-  function ArtistFormatterId(artistss) {
-    let arr = artistss.map((item) => item.id);
     return arr;
   }
 
@@ -93,11 +68,6 @@ const SingleSongList = ({
 
   return (
     <>
-      {alert && (
-        <div className="fixed top-28 left-1/2 max-md:left-0 max-md:scale-75 w-full">
-          <LoginAlert message="Login to download songs" alertClass={"failed"} />
-        </div>
-      )}
       <div className="relative">
         <ListItemButton
           sx={[

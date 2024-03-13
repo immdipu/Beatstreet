@@ -51,7 +51,7 @@ const MusicContext = React.createContext();
 export const MusicProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const BASEURL = import.meta.env.VITE_BASE_URL;
-  console.log("BASEURL", BASEURL);
+
   const homePageMusic = async () => {
     dispatch({ type: GET_HOME_DATA_BEGIN });
     try {
@@ -94,6 +94,7 @@ export const MusicProvider = ({ children }) => {
     try {
       const response = await axios.get(`${BASEURL}/artists?id=${id}`);
       const result = response.data.data || [];
+      console.log("result", result);
       dispatch({ type: GET_ARTIST_DETAILS_SUCESS, payload: result });
     } catch (error) {
       dispatch({ type: GET_ARTIST_DETAILS_ERROR });
@@ -103,10 +104,9 @@ export const MusicProvider = ({ children }) => {
   const ArtistSongs = async (id) => {
     dispatch({ type: GET_ARTIST_SONGS_BEGIN });
     try {
-      const res = await axios.get(
-        `https://saavn.dev/artists/${id}/songs?page=1`
-      );
-      const data = res.data.data.results || [];
+      const res = await axios.get(`${BASEURL}/artists/${id}/songs?page=1`);
+      const data = res.data.data.songs || [];
+      console.log("Artist song", data);
       dispatch({ type: GET_ARTIST_SONGS_SUCESS, payload: data });
     } catch (error) {
       dispatch({ type: GET_ARTIST_SONGS_ERROR });

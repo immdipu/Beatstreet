@@ -15,7 +15,7 @@ const ArtistSongs = ({ id }) => {
     isFetchingNextPage,
     hasNextPage,
   } = useInfiniteQuery({
-    queryKey: ["ArtistSongs"],
+    queryKey: ["ArtistSongs", id],
     initialPageParam: 1,
     queryFn: ({ pageParam }) => musicApi.ArtistSongs({ id, pageParam }),
     getNextPageParam: (lastPage, pages) => {

@@ -7,7 +7,7 @@ import VerifiedIcon from "@mui/icons-material/Verified";
 import { useQuery } from "@tanstack/react-query";
 import musicApi from "../Api/Api";
 import ArtistSongs from "../components/Artist/ArtistSongs";
-
+import ArtistAlbums from "../components/Artist/ArtistAlbums";
 import ClipLoader from "react-spinners/ClipLoader";
 import LanguagesList from "../components/Artist/LanguagesList";
 
@@ -24,7 +24,7 @@ const Artist = () => {
     single_artist_details: artist,
     single_artist_loading: loading,
     single_artist_songs,
-    ArtistAlbums,
+
     single_artist_albums,
     ArtistSongsLoadMore,
     loadMoreSong,
@@ -82,6 +82,9 @@ const Artist = () => {
         </div>
         <section className="mt-12 mx-12 max-md:mx-2">
           <ArtistSongs id={id} />
+        </section>
+        <section>
+          <ArtistAlbums id={id} />
         </section>
 
         {/* <section className="mt-12 mx-14 mb-14 max-md:mx-4">

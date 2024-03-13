@@ -22,6 +22,18 @@ const musicApi = {
       console.log(error);
     }
   },
+  ArtistAlbum: async ({ id, pageParam }) => {
+    try {
+      const response = await axios.get(
+        `${BASEURL}/artists/${id}/albums?page=${pageParam}`
+      );
+      const result = response.data.data || [];
+      return result?.albums;
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
   SingleSong: async (id) => {
     try {
       const res = await axios.get(`${BASEURL}/songs/${id}`);

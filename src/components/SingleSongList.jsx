@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, lazy, Suspense } from "react";
 import { usePlayerContext } from "../Context/PlayerContext";
 import ListItemButton from "@mui/material/ListItemButton";
 import { SongDurtionFormat } from "../Utils/Helper";
@@ -9,16 +9,16 @@ import { useUserContext } from "../Context/UserContext";
 import DownloadLogo from "../components/downloader/DownloadLogo";
 import { LoginAlert, Favorite, CreatePlaylistModal } from "../components";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import AlbumIcon from "@mui/icons-material/Album";
 import IconButton from "@mui/material/IconButton";
 import PersonIcon from "@mui/icons-material/Person";
 import { motion, AnimatePresence } from "framer-motion";
 import PopoverPlaylist from "./PopoverPlaylist";
-import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import { usePlaylistContext } from "../Context/ImportPlaylistContext";
 import { Link } from "react-router-dom";
+import SongHeader from "./song/SongHeader";
+const PopOverData = lazy(() => import("./song/popover/PopOverData"));
+const musicApi = import("../Api/Api");
 
 const SingleSongList = ({
   id,
@@ -46,23 +46,8 @@ const SingleSongList = ({
     SetImageLoading(false);
   }, []);
 
-  let timeoutId;
-  const HandleAlert = useCallback(() => {
-    setAlert(true);
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    timeoutId = setTimeout(() => {
-      setAlert(false);
-    }, 5000);
-  }, []);
-
   const handleClick = useCallback((event) => {
     setAnchorEl(event.currentTarget);
-  }, []);
-
-  const HandleAddtoPlaylist = useCallback(() => {
-    setShowPlaylist((prev) => !prev);
   }, []);
 
   const handleClose = useCallback(() => {
@@ -102,6 +87,10 @@ const SingleSongList = ({
     primaryArtistsArr = ArtistFormatter(artists?.primary);
     primaryArtistsIdArr = ArtistFormatterId(artists?.primary);
   }
+
+  const allArtist = Object.keys(artists).map((item) => {
+    return artists[item];
+  });
 
   const open = Boolean(anchorEl);
   const idd = open ? "simple-popover" : undefined;
@@ -153,21 +142,10 @@ const SingleSongList = ({
             onLoad={handleImageLoad}
             alt={name}
           />
-          <div className="ml-4 overflow-hidden max-md:w-1/2 max-xxs:w-1/3">
-            <h3
-              className="text-slate-200 max-md:font-medium text-sm  whitespace-nowrap text-ellipsis overflow-hidden w-[90%] max-xxs:w-2/4"
-              dangerouslySetInnerHTML={{
-                __html: `${name || title}`,
-              }}
-            />
-
-            <p
-              className="text-xs max-md:text-[10px]  opacity-90 mt-[2px] max-w-xs  overflow-hidden whitespace-nowrap text-ellipsis text-darkTextColor tracking-wide"
-              dangerouslySetInnerHTML={{
-                __html: `${primaryArtistsArr?.join(", ") || "unknown"}`,
-              }}
-            />
-          </div>
+          <SongHeader
+            title={name || title}
+            artist={primaryArtistsArr?.join(", ")}
+          />
 
           <div className="mr-36 max-md:mr-1 max-md:ml-8 max-md:hidden">
             {duration && (
@@ -179,18 +157,8 @@ const SingleSongList = ({
         </ListItemButton>
 
         <div className="absolute right-4 max-md:right-0 top-3 z-10 flex items-center gap-3 ">
-          {login_success && (
-            <div>
-              <Favorite songId={id} />
-            </div>
-          )}
-          {login_success ? (
-            <SongDownloader songId={id} />
-          ) : (
-            <div onClick={HandleAlert}>
-              <DownloadLogo />
-            </div>
-          )}
+          {login_success && <Favorite songId={id} />}
+          {login_success ? <SongDownloader songId={id} /> : <DownloadLogo />}
           <IconButton size="large" onClick={handleClick}>
             <MoreVertIcon className="text-slate-200 opacity-60" />
           </IconButton>
@@ -218,49 +186,18 @@ const SingleSongList = ({
               },
             }}
           >
-            {!playlistId && (
-              <ListItemButton
-                onClick={HandleAddtoPlaylist}
-                sx={{
-                  ":hover": {
-                    bgcolor: "#444",
-                  },
-                }}
-              >
-                <li className="flex gap-4 text-neutral-200 font-light text-sm">
-                  <PlaylistAddIcon /> <p>Add to Playlist</p>
-                </li>
-              </ListItemButton>
-            )}
-
-            {playlistId && (
-              <ListItemButton onClick={HandleRemoveSongPlaylist}>
-                <li className="flex gap-3 text-neutral-200 font-light text-sm">
-                  <DeleteIcon />
-                  <p>Remove from playlist</p>
-                </li>
-              </ListItemButton>
-            )}
-
-            {album && album.id && (
-              <Link to={`/album/${album?.id}`}>
-                <ListItemButton
-                  sx={{
-                    paddingRight: 5,
-                    ":hover": {
-                      bgcolor: "#444",
-                    },
-                  }}
-                >
-                  <li className="flex gap-3 text-neutral-200 font-light text-sm ">
-                    <div className="p-1  bg-lightBlue rounded-md">
-                      <AlbumIcon sx={{ fontSize: 20 }} />
-                    </div>
-                    <p>View Album</p>
-                  </li>
-                </ListItemButton>
-              </Link>
-            )}
+            <Suspense
+              fallback={<div className="text-neutral-200">Loading</div>}
+            >
+              <PopOverData
+                playlistId={playlistId}
+                setShowPlaylist={setShowPlaylist}
+                showPlaylist={showPlaylist}
+                songId={id}
+                albumId={album?.id}
+                artist={allArtist?.flat()}
+              />
+            </Suspense>
 
             {primaryArtistsArr &&
               primaryArtistsId &&

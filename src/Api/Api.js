@@ -12,8 +12,6 @@ const musicApi = {
     }
   },
   ArtistSongs: async ({ id, pageParam }) => {
-    console.log("pageParam", pageParam);
-    console.log("id", id);
     try {
       const response = await axios.get(
         `${BASEURL}/artists/${id}/songs?page=${pageParam}`
@@ -22,6 +20,15 @@ const musicApi = {
       return result?.songs;
     } catch (error) {
       console.log(error);
+    }
+  },
+  SingleSong: async (id) => {
+    try {
+      const res = await axios.get(`${BASEURL}/songs/${id}`);
+      const result = res.data.data[0];
+      return result;
+    } catch (error) {
+      console.log("error", error);
     }
   },
 };

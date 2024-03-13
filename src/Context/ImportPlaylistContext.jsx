@@ -40,7 +40,6 @@ export const PlaylistProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { User_id, login_success, sendNewPlaylist } = useUserContext();
   const { getAllPlaylist } = usePlayerContext();
-  const axiosInstance = axios.create({ withCredentials: true });
 
   const getSpotifyPlaylists = async (token) => {
     try {

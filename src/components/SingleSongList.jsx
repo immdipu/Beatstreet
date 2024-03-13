@@ -10,15 +10,13 @@ import DownloadLogo from "../components/downloader/DownloadLogo";
 import { LoginAlert, Favorite, CreatePlaylistModal } from "../components";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton";
-import PersonIcon from "@mui/icons-material/Person";
 import { motion, AnimatePresence } from "framer-motion";
-import PopoverPlaylist from "./PopoverPlaylist";
-import AddIcon from "@mui/icons-material/Add";
 import { usePlaylistContext } from "../Context/ImportPlaylistContext";
-import { Link } from "react-router-dom";
 import SongHeader from "./song/SongHeader";
 const PopOverData = lazy(() => import("./song/popover/PopOverData"));
-const musicApi = import("../Api/Api");
+const UserPlaylistPopOver = lazy(() =>
+  import("./song/popover/UserPlaylistPopOver")
+);
 
 const SingleSongList = ({
   id,
@@ -82,10 +80,8 @@ const SingleSongList = ({
   }
 
   let primaryArtistsArr;
-  let primaryArtistsIdArr;
   if (artists && artists?.primary) {
     primaryArtistsArr = ArtistFormatter(artists?.primary);
-    primaryArtistsIdArr = ArtistFormatterId(artists?.primary);
   }
 
   const allArtist = Object.keys(artists).map((item) => {
@@ -199,63 +195,17 @@ const SingleSongList = ({
               />
             </Suspense>
 
-            {primaryArtistsArr &&
-              primaryArtistsId &&
-              primaryArtistsArr.map((item, index) => {
-                return (
-                  <Link
-                    to={`/artist/${primaryArtistsIdArr[index].trim()}`}
-                    key={index}
-                  >
-                    <ListItemButton
-                      sx={{
-                        paddingRight: 5,
-                        ":hover": {
-                          bgcolor: "#444",
-                        },
-                      }}
-                    >
-                      <li className="flex gap-3 text-neutral-200 items-center font-light text-sm ">
-                        <div className="p-1  bg-lightBlue rounded-md">
-                          <PersonIcon sx={{ fontSize: 20 }} />
-                        </div>
-                        <p>{item}</p>
-                      </li>
-                    </ListItemButton>
-                  </Link>
-                );
-              })}
             <AnimatePresence>
               {showPlaylist && (
-                <motion.div
-                  initial={{ y: "90%" }}
-                  animate={{ y: "0%" }}
-                  exit={{
-                    opacity: 0,
-                    y: "90%",
-                  }}
-                  className="fixed rounded-t-2xl left-0 right-0 flex bg-opacity-80 backdrop-blur-sm items-center justify-center bottom-0 bg-[#282a2e]   text-neutral-200 text-sm px-2 py-2 rounded-md"
+                <Suspense
+                  fallback={<div className="text-neutral-200">Loading</div>}
                 >
-                  <div>
-                    <div className="w-full flex justify-center">
-                      <div
-                        className=" bg-neutral-400 rounded-full w-7 mt-1 h-1 mb-3 cursor-pointer"
-                        onClick={handleClose}
-                      ></div>
-                    </div>
-
-                    <ListItemButton
-                      className="flex gap-3 items-center"
-                      onClick={() => setshowCreatePlaylist(true)}
-                    >
-                      <div className="grid place-items-center bg-[#34343246] rounded-md p-2 scale-90">
-                        <AddIcon />
-                      </div>
-                      Create new playlist
-                    </ListItemButton>
-                    <PopoverPlaylist songId={id} handleclose={handleClose} />
-                  </div>
-                </motion.div>
+                  <UserPlaylistPopOver
+                    handleClose={handleClose}
+                    id={id}
+                    setshowCreatePlaylist={setshowCreatePlaylist}
+                  />
+                </Suspense>
               )}
               {showCreatePlaylist && (
                 <CreatePlaylistModal hidePlaylist={setshowCreatePlaylist} />

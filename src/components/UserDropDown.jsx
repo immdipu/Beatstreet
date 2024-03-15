@@ -6,27 +6,33 @@ import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useUserContext } from "../Context/UserContext";
+import { useSelector, useDispatch } from "react-redux";
+import { Logout } from "../redux/slice/userSlice";
 
-const UserDropDown = ({ imageRef }) => {
-  const { user_name, user_drop_down, HandleUserDropDown, logoutUser } =
-    useUserContext();
+const UserDropDown = ({
+  imageRef,
+  showDropDown,
+  setShowDropDown,
+  fullName = "",
+}) => {
   const menuRef = useRef();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const HangleClickOutside = (e) => {
       if (
-        user_drop_down &&
+        showDropDown &&
         e.target !== menuRef.current &&
         e.target !== imageRef.current
       ) {
-        HandleUserDropDown();
+        setShowDropDown(false);
       }
     };
     window.addEventListener("click", HangleClickOutside);
     return () => {
       window.removeEventListener("click", HangleClickOutside);
     };
-  }, [user_drop_down]);
+  }, [showDropDown]);
 
   return (
     <motion.div
@@ -46,7 +52,7 @@ const UserDropDown = ({ imageRef }) => {
     >
       <div className="mb-2">
         <h2 className="bg-neutral-700 text-center hover:text-white hover:text-lg transition-all duration-500  ease-linear text-neutral-50 py-1 bg-opacity-25  font-Poppins tracking-wider ">
-          Hello, {user_name.split(" ")[0]}
+          Hello, {fullName.split(" ")[0]}
         </h2>
       </div>
 
@@ -72,7 +78,9 @@ const UserDropDown = ({ imageRef }) => {
           <InfoIcon /> Help & Support
         </Link>
         <li
-          onClick={logoutUser}
+          onClick={() => {
+            dispatch(Logout());
+          }}
           className="flex gap-3 hover:bg-darkBlue duration-300 transition-colors ease-linear py-2 items-center px-3"
         >
           <ExitToAppIcon /> Sign Out

@@ -2,14 +2,19 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   showRightSidebar: false,
-  Messages: [],
-  AllChats: [],
+  SearchTerm: "",
 };
 
 export const PlayerSlice = createSlice({
-  name: "chat",
+  name: "playerslice",
   initialState,
   reducers: {
+    SetSearchTerm(state, action) {
+      state.SearchTerm = action.payload;
+    },
+    ClearSearchTerm(state) {
+      state.SearchTerm = "";
+    },
     ToggleRightSidebar: (state) => {
       state.showRightSidebar = !state.showRightSidebar;
     },
@@ -28,10 +33,5 @@ export const PlayerSlice = createSlice({
   },
 });
 
-export const {
-  ToggleRightSidebar,
-  LoadAllMessages,
-  AddNewMessage,
-  LoadAllChats,
-} = PlayerSlice.actions;
+export const { SetSearchTerm, ClearSearchTerm } = PlayerSlice.actions;
 export default PlayerSlice.reducer;

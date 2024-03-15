@@ -5,8 +5,13 @@ import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
 import { useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
+import { useDispatch, useSelector } from "react-redux";
+import { SetSearchTerm } from "../redux/slice/playerSlicer";
+
 const SearchBar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const searchTerm = useSelector((state) => state.searchTerm);
   const {
     SearchAll,
     inputValue,
@@ -23,16 +28,16 @@ const SearchBar = () => {
   }
 
   function handleInputChange(event) {
-    setInputValue(event.target.value);
-    clearTimeout(searchTimer);
-    setSearchTimer(
-      setTimeout(() => {
-        if (event.target.value !== "") {
-          SearchAll(inputValue, current_page_count);
-          inputRef.current.blur();
-        }
-      }, 2500)
-    );
+    dispatch(SetSearchTerm(event.target.value));
+    // clearTimeout(searchTimer);
+    // setSearchTimer(
+    //   setTimeout(() => {
+    //     if (event.target.value !== "") {
+    //       SearchAll(inputValue, current_page_count);
+    //       inputRef.current.blur();
+    //     }
+    //   }, 2500)
+    // );
   }
 
   function HandleSubmit(e) {
@@ -69,7 +74,7 @@ const SearchBar = () => {
       >
         <input
           type="text"
-          value={inputValue}
+          value={searchTerm}
           onChange={handleInputChange}
           onKeyDown={HandleSubmit}
           ref={inputRef}

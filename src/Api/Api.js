@@ -43,6 +43,15 @@ const musicApi = {
       console.log("error", error);
     }
   },
+  GlobalSearch: async (query) => {
+    try {
+      const res = await axios.get(`${BASEURL}/search?query=${query}`);
+      const result = res.data.data;
+      return result;
+    } catch (error) {
+      console.log("error", error);
+    }
+  },
 };
 
 export default musicApi;

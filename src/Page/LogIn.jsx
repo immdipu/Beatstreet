@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useLayoutEffect } from "react";
 import RippleButton from "ripple-effect-reactjs";
 import { Link, useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
@@ -11,6 +11,11 @@ import {
 } from "../components";
 import ClipLoader from "react-spinners/ClipLoader";
 import { motion } from "framer-motion";
+import userApis from "../Api/userApi";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { useSelector, useDispatch } from "react-redux";
+import { isLogged } from "../redux/slice/userSlice";
 
 const LogIn = () => {
   const { loginUser, login_loading, login_failed, login_success } =
@@ -20,22 +25,23 @@ const LogIn = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (login_success) {
-      navigate("/");
-    }
+  const Login = useMutation({
+    mutationFn: (data) => userApis.Login(data),
+    onSuccess: (data) => {
+      localStorage.setItem("token", data.token);
+
+      dispatch(isLogged(data.data.user));
+    },
   });
 
-  let alert = null;
-  if (login_failed) {
-    alert = (
-      <LoginAlert
-        message={"Login failed! wrong email or password"}
-        alertClass={"failed"}
-      />
-    );
-  }
+  useLayoutEffect(() => {
+    if (user.islogged) {
+      navigate("/");
+    }
+  }, [user.islogged]);
 
   const HandlePasswordVisibility = () => {
     setPasswordVisibility((prev) => !prev);
@@ -57,6 +63,7 @@ const LogIn = () => {
           emailRef.current.value
         );
       if (!emailValidation) {
+        toast.error("Please provide valid email address");
         return setValidateEmail(true);
       }
       setValidateEmail(false);
@@ -64,9 +71,12 @@ const LogIn = () => {
         email: emailRef.current.value,
         password: passwordRef.current.value,
       };
-      loginUser(data);
+      Login.mutate(data);
+    } else {
+      toast.error("Please fill in the form");
     }
   };
+
   return (
     <motion.div
       initial={{ x: "100vw" }}

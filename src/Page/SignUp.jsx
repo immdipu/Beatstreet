@@ -11,6 +11,8 @@ import ClipLoader from "react-spinners/ClipLoader";
 import PersonIcon from "@mui/icons-material/Person";
 import { useUserContext } from "../Context/UserContext";
 import { motion, AnimatePresence } from "framer-motion";
+import userApis from "../Api/userApi";
+import { useMutation } from "@tanstack/react-query";
 
 const SignUp = () => {
   const {
@@ -33,6 +35,9 @@ const SignUp = () => {
   const userNameRef = useRef(null);
   const passwordRef = useRef(null);
   const passwordConfirmRef = useRef(null);
+  const Signup = useMutation({
+    mutationFn: (data) => userApis.Register(data),
+  });
 
   useEffect(() => {
     if (verification_success) {
@@ -88,7 +93,7 @@ const SignUp = () => {
         password: passwordRef.current.value.trim(),
         passwordConfirm: passwordConfirmRef.current.value.trim(),
       };
-      signUpUser(data);
+      Signup.mutate(data);
     }
   };
 

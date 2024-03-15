@@ -43,6 +43,15 @@ const musicApi = {
       console.log("error", error);
     }
   },
+  MulitpleSongs: async (id) => {
+    try {
+      const res = await axios.get(`${BASEURL}/songs/${id}`);
+      const result = res.data.data;
+      return result;
+    } catch (error) {
+      console.log("error", error);
+    }
+  },
   GlobalSearch: async (query) => {
     try {
       const res = await axios.get(`${BASEURL}/search?query=${query}`);

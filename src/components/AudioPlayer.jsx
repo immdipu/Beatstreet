@@ -15,6 +15,9 @@ import RepeatOneIcon from "@mui/icons-material/RepeatOne";
 import Favorite from "./Favorite";
 import UpNextSongs from "./UpNextSongs";
 import { AnimatePresence, motion } from "framer-motion";
+import { useSelector } from "react-redux";
+import { useMutation } from "@tanstack/react-query";
+import userApis from "../Api/userApi";
 
 const AudioPlayer = () => {
   const {
@@ -25,12 +28,16 @@ const AudioPlayer = () => {
     singleSong,
   } = usePlayerContext();
   const { sendRecentPlayedSong, User_id, login_success } = useUserContext();
+  const user = useSelector((state) => state.user);
   const [repeatOne, setRepeatOne] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
   const [showUpNext, setShowUpNext] = useState(false);
   const songNameContainer = useRef(null);
   const [coverRadius, setCoverRadius] = useState(false);
   const songName = useRef(null);
+  const addRecentSong = useMutation({
+    mutationFn: (songId) => userApis.addRecentSong(songId),
+  });
 
   useEffect(() => {
     const songNameCon = songNameContainer.current;
@@ -45,11 +52,8 @@ const AudioPlayer = () => {
   }, [audio_playing, current_song]);
 
   useEffect(() => {
-    if (current_song.id && login_success) {
-      let data = {
-        songId: current_song.id,
-      };
-      sendRecentPlayedSong(User_id, data);
+    if (current_song.id && user.islogged) {
+      addRecentSong.mutate(current_song.id);
     }
   }, [current_song]);
 

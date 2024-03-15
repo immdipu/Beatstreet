@@ -1,12 +1,29 @@
 import React from "react";
 import { SpotifyImageFetch } from "./../Utils/Helper";
-import { usePlaylistContext } from "../Context/ImportPlaylistContext";
-
-const SingleSpotifylist = ({ image, name, songs, id }) => {
-  const { token, getSpotifyPlaylistSongs } = usePlaylistContext();
+import musicApi from "./../Api/Api";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
+const SingleSpotifylist = ({ image, name, songs, id, token }) => {
+  const getAllSongsFromSavan = useMutation({
+    mutationFn: ({ token, id, name, image }) =>
+      musicApi.getSpotifyPlaylistSongs({ token, id, name, image }),
+    onSuccess: (data) => {
+      if (data?.response?.status === 400) {
+        return toast.error(
+          data?.response?.data?.message || "Something Went Wrong"
+        );
+      }
+      toast.success(data.message || "Playlist Imported Successfully");
+      console.log("getspotifiylistsongs response", data);
+    },
+    onError: (error) => {
+      toast.error(error.message || "Something Went Wrong");
+    },
+  });
 
   const HandleClick = () => {
-    getSpotifyPlaylistSongs(token, id, name, image);
+    getAllSongsFromSavan.mutate({ token, id, name, image });
   };
 
   return (
@@ -24,15 +41,20 @@ const SingleSpotifylist = ({ image, name, songs, id }) => {
           </div>
         )}
         <div className="">
-          <h3 className="text-neutral-200 tracking-wide text-lg">{name}</h3>
+          <h3 className="text-neutral-200 tracking-wide text-base ">{name}</h3>
           <p className="text-neutral-400 text-xs mt-1">{songs} songs</p>
         </div>
       </div>
       <button
         onClick={HandleClick}
-        className="bg-sky-700 px-3 py-1 rounded-md hover:bg-sky-600 duration-300 transition-all ease-linear  w-fit h-fit float-right"
+        disabled={getAllSongsFromSavan.isLoading}
+        className="bg-sky-700 text-white px-3 py-1 rounded-md hover:bg-sky-600 duration-300 transition-all ease-linear  w-fit h-fit float-right"
       >
-        Import
+        {getAllSongsFromSavan.isLoading ? (
+          <ClipLoader size={15} color="#fff" speedMultiplier={2} />
+        ) : (
+          "Import"
+        )}
       </button>
     </div>
   );

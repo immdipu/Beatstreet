@@ -41,25 +41,6 @@ export const PlaylistProvider = ({ children }) => {
   const { User_id, login_success, sendNewPlaylist } = useUserContext();
   const { getAllPlaylist } = usePlayerContext();
 
-  const getSpotifyPlaylists = async (token) => {
-    try {
-      dispatch({ type: GET_USER_SPOTIFY_PLAYLIST_BEGIN, payload: token });
-      const response = await axios.get(
-        "https://api.spotify.com/v1/me/playlists",
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-            "Content-Type": "apllication/json",
-          },
-        }
-      );
-      const result = response.data.items;
-      dispatch({ type: GET_USER_SPOTIFY_PLAYLIST_SUCCESS, payload: result });
-    } catch (error) {
-      dispatch({ type: GET_USER_SPOTIFY_PLAYLIST_FAILED });
-    }
-  };
-
   const getSongFromSaavn = async (term) => {
     let formattedTerm = term
       .replace(/[^\w\s]/gi, " ")
@@ -231,7 +212,7 @@ export const PlaylistProvider = ({ children }) => {
     <playlistContext.Provider
       value={{
         ...state,
-        getSpotifyPlaylists,
+
         getSpotifyPlaylistSongs,
         createPlaylist,
         AddSongToPlayllist,

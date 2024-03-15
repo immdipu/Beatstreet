@@ -8,7 +8,6 @@ import userApis from "../Api/userApi";
 import { useQuery } from "@tanstack/react-query";
 
 const RecentSongs = () => {
-  const { login_success, User_id } = useUserContext();
   const user = useSelector((state) => state.user);
 
   const { data, isLoading, isError } = useQuery({

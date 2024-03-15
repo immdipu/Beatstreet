@@ -6,28 +6,33 @@ import { LoadingSpinner, SongsList } from "../components";
 import { Logo, LogoText } from "../components";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import RippleButton from "ripple-effect-reactjs";
+import { useQuery } from "@tanstack/react-query";
+import userApis from "../Api/userApi";
+import { useSelector } from "react-redux";
 
 const UserSinglePlaylist = () => {
   let { id } = useParams();
-  const {
-    getSinglePlaylist,
-    user_single_playlist_loading: loading,
-    user_single_playlist,
-  } = usePlayerContext();
-  const { User_id, login_success } = useUserContext();
-  useEffect(() => {
-    let data = {
-      playlistId: id,
-    };
-    if (login_success) {
-      getSinglePlaylist(User_id, data);
-    }
-  }, [id]);
 
-  if (loading) {
+  const user = useSelector((state) => state.user);
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["userSinglePlaylist", id],
+    queryFn: () => userApis.getSinglePlaylist(id),
+  });
+
+  if (isLoading) {
     return (
       <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
         <LoadingSpinner size={80} />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
+        <p className="text-neutral-300">
+          Sorry, we couldn't fetch your playlist
+        </p>
       </div>
     );
   }
@@ -52,9 +57,9 @@ const UserSinglePlaylist = () => {
       <section className=" px-14 max-md:px-2 overflow-auto pb-8">
         <section className="flex justify-between items-center pr-6">
           <h3 className="text-neutral-50  text-2xl flex items-center max-md:text-xl px-4 mb-5">
-            {user_single_playlist.name} -{" "}
+            {data?.name} -{" "}
             <span className="text-sm text-neutral-300">
-              {user_single_playlist.songs.length} songs
+              {data?.songs?.length} songs
             </span>
           </h3>
           <div
@@ -71,11 +76,21 @@ const UserSinglePlaylist = () => {
           </div>
         </section>
 
-        <SongsList
-          songs={user_single_playlist.songs}
-          current={"Userplaylist"}
-          playlistId={id}
-        />
+        {data?.songs && (
+          <SongsList
+            songs={data?.songs}
+            current={"Userplaylist"}
+            playlistId={id}
+          />
+        )}
+
+        {data && data?.songs && data?.songs.length === 0 && (
+          <div className="w-full flex justify-center items-center mt-10">
+            <p className="text-neutral-400 w-1/2 text-center max-md:w-full max-md:px-4">
+              You haven't added any song to this playlist yet.
+            </p>
+          </div>
+        )}
       </section>
     </div>
   );

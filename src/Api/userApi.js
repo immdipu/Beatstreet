@@ -113,10 +113,10 @@ const userApis = {
       console.log(error);
     }
   },
-  getAllPlaylist: async (id) => {
+  getAllPlaylist: async () => {
     try {
       const response = await axiosInstance().get(
-        `/beatstreet/api/users/allplaylist/${id}`
+        `/beatstreet/api/users/allplaylist`
       );
       const results = response.data.data;
       return results;
@@ -124,16 +124,24 @@ const userApis = {
       console.log(error);
     }
   },
-  getSinglePlaylist: async (id, data) => {
+  getSinglePlaylist: async (id) => {
     try {
-      const response = await axiosInstance().post(
-        `/beatstreet/api/users/getsingleplaylist/${id}`,
-        data
-      );
-      const results = response.data.data;
-      return results;
+      const response = await axiosInstance()
+        .get(`/beatstreet/api/users/getsingleplaylist/${id}`)
+        .then(async (res) => {
+          if (res?.data?.data?.songIds && res?.data?.data?.songIds.length > 0) {
+            const ids = res.data.data.songIds.join(",");
+
+            const songs = await musicApi.MulitpleSongs(ids);
+            return {
+              ...res.data.data,
+              songs,
+            };
+          }
+        });
+      return response;
     } catch (error) {
-      console.log(error);
+      return error;
     }
   },
   addRecentSong: async (id) => {
@@ -150,14 +158,16 @@ const userApis = {
       console.log(error);
     }
   },
-  addNewPlaylist: async (id, data) => {
+  addNewPlaylist: async (data) => {
     try {
-      await axiosInstance().post(
-        `/beatstreet/api/users/createplaylist/${id}`,
+      const res = await axiosInstance().post(
+        `/beatstreet/api/users/addnewplaylist`,
         data
       );
+      const result = res.data;
+      return result;
     } catch (error) {
-      console.log(error);
+      return error;
     }
   },
 };

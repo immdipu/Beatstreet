@@ -11,23 +11,19 @@ import { useUserContext } from "../Context/UserContext";
 import AddIcon from "@mui/icons-material/Add";
 import ListItemButton from "@mui/material/ListItemButton";
 import { AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
+import userApis from "../Api/userApi";
 
 const UserPlaylists = () => {
-  const { User_id, login_success } = useUserContext();
-  const {
-    getAllPlaylist,
-    all_playlists_loading: loading,
-    all_playlists,
-  } = usePlayerContext();
   const [showCreatePlaylistModal, setShowCreatePlaylistModal] = useState(false);
+  const user = useSelector((state) => state.user);
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["getAllPlaylist"],
+    queryFn: () => userApis.getAllPlaylist(),
+  });
 
-  useEffect(() => {
-    if (login_success) {
-      getAllPlaylist(User_id);
-    }
-  }, []);
-
-  if (!login_success) {
+  if (!user.islogged) {
     return (
       <div className="flex justify-center h-fit overflow-auto items-center mt-24">
         <p className="text-neutral-400 w-1/2 text-center max-md:w-full max-md:px-4">
@@ -40,6 +36,8 @@ const UserPlaylists = () => {
       </div>
     );
   }
+
+  console.log(data);
 
   return (
     <div className="overflow-auto pl-7 max-md:pl-2 mt-8 ">
@@ -68,19 +66,37 @@ const UserPlaylists = () => {
         <h3 className="text-xl text-neutral-200 mb-2 pl-4 mt-4">
           Your Playlists
         </h3>
-        {loading ? (
+        {isLoading && (
           <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
-            <LoadingSpinner size={80} />
+            <LoadingSpinner size={30} />
           </div>
-        ) : (
-          <>
-            {all_playlists.length !== 0
-              ? all_playlists.map((item, index) => (
-                  <SinglePlaylistCard key={index} {...item} />
-                ))
-              : null}
-          </>
         )}
+
+        {isError && (
+          <div className="w-full flex justify-center items-center mt-10">
+            <p className="text-neutral-400 w-1/2 text-center max-md:w-full max-md:px-4">
+              Sorry, we couldn't fetch your playlist at this time.
+              <br />
+              <br />
+              Please try again later.
+            </p>
+          </div>
+        )}
+
+        {data && data.length === 0 && (
+          <div className="w-full flex justify-center items-center mt-10">
+            <p className="text-neutral-400 w-1/2 text-center max-md:w-full max-md:px-4">
+              You haven't created any playlist yet.
+            </p>
+          </div>
+        )}
+
+        <>
+          {data.length > 0 &&
+            data.map((item, index) => (
+              <SinglePlaylistCard key={index} {...item} />
+            ))}
+        </>
       </section>
       <AnimatePresence>
         {showCreatePlaylistModal && (

@@ -2,7 +2,8 @@ import React from "react";
 
 const SpotifyLogin = () => {
   // const redirectUrl = "http://localhost:5173/spotifyplaylist";
-  const redirectUrl = "https://beatstreet.netlify.app/spotifyplaylist";
+  // const redirectUrl = "https://beatstreet.netlify.app/spotifyplaylist";
+  const redirectUrl = import.meta.env.VITE_SPOTIFY_REDIRECT_URL;
   const apiUrl = "https://accounts.spotify.com/authorize";
   const scope = [
     "playlist-read-private",

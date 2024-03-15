@@ -134,16 +134,16 @@ const musicApi = {
                         if (newTrack) {
                           resolve(newTrack.id);
                           toast.success(
-                            `Song found for ${data.name} by ${data.artistName}`,
+                            ` ${data.name} by ${data.artistName} imported successfully`,
                             {
                               position: "top-left",
                             }
                           );
                         } else {
                           toast.error(
-                            `No song found for ${data.name} by ${data.artistName}`,
+                            `${data.name} by ${data.artistName} not found`,
                             {
-                              position: "top-left",
+                              position: "top-right",
                             }
                           );
                           resolve(null);
@@ -153,14 +153,14 @@ const musicApi = {
                         console.log(error);
                         resolve(null);
                       });
-                  }, 2000);
+                  }, 3000);
                 });
               }
             });
             Promise.all(promises).then(async (data) => {
               newplayList = data.filter((item) => item !== null);
               let playlist = {
-                name: name,
+                name: name ?? Math.random().toString(36).substring(7),
                 image: image,
                 songsIds: newplayList,
               };

@@ -14,8 +14,9 @@ const SingleSpotifylist = ({ image, name, songs, id, token }) => {
           data?.response?.data?.message || "Something Went Wrong"
         );
       }
-      toast.success(data.message || "Playlist Imported Successfully");
-      console.log("getspotifiylistsongs response", data);
+      toast.success(data.message || "Playlist Imported Successfully", {
+        position: "top-center",
+      });
     },
     onError: (error) => {
       toast.error(error.message || "Something Went Wrong");
@@ -25,6 +26,8 @@ const SingleSpotifylist = ({ image, name, songs, id, token }) => {
   const HandleClick = () => {
     getAllSongsFromSavan.mutate({ token, id, name, image });
   };
+
+  console.log("loading state", getAllSongsFromSavan.isPending);
 
   return (
     <div className="flex overflow-hidden cursor-pointer hover:bg-lightBlue rounded-md items-center pr-3">
@@ -47,11 +50,13 @@ const SingleSpotifylist = ({ image, name, songs, id, token }) => {
       </div>
       <button
         onClick={HandleClick}
-        disabled={getAllSongsFromSavan.isLoading}
+        disabled={getAllSongsFromSavan.isPending}
         className="bg-sky-700 text-white px-3 py-1 rounded-md hover:bg-sky-600 duration-300 transition-all ease-linear  w-fit h-fit float-right"
       >
-        {getAllSongsFromSavan.isLoading ? (
-          <ClipLoader size={15} color="#fff" speedMultiplier={2} />
+        {getAllSongsFromSavan.isPending ? (
+          <div className="w-12">
+            <ClipLoader size={17} color="#fff" speedMultiplier={3} />
+          </div>
         ) : (
           "Import"
         )}

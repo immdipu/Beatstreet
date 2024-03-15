@@ -6,8 +6,6 @@ import {
   LoadingSpinner,
   CreatePlaylistModal,
 } from "../components";
-import { usePlayerContext } from "../Context/PlayerContext";
-import { useUserContext } from "../Context/UserContext";
 import AddIcon from "@mui/icons-material/Add";
 import ListItemButton from "@mui/material/ListItemButton";
 import { AnimatePresence } from "framer-motion";
@@ -36,8 +34,6 @@ const UserPlaylists = () => {
       </div>
     );
   }
-
-  console.log(data);
 
   return (
     <div className="overflow-auto pl-7 max-md:pl-2 mt-8 ">
@@ -92,7 +88,8 @@ const UserPlaylists = () => {
         )}
 
         <>
-          {data.length > 0 &&
+          {data &&
+            data.length > 0 &&
             data.map((item, index) => (
               <SinglePlaylistCard key={index} {...item} />
             ))}

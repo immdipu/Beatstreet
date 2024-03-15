@@ -76,7 +76,7 @@ const UserSinglePlaylist = () => {
           </div>
         </section>
 
-        {data?.songs && (
+        {data && data?.songs.length > 0 && (
           <SongsList
             songs={data?.songs}
             current={"Userplaylist"}

@@ -62,10 +62,10 @@ const userApis = {
       console.log(error);
     }
   },
-  RemovePlaylistSong: async (id, data) => {
+  RemovePlaylistSong: async (data) => {
     try {
-      const res = await axiosInstance.post(
-        `${USER_BASE_URL}/api/users/removesongsplaylist/${id}`,
+      const res = await axiosInstance().post(
+        `/beatstreet/api/users/removesongsplaylist`,
         data
       );
       const results = res.data;
@@ -137,6 +137,11 @@ const userApis = {
               ...res.data.data,
               songs,
             };
+          } else {
+            return {
+              ...res.data.data,
+              songs: [],
+            };
           }
         });
       return response;
@@ -162,6 +167,18 @@ const userApis = {
     try {
       const res = await axiosInstance().post(
         `/beatstreet/api/users/addnewplaylist`,
+        data
+      );
+      const result = res.data;
+      return result;
+    } catch (error) {
+      return error;
+    }
+  },
+  addSongToPlaylist: async (data) => {
+    try {
+      const res = await axiosInstance().post(
+        `/beatstreet/api/users/addsongsplaylist`,
         data
       );
       const result = res.data;

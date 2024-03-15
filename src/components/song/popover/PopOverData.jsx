@@ -7,6 +7,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import { useMutation } from "@tanstack/react-query";
 import userApis from "../../../Api/userApi";
 import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
 const PopOverData = ({
   showPlaylist,
@@ -18,12 +19,16 @@ const PopOverData = ({
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const RemoveSongFromPlaylist = useMutation({
     mutationFn: () =>
-      userApis.RemovePlaylistSong(userId, {
+      userApis.RemovePlaylistSong({
         playlistId,
         songId,
       }),
+    onSuccess: () => {
+      queryClient.invalidateQueries("userSinglePlaylist");
+    },
   });
 
   const HandleAddtoPlaylist = useCallback(() => {
@@ -56,7 +61,7 @@ const PopOverData = ({
           Icon={DeleteIcon}
           title="Remove from playlist"
           onClick={() => {
-            RemoveSongFromPlaylist.mutate();
+            RemoveSongFromPlaylist.mutate(playlistId, songId);
           }}
         />
       )}

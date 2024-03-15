@@ -3,26 +3,44 @@ import ListItemButton from "@mui/material/ListItemButton";
 import RippleButton from "ripple-effect-reactjs";
 import { motion } from "framer-motion";
 import { usePlaylistContext } from "../Context/ImportPlaylistContext";
-import { useUserContext } from "../Context/UserContext";
-import { usePlayerContext } from "../Context/PlayerContext";
+import toast from "react-hot-toast";
+import { ClipLoader } from "react-spinners";
+import { useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+import userApis from "../Api/userApi";
 
 const CreatePlaylistModal = ({ hidePlaylist }) => {
-  const { createPlaylist } = usePlaylistContext();
-  const { login_success, User_id } = useUserContext();
-  const { getAllPlaylist } = usePlayerContext();
+  const queryClient = useQueryClient();
   const playlistname = useRef(null);
+  const createNewPlaylist = useMutation({
+    mutationFn: (data) => userApis.addNewPlaylist(data),
+    onSuccess: (data) => {
+      if (data?.response?.status === 400) {
+        return toast.error(
+          data?.response?.data?.message || "Something Went Wrong"
+        );
+      }
+      toast.success(data.message || "Playlist Created Successfully", {
+        position: "top-center",
+      });
+      queryClient.invalidateQueries("getAllPlaylist");
+      hidePlaylist(false);
+    },
+    onError: (error) => {
+      toast.error(error.message || "Something Went Wrong");
+    },
+  });
 
   const HandleCreate = () => {
     if (playlistname.current.value == "") {
-      document.querySelector(".alert").style.display = "block";
+      toast.error("Name can't be empty");
     } else {
-      document.querySelector(".alert").style.display = "none";
-      if (login_success) {
-        createPlaylist(User_id, playlistname.current.value.trim()).then(() => {
-          getAllPlaylist(User_id);
-          hidePlaylist(false);
-        });
-      }
+      let data = {
+        name: playlistname.current.value.trim(),
+        image: "",
+        songsIds: [],
+      };
+      createNewPlaylist.mutate(data);
     }
   };
 
@@ -59,10 +77,17 @@ const CreatePlaylistModal = ({ hidePlaylist }) => {
 
           <RippleButton width={30} radius={6} color={"#060b1c"} speed={500}>
             <button
+              disabled={createNewPlaylist.isPending}
               className="text-neutral-200 font-extralight select-none text-sm  tracking-wider rounded-md bg-darkBlue px-4 py-2"
               onClick={HandleCreate}
             >
-              Create
+              {createNewPlaylist.isPending ? (
+                <div className="w-12">
+                  <ClipLoader size={17} color="#fff" speedMultiplier={3} />
+                </div>
+              ) : (
+                "Create"
+              )}
             </button>
           </RippleButton>
         </div>

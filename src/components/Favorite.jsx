@@ -1,38 +1,41 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, memo } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import { useUserContext } from "../Context/UserContext";
-import { usePlayerContext } from "../Context/PlayerContext";
+import userApis from "../Api/userApi";
+import { useMutation } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
+import {
+  isFavorite,
+  saveFavoriteToLocal,
+  removeFavoriteFromLocal,
+} from "../Utils/Helper";
 
-const Favorite = ({ songId }) => {
-  const { sendFavoriteSong, User_id, login_success } = useUserContext();
-  const { favorites_songs, getFavoritesSongs } = usePlayerContext();
-  const [fav, setFav] = useState(false);
+const Favorite = memo(({ songId }) => {
+  const [fav, setFav] = useState(isFavorite(songId));
+  const user = useSelector((state) => state.user);
 
-  useEffect(() => {
-    if (login_success && favorites_songs && favorites_songs.length > 0) {
-      const isFavExist = () => {
-        for (let i = 0; i < favorites_songs.length; i++) {
-          if (favorites_songs[i].id === songId) {
-            return setFav(true);
-          }
-        }
-        return setFav(false);
-      };
-      isFavExist();
-    }
-  }, [songId]);
+  const addFavoriteSong = useMutation({
+    mutationFn: (data) => userApis.addFavoriteSong(data),
+    onSuccess: () => {
+      if (fav) {
+        removeFavoriteFromLocal(songId);
+      } else {
+        saveFavoriteToLocal(songId);
+      }
+      setFav(!fav);
+    },
+    onerror: () => {
+      toast.error("Something went wrong");
+    },
+  });
 
   const HandleFavorite = () => {
-    let data = {
-      songId,
-    };
-    if (login_success) {
-      sendFavoriteSong(User_id, data).then(() => {
-        getFavoritesSongs(User_id);
-      });
+    if (user.islogged) {
+      addFavoriteSong.mutate(songId);
+    } else {
+      toast.error("Please login to add song to favorite");
     }
-    setFav((prev) => !prev);
   };
 
   return (
@@ -47,6 +50,6 @@ const Favorite = ({ songId }) => {
       )}
     </div>
   );
-};
+});
 
 export default Favorite;

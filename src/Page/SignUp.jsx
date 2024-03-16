@@ -1,6 +1,6 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState } from "react";
 import RippleButton from "ripple-effect-reactjs";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { EyeNotVisibility, EyeVisibility, UserVerify } from "../components";
 import ClipLoader from "react-spinners/ClipLoader";
 import PersonIcon from "@mui/icons-material/Person";

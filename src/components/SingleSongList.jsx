@@ -5,12 +5,12 @@ import { SongDurtionFormat } from "../Utils/Helper";
 import { SongDownloader } from "../components";
 import Popover from "@mui/material/Popover";
 import Skeleton from "@mui/material/Skeleton";
-import { useUserContext } from "../Context/UserContext";
 import DownloadLogo from "../components/downloader/DownloadLogo";
 import { Favorite, CreatePlaylistModal } from "../components";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import IconButton from "@mui/material/IconButton";
 import { AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
 import SongHeader from "./song/SongHeader";
 const PopOverData = lazy(() => import("./song/popover/PopOverData"));
 const UserPlaylistPopOver = lazy(() =>
@@ -28,8 +28,8 @@ const SingleSongList = ({
   CURRENT = null,
   playlistId = null,
 }) => {
+  const user = useSelector((state) => state.user);
   const { HandlePlaySong } = usePlayerContext();
-  const { login_success } = useUserContext();
   const [showPlaylist, setShowPlaylist] = useState(false);
   const [showCreatePlaylist, setshowCreatePlaylist] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -123,8 +123,8 @@ const SingleSongList = ({
         </ListItemButton>
 
         <div className="absolute right-4 max-md:right-0 top-3 z-10 flex items-center gap-3 ">
-          {login_success && <Favorite songId={id} />}
-          {login_success ? <SongDownloader songId={id} /> : <DownloadLogo />}
+          {user.islogged && <Favorite songId={id} />}
+          {user.islogged ? <SongDownloader songId={id} /> : <DownloadLogo />}
           <IconButton size="large" onClick={handleClick}>
             <MoreVertIcon className="text-slate-200 opacity-60" />
           </IconButton>

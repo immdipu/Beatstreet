@@ -53,3 +53,33 @@ export const SongDurtionFormat = (duration) => {
   const formatSeconds = seconds.toString().padStart(2, 0);
   return `${formatMinutes}:${formatSeconds}`;
 };
+
+export const saveFavoriteToLocal = (songId) => {
+  let favorites = JSON.parse(localStorage.getItem("favoritesSongs"));
+  if (favorites === null) {
+    favorites = [songId];
+  } else {
+    favorites = favorites.filter((item) => item !== songId);
+    favorites.push(songId);
+  }
+  localStorage.setItem("favoritesSongs", JSON.stringify(favorites));
+};
+
+export const removeFavoriteFromLocal = (songId) => {
+  let favorites = JSON.parse(localStorage.getItem("favoritesSongs"));
+  if (favorites === null) {
+    return;
+  } else {
+    favorites = favorites.filter((item) => item !== songId);
+  }
+  localStorage.setItem("favoritesSongs", JSON.stringify(favorites));
+};
+
+export const isFavorite = (songId) => {
+  let favorites = JSON.parse(localStorage.getItem("favoritesSongs"));
+  if (favorites === null) {
+    return false;
+  } else {
+    return favorites.includes(songId);
+  }
+};

@@ -91,17 +91,14 @@ const userApis = {
     }
   },
   getFavoritesSongs: async () => {
-    try {
-      const response = await axiosInstance().get(
-        `/beatstreet/api/users/favoritesongs`
-      );
-      const results = response.data.data;
-      const ids = results.join(",");
-      const getSongs = await musicApi.MulitpleSongs(ids);
-      return getSongs;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await axiosInstance().get(
+      `/beatstreet/api/users/favoritesongs`
+    );
+    const results = response.data.data;
+    const ids = results.join(",");
+
+    const getSongs = await musicApi.MulitpleSongs(ids);
+    return getSongs;
   },
   getAllPlaylist: async () => {
     try {
@@ -147,11 +144,10 @@ const userApis = {
     }
   },
   addFavoriteSong: async (id) => {
-    try {
-      await axiosInstance().get(`/beatstreet/api/users/favoritesongs/${id}`);
-    } catch (error) {
-      console.log(error);
-    }
+    const result = await axiosInstance().get(
+      `/beatstreet/api/users/favoritesongs/${id}`
+    );
+    return result.data;
   },
   addNewPlaylist: async (data) => {
     try {

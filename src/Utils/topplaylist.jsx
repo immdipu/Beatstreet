@@ -2273,11 +2273,11 @@ export const TopArtists = [
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Justin_Bieber_005_20201127112218_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Justin_Bieber_005_20201127112218_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Justin_Bieber_005_20201127112218_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Justin_Bieber_005_20201127112218_500x500.jpg",
       },
     ],
   },
@@ -2289,15 +2289,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Atif_Aslam_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Atif_Aslam_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Atif_Aslam_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Atif_Aslam_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Atif_Aslam_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Atif_Aslam_500x500.jpg",
       },
     ],
   },
@@ -2308,15 +2308,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Hardy_Sandhu_001_20190913112018_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Hardy_Sandhu_001_20190913112018_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Hardy_Sandhu_001_20190913112018_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Hardy_Sandhu_001_20190913112018_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Hardy_Sandhu_001_20190913112018_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Hardy_Sandhu_001_20190913112018_500x500.jpg",
       },
     ],
   },
@@ -2327,15 +2327,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Rahat_Fateh_Ali_Khan_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Rahat_Fateh_Ali_Khan_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Rahat_Fateh_Ali_Khan_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Rahat_Fateh_Ali_Khan_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Rahat_Fateh_Ali_Khan_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Rahat_Fateh_Ali_Khan_500x500.jpg",
       },
     ],
   },
@@ -2346,15 +2346,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/KK_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/KK_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/KK_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/KK_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/KK_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/KK_500x500.jpg",
       },
     ],
   },
@@ -2365,15 +2365,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/AR_Rahman_002_20210120084455_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/AR_Rahman_002_20210120084455_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/AR_Rahman_002_20210120084455_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/AR_Rahman_002_20210120084455_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/AR_Rahman_002_20210120084455_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/AR_Rahman_002_20210120084455_500x500.jpg",
       },
     ],
   },
@@ -2384,15 +2384,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Mohit_Chauhan_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Mohit_Chauhan_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Mohit_Chauhan_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Mohit_Chauhan_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Mohit_Chauhan_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Mohit_Chauhan_500x500.jpg",
       },
     ],
   },
@@ -2403,15 +2403,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Darshan_Raval_005_20201029161434_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Darshan_Raval_005_20201029161434_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Darshan_Raval_005_20201029161434_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Darshan_Raval_005_20201029161434_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Darshan_Raval_005_20201029161434_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Darshan_Raval_005_20201029161434_500x500.jpg",
       },
     ],
   },
@@ -2422,15 +2422,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Ankit_Tiwari_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Ankit_Tiwari_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Ankit_Tiwari_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Ankit_Tiwari_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Ankit_Tiwari_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Ankit_Tiwari_500x500.jpg",
       },
     ],
   },
@@ -2442,15 +2442,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Badshah_004_20191118143638_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Badshah_004_20191118143638_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Badshah_004_20191118143638_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Badshah_004_20191118143638_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Badshah_004_20191118143638_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Badshah_004_20191118143638_500x500.jpg",
       },
     ],
   },
@@ -2461,15 +2461,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Himesh_Reshammiya_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Himesh_Reshammiya_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Himesh_Reshammiya_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Himesh_Reshammiya_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Himesh_Reshammiya_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Himesh_Reshammiya_500x500.jpg",
       },
     ],
   },
@@ -2480,15 +2480,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Sonu_Nigam_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Sonu_Nigam_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Sonu_Nigam_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Sonu_Nigam_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Sonu_Nigam_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Sonu_Nigam_500x500.jpg",
       },
     ],
   },
@@ -2499,15 +2499,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Shreya_Ghoshal_004_20230228102304_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Shreya_Ghoshal_004_20230228102304_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Shreya_Ghoshal_004_20230228102304_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Shreya_Ghoshal_004_20230228102304_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Shreya_Ghoshal_004_20230228102304_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Shreya_Ghoshal_004_20230228102304_500x500.jpg",
       },
     ],
   },
@@ -2518,15 +2518,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Sanam_Puri_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Sanam_Puri_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Sanam_Puri_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Sanam_Puri_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Sanam_Puri_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Sanam_Puri_500x500.jpg",
       },
     ],
   },
@@ -2537,15 +2537,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Raftaar_009_20230223100912_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Raftaar_009_20230223100912_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Raftaar_009_20230223100912_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Raftaar_009_20230223100912_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Raftaar_009_20230223100912_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Raftaar_009_20230223100912_500x500.jpg",
       },
     ],
   },
@@ -2556,15 +2556,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Armaan_Malik_003_20220107135753_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Armaan_Malik_003_20220107135753_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Armaan_Malik_003_20220107135753_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Armaan_Malik_003_20220107135753_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Armaan_Malik_003_20220107135753_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Armaan_Malik_003_20220107135753_500x500.jpg",
       },
     ],
   },
@@ -2575,15 +2575,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Ed_Sheeran_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Ed_Sheeran_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Ed_Sheeran_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Ed_Sheeran_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Ed_Sheeran_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Ed_Sheeran_500x500.jpg",
       },
     ],
   },
@@ -2594,15 +2594,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Raxstar_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Raxstar_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Raxstar_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Raxstar_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Raxstar_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Raxstar_500x500.jpg",
       },
     ],
   },
@@ -2613,15 +2613,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Imran_Khan_-Singer-_20191129135926_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Imran_Khan_-Singer-_20191129135926_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Imran_Khan_-Singer-_20191129135926_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Imran_Khan_-Singer-_20191129135926_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Imran_Khan_-Singer-_20191129135926_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Imran_Khan_-Singer-_20191129135926_500x500.jpg",
       },
     ],
   },
@@ -2632,15 +2632,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Zack_Knight_20171024121255_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Zack_Knight_20171024121255_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Zack_Knight_20171024121255_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Zack_Knight_20171024121255_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Zack_Knight_20171024121255_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Zack_Knight_20171024121255_500x500.jpg",
       },
     ],
   },

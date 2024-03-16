@@ -7,7 +7,7 @@ const SingleChart = ({ title, id, image, name = null }) => {
     <div>
       <div className="relative w-36 max-md:w-32 max-md:h-32 h-36 group rounded-md">
         <img
-          src={image[1].link}
+          src={image[1]?.url}
           alt=""
           loading="lazy"
           className="w-full h-full object-cover rounded-lg"

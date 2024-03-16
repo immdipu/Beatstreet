@@ -6,7 +6,7 @@ const SearchAlbum = ({ image, id, title }) => {
     <div>
       <div className="relative w-28 h-36 group rounded-lg">
         <img
-          src={image[1].link}
+          src={image[1]?.url}
           alt=""
           loading="lazy"
           className="w-full h-full object-cover rounded-lg"

@@ -2212,15 +2212,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Sia_002_20200921152829_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Sia_002_20200921152829_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Sia_002_20200921152829_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Sia_002_20200921152829_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Sia_002_20200921152829_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Sia_002_20200921152829_500x500.jpg",
       },
     ],
   },
@@ -2231,15 +2231,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Arijit_Singh_002_20230323062147_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Arijit_Singh_002_20230323062147_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Arijit_Singh_002_20230323062147_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Arijit_Singh_002_20230323062147_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Arijit_Singh_002_20230323062147_500x500.jpg",
+        ulr: "https://c.saavncdn.com/artists/Arijit_Singh_002_20230323062147_500x500.jpg",
       },
     ],
   },
@@ -2250,15 +2250,15 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Neha_Kakkar_006_20200822042626_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Neha_Kakkar_006_20200822042626_50x50.jpg",
       },
       {
         quality: "150x150",
-        link: "https://c.saavncdn.com/artists/Neha_Kakkar_006_20200822042626_150x150.jpg",
+        url: "https://c.saavncdn.com/artists/Neha_Kakkar_006_20200822042626_150x150.jpg",
       },
       {
         quality: "500x500",
-        link: "https://c.saavncdn.com/artists/Neha_Kakkar_006_20200822042626_500x500.jpg",
+        url: "https://c.saavncdn.com/artists/Neha_Kakkar_006_20200822042626_500x500.jpg",
       },
     ],
   },
@@ -2269,7 +2269,7 @@ export const TopArtists = [
     image: [
       {
         quality: "50x50",
-        link: "https://c.saavncdn.com/artists/Justin_Bieber_005_20201127112218_50x50.jpg",
+        url: "https://c.saavncdn.com/artists/Justin_Bieber_005_20201127112218_50x50.jpg",
       },
       {
         quality: "150x150",

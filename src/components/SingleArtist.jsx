@@ -6,7 +6,7 @@ const SingleArtist = ({ id, title, image, name }) => {
     <Link to={`/artist/${id}`} className="w-28 block group">
       <div className="relative w-28 h-28 border-2 border-opacity-40 border-slate-300 rounded-full overflow-hidden">
         <img
-          src={image[1].link}
+          src={image[1].url}
           alt=""
           loading="lazy"
           className="w-full h-full object-cover rounded-full group-hover:scale-110 ease-linear duration-500"

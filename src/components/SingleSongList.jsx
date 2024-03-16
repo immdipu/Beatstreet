@@ -24,6 +24,7 @@ const SingleSongList = ({
   image,
   album,
   artists,
+  primaryArtists,
   title,
   CURRENT = null,
   playlistId = null,
@@ -59,9 +60,11 @@ const SingleSongList = ({
     primaryArtistsArr = ArtistFormatter(artists?.primary);
   }
 
-  const allArtist = Object.keys(artists).map((item) => {
-    return artists[item];
-  });
+  const allArtist =
+    artists &&
+    Object.keys(artists).map((item) => {
+      return artists[item];
+    });
 
   const open = Boolean(anchorEl);
   const idd = open ? "simple-popover" : undefined;
@@ -110,7 +113,9 @@ const SingleSongList = ({
           />
           <SongHeader
             title={name || title}
-            artist={primaryArtistsArr?.join(", ")}
+            artist={
+              primaryArtistsArr?.join(", ") || primaryArtists || "unknown"
+            }
           />
 
           <div className="mr-36 max-md:mr-1 max-md:ml-8 max-md:hidden">
@@ -161,7 +166,7 @@ const SingleSongList = ({
                 showPlaylist={showPlaylist}
                 songId={id}
                 albumId={album?.id}
-                artist={allArtist?.flat()}
+                artist={allArtist?.flat() ?? []}
               />
             </Suspense>
 

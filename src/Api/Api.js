@@ -55,13 +55,9 @@ const musicApi = {
     }
   },
   GlobalSearch: async (query) => {
-    try {
-      const res = await axios.get(`${BASEURL}/search?query=${query}`);
-      const result = res.data.data;
-      return result;
-    } catch (error) {
-      console.log("error", error);
-    }
+    const res = await axios.get(`${BASEURL}/search?query=${query}`);
+    const result = res.data;
+    return result;
   },
 
   getSongFromSaavn: async (query) => {

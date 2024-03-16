@@ -4,15 +4,36 @@ import RippleButton from "ripple-effect-reactjs";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useUserContext } from "../Context/UserContext";
 import { motion } from "framer-motion";
+import { useMutation } from "@tanstack/react-query";
+import userApis from "../Api/userApi";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+const UserVerify = ({ setShowVerfiyModal }) => {
+  const navigate = useNavigate();
+  const verifyUser = useMutation({
+    mutationFn: (token) => userApis.userVerification(token),
+    onSuccess: (data) => {
+      if (data.status === "success") {
+        toast.success("User verified successfully");
+        navigate("/login");
+      }
+    },
+    onError: (error) => {
+      console.log("error", error);
+    },
+  });
+  const ResendVerfication = useMutation({
+    mutationFn: (data) => userApis.sendVerification(data),
+    onSuccess: (data) => {
+      if (data.status === "success") {
+        toast.success("Verfication code has been sent to your email");
+      }
+    },
+    onError: (error) => {
+      console.log("error", error);
+    },
+  });
 
-const UserVerify = () => {
-  const {
-    HandleVerificationBtn,
-    userVerification,
-    verification_begin,
-    sendVerificationCode,
-    signup_email,
-  } = useUserContext();
   const input1Ref = useRef(null);
   const input2Ref = useRef(null);
   const input3Ref = useRef(null);
@@ -40,15 +61,15 @@ const UserVerify = () => {
         "" +
         input4Ref.current.value;
       let data = { token };
-      userVerification(data);
+      verifyUser.mutate(data);
     }
   };
 
   const resendVerificationHandle = () => {
     const Email = {
-      email: signup_email,
+      email: localStorage.getItem("userEmail"),
     };
-    sendVerificationCode(Email);
+    ResendVerfication.mutate(Email);
   };
 
   return (
@@ -102,17 +123,20 @@ const UserVerify = () => {
       </div>
       <div className="justify-center flex mt-4 text-sm gap-2 mr-2 font-sans text-neutral-300">
         <p>Didn't get a code?</p>
-        <p
+        <button
+          disabled={ResendVerfication.isPending}
           onClick={resendVerificationHandle}
           className="underline text-skyBlue cursor-pointer opacity-70 duration-300 ease-linear transition-opacity hover:opacity-100"
         >
-          Click to resend
-        </p>
+          {ResendVerfication.isPending ? "Resending..." : "Resend"}
+        </button>
       </div>
       <div className="mt-5 flex mr-4 items-center gap-3 justify-center min-w-[10rem]  ">
         <RippleButton radius={8} width={100} color={"#064d81"} speed={500}>
           <p
-            onClick={HandleVerificationBtn}
+            onClick={() => {
+              setShowVerfiyModal(false);
+            }}
             className="select-none bg-opacity-50 bg-darkBlue w-fit text-sm cursor-pointer rounded-md block text-neutral-300 py-2 px-4"
           >
             Cancel
@@ -120,12 +144,13 @@ const UserVerify = () => {
         </RippleButton>
 
         <RippleButton radius={8} width={100} color={"#16191e59"} speed={500}>
-          <p
+          <button
+            disabled={verifyUser.isPending}
             onClick={HandleSubmit}
             className="select-none scale-110 bg-skyBlue w-fit rounded-md text-base cursor-pointer text-neutral-100 py-2 pr-10 px-7"
           >
             Verify
-          </p>
+          </button>
         </RippleButton>
       </div>
       <p className="text-sm  font-Rubik mt-5 px-8 text-center opacity-60 font-thin text-neutral-300">
@@ -133,7 +158,7 @@ const UserVerify = () => {
         you can't find the verification code in your inbox, please check your
         spam folder as it may have been filtered there.
       </p>
-      {verification_begin && (
+      {verifyUser.isPending && (
         <h4 className="text-white text-center mb-3 absolute bg-black inset-0 bg-opacity-30 flex items-center justify-center">
           <ClipLoader size={60} color="#2764eb" speedMultiplier={2} />
         </h4>

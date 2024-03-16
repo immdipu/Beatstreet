@@ -1,50 +1,36 @@
 import React, { useRef, useState, useEffect } from "react";
 import RippleButton from "ripple-effect-reactjs";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  LoginAlert,
-  EyeNotVisibility,
-  EyeVisibility,
-  UserVerify,
-} from "../components";
+import { EyeNotVisibility, EyeVisibility, UserVerify } from "../components";
 import ClipLoader from "react-spinners/ClipLoader";
 import PersonIcon from "@mui/icons-material/Person";
-import { useUserContext } from "../Context/UserContext";
 import { motion, AnimatePresence } from "framer-motion";
 import userApis from "../Api/userApi";
 import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
-  const {
-    signup_loading,
-    signup_success,
-    signup_failed,
-    signUpUser,
-    user_verification,
-    verification_begin,
-    verification_success,
-    resend_verification_success,
-    resend_verification_failed,
-  } = useUserContext();
-  const navigate = useNavigate();
+  const [form, setForm] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+  });
   const [passwordVisibility, setPasswordVisibility] = useState(false);
-  const [validateEmail, setValidateEmail] = useState(false);
-  const [validatePassword, setValidatePassword] = useState(false);
-  const [passwordValidateText, setPasswordValidateText] = useState("Error");
-  const emailRef = useRef(null);
-  const userNameRef = useRef(null);
-  const passwordRef = useRef(null);
-  const passwordConfirmRef = useRef(null);
+  const [showVerfiyModal, setShowVerfiyModal] = useState(false);
   const Signup = useMutation({
     mutationFn: (data) => userApis.Register(data),
-  });
-
-  useEffect(() => {
-    if (verification_success) {
-      setTimeout(() => {
-        navigate("/login");
-      }, 5000);
-    }
+    onSuccess: (data) => {
+      localStorage.setItem("userEmail", data.data.email);
+      if (data.status === "success") {
+        toast.success("Verfication code has been sent to your email");
+        setShowVerfiyModal(true);
+      }
+    },
+    onError: (error) => {
+      console.log("error signup", error?.response);
+      toast.error(error.response.data.message);
+    },
   });
 
   const HandlePasswordVisibility = () => {
@@ -62,84 +48,43 @@ const SignUp = () => {
 
   const handleSubmit = () => {
     if (
-      userNameRef.current.value.trim() !== "" &&
-      emailRef.current.value !== "" &&
-      passwordRef.current.value.trim() !== "" &&
-      passwordConfirmRef.current.value.trim() !== ""
+      form.fullName.trim() !== "" &&
+      form.email.trim() !== "" &&
+      form.password.trim() !== "" &&
+      form.passwordConfirm.trim() !== ""
     ) {
       const emailValidation =
-        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
-          emailRef.current.value
-        );
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(form.email);
       if (!emailValidation) {
-        return setValidateEmail(true);
+        return toast.error("Please type correct email");
       }
-      if (
-        passwordRef.current.value.trim() !==
-        passwordConfirmRef.current.value.trim()
-      ) {
-        setPasswordValidateText("Password didn't match");
-        return setValidatePassword(true);
+      if (form.password.trim() !== form.passwordConfirm.trim()) {
+        return toast.error("password didn't match");
       }
-      if (passwordRef.current.value.length < 8) {
-        setPasswordValidateText("Password length can't be less than 8");
-        return setValidatePassword(true);
+      if (form.password.length < 4) {
+        return toast.error("password length cannot be less than 4.");
       }
-      setValidateEmail(false);
-      setValidatePassword(false);
       let data = {
-        name: userNameRef.current.value.trim(),
-        email: emailRef.current.value.trim(),
-        password: passwordRef.current.value.trim(),
-        passwordConfirm: passwordConfirmRef.current.value.trim(),
+        name: form.fullName.trim(),
+        email: form.email.trim(),
+        password: form.password.trim(),
+        passwordConfirm: form.passwordConfirm.trim(),
       };
       Signup.mutate(data);
+    } else {
+      toast.error("Please fill all the fields");
     }
   };
 
-  let alert = null;
-  if (signup_failed) {
-    alert = (
-      <LoginAlert
-        message={"Ah error has occured ! Try again later"}
-        alertClass={"failed"}
-      />
-    );
-  }
-  if (verification_success) {
-    userNameRef.current.value = null;
-    emailRef.current.value = null;
-    passwordRef.current.value = null;
-    passwordConfirmRef.current.value = null;
-    alert = (
-      <LoginAlert
-        message={
-          "SUCCESS! Your account has been created. You will be redirected to login page"
-        }
-        alertClass={"success"}
-      />
-    );
-  }
-
-  if (resend_verification_success) {
-    alert = (
-      <LoginAlert
-        message={
-          "A new token has been sent to your email address. Please check your inbox and spam folder"
-        }
-        alertClass={"success"}
-      />
-    );
-  }
-
-  if (resend_verification_failed) {
-    alert = (
-      <LoginAlert
-        message={"Ah error has occured ! Try again later"}
-        alertClass={"failed"}
-      />
-    );
-  }
+  const handleChange = (e) => {
+    setForm((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+    });
+    console.log(form);
+  };
 
   return (
     <motion.div
@@ -148,25 +93,25 @@ const SignUp = () => {
       exit={{ y: "-100vh", transition: { ease: "easeInOut" } }}
       className=" max-w-md w-full mx-auto mt-10 max-md:px-4 flex flex-col items-center justify-center"
     >
-      {alert}
-      <AnimatePresence>{user_verification && <UserVerify />}</AnimatePresence>
+      <AnimatePresence>
+        {showVerfiyModal && (
+          <UserVerify setShowVerfiyModal={setShowVerfiyModal} />
+        )}
+      </AnimatePresence>
       <div className="rounded-full bg-slate-300 w-fit p-2">
         <PersonIcon fontSize="large" color="primary" />
       </div>
 
       <h3 className="text-white text-xl">Sign up</h3>
-      <form
-        className={
-          "w-full flex flex-col gap-5 mt-4 " +
-          (validateEmail ? "gap-9" : "gap-4")
-        }
-      >
+      <form className={"w-full flex flex-col gap-5 mt-4  "}>
         <div className="border border-neutral-600 focus-within:border-opacity-100 focus-within:border-neutral-400 rounded-md focus-within:opacity-100 focus-within:border-2 duration-150 transition-all ease-linear h-9 relative w-full">
           <input
             type="text"
             id="FullName"
+            name="fullName"
             placeholder=" "
-            ref={userNameRef}
+            value={form.fullName}
+            onChange={handleChange}
             className="w-full outline-none tracking-wide text-white px-4 font-thin border-none h-full bg-transparent relative z-10 peer"
           />
           <p
@@ -179,24 +124,19 @@ const SignUp = () => {
 
         <div
           className={
-            " focus-within:border-opacity-100 focus-within:border-neutral-400 rounded-md focus-within:opacity-100 focus-within:border-2 duration-150 transition-all ease-linear h-9 relative w-full " +
-            (validateEmail
-              ? "border-red-600 border-2"
-              : "border border-neutral-600")
+            " focus-within:border-opacity-100 border border-neutral-600 focus-within:border-neutral-400 rounded-md focus-within:opacity-100 focus-within:border-2 duration-150 transition-all ease-linear h-9 relative w-full "
           }
         >
           <input
             type="email"
             id="email"
+            name="email"
             placeholder=" "
-            ref={emailRef}
+            value={form.email}
+            onChange={handleChange}
             className="w-full outline-none tracking-wide  text-white px-4 font-thin border-none h-full bg-transparent relative z-10 peer"
           />
-          {validateEmail && (
-            <p className="text-red-500 font-light text-sm mt-1 px-1">
-              Please provide valid email address
-            </p>
-          )}
+
           <p
             htmlFor="email"
             className="absolute peer-placeholder-shown:opacity-60 text-sm peer-focus-within:opacity-100 text-white opacity-100 left-3 bg-darkBlue font-light duration-100 transition-all -top-3 ease-linear px-2 peer-placeholder-shown:top-[6px] peer-placeholder-shown:text-base  peer-focus-within:-top-3  peer-focus-within:text-sm"
@@ -208,9 +148,11 @@ const SignUp = () => {
           <input
             type="password"
             id="pwd1"
-            placeholder=" "
+            placeholder=""
+            name="password"
             required
-            ref={passwordRef}
+            value={form.password}
+            onChange={handleChange}
             className="w-full outline-none tracking-wide  text-white px-4 font-thin border-none h-full bg-transparent relative z-10 peer"
           />
           <p
@@ -236,8 +178,7 @@ const SignUp = () => {
         </div>
         <div
           className={
-            "border border-neutral-600 focus-within:border-opacity-100 focus-within:border-neutral-400 rounded-md focus-within:opacity-100 focus-within:border-2 duration-150 transition-all ease-linear h-9 relative w-full " +
-            (validatePassword ? "mb-4" : "mb-1")
+            "border border-neutral-600 mb-1 focus-within:border-opacity-100 focus-within:border-neutral-400 rounded-md focus-within:opacity-100 focus-within:border-2 duration-150 transition-all ease-linear h-9 relative w-full "
           }
         >
           <input
@@ -245,7 +186,9 @@ const SignUp = () => {
             id="pwd2"
             placeholder=" "
             required
-            ref={passwordConfirmRef}
+            name="passwordConfirm"
+            value={form.passwordConfirm}
+            onChange={handleChange}
             className="w-full rounded-md tracking-wider outline-none border-none text-white px-4 font-extralight h-full bg-transparent relative z-10 peer"
           />
           <p
@@ -254,11 +197,6 @@ const SignUp = () => {
           >
             Password Confirm
           </p>
-          {validatePassword && (
-            <p className="text-red-500 font-light text-sm mt-1 px-1">
-              {passwordValidateText}
-            </p>
-          )}
           <div
             className="absolute pt-1 pr-1 cursor-pointer -top-2 scale-75 rounded-full right-0 z-10 h-fit"
             onClick={HandlePasswordVisibility}
@@ -272,13 +210,16 @@ const SignUp = () => {
           <RippleButton speed={600} color={"#bbb7b7bf"} radius={7} width={40}>
             <button
               type="button"
+              disabled={Signup.isPending}
               className={
                 "bg-white rounded-md border-2 h-12 text-lg w-full " +
-                (signup_loading ? "pointer-events-none" : "pointer-events-auto")
+                (Signup.isPending
+                  ? "pointer-events-none"
+                  : "pointer-events-auto")
               }
               onClick={handleSubmit}
             >
-              {signup_loading ? (
+              {Signup.isPending ? (
                 <div className="mt-2">
                   <ClipLoader size={30} color="#2764eb" speedMultiplier={3} />
                 </div>

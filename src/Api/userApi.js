@@ -27,20 +27,16 @@ const userApis = {
   },
 
   Register: async (data) => {
-    try {
-      const response = await axiosInstance.post(
-        USER_BASE_URL + "/beatstreet/api/users/signup",
-        data
-      );
-      const result = response.data.data;
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await axiosInstance().post(
+      USER_BASE_URL + "/beatstreet/api/users/signup",
+      data
+    );
+    const result = response.data;
+    return result;
   },
   sendVerification: async (data) => {
     try {
-      const response = await axiosInstance.post(
+      const response = await axiosInstance().post(
         USER_BASE_URL + "/beatstreet/api/users/verficationtoken",
         data
       );
@@ -51,16 +47,12 @@ const userApis = {
     }
   },
   userVerification: async (token) => {
-    try {
-      const response = await axiosInstance.post(
-        USER_BASE_URL + "/beatstreet/api/users/verify",
-        token
-      );
-      const result = response.data;
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await axiosInstance().post(
+      USER_BASE_URL + "/beatstreet/api/users/verify",
+      token
+    );
+    const result = response.data;
+    return result;
   },
   RemovePlaylistSong: async (data) => {
     try {
@@ -98,17 +90,15 @@ const userApis = {
       console.log(error);
     }
   },
-  getFavoritesSongs: async (id) => {
+  getFavoritesSongs: async () => {
     try {
       const response = await axiosInstance().get(
         `/beatstreet/api/users/favoritesongs`
       );
       const results = response.data.data;
-      console.log("results", results);
-      const ids = results.join();
-      const getSongs = await axios.get(`${BASEURL}/songs?id=${ids}`);
-      const songs = getSongs.data.data;
-      return songs;
+      const ids = results.join(",");
+      const getSongs = await musicApi.MulitpleSongs(ids);
+      return getSongs;
     } catch (error) {
       console.log(error);
     }

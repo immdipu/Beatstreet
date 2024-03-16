@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { LoadingSpinner, SongsList, MusicCard } from "../components";
+import React from "react";
+import { LoadingSpinner } from "../components";
 import { useParams } from "react-router-dom";
-import { useMusicContext } from "../Context/MusicContext";
+
 import { ImageFetch, FollowersCount } from "../Utils/Helper";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { useQuery } from "@tanstack/react-query";
 import musicApi from "../Api/Api";
 import ArtistSongs from "../components/Artist/ArtistSongs";
 import ArtistAlbums from "../components/Artist/ArtistAlbums";
-import ClipLoader from "react-spinners/ClipLoader";
 import LanguagesList from "../components/Artist/LanguagesList";
 
 const Artist = () => {
@@ -18,18 +17,6 @@ const Artist = () => {
     queryFn: () => musicApi.SingleArtist(id),
   });
 
-  const [currentpage, setCurrentPage] = useState(1);
-  const {
-    SingleArtist,
-    single_artist_details: artist,
-    single_artist_loading: loading,
-    single_artist_songs,
-
-    single_artist_albums,
-    ArtistSongsLoadMore,
-    loadMoreSong,
-  } = useMusicContext();
-
   if (isLoading) {
     return (
       <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
@@ -37,11 +24,6 @@ const Artist = () => {
       </div>
     );
   }
-
-  // const handleLoadMoreSong = () => {
-  //   setCurrentPage(currentpage + 1);
-  //   ArtistSongsLoadMore(id, currentpage);
-  // };
 
   return (
     <div className="overflow-hidden">

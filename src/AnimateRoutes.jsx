@@ -52,7 +52,7 @@ const AnimateRoutes = () => {
         <Route path="search/playlists/:id" element={<SinglePlayLists />} />
         <Route path="search/songs/:keyword" element={<ViewAllSongList />} />
         <Route path="search/albums/:keyword" element={<ViewAllAlbums />} />
-        <Route path="/useraccount" element={<UserAccountSetting />} />
+        <Route path="/account" element={<UserAccountSetting />} />
         <Route path="/recentsongs" element={<RecentSongs />} />
         <Route path="/favoritessongs" element={<FavoritesSongs />} />
         <Route path="/topplaylists/Hindi" element={<HindiPlaylist />} />

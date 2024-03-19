@@ -2,14 +2,20 @@ import React from "react";
 import MusicCard from "./MusicCard";
 import { useMusicContext } from "../Context/MusicContext";
 
-const TrendingAlbums = () => {
-  const { trendingAlbums } = useMusicContext();
+const TrendingAlbums = ({ data }) => {
+  console.log("trendingAlbums", data);
   return (
     <div className="flex gap-6 overflow-scroll h-full">
-      {trendingAlbums &&
-        trendingAlbums.length > 0 &&
-        trendingAlbums.map((item, index) => {
-          return <MusicCard key={index} {...item} />;
+      {data &&
+        data.length > 0 &&
+        data.map((item, index) => {
+          if (item.type === "album") {
+            return <MusicCard key={index} {...item} />;
+          }
+          if (item.type === "playlist") {
+            return <MusicCard key={index} {...item} />;
+          }
+          return null;
         })}
     </div>
   );

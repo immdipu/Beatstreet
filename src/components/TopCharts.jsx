@@ -2,13 +2,12 @@ import React from "react";
 import { SingleChart } from "../components";
 import { useMusicContext } from "../Context/MusicContext";
 
-const TopCharts = () => {
-  const { charts } = useMusicContext();
+const TopCharts = ({ data }) => {
   return (
     <div className="flex gap-8 max-md:gap-3 overflow-scroll h-full">
-      {charts &&
-        charts.length > 0 &&
-        charts.map((item, index) => {
+      {data &&
+        data.length > 0 &&
+        data.map((item, index) => {
           return <SingleChart {...item} key={index} />;
         })}
     </div>

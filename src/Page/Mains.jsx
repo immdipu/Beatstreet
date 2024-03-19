@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useMusicContext } from "../Context/MusicContext";
 import { usePlayerContext } from "../Context/PlayerContext";
 import { ErrorBoundary } from "react-error-boundary";
-
+import userApis from "../Api/userApi.js";
+import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import {
   LoadingSpinner,
@@ -13,9 +14,13 @@ import {
 } from "../components";
 
 const Mains = () => {
-  const { homeData_loading: loading } = useMusicContext();
   const { side_menu_show } = usePlayerContext();
-  if (loading) {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["favoriteSongs"],
+    queryFn: () => userApis.getHomepage(),
+  });
+
+  if (isLoading) {
     return (
       <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 pr-32 max-md:pr-0 ">
         <LoadingSpinner size={80} />
@@ -37,33 +42,31 @@ const Mains = () => {
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Trending
         </h1>
-        <ErrorBoundary fallback={<div>Something went wrong</div>}>
-          <TrendingAlbums />
-        </ErrorBoundary>
+
+        {data?.data?.trending && <TrendingAlbums data={data?.data?.trending} />}
       </section>
       <section className="w-full my-6">
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Latest Releases
         </h1>
-        <ErrorBoundary fallback={<div>Something went wrong</div>}>
-          <Albums />
-        </ErrorBoundary>
+
+        {data?.data?.newAlbums && <Albums data={data?.data?.newAlbums} />}
       </section>
       <section>
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Top Charts
         </h1>
-        <ErrorBoundary fallback={<div>Something went wrong</div>}>
-          <TopCharts />
-        </ErrorBoundary>
+
+        {data?.data?.topCharts && <TopCharts data={data?.data?.topCharts} />}
       </section>
       <section>
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Top Playlist
         </h1>
-        <ErrorBoundary fallback={<div>Something went wrong</div>}>
-          <TopPlaylists />
-        </ErrorBoundary>
+
+        {data?.data?.topPlaylist && (
+          <TopPlaylists data={data?.data?.topPlaylist} />
+        )}
       </section>
     </motion.div>
   );

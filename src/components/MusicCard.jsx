@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const MusicCard = ({ image, id, name }) => {
+const MusicCard = ({ image, id, name, type = "album" }) => {
   return (
     <div>
       <div className="relative w-28 h-36 group rounded-lg">
         <img
-          src={image[1].url}
+          src={image[1]?.url || image[0]?.url || image[2]?.url || image[3]?.url}
           alt=""
           loading="lazy"
           className="w-full h-full object-cover rounded-lg"
         />
         <Link
-          to={`/album/${id}`}
+          to={`/${type}/${id}`}
           className="absolute flex z-20 opacity-0 rounded-lg group-hover:opacity-100 duration-200 transition-all inset-0 w-full items-center justify-center bg-[#4c4c4c68] text-3xl cursor-pointer"
         ></Link>
       </div>

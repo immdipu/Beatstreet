@@ -1,14 +1,12 @@
 import React from "react";
 import { MusicCard, SinglesongCard, SingleChart } from "../components";
-import { useMusicContext } from "../Context/MusicContext";
 
-const Albums = () => {
-  const { albums } = useMusicContext();
+const Albums = ({ data }) => {
   return (
     <div className="flex gap-6 overflow-scroll h-full">
-      {albums &&
-        albums.length > 0 &&
-        albums.map((item, index) => {
+      {data &&
+        data.length > 0 &&
+        data.map((item, index) => {
           if (item.type === "song") {
             return <SinglesongCard key={index} {...item} />;
           }

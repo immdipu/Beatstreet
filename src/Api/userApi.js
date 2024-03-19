@@ -173,6 +173,11 @@ const userApis = {
       return error;
     }
   },
+  getHomepage: async () => {
+    const res = await axiosInstance().get(`/beatstreet/api/music/homepage`);
+    const result = res.data;
+    return result;
+  },
 };
 
 export default userApis;

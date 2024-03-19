@@ -39,7 +39,7 @@ const AnimateRoutes = () => {
   return (
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<TopArtist />} />
+        <Route path="/" element={<Home />} />
         <Route path="/album/:id" element={<SingleAlbum />} />
         <Route path="/artist/:id" element={<Artist />} />
         <Route path="/search/album/:id" element={<SingleAlbum />} />

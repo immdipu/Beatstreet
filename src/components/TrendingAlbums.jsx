@@ -3,7 +3,6 @@ import MusicCard from "./MusicCard";
 import { useMusicContext } from "../Context/MusicContext";
 
 const TrendingAlbums = ({ data }) => {
-  console.log("trendingAlbums", data);
   return (
     <div className="flex gap-6 overflow-scroll h-full">
       {data &&
@@ -13,7 +12,7 @@ const TrendingAlbums = ({ data }) => {
             return <MusicCard key={index} {...item} />;
           }
           if (item.type === "playlist") {
-            return <MusicCard key={index} {...item} />;
+            return <MusicCard key={index} {...item} type="playlists" />;
           }
           return null;
         })}

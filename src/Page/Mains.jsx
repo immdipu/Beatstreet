@@ -28,6 +28,23 @@ const Mains = () => {
     );
   }
 
+  if (isError) {
+    return (
+      <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 pr-32 max-md:pr-0 ">
+        <p>Something went wrong</p>
+
+        <button
+          onClick={() => {
+            window.location.reload();
+          }}
+          className="bg-primary-400 text-white px-4 py-2 rounded-md"
+        >
+          Try Again
+        </button>
+      </div>
+    );
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0 }}

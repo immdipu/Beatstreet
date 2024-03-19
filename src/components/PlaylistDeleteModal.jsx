@@ -2,27 +2,20 @@ import React, { useState } from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import RippleButton from "ripple-effect-reactjs";
 import { motion } from "framer-motion";
-import { usePlaylistContext } from "../Context/ImportPlaylistContext";
-import { useUserContext } from "../Context/UserContext";
-import { usePlayerContext } from "../Context/PlayerContext";
+import userApis from "../Api/userApi";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const PlaylistDeleteModal = ({ handleClose, setShowDelete, playlistId }) => {
-  const { DeletePlaylist } = usePlaylistContext();
-  const { login_success, User_id } = useUserContext();
-  const { getAllPlaylist } = usePlayerContext();
-
-  const HandleDelete = () => {
-    if (login_success) {
-      let data = {
-        playlistId,
-      };
-      DeletePlaylist(User_id, data).then((res) => {
-        console.log(res);
-        getAllPlaylist(User_id);
-        handleClose();
-      });
-    }
-  };
+  const queryClient = useQueryClient();
+  const deletePlaylist = useMutation({
+    mutationFn: (playlistId) => userApis.DeletePlaylist(playlistId),
+    onSuccess: () => {
+      handleClose();
+      queryClient.invalidateQueries("getAllPlaylist");
+      setShowDelete(false);
+    },
+  });
 
   return (
     <div className="fixed inset-0 z-[60] grid place-items-center bg-black bg-opacity-30">
@@ -60,10 +53,17 @@ const PlaylistDeleteModal = ({ handleClose, setShowDelete, playlistId }) => {
 
           <RippleButton width={30} radius={6} color={"#060b1c"} speed={500}>
             <button
+              disabled={deletePlaylist.isPending}
               className="text-[#ff9a9a] font-extralight text-sm  tracking-wider rounded-md bg-[#f74b4b38] px-4 py-2"
-              onClick={HandleDelete}
+              onClick={() => {
+                deletePlaylist.mutate(playlistId);
+              }}
             >
-              Delete
+              {deletePlaylist.isPending ? (
+                <ClipLoader color={"#ff9a9a"} loading={true} size={20} />
+              ) : (
+                "Delete"
+              )}
             </button>
           </RippleButton>
         </div>

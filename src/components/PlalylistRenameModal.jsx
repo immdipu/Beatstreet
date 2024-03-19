@@ -5,6 +5,10 @@ import { motion } from "framer-motion";
 import { usePlaylistContext } from "../Context/ImportPlaylistContext";
 import { useUserContext } from "../Context/UserContext";
 import { usePlayerContext } from "../Context/PlayerContext";
+import userApis from "../Api/userApi";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import ClipLoader from "react-spinners/ClipLoader";
+import toast from "react-hot-toast";
 
 const PlalylistRenameModal = ({
   playlistId,
@@ -12,26 +16,26 @@ const PlalylistRenameModal = ({
   setShowRename,
   name,
 }) => {
-  const { RenamePlaylist } = usePlaylistContext();
-  const { login_success, User_id } = useUserContext();
-  const { getAllPlaylist } = usePlayerContext();
   const [rename, setRename] = useState(name);
+  const queryClient = useQueryClient();
+  const updatePlaylist = useMutation({
+    mutationFn: (data) => userApis.RenamePlaylist(data),
+    onSuccess: () => {
+      handleClose();
+      queryClient.invalidateQueries("getAllPlaylist");
+      setShowRename(false);
+    },
+  });
 
   const HandleCreate = () => {
     if (rename === "") {
-      document.querySelector(".alert").style.display = "block";
+      toast.error("Name can't be empty");
     } else {
-      document.querySelector(".alert").style.display = "none";
-      if (login_success) {
-        let data = {
-          name: rename.trim(),
-          playlistId,
-        };
-        RenamePlaylist(User_id, data).then(() => {
-          getAllPlaylist(User_id);
-          handleClose();
-        });
-      }
+      let data = {
+        name: rename.trim(),
+        playlistId,
+      };
+      updatePlaylist.mutate(data);
     }
   };
 
@@ -69,10 +73,15 @@ const PlalylistRenameModal = ({
 
           <RippleButton width={30} radius={6} color={"#060b1c"} speed={500}>
             <button
+              disabled={updatePlaylist.isPending}
               className="text-neutral-200 font-extralight text-sm  tracking-wider rounded-md bg-darkBlue px-4 py-2"
               onClick={HandleCreate}
             >
-              Create
+              {updatePlaylist.isPending ? (
+                <ClipLoader color={"#ff9a9a"} loading={true} size={20} />
+              ) : (
+                "Rename"
+              )}
             </button>
           </RippleButton>
         </div>

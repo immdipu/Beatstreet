@@ -173,6 +173,24 @@ const userApis = {
       return error;
     }
   },
+
+  DeletePlaylist: async (id) => {
+    const res = await axiosInstance().delete(
+      `/beatstreet/api/users/removeplaylist/${id}`
+    );
+    const result = res.data;
+    return result;
+  },
+
+  RenamePlaylist: async (data) => {
+    const res = await axiosInstance().post(
+      `/beatstreet/api/users/updateplaylist`,
+      data
+    );
+    const result = res.data;
+    return result;
+  },
+
   getHomepage: async () => {
     const res = await axiosInstance().get(`/beatstreet/api/music/homepage`);
     const result = res.data;

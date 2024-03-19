@@ -58,7 +58,7 @@ const UserDropDown = ({
 
       <ul className="flex flex-col">
         <Link
-          to={"/useraccount"}
+          to={"/account"}
           className="flex hover:bg-darkBlue duration-300 transition-colors ease-linear py-2 gap-3 items-center px-3"
         >
           <PersonIcon />

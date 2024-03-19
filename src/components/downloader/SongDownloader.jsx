@@ -3,7 +3,8 @@ import DownloadProgressBar from "./DownloadProgressBar";
 import DownloadProgress from "./DownloadProgress";
 import axios from "axios";
 import { AudioLinkSelector } from "../../Utils/Helper";
-
+import { useQuery } from "@tanstack/react-query";
+import musicApi from "../../Api/Api";
 const SongDownloader = ({ songId }) => {
   const [downloading, setDownloading] = useState(false);
   const [downloadProgress, setDownloadProgress] = useState(0);
@@ -12,28 +13,26 @@ const SongDownloader = ({ songId }) => {
     songName: null,
     artistName: null,
   });
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["singleSong"],
+    queryFn: () => musicApi.SingleSong(songId),
+  });
   const [offsetValue, setOffsetValue] = useState(132);
 
   useEffect(() => {
-    axios
-      .get(`https://saavn.dev/songs?id=${songId}`)
-      .then((response) => {
-        let result = response.data.data[0];
-        setDownloadLink({
-          songLink: AudioLinkSelector(result),
-          songName: result.name,
-          artistName: result.primaryArtists,
-        });
-      })
-      .catch((error) => {
-        console.error(error);
+    if (data) {
+      setDownloadLink({
+        songLink: AudioLinkSelector(data),
+        songName: data?.name || "song",
+        artistName: data?.primaryArtists || "",
       });
-  }, [songId]);
+    }
+  }, [songId, data]);
 
   const handleDownload = () => {
     setDownloading(true);
     axios({
-      url: downloadLink.songLink,
+      url: downloadLink?.songLink,
       method: "GET",
       responseType: "blob",
       onDownloadProgress: (progressEvent) => {
@@ -48,7 +47,9 @@ const SongDownloader = ({ songId }) => {
       .then((response) => {
         let link = document.createElement("a");
         link.href = window.URL.createObjectURL(response.data);
-        link.download = `${downloadLink.songName}-${downloadLink.artistName}`;
+        link.download = `${downloadLink?.songName || "song"}-${
+          downloadLink?.artistName || ""
+        }`;
         link.click();
         setDownloading(false);
         setDownloadProgress(0);

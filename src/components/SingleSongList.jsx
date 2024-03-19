@@ -129,7 +129,9 @@ const SingleSongList = ({
 
         <div className="absolute right-4 max-md:right-0 top-3 z-10 flex items-center gap-3 ">
           {user.islogged && <Favorite songId={id} />}
-          {user.islogged ? <SongDownloader songId={id} /> : <DownloadLogo />}
+          {user.islogged && <SongDownloader songId={id} />}
+          {!user.islogged && <DownloadLogo />}
+
           <IconButton size="large" onClick={handleClick}>
             <MoreVertIcon className="text-slate-200 opacity-60" />
           </IconButton>

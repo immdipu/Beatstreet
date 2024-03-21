@@ -42,7 +42,7 @@ const musicApi = {
       `${BASEURL}/playlists?id=${id}&page=${pageParam}`
     );
     const result = response.data.data || [];
-    return result?.albums;
+    return result;
   },
 
   SingleSong: async (id) => {

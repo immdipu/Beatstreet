@@ -53,12 +53,6 @@ const SinglePlayLists = () => {
             src={data.image[2]?.url || data.image[1]?.url || data.image[0]?.url}
             variant="rounded"
           />
-          {/* <img
-            src={ImageFetch(currentPlaylists)}
-            alt={currentPlaylists.name}
-            onLoad={handleImageLoad}
-            className={"w-56 shadow-xl max-md:w-34 rounded-md "}
-          /> */}
 
           <div className="flex place-content-end max-md:place-items-center flex-col">
             <h2 className="font-bold text-4xl max-md:text-2xl max-md:text-center text-white tracking-wider">

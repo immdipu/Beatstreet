@@ -9,7 +9,6 @@ import Image from "../components/ui/Image";
 
 const SinglePlayLists = () => {
   const { id } = useParams();
-  console.log("id", id);
   const { data, isLoading, isError } = useQuery({
     queryKey: ["SinglePlaylist", id],
     queryFn: () => musicApi.SinglePlaylist({ id }),
@@ -86,7 +85,7 @@ const SinglePlayLists = () => {
       </div>
       <section className="mx-12 mt-6 max-md:mx-2 mb-14">
         {data.songs && data.songs.length > 0 && (
-          <SongsList songs={currentPlaylists.songs} current={"Playlist"} />
+          <SongsList songs={data.songs} current={"Playlist"} />
         )}
       </section>
     </div>

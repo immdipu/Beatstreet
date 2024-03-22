@@ -60,16 +60,14 @@ const SinglePlayLists = () => {
 
           <div className="flex place-content-end max-md:place-items-center flex-col">
             <h2 className="font-bold text-4xl max-md:text-2xl max-md:text-center text-white tracking-wider">
-              {currentPlaylists.name}
+              {data.name}
             </h2>
             <div className="flex max-md:flex-col items-center gap-3 my-2 max-md:mt-4">
               <p className="text-slate-200 text-sm max-md:text-xs">
-                {FollowersCount(currentPlaylists.followerCount)} followers
+                {FollowersCount(data.followerCount)} followers
               </p>
               <div className="bg-darkTextColor rounded-full max-md:text-xs w-1 h-1 max-md:hidden"></div>
-              <p className="text-slate-200 text-sm">
-                {currentPlaylists.songCount} songs
-              </p>
+              <p className="text-slate-200 text-sm">{data.songCount} songs</p>
 
               <div
                 className="w-[38px] ml-3 max-md:mt-4"
@@ -88,7 +86,7 @@ const SinglePlayLists = () => {
         </div>
       </div>
       <section className="mx-12 mt-6 max-md:mx-2 mb-14">
-        {currentPlaylists.songs && (
+        {data.songs && data.songs.length > 0 && (
           <SongsList songs={currentPlaylists.songs} current={"Playlist"} />
         )}
       </section>

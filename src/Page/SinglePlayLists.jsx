@@ -64,7 +64,7 @@ const SinglePlayLists = () => {
             </h2>
             <div className="flex max-md:flex-col items-center gap-3 my-2 max-md:mt-4">
               <p className="text-slate-200 text-sm max-md:text-xs">
-                {FollowersCount(data.followerCount)} followers
+                {data.description}
               </p>
               <div className="bg-darkTextColor rounded-full max-md:text-xs w-1 h-1 max-md:hidden"></div>
               <p className="text-slate-200 text-sm">{data.songCount} songs</p>

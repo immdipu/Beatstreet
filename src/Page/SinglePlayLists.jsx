@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { SongsList, LoadingSpinner } from "../components";
-import { ImageFetch, FollowersCount } from "../Utils/Helper";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import RippleButton from "ripple-effect-reactjs";
 import { useQuery } from "@tanstack/react-query";

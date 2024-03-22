@@ -10,8 +10,6 @@ import { useSelector } from "react-redux";
 
 const UserSinglePlaylist = () => {
   let { id } = useParams();
-
-  const user = useSelector((state) => state.user);
   const { data, isLoading, isError } = useQuery({
     queryKey: ["userSinglePlaylist", id],
     queryFn: () => userApis.getSinglePlaylist(id),

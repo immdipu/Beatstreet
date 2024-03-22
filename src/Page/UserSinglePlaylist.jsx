@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-import { useUserContext } from "../Context/UserContext";
 import { LoadingSpinner, SongsList } from "../components";
 import { Logo, LogoText } from "../components";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";

@@ -27,8 +27,6 @@ const SingleSpotifylist = ({ image, name, songs, id, token }) => {
     getAllSongsFromSavan.mutate({ token, id, name, image });
   };
 
-  console.log("loading state", getAllSongsFromSavan.isPending);
-
   return (
     <div className="flex overflow-hidden cursor-pointer hover:bg-lightBlue rounded-md items-center pr-3">
       <div className="flex  w-full items-center gap-5 ">

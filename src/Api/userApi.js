@@ -14,16 +14,12 @@ const axiosInstance = () => {
 
 const userApis = {
   Login: async (data) => {
-    try {
-      const response = await axiosInstance().post(
-        "/beatstreet/api/users/login",
-        data
-      );
-      const result = response.data;
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await axiosInstance().post(
+      "/beatstreet/api/users/login",
+      data
+    );
+    const result = response.data;
+    return result;
   },
 
   Register: async (data) => {
@@ -194,6 +190,19 @@ const userApis = {
   getHomepage: async () => {
     const res = await axiosInstance().get(`/beatstreet/api/music/homepage`);
     const result = res.data;
+
+    if (result?.data?.suggestions && result?.data?.suggestions.length > 0) {
+      const ids = result.data.suggestions.join(",");
+      const getSongs = await musicApi.MulitpleSongs(ids);
+      return {
+        ...result,
+        data: {
+          ...result.data,
+          suggestions: getSongs,
+        },
+      };
+    }
+
     return result;
   },
 };

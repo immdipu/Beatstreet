@@ -12,6 +12,7 @@ import {
   TopCharts,
   TopPlaylists,
 } from "../components";
+import Recommendations from "../components/Recommendations.jsx";
 
 const Mains = () => {
   const { side_menu_show } = usePlayerContext();
@@ -55,6 +56,15 @@ const Mains = () => {
         (side_menu_show ? "mr-96 transition-all duration-300 ease-in" : "mr-0")
       }
     >
+      {data?.data?.suggestions && (
+        <section className="w-full my-6 ">
+          <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
+            Recommendation for you
+          </h1>
+
+          <Recommendations data={data?.data?.suggestions} />
+        </section>
+      )}
       <section className="w-full my-6 ">
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Trending

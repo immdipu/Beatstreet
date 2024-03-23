@@ -106,7 +106,7 @@ export const MusicProvider = ({ children }) => {
     try {
       const res = await axios.get(`${BASEURL}/artists/${id}/songs?page=1`);
       const data = res.data.data.songs || [];
-      console.log("Artist song", data);
+
       dispatch({ type: GET_ARTIST_SONGS_SUCESS, payload: data });
     } catch (error) {
       dispatch({ type: GET_ARTIST_SONGS_ERROR });

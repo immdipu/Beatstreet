@@ -35,6 +35,9 @@ const LogIn = () => {
 
       dispatch(isLogged(data.data.user));
     },
+    onError: (res) => {
+      toast.error(res?.response?.data?.message || "An error occured");
+    },
   });
 
   useLayoutEffect(() => {

@@ -187,7 +187,6 @@ export const PlaylistProvider = ({ children }) => {
         data
       );
       const results = res.data;
-      console.log(results);
       dispatch({ type: DELETE_PLAYLIST_SUCCESS });
     } catch (error) {
       dispatch({ type: DELETE_PLAYLIST_FAILED });

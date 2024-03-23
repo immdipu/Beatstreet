@@ -6,7 +6,7 @@ const SinglesongCard = ({ id, name, image, title }) => {
     <div>
       <div className="relative w-28 h-36 group rounded-lg">
         <img
-          src={image[1].link}
+          src={image[1].url || image[0].url || image[2].url || image[3].url}
           alt=""
           loading="lazy"
           className="w-full h-full object-cover rounded-lg"

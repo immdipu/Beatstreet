@@ -24,7 +24,6 @@ const SearchResult = () => {
     mutationFn: (searchterm) => musicApi.GlobalSearch(searchterm),
     onSuccess: (data) => {
       setSearchResults(data?.data);
-      console.log("data", data.data);
     },
     onError: (error) => {
       toast.error(error.message || "Something Went Wrong");

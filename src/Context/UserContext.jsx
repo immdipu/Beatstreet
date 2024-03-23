@@ -109,7 +109,6 @@ export const UserProvider = ({ children }) => {
     try {
       dispatch({ type: LOGOUT_USER_BEGIN });
       const response = await axiosInstance.get(UserEndPoints + "/login");
-      console.log(response.data);
       dispatch({ type: LOGOUT_USER_SUCCESS });
     } catch (error) {
       dispatch({ type: LOGOUT_USER_FAILED });

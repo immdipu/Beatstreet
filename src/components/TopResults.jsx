@@ -1,5 +1,4 @@
 import React from "react";
-import { usePlayerContext } from "../Context/PlayerContext";
 import { Link } from "react-router-dom";
 import { MusicCard, SingleSongList, SingleArtist } from "../components";
 
@@ -17,7 +16,7 @@ const TopResults = ({ data }) => {
                   className="flex gap-8 cursor-pointer bg-lightBlue rounded-lg shadow-xl py-4 items-center px-5"
                 >
                   <img
-                    src={item.image[1].link}
+                    src={item.image[1].link || item.image[0].link}
                     className="w-14 rounded-lg object-cover"
                     alt={item.title}
                   />

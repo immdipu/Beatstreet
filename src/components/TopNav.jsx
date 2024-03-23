@@ -19,7 +19,6 @@ const TopNav = () => {
   const AutoLogin = useMutation({
     mutationFn: () => userApis.Autologin(),
     onSuccess: (data) => {
-      console.log("auto login", data);
       dispatch(isLogged(data.user));
     },
     onError: (error) => {

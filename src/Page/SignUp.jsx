@@ -28,7 +28,6 @@ const SignUp = () => {
       }
     },
     onError: (error) => {
-      console.log("error signup", error?.response);
       toast.error(error.response.data.message);
     },
   });

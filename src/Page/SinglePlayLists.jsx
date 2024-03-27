@@ -10,9 +10,10 @@ import Image from "../components/ui/Image";
 
 const SinglePlayLists = () => {
   const { id } = useParams();
+  console.log("id", id);
   const { data, isLoading, isError } = useQuery({
     queryKey: ["SinglePlaylist", id],
-    queryFn: () => musicApi.SinglePlaylist(id),
+    queryFn: () => musicApi.SinglePlaylist({ id }),
   });
 
   if (isLoading) {

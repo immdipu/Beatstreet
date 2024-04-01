@@ -6,6 +6,7 @@ import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import RippleButton from "ripple-effect-reactjs";
 import { useQuery } from "@tanstack/react-query";
 import musicApi from "../Api/Api";
+import Image from "../components/ui/Image";
 
 const SinglePlayLists = () => {
   const { id } = useParams();
@@ -33,6 +34,7 @@ const SinglePlayLists = () => {
     <div className={"bg-darkBlue  overflow-hidden "}>
       <div className="gradient flex flex-col gap-8 w-full pt-3 px-16 max-md:px-5 pb-7 Artistbackground ">
         <div className="grid grid-cols-[max-content,auto] mt-7 max-md:grid-cols-1  max-md:place-items-center gap-5">
+          <Image />
           <img
             src={ImageFetch(currentPlaylists)}
             alt={currentPlaylists.name}

@@ -23,6 +23,19 @@ const SinglePlayLists = () => {
     );
   }
 
+  if (isError) {
+    return (
+      <div className="w-full flex justify-center items-center mt-10">
+        <p className="text-neutral-400 w-1/2 text-center max-md:w-full max-md:px-4">
+          Sorry, we couldn't fetch the playlist at this time.
+          <br />
+          <br />
+          Please try again later.
+        </p>
+      </div>
+    );
+  }
+
   const HandleDownloadAll = () => {
     const btns = document.querySelectorAll(".btnss");
     btns.forEach((btn) => {
@@ -34,13 +47,13 @@ const SinglePlayLists = () => {
     <div className={"bg-darkBlue  overflow-hidden "}>
       <div className="gradient flex flex-col gap-8 w-full pt-3 px-16 max-md:px-5 pb-7 Artistbackground ">
         <div className="grid grid-cols-[max-content,auto] mt-7 max-md:grid-cols-1  max-md:place-items-center gap-5">
-          <Image />
-          <img
+          <Image alt={data} />
+          {/* <img
             src={ImageFetch(currentPlaylists)}
             alt={currentPlaylists.name}
             onLoad={handleImageLoad}
             className={"w-56 shadow-xl max-md:w-34 rounded-md "}
-          />
+          /> */}
 
           <div className="flex place-content-end max-md:place-items-center flex-col">
             <h2 className="font-bold text-4xl max-md:text-2xl max-md:text-center text-white tracking-wider">

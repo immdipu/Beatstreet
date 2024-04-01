@@ -36,6 +36,8 @@ const SinglePlayLists = () => {
     );
   }
 
+  console.log("single playlist", data);
+
   const HandleDownloadAll = () => {
     const btns = document.querySelectorAll(".btnss");
     btns.forEach((btn) => {

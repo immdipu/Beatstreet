@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { SongsList, LoadingSpinner } from "../components";
-import { useMusicContext } from "../Context/MusicContext";
 import { ImageFetch, FollowersCount } from "../Utils/Helper";
-import Skeleton from "@mui/material/Skeleton";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import RippleButton from "ripple-effect-reactjs";
 import { useQuery } from "@tanstack/react-query";

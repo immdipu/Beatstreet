@@ -37,10 +37,7 @@ const SinglePlayLists = () => {
             src={ImageFetch(currentPlaylists)}
             alt={currentPlaylists.name}
             onLoad={handleImageLoad}
-            className={
-              "w-56 shadow-xl max-md:w-34 rounded-md " +
-              (ImageLoading ? "hidden" : "block")
-            }
+            className={"w-56 shadow-xl max-md:w-34 rounded-md "}
           />
 
           <div className="flex place-content-end max-md:place-items-center flex-col">

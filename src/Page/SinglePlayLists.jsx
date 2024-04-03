@@ -33,14 +33,6 @@ const SinglePlayLists = () => {
     <div className={"bg-darkBlue  overflow-hidden "}>
       <div className="gradient flex flex-col gap-8 w-full pt-3 px-16 max-md:px-5 pb-7 Artistbackground ">
         <div className="grid grid-cols-[max-content,auto] mt-7 max-md:grid-cols-1  max-md:place-items-center gap-5">
-          {ImageLoading && (
-            <Skeleton
-              width={160}
-              height={170}
-              sx={{ bgcolor: "#545454" }}
-              variant="rounded"
-            />
-          )}
           <img
             src={ImageFetch(currentPlaylists)}
             alt={currentPlaylists.name}

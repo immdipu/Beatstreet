@@ -10,7 +10,6 @@ import { useQuery } from "@tanstack/react-query";
 import musicApi from "../Api/Api";
 
 const SinglePlayLists = () => {
-  const [ImageLoading, SetImageLoading] = useState(true);
   const { id } = useParams();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["SinglePlaylist", id],
@@ -24,10 +23,6 @@ const SinglePlayLists = () => {
       </div>
     );
   }
-
-  const handleImageLoad = () => {
-    SetImageLoading(false);
-  };
 
   const HandleDownloadAll = () => {
     const btns = document.querySelectorAll(".btnss");

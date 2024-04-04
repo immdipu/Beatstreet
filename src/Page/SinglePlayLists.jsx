@@ -6,9 +6,14 @@ import { ImageFetch, FollowersCount } from "../Utils/Helper";
 import Skeleton from "@mui/material/Skeleton";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import RippleButton from "ripple-effect-reactjs";
-import { useUserContext } from "../Context/UserContext";
+import { useQuery } from "@tanstack/react-query";
+
 const SinglePlayLists = () => {
   const [ImageLoading, SetImageLoading] = useState(true);
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["recentSongs"],
+    queryFn: () => userApis.getRecentSongs(),
+  });
 
   const {
     SinglePlaylist,

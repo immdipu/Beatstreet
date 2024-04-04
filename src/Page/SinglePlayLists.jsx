@@ -12,7 +12,7 @@ import musicApi from "../Api/Api";
 const SinglePlayLists = () => {
   const [ImageLoading, SetImageLoading] = useState(true);
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["recentSongs"],
+    queryKey: ["SinglePlaylist", id],
     queryFn: () => musicApi.SinglePlaylist(id),
   });
 

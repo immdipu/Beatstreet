@@ -11,17 +11,12 @@ import musicApi from "../Api/Api";
 
 const SinglePlayLists = () => {
   const [ImageLoading, SetImageLoading] = useState(true);
+  const { id } = useParams();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["SinglePlaylist", id],
     queryFn: () => musicApi.SinglePlaylist(id),
   });
 
-  const {
-    SinglePlaylist,
-    currentPlaylists,
-    single_album_loading: loading,
-  } = useMusicContext();
-  let { id } = useParams();
   useEffect(() => {
     SinglePlaylist(id);
   }, [id]);

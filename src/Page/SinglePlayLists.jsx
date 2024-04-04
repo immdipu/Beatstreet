@@ -13,7 +13,7 @@ const SinglePlayLists = () => {
   const [ImageLoading, SetImageLoading] = useState(true);
   const { data, isLoading, isError } = useQuery({
     queryKey: ["recentSongs"],
-    queryFn: () => userApis.getRecentSongs(),
+    queryFn: () => musicApi.SinglePlaylist(id),
   });
 
   const {

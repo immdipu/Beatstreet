@@ -38,15 +38,9 @@ const musicApi = {
     }
   },
   SinglePlaylist: async ({ id }) => {
-    try {
-      const response = await axios.get(
-        `${BASEURL}/playlist/${id}/albums?page=${pageParam}`
-      );
-      const result = response.data.data || [];
-      return result?.albums;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await axios.get(`${BASEURL}/playlist/${id}/albums`);
+    const result = response.data.data || [];
+    return result?.albums;
   },
 
   SingleSong: async (id) => {

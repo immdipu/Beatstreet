@@ -103,7 +103,7 @@ export const AddSongToOffline = async ({
   link,
   image,
   name,
-  artist,
+  artists,
   id,
   duration,
 }) => {
@@ -115,7 +115,7 @@ export const AddSongToOffline = async ({
     url: blob,
     name,
     image: imageBlob,
-    artist: JSON.stringify(artist),
+    artists: artists,
     duration,
   });
 };

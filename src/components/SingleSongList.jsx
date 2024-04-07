@@ -27,6 +27,7 @@ const SingleSongList = ({
   }
 
   let primaryArtistsArr;
+
   if (artists && artists?.primary) {
     primaryArtistsArr = ArtistFormatter(artists?.primary);
   }

@@ -22,6 +22,7 @@ import {
 } from "./atoms";
 import TimeAndSlider from "./organism/TimeAndSlider";
 import { createPortal } from "react-dom";
+import Disk from "../assets/Disk";
 
 const AudioPlayer = () => {
   const { playingSongId } = useSelector((state) => state.player);
@@ -118,27 +119,37 @@ const AudioPlayer = () => {
           />
         </div>
 
-        <img
-          src={ImageFetch(current_song || "")}
-          alt="song Avatar"
-          onClick={() => setCoverRadius((prev) => !prev)}
-          className={
-            "h-32 w-32  max-md:h-full max-md:w-72  transition-all ease-linear duration-500 cursor-pointer object-cover mt-4 " +
-            (coverRadius ? "rounded-[15%]" : " rounded-[100%]")
-          }
-        />
+        {current_song ? (
+          <img
+            src={ImageFetch(current_song || "")}
+            alt="song Avatar"
+            onClick={() => setCoverRadius((prev) => !prev)}
+            className={
+              "h-32 w-32  max-md:h-full max-md:w-72  transition-all ease-linear duration-500 cursor-pointer object-cover mt-4 " +
+              (coverRadius ? "rounded-[15%]" : " rounded-[100%]")
+            }
+          />
+        ) : (
+          <Disk />
+        )}
         {currentAudio.current &&
           createPortal(
             <>
-              <img
-                src={ImageFetch(current_song)}
-                alt="song Avatar"
-                onClick={() => setCoverRadius((prev) => !prev)}
-                className={
-                  "size-14 max-md:h-full max-md:w-72  transition-all ease-linear duration-500 cursor-pointer object-cover mt-4 " +
-                  (coverRadius ? "rounded-[15%]" : " rounded-[100%]")
-                }
-              />
+              {current_song ? (
+                <img
+                  src={ImageFetch(current_song)}
+                  alt="song Avatar"
+                  onClick={() => setCoverRadius((prev) => !prev)}
+                  className={
+                    "size-14 max-md:h-full max-md:w-72  transition-all ease-linear duration-500 cursor-pointer object-cover mt-4 " +
+                    (coverRadius ? "rounded-[15%]" : " rounded-[100%]")
+                  }
+                />
+              ) : (
+                <div className=" p-2 bg-neutral-700 rounded-md my-2 max-md:w-[67px]">
+                  <Disk width={50} height={50} />
+                </div>
+              )}
             </>,
             document.getElementById("song-image")
           )}

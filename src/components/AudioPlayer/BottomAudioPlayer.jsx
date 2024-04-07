@@ -28,7 +28,7 @@ const BottomAudioPlayer = () => {
         <section className="flex w-fit shrink-0">
           <div id="song-image" className="w-full max-md:size-12"></div>
         </section>
-        <section className=" mx-3 max-md:mx-2  w-full  mt-1 max-md:w-1/2 max-md:overflow-hidden max-md:overflow-ellipsis">
+        <section className=" mx-3 max-md:mx-2  w-full max-w-96  mt-1 max-md:w-1/2 max-md:overflow-hidden max-md:overflow-ellipsis">
           <div id="song-header"></div>
         </section>
         <section className="flex items-center max-md:space-x-1 space-x-3 mt-2 w-fit shrink-0">

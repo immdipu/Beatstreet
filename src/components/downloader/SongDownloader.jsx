@@ -60,7 +60,7 @@ const SongDownloader = ({ songId }) => {
           AddSongToOffline({
             link: response.data,
             name: downloadLink?.name,
-            artist: downloadLink?.primaryArtists,
+            artists: downloadLink?.artists,
             duration: downloadLink?.duration,
             id: downloadLink?.id,
             image: imageResponse.data,

@@ -6,8 +6,6 @@ import { db } from "../App";
 const Downloads = () => {
   const data = useLiveQuery(() => db.songs.toArray(), []);
 
-  console.log("data", data);
-
   return (
     <div>
       <section className=" flex justify-center items-center py-20  rounded-b-2xl mb-16 relative h-48">

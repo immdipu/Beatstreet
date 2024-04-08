@@ -1,22 +1,11 @@
 import React, { useCallback, useState, lazy, Suspense } from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import { SongDurtionFormat } from "../Utils/Helper";
-import { SongDownloader } from "../components";
-import Popover from "@mui/material/Popover";
-import Skeleton from "@mui/material/Skeleton";
-import DownloadLogo from "../components/downloader/DownloadLogo";
-import { Favorite, CreatePlaylistModal } from "../components";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import IconButton from "@mui/material/IconButton";
-import { AnimatePresence } from "framer-motion";
-import { useSelector } from "react-redux";
 import SongHeader from "./song/SongHeader";
-const PopOverData = lazy(() => import("./song/popover/PopOverData"));
-const UserPlaylistPopOver = lazy(() =>
-  import("./song/popover/UserPlaylistPopOver")
-);
 import { PlaySong } from "../redux/slice/playerSlicer";
 import { useDispatch } from "react-redux";
+import Image from "./ui/Image";
+const Actions = lazy(() => import("./song/orgranism/Actions"));
 
 const SingleSongList = ({
   id,
@@ -30,27 +19,7 @@ const SingleSongList = ({
   upcomingSongs = [],
   playlistId = null,
 }) => {
-  const user = useSelector((state) => state.user);
-  const [showPlaylist, setShowPlaylist] = useState(false);
-  const [showCreatePlaylist, setshowCreatePlaylist] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
-  const [ImageLoading, SetImageLoading] = useState(true);
-  const handleImageLoad = useCallback(() => {
-    SetImageLoading(false);
-  }, []);
-
-  const handleClick = useCallback((event) => {
-    setAnchorEl(event.currentTarget);
-  }, []);
-
-  const handleClose = useCallback(() => {
-    setShowPlaylist(false);
-    setTimeout(() => {
-      setAnchorEl(null);
-    }, 210);
-  }, []);
-
   function ArtistFormatter(artistss) {
     let arr = artistss.map((item) => item.name);
     return arr;
@@ -60,15 +29,6 @@ const SingleSongList = ({
   if (artists && artists?.primary) {
     primaryArtistsArr = ArtistFormatter(artists?.primary);
   }
-
-  const allArtist =
-    artists &&
-    Object.keys(artists).map((item) => {
-      return artists[item];
-    });
-
-  const open = Boolean(anchorEl);
-  const idd = open ? "simple-popover" : undefined;
 
   return (
     <>
@@ -95,22 +55,10 @@ const SingleSongList = ({
           className="grid relative overflow-hidden gap-3  max-md:gap-2 cursor-pointer   items-center px-5"
           onClick={() => dispatch(PlaySong({ id, upcomingSongs }))}
         >
-          {ImageLoading && (
-            <Skeleton
-              width={50}
-              height={50}
-              sx={{ bgcolor: "#545454" }}
-              variant="rounded"
-            />
-          )}
-          <img
+          <Image
             src={image[1].url}
-            className={
-              "w-14 rounded-lg object-cover " +
-              (ImageLoading ? "hidden" : "block")
-            }
-            onLoad={handleImageLoad}
             alt={name}
+            className="w-14 h-14 rounded-lg"
           />
           <SongHeader
             title={name || title}
@@ -129,67 +77,16 @@ const SingleSongList = ({
         </ListItemButton>
 
         <div className="absolute right-4 max-md:right-0 top-3 z-10 flex items-center gap-3 ">
-          {user.islogged && <Favorite songId={id} />}
-          {user.islogged && <SongDownloader songId={id} />}
-          {!user.islogged && <DownloadLogo />}
-
-          <IconButton size="large" onClick={handleClick}>
-            <MoreVertIcon className="text-slate-200 opacity-60" />
-          </IconButton>
-
-          <Popover
-            id={idd}
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleClose}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "center",
-            }}
-            transformOrigin={{
-              vertical: "center",
-              horizontal: "right",
-            }}
-            PaperProps={{
-              sx: {
-                backgroundColor: "#282a2e",
-                paddingY: 1,
-                borderRadius: 3,
-                overflow: "visible",
-                width: "fit-content",
-              },
-            }}
+          <Suspense
+            fallback={<div className="text-neutral-200">Loading...</div>}
           >
-            <Suspense
-              fallback={<div className="text-neutral-200">Loading</div>}
-            >
-              <PopOverData
-                playlistId={playlistId}
-                setShowPlaylist={setShowPlaylist}
-                showPlaylist={showPlaylist}
-                songId={id}
-                albumId={album?.id}
-                artist={allArtist?.flat() ?? []}
-              />
-            </Suspense>
-
-            <AnimatePresence>
-              {showPlaylist && (
-                <Suspense
-                  fallback={<div className="text-neutral-200">Loading</div>}
-                >
-                  <UserPlaylistPopOver
-                    handleClose={handleClose}
-                    id={id}
-                    setshowCreatePlaylist={setshowCreatePlaylist}
-                  />
-                </Suspense>
-              )}
-              {showCreatePlaylist && (
-                <CreatePlaylistModal hidePlaylist={setshowCreatePlaylist} />
-              )}
-            </AnimatePresence>
-          </Popover>
+            <Actions
+              artists={artists}
+              id={id}
+              playlistId={playlistId}
+              album={album}
+            />
+          </Suspense>
         </div>
       </div>
     </>

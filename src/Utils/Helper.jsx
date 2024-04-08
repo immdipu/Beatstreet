@@ -1,3 +1,6 @@
+import { twMerge } from "tailwind-merge";
+import clsx from "clsx";
+
 export const ImageFetch = (item) => {
   let imageLink = null;
   if (item.image) {
@@ -82,4 +85,8 @@ export const isFavorite = (songId) => {
   } else {
     return favorites.includes(songId);
   }
+};
+
+export const cn = (...inputs) => {
+  return twMerge(clsx(inputs));
 };

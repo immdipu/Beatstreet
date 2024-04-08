@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Skeleton from "@mui/material/Skeleton";
+import { cn } from "../../Utils/Helper";
 
 const Image = ({ src, alt, className, variant = "rounded" }) => {
   const [loading, setLoading] = useState(true);
 
   return (
-    <div className={`relative ${className} overflow-hidden `}>
+    <div className={cn("relative  overflow-hidden", className)}>
       {loading && (
         <Skeleton
           variant={variant}

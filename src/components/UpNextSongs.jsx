@@ -1,48 +1,35 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { usePlayerContext } from "../Context/PlayerContext";
+
 import ListItemButton from "@mui/material/ListItemButton";
 import { SongDurtionFormat } from "../Utils/Helper";
 import ClipLoader from "react-spinners/ClipLoader";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
+import { useSelector, useDispatch } from "react-redux";
+import { PlayNextSong } from "../redux/slice/playerSlicer";
 
-const UpNextSongs = ({ current_song }) => {
-  const { current_playing_lists, HandlePlaySong } = usePlayerContext();
-  const [loading, setLoading] = useState(false);
-  const [songsarr, setSongsarr] = useState(null);
-
-  const getUpNextSongs = async (data) => {
-    let IndexOfCurrentSong = current_playing_lists.indexOf(current_song.id);
-    let Ids = data.join();
-    setLoading(true);
-    try {
-      const getSongs = await axios.get(`https://saavn.dev/songs?id=${Ids}`);
-      const songs = getSongs.data.data;
-      setSongsarr(songs);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    getUpNextSongs(current_playing_lists);
-  }, [current_playing_lists]);
-
-  if (loading) {
-    return (
-      <h4 className="text-white text-center mb-3 ">
-        <ClipLoader size={30} color="#2764eb" speedMultiplier={3} />
-      </h4>
-    );
-  }
-  let CURRENT = null;
+const UpNextSongs = ({}) => {
+  const { upcomingSongs } = useSelector((state) => state.player);
+  const dispatch = useDispatch();
+  // const getUpNextSongs = async (data) => {
+  //   let IndexOfCurrentSong = songs.indexOf(current_song.id);
+  //   let Ids = data.join();
+  //   setLoading(true);
+  //   try {
+  //     const getSongs = await axios.get(`https://saavn.dev/songs?id=${Ids}`);
+  //     const songs = getSongs.data.data;
+  //     setSongsarr(songs);
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setLoading(false);
+  //   }
+  // };
 
   return (
     <div>
-      {songsarr &&
-        songsarr.map((item, index) => {
+      {upcomingSongs &&
+        upcomingSongs.map((item, index) => {
           return (
             <ListItemButton
               key={index}
@@ -65,7 +52,7 @@ const UpNextSongs = ({ current_song }) => {
                 }),
               ]}
               data-id={item.id}
-              onClick={() => HandlePlaySong(item.id, CURRENT)}
+              onClick={() => dispatch(PlayNextSong({ id: item.id }))}
             >
               <div className="bg-neutral-700 p-1 rounded-md">
                 <MusicNoteIcon />

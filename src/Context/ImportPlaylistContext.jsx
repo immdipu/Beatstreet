@@ -5,7 +5,6 @@ import axios from "axios";
 const playlistContext = React.createContext();
 
 import { useUserContext } from "../Context/UserContext";
-import { usePlayerContext } from "./PlayerContext";
 import {
   GET_USER_SPOTIFY_PLAYLIST_BEGIN,
   GET_USER_SPOTIFY_PLAYLIST_SUCCESS,
@@ -13,14 +12,6 @@ import {
   ADD_SONGS_BEGIN,
   ADD_SONGS_SUCCESS,
   ADD_SONGS_FAILED,
-  PLAYLIST_CREATION_BEGIN,
-  PLAYLIST_CREATION_SUCCESS,
-  PLAYLIST_CREATION_FAILED,
-  RENAME_PLAYLIST_BEGIN,
-  RENAME_PLAYLIST_SUCCESS,
-  RENAME_PLAYLIST_FAILED,
-  DELETE_PLAYLIST_BEGIN,
-  DELETE_PLAYLIST_SUCCESS,
   DELETE_PLAYLIST_FAILED,
 } from "./../Actions";
 
@@ -39,7 +30,7 @@ const initialState = {
 export const PlaylistProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { User_id, login_success, sendNewPlaylist } = useUserContext();
-  const { getAllPlaylist } = usePlayerContext();
+  // const { getAllPlaylist } = usePlayerContext();
 
   const getSongFromSaavn = async (term) => {
     let formattedTerm = term
@@ -131,93 +122,10 @@ export const PlaylistProvider = ({ children }) => {
     }
   };
 
-  const createPlaylist = async (id, name) => {
-    let data = {
-      name,
-      songIds: [],
-    };
-    try {
-      dispatch({ type: PLAYLIST_CREATION_BEGIN });
-      const res = await axiosInstance.post(
-        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/addnewplaylist/${id}`,
-        data
-      );
-      const result = res.data;
-      getAllPlaylist(id);
-      dispatch({ type: PLAYLIST_CREATION_SUCCESS });
-    } catch (error) {
-      console.log(error);
-      dispatch({ type: PLAYLIST_CREATION_FAILED });
-    }
-  };
-
-  const AddSongToPlayllist = async (id, data) => {
-    try {
-      const res = await axiosInstance.post(
-        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/addsongsplaylist/${id}`,
-        data
-      );
-      const result = res.data;
-      getAllPlaylist(id);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const RenamePlaylist = async (id, data) => {
-    dispatch({ type: RENAME_PLAYLIST_BEGIN });
-    try {
-      const res = await axiosInstance.post(
-        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/updateplaylist/${id}`,
-        data
-      );
-      const results = res.data;
-      console.log(results);
-      dispatch({ type: RENAME_PLAYLIST_SUCCESS });
-    } catch (error) {
-      dispatch({ type: RENAME_PLAYLIST_FAILED });
-      console.log(error);
-    }
-  };
-  const DeletePlaylist = async (id, data) => {
-    dispatch({ type: DELETE_PLAYLIST_BEGIN });
-    try {
-      const res = await axiosInstance.post(
-        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/removeplaylist/${id}`,
-        data
-      );
-      const results = res.data;
-      dispatch({ type: DELETE_PLAYLIST_SUCCESS });
-    } catch (error) {
-      dispatch({ type: DELETE_PLAYLIST_FAILED });
-      DELETE_PLAYLIST_FAILED;
-      console.log(error);
-    }
-  };
-
-  const RemovePlaylistSong = async (id, data) => {
-    try {
-      const res = await axiosInstance.post(
-        `https://colorful-fly-attire.cyclic.app/beatstreet/api/users/removesongsplaylist/${id}`,
-        data
-      );
-      const results = res.data;
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   return (
     <playlistContext.Provider
       value={{
         ...state,
-
-        getSpotifyPlaylistSongs,
-        createPlaylist,
-        AddSongToPlayllist,
-        RenamePlaylist,
-        DeletePlaylist,
-        RemovePlaylistSong,
       }}
     >
       {children}

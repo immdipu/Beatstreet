@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
-import { usePlayerContext } from "../Context/PlayerContext";
 import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
 import { useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
@@ -12,7 +11,7 @@ const SearchBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const searchTerm = useSelector((state) => state.searchTerm);
-  const { HandleSideNav } = usePlayerContext();
+  const HandleSideNav = () => {};
 
   function HandleSearch() {
     navigate("/search");

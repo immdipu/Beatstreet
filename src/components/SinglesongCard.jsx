@@ -1,7 +1,5 @@
 import React from "react";
-import { usePlayerContext } from "../Context/PlayerContext";
 const SinglesongCard = ({ id, name, image, title }) => {
-  const { singleSong } = usePlayerContext();
   return (
     <div>
       <div className="relative w-28 h-36 group rounded-lg">

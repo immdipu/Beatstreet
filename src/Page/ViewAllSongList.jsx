@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { SongsList } from "../components";
-import { usePlayerContext } from "../Context/PlayerContext";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Logo, LogoText } from "../components";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -11,8 +11,7 @@ import { useUserContext } from "../Context/UserContext";
 
 const ViewAllSongList = () => {
   let { keyword } = useParams();
-  const { SearchSongs, search_songs, HandleNextPageBtn, has_more } =
-    usePlayerContext();
+
   const { login_success } = useUserContext();
   useEffect(() => {
     SearchSongs(keyword);
@@ -36,8 +35,8 @@ const ViewAllSongList = () => {
         </div>
       </section>
       <InfiniteScroll
-        dataLength={search_songs.length}
-        next={() => HandleNextPageBtn(keyword)}
+        // dataLength={search_songs.length}
+        // next={() => HandleNextPageBtn(keyword)}
         hasMore={has_more}
         loader={
           <h4 className="text-white text-center mb-3 ">

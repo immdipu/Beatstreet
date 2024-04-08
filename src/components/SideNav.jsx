@@ -2,19 +2,18 @@ import React from "react";
 import ExploreIcon from "@mui/icons-material/Explore";
 import AssessmentIcon from "@mui/icons-material/Assessment";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import SourceIcon from "@mui/icons-material/Source";
 import DonutSmallIcon from "@mui/icons-material/DonutSmall";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { NavLink, Link } from "react-router-dom";
-import { usePlayerContext } from "../Context/PlayerContext";
 import InfoIcon from "@mui/icons-material/Info";
 import LogoText from "./assets/LogoText";
 import RippleButton from "ripple-effect-reactjs";
 import { useUserContext } from "../Context/UserContext";
 
 const SideNav = () => {
-  const { HandleSideNav, side_navbar_show } = usePlayerContext();
+  const HandleSideNav = () => {};
+  const side_navbar_show = true;
   const { login_success } = useUserContext();
   return (
     <div className={"float-left w-52 h-[26rem] max-md:w-0 select-none"}>

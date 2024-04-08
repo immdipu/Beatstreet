@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { SongsList, LoadingSpinner } from "../components";
 import { Logo, LogoText } from "../components";
 import { useUserContext } from "../Context/UserContext";
-import { usePlayerContext } from "../Context/PlayerContext";
+
 import { useSelector } from "react-redux";
 import userApis from "../Api/userApi";
 import { useQuery } from "@tanstack/react-query";

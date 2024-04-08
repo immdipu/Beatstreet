@@ -1,10 +1,10 @@
 import React from "react";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import AudioPlayer from "./AudioPlayer";
-import { usePlayerContext } from "../Context/PlayerContext";
 
 const RightSideMenu = () => {
-  const { side_menu_show, HandleRightSideMenu } = usePlayerContext();
+  const side_menu_show = true;
+
   return (
     <section
       className={
@@ -15,7 +15,7 @@ const RightSideMenu = () => {
       <div className="w-fit mt-14 max-md:mt-6 max-md:pl-4">
         <KeyboardDoubleArrowLeftIcon
           className="rotate-180 max-md:scale-125 cursor-pointer"
-          onClick={HandleRightSideMenu}
+          // onClick={HandleRightSideMenu}
         />
       </div>
       {!side_menu_show && (

@@ -4,14 +4,13 @@ import { SongsList, LoadingSpinner } from "../components";
 import { useMusicContext } from "../Context/MusicContext";
 import { ImageFetch, FollowersCount } from "../Utils/Helper";
 import Skeleton from "@mui/material/Skeleton";
-import { usePlayerContext } from "../Context/PlayerContext";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import RippleButton from "ripple-effect-reactjs";
 import { useUserContext } from "../Context/UserContext";
 import { LoginAlert } from "../components";
 
 const SinglePlayLists = () => {
-  const { side_menu_show } = usePlayerContext();
+  const side_menu_show = true;
   const [ImageLoading, SetImageLoading] = useState(true);
   const { login_success } = useUserContext();
   const [alert, setAlert] = useState(false);

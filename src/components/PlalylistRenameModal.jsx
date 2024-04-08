@@ -4,7 +4,6 @@ import RippleButton from "ripple-effect-reactjs";
 import { motion } from "framer-motion";
 import { usePlaylistContext } from "../Context/ImportPlaylistContext";
 import { useUserContext } from "../Context/UserContext";
-import { usePlayerContext } from "../Context/PlayerContext";
 import userApis from "../Api/userApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ClipLoader from "react-spinners/ClipLoader";

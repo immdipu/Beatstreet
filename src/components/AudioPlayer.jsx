@@ -6,10 +6,8 @@ import PauseRounded from "@mui/icons-material/PauseRounded";
 import PlayArrowRounded from "@mui/icons-material/PlayArrowRounded";
 import FastForwardRounded from "@mui/icons-material/FastForwardRounded";
 import FastRewindRounded from "@mui/icons-material/FastRewindRounded";
-import { usePlayerContext } from "../Context/PlayerContext";
 import { AudioLinkSelector, ImageFetch } from "../Utils/Helper";
 import SongDownloader from "./downloader/SongDownloader";
-import { useUserContext } from "../Context/UserContext";
 import RepeatIcon from "@mui/icons-material/Repeat";
 import RepeatOneIcon from "@mui/icons-material/RepeatOne";
 import Favorite from "./Favorite";
@@ -19,15 +17,20 @@ import { useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 import userApis from "../Api/userApi";
 
+import musicApi from "../Api/Api";
+
 const AudioPlayer = () => {
-  const {
-    current_song,
-    side_menu_show,
-    audio_playing,
-    current_playing_lists,
-    singleSong,
-  } = usePlayerContext();
-  const { sendRecentPlayedSong, User_id, login_success } = useUserContext();
+  // const {
+  //   current_song,
+  //   side_menu_show,
+  //   audio_playing,
+  //   current_playing_lists,
+  //   singleSong,
+  // } = usePlayerContext();
+  const audio_playing = true;
+
+  const side_menu_show = true;
+  const { playingSongId, playing } = useSelector((state) => state.player);
   const user = useSelector((state) => state.user);
   const [repeatOne, setRepeatOne] = useState(false);
   const [shouldAnimate, setShouldAnimate] = useState(false);
@@ -35,13 +38,25 @@ const AudioPlayer = () => {
   const songNameContainer = useRef(null);
   const [coverRadius, setCoverRadius] = useState(false);
   const songName = useRef(null);
+  const [current_song, Setcurrent_song] = useState(null);
   const addRecentSong = useMutation({
     mutationFn: (songId) => userApis.addRecentSong(songId),
   });
+  const getSongDetails = useMutation({
+    mutationFn: (songId) => musicApi.SingleSong(songId),
+    onSuccess: (data) => {
+      Setcurrent_song(data);
+      console.log("data", data);
+    },
+  });
 
   useEffect(() => {
-    const songNameCon = songNameContainer.current;
-    const songNamee = songName.current;
+    getSongDetails.mutate(playingSongId);
+  }, [playingSongId]);
+
+  useEffect(() => {
+    const songNameCon = songNameContainer?.current;
+    const songNamee = songName?.current;
     if (songNameCon && songNamee) {
       if (songNamee.clientWidth > 200) {
         setShouldAnimate(true);
@@ -52,7 +67,7 @@ const AudioPlayer = () => {
   }, [audio_playing, current_song]);
 
   useEffect(() => {
-    if (current_song.id && user.islogged) {
+    if (current_song?.id && user.islogged) {
       addRecentSong.mutate(current_song.id);
     }
   }, [current_song]);
@@ -85,7 +100,7 @@ const AudioPlayer = () => {
   const handleAudioUpdate = () => {
     if (currentAudio.current.currentTime === currentAudio.current.duration) {
       if (repeatOne) {
-        singleSong(current_song.id);
+        // singleSong(current_song?.id);
         currentAudio.current.play();
       } else {
         if (current_playing_lists.length > 0) {
@@ -150,9 +165,10 @@ const AudioPlayer = () => {
     }
   };
 
-  if (!audio_playing) {
+  if (!current_song) {
     return null;
   }
+
   return (
     <div
       className={
@@ -161,14 +177,14 @@ const AudioPlayer = () => {
       }
     >
       <img
-        src={ImageFetch(current_song)}
+        src={ImageFetch(current_song) || ""}
         alt="background"
         className="absolute inset-0 -z-40 h-full  object-cover opacity-20 blur-md rounded-lg
     "
       />
       <section className="flex flex-col items-center gap-1 ">
         <audio
-          src={AudioLinkSelector(current_song)}
+          src={AudioLinkSelector(current_song) || ""}
           ref={currentAudio}
           autoPlay
           onTimeUpdate={handleAudioUpdate}
@@ -189,15 +205,15 @@ const AudioPlayer = () => {
             }
             ref={songName}
             dangerouslySetInnerHTML={{
-              __html: `${current_song.name}`,
+              __html: `${current_song?.name || ""}`,
             }}
           />
         </div>
         <p className="text-xs max-md:text-base opacity-90 text-center whitespace-nowrap w-40 overflow-hidden text-ellipsis">
-          {current_song.primaryArtists}
+          {current_song?.primaryArtists || ""}
         </p>
         <img
-          src={ImageFetch(current_song)}
+          src={ImageFetch(current_song || "")}
           alt="song Avatar"
           onClick={() => setCoverRadius((prev) => !prev)}
           className={
@@ -255,7 +271,7 @@ const AudioPlayer = () => {
             }}
             aria-label="favsong"
           >
-            <Favorite songId={current_song.id} />
+            <Favorite songId={current_song?.id || ""} />
           </IconButton>
           <IconButton
             aria-label="previous song"
@@ -312,7 +328,7 @@ const AudioPlayer = () => {
         </div>
 
         <div className=" w-full flex justify-end max-md:mr-10">
-          <SongDownloader songId={current_song.id} />
+          <SongDownloader songId={current_song?.id || ""} />
         </div>
 
         <button
@@ -344,7 +360,7 @@ const AudioPlayer = () => {
               </div>
 
               <div className="overflow-auto h-96">
-                <UpNextSongs current_song={current_song} />
+                <UpNextSongs />
               </div>
             </motion.section>
           )}

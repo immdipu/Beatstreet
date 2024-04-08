@@ -3,6 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   showRightSidebar: false,
   SearchTerm: "",
+  playingSongId: null,
+  playing: false,
+  upcomingSongs: [],
 };
 
 export const PlayerSlice = createSlice({
@@ -30,8 +33,19 @@ export const PlayerSlice = createSlice({
       );
       state.Messages = [...NewMessages, action.payload];
     },
+
+    PlaySong: (state, action) => {
+      state.playingSongId = action.payload.id;
+      state.upcomingSongs = action.payload?.upcomingSongs;
+      state.playing = true;
+    },
+    PlayNextSong: (state, action) => {
+      state.playingSongId = action.payload.id;
+      state.playing = true;
+    },
   },
 });
 
-export const { SetSearchTerm, ClearSearchTerm } = PlayerSlice.actions;
+export const { SetSearchTerm, ClearSearchTerm, PlaySong, PlayNextSong } =
+  PlayerSlice.actions;
 export default PlayerSlice.reducer;

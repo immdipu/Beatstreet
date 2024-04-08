@@ -1,5 +1,4 @@
 import React, { useCallback, useState, lazy, Suspense } from "react";
-import { usePlayerContext } from "../Context/PlayerContext";
 import ListItemButton from "@mui/material/ListItemButton";
 import { SongDurtionFormat } from "../Utils/Helper";
 import { SongDownloader } from "../components";
@@ -16,6 +15,8 @@ const PopOverData = lazy(() => import("./song/popover/PopOverData"));
 const UserPlaylistPopOver = lazy(() =>
   import("./song/popover/UserPlaylistPopOver")
 );
+import { PlaySong } from "../redux/slice/playerSlicer";
+import { useDispatch } from "react-redux";
 
 const SingleSongList = ({
   id,
@@ -26,14 +27,14 @@ const SingleSongList = ({
   artists,
   primaryArtists,
   title,
-  CURRENT = null,
+  upcomingSongs = [],
   playlistId = null,
 }) => {
   const user = useSelector((state) => state.user);
-  const { HandlePlaySong } = usePlayerContext();
   const [showPlaylist, setShowPlaylist] = useState(false);
   const [showCreatePlaylist, setshowCreatePlaylist] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const dispatch = useDispatch();
   const [ImageLoading, SetImageLoading] = useState(true);
   const handleImageLoad = useCallback(() => {
     SetImageLoading(false);
@@ -92,7 +93,7 @@ const SingleSongList = ({
           ]}
           data-id={id}
           className="grid relative overflow-hidden gap-3  max-md:gap-2 cursor-pointer   items-center px-5"
-          onClick={() => HandlePlaySong(id, CURRENT)}
+          onClick={() => dispatch(PlaySong({ id, upcomingSongs }))}
         >
           {ImageLoading && (
             <Skeleton

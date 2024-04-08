@@ -4,7 +4,6 @@ import LoginAndSignUp from "./LoginAndSignUp";
 import UserAvatar from "./UserAvatar";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useUserContext } from "../Context/UserContext";
-import { usePlayerContext } from "../Context/PlayerContext";
 import userApis from "../Api/userApi";
 import { useQuery } from "@tanstack/react-query";
 import { isLogged } from "../redux/slice/userSlice";

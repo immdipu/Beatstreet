@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { usePlayerContext } from "../Context/PlayerContext";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import ListItemButton from "@mui/material/ListItemButton";
 import { Logo, LogoText } from "../components";
@@ -9,12 +9,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 
 const ViewAllAlbums = () => {
   let { keyword } = useParams();
-  const {
-    SearchAlbums,
-    HandleNextPageBtn_Albums,
-    has_more_albums,
-    search_albums,
-  } = usePlayerContext();
 
   useEffect(() => {
     SearchAlbums(keyword);

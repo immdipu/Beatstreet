@@ -11,7 +11,7 @@ const SongsList = ({ songs, current, playlistId = null }) => {
               {...item}
               key={index}
               index={index + 1}
-              CURRENT={current}
+              upcomingSongs={songs}
               playlistId={playlistId}
             />
           );

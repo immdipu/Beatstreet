@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
-import { useMusicContext } from "../Context/MusicContext";
-import { usePlayerContext } from "../Context/PlayerContext";
-import { ErrorBoundary } from "react-error-boundary";
+import React from "react";
 import userApis from "../Api/userApi.js";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
@@ -12,10 +9,9 @@ import {
   TopCharts,
   TopPlaylists,
 } from "../components";
-import Recommendations from "../components/Recommendations.jsx";
 
 const Mains = () => {
-  const { side_menu_show } = usePlayerContext();
+  const side_menu_show = false;
   const { data, isLoading, isError } = useQuery({
     queryKey: ["favoriteSongs"],
     queryFn: () => userApis.getHomepage(),
@@ -56,15 +52,6 @@ const Mains = () => {
         (side_menu_show ? "mr-96 transition-all duration-300 ease-in" : "mr-0")
       }
     >
-      {data?.data?.suggestions && (
-        <section className="w-full my-6 ">
-          <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
-            Recommendation for you
-          </h1>
-
-          <Recommendations data={data?.data?.suggestions} />
-        </section>
-      )}
       <section className="w-full my-6 ">
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Trending

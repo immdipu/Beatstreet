@@ -1,25 +1,27 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import AnimateRoutes from "./AnimateRoutes";
-import { SideNav, RightSideMenu, Alert, TopNav } from "./components";
-import { useMusicContext } from "./Context/MusicContext";
+import { SideNav, RightSideMenu, TopNav } from "./components";
 import { ToastContainer } from "react-toastify";
 import { Toaster } from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { cn } from "./Utils/Helper";
+
 function App() {
-  const { alert_show } = useMusicContext();
-  let alert = null;
-  if (alert_show) {
-    alert = <Alert />;
-  }
+  const { showRightSidebar } = useSelector((state) => state.player);
   return (
     <BrowserRouter>
       <Toaster />
       <ToastContainer />
-      {/* <div className="grid grid-cols-[max-content,auto,max-content]"> */}
       <TopNav />
       <SideNav />
       <div className="flex ">
-        <div className="w-[calc(100%-28px)]">
+        <div
+          className={cn(
+            "w-[calc(100%-28px)] shrink-0 duration-700 ease-in-out will-change-transform transition-all",
+            showRightSidebar && "w-[calc(100%-350px)]"
+          )}
+        >
           <AnimateRoutes />
         </div>
 

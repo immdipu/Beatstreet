@@ -1,9 +1,10 @@
 import React from "react";
 
 const Header = ({ name, artist }) => {
-  const primaryArtists = artist?.primary
-    .map((artist) => artist.name)
-    .join(", ");
+  const primaryArtists =
+    artist &&
+    artist.length > 0 &&
+    artist?.primary.map((artist) => artist.name).join(", ");
   return (
     <div className="text-container  flex flex-col justify-center overflow-hidden w-52 max-md:w-72 items-center ">
       <h3

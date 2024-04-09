@@ -16,6 +16,7 @@ import {
   UpcomingSongsList,
 } from "./atoms";
 import TimeAndSlider from "./organism/TimeAndSlider";
+import { createPortal } from "react-dom";
 
 const AudioPlayer = () => {
   const { playingSongId } = useSelector((state) => state.player);
@@ -23,8 +24,9 @@ const AudioPlayer = () => {
   const [showUpNext, setShowUpNext] = useState(false);
   const [paused, setPaused] = useState(false);
   const [coverRadius, setCoverRadius] = useState(false);
-
+  const currentAudio = useRef();
   const [current_song, Setcurrent_song] = useState(null);
+
   const addRecentSong = useMutation({
     mutationFn: (songId) => userApis.addRecentSong(songId),
   });
@@ -32,7 +34,6 @@ const AudioPlayer = () => {
     mutationFn: (songId) => musicApi.SingleSong(songId),
     onSuccess: (data) => {
       Setcurrent_song(data);
-      console.log("data", data);
     },
   });
 
@@ -46,8 +47,6 @@ const AudioPlayer = () => {
     }
   }, [current_song]);
 
-  const currentAudio = useRef();
-
   const handleAudioPlay = () => {
     if (currentAudio.current.paused) {
       currentAudio.current.play();
@@ -58,22 +57,19 @@ const AudioPlayer = () => {
     }
   };
 
-  if (!current_song) {
-    return null;
-  }
-
-  console.log("rendering");
-
   return (
     <div className={" px-7 py-2 mt-5 relative boss max-md:h-full "}>
       <img
-        src={ImageFetch(current_song) || ""}
+        src={ImageFetch(current_song)}
         alt="background"
         className="absolute inset-0 -z-40 h-full  object-cover opacity-20 blur-md rounded-lg
     "
       />
       <section className="flex flex-col items-center gap-1 ">
-        <Header name={current_song?.name} artist={current_song?.artists} />
+        <Header
+          name={current_song?.name || ""}
+          artist={current_song?.artists || []}
+        />
         <img
           src={ImageFetch(current_song || "")}
           alt="song Avatar"
@@ -83,8 +79,23 @@ const AudioPlayer = () => {
             (coverRadius ? "rounded-[15%]" : " rounded-[100%]")
           }
         />
+        {currentAudio.current &&
+          createPortal(
+            <>
+              <img
+                src={ImageFetch(current_song)}
+                alt="song Avatar"
+                onClick={() => setCoverRadius((prev) => !prev)}
+                className={
+                  "size-14 max-md:h-full max-md:w-72  transition-all ease-linear duration-500 cursor-pointer object-cover mt-4 " +
+                  (coverRadius ? "rounded-[15%]" : " rounded-[100%]")
+                }
+              />
+            </>,
+            document.getElementById("song-image")
+          )}
         <TimeAndSlider
-          current_song={current_song}
+          current_song={current_song || ""}
           setPaused={setPaused}
           currentAudio={currentAudio}
         />
@@ -92,6 +103,13 @@ const AudioPlayer = () => {
           <FavoriteBtn />
           <PreviousBtn />
           <PlayPause paused={paused} handleAudioPlay={handleAudioPlay} />
+          {currentAudio.current &&
+            createPortal(
+              <>
+                <PlayPause paused={paused} handleAudioPlay={handleAudioPlay} />
+              </>,
+              document.getElementById("play-pause")
+            )}
           <NextBtn />
           <RepeatBtn />
         </div>

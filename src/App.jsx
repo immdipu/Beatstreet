@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import AnimateRoutes from "./AnimateRoutes";
 import { SideNav, RightSideMenu, TopNav } from "./components";
@@ -6,9 +6,22 @@ import { ToastContainer } from "react-toastify";
 import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { cn } from "./Utils/Helper";
+import BottomAudioPlayer from "./components/AudioPlayer/BottomAudioPlayer";
 
 function App() {
   const { showRightSidebar } = useSelector((state) => state.player);
+
+  useEffect(() => {
+    window.addEventListener("beforeunload", function (e) {
+      e.preventDefault();
+    });
+    return () => {
+      window.removeEventListener("beforeunload", function (e) {
+        e.preventDefault();
+      });
+    };
+  }, []);
+
   return (
     <BrowserRouter>
       <Toaster />
@@ -29,6 +42,7 @@ function App() {
       </div>
 
       <RightSideMenu />
+      <BottomAudioPlayer />
     </BrowserRouter>
   );
 }

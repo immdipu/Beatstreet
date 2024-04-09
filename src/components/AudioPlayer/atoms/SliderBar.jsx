@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "@mui/material/Slider";
 import { useTheme } from "@mui/material/styles";
 
-const SliderBar = ({ value, onchange }) => {
+const SliderBar = ({ value, onchange = () => {}, position = "" }) => {
   const theme = useTheme();
   return (
     <Slider
@@ -11,6 +11,7 @@ const SliderBar = ({ value, onchange }) => {
       value={value}
       onChange={onchange}
       sx={{
+        position: { position },
         color: theme.palette.mode === "dark" ? "#fff" : "#007aff",
         height: 4,
         padding: 0,

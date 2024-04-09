@@ -1,29 +1,15 @@
 import React from "react";
 import IconButton from "@mui/material/IconButton";
 import FastRewindRounded from "@mui/icons-material/FastRewindRounded";
-import { useSelector, useDispatch } from "react-redux";
-import { PlayNextSong } from "../../../redux/slice/playerSlicer";
+import usePlayer from "../../../hooks/usePlayer";
 
 const PreviousBtn = () => {
-  const { upcomingSongs, playingSongId } = useSelector((state) => state.player);
-  const dispatch = useDispatch();
-  const HandlePreviousSong = () => {
-    if (upcomingSongs.length > 0) {
-      let IndexOfCurrentSong = upcomingSongs.findIndex(
-        (item) => item.id === playingSongId
-      );
+  const { PlayPrevious } = usePlayer();
 
-      if (IndexOfCurrentSong !== -1 && IndexOfCurrentSong !== 0) {
-        dispatch(
-          PlayNextSong({ id: upcomingSongs[IndexOfCurrentSong - 1].id })
-        );
-      }
-    }
-  };
   return (
     <IconButton
       aria-label="previous song"
-      onClick={HandlePreviousSong}
+      onClick={() => PlayPrevious()}
       sx={{
         ":hover": {
           bgcolor: "#2a2a2abf",

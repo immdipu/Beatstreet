@@ -3,13 +3,16 @@ import clsx from "clsx";
 
 export const ImageFetch = (item) => {
   let imageLink = null;
-  if (item.image) {
+
+  if (item?.image) {
     let arrayLength = item.image.length;
     if (arrayLength > 0) {
       return (imageLink = item.image[arrayLength - 1].url);
     } else {
       return (imageLink = item.image[0].url);
     }
+  } else {
+    return "https://png.pngtree.com/png-clipart/20210207/ourmid/pngtree-concert-cd-clip-art-png-image_2885284.jpg";
   }
 };
 
@@ -26,6 +29,7 @@ export const SpotifyImageFetch = (item) => {
 };
 
 export const AudioLinkSelector = (item) => {
+  if (item === null) return;
   let audioLink = null;
   if (item.downloadUrl) {
     let arrayLength = item.downloadUrl.length;

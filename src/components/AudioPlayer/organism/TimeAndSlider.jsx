@@ -1,34 +1,38 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Timing, SliderBar } from "../atoms";
 import { AudioLinkSelector } from "../../../Utils/Helper";
+import { useSelector } from "react-redux";
+import usePlayer from "../../../hooks/usePlayer";
 
 const TimeAndSlider = ({ current_song, setPaused, currentAudio }) => {
+  const { repeat, upcomingSongs } = useSelector((state) => state.player);
+  const { PlayNext } = usePlayer();
   const [musicTotalLength, setMusicTotalLength] = useState("00:00");
   const [musicCurrentTime, setMusicCurrentTime] = useState("00:00");
   const [audioProgress, setAudioProgress] = useState(0);
+  const [domLoaded, setDomLoaded] = useState(false);
+
+  useEffect(() => {
+    setDomLoaded(true);
+  }, []);
 
   const handleAudioUpdate = () => {
+    if (!currentAudio.current) return console.log("No audio");
+
     if (currentAudio.current.currentTime === currentAudio.current.duration) {
-      if (repeatOne) {
-        // singleSong(current_song?.id);
-        currentAudio.current.play();
+      if (repeat) {
+        currentAudio.current?.play();
       } else {
-        if (current_playing_lists.length > 0) {
-          let IndexOfCurrentSong = current_playing_lists.indexOf(
-            current_song.id
-          );
-          if (IndexOfCurrentSong !== current_playing_lists.length - 1) {
-            singleSong(current_playing_lists[IndexOfCurrentSong + 1]);
-          } else {
-            setPaused(true);
-          }
+        if (upcomingSongs.length > 0) {
+          PlayNext();
         } else {
           setPaused(true);
         }
       }
     }
 
-    if (currentAudio.current.paused) {
+    if (currentAudio.current?.paused) {
       setPaused(true);
     } else {
       setPaused(false);
@@ -58,6 +62,7 @@ const TimeAndSlider = ({ current_song, setPaused, currentAudio }) => {
   };
 
   const handleMusicProgressBar = (e) => {
+    if (!currentAudio.current) return console.log("No audio");
     setAudioProgress(e.target.value);
     currentAudio.current.currentTime =
       (e.target.value * currentAudio.current.duration) / 100;
@@ -68,8 +73,10 @@ const TimeAndSlider = ({ current_song, setPaused, currentAudio }) => {
       <audio
         src={AudioLinkSelector(current_song) || ""}
         ref={currentAudio}
-        autoPlay
         onTimeUpdate={handleAudioUpdate}
+        onLoadedData={() => {
+          currentAudio.current.play();
+        }}
         id="myAudio"
       ></audio>
 
@@ -77,7 +84,20 @@ const TimeAndSlider = ({ current_song, setPaused, currentAudio }) => {
         musicCurrentTime={musicCurrentTime}
         musicTotalLength={musicTotalLength}
       />
+
       <SliderBar value={audioProgress} onchange={handleMusicProgressBar} />
+
+      {domLoaded &&
+        createPortal(
+          <div>
+            <SliderBar
+              value={audioProgress}
+              position="absolute"
+              onchange={handleMusicProgressBar}
+            />
+          </div>,
+          document.getElementById("bottom-audio-player")
+        )}
     </div>
   );
 };

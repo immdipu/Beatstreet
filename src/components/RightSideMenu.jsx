@@ -1,6 +1,6 @@
 import React from "react";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
-import AudioPlayer from "./AudioPlayer";
+import AudioPlayer from "./AudioPlayer/AudioPlayer";
 import { useSelector, useDispatch } from "react-redux";
 import { ToggleRightSidebar } from "../redux/slice/playerSlicer";
 import { cn } from "../Utils/Helper";

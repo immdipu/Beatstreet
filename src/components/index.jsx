@@ -1,4 +1,4 @@
-import AudiPlayer from "./AudioPlayer";
+import AudiPlayer from "./AudioPlayer/AudioPlayer";
 import LoadingSpinner from "./LoadingSpinner";
 import MusicCard from "./MusicCard";
 import RightSideMenu from "./RightSideMenu";

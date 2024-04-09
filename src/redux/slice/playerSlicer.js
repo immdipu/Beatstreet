@@ -1,3 +1,4 @@
+import { Repeat } from "@mui/icons-material";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -6,6 +7,7 @@ const initialState = {
   SearchTerm: "",
   playingSongId: null,
   playing: false,
+  repeat: false,
   upcomingSongs: [],
 };
 
@@ -47,6 +49,9 @@ export const PlayerSlice = createSlice({
       state.playingSongId = action.payload.id;
       state.playing = true;
     },
+    RepeatSong: (state) => {
+      state.repeat = !state.repeat;
+    },
   },
 });
 
@@ -57,5 +62,6 @@ export const {
   PlayNextSong,
   ToggleRightSidebar,
   ToggleSideNavSidebar,
+  RepeatSong,
 } = PlayerSlice.actions;
 export default PlayerSlice.reducer;

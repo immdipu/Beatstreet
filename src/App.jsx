@@ -19,7 +19,7 @@ function App() {
         <div
           className={cn(
             "w-[calc(100%-28px)] shrink-0 duration-700 ease-in-out will-change-transform transition-all",
-            showRightSidebar && "w-[calc(100%-350px)]"
+            showRightSidebar && "w-[calc(100%-380px)]"
           )}
         >
           <AnimateRoutes />

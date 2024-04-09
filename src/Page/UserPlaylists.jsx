@@ -36,7 +36,7 @@ const UserPlaylists = () => {
   }
 
   return (
-    <div className="overflow-auto pl-7 max-md:pl-2 mt-8 ">
+    <div className="overflow-auto pl-7 mr-8 max-md:pl-2 mt-8 ">
       <div>
         <Link
           to={"/importplaylists"}

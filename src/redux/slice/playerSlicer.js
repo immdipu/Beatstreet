@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  showRightSidebar: false,
+  showRightSidebar: true,
+  SideNavbar: false,
   SearchTerm: "",
   playingSongId: null,
   playing: false,
@@ -20,6 +21,9 @@ export const PlayerSlice = createSlice({
     },
     ToggleRightSidebar: (state) => {
       state.showRightSidebar = !state.showRightSidebar;
+    },
+    ToggleSideNavSidebar: (state) => {
+      state.SideNavbar = !state.SideNavbar;
     },
     LoadAllChats: (state, action) => {
       state.AllChats = action.payload;
@@ -46,6 +50,12 @@ export const PlayerSlice = createSlice({
   },
 });
 
-export const { SetSearchTerm, ClearSearchTerm, PlaySong, PlayNextSong } =
-  PlayerSlice.actions;
+export const {
+  SetSearchTerm,
+  ClearSearchTerm,
+  PlaySong,
+  PlayNextSong,
+  ToggleRightSidebar,
+  ToggleSideNavSidebar,
+} = PlayerSlice.actions;
 export default PlayerSlice.reducer;

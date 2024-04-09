@@ -18,7 +18,14 @@ function App() {
       {/* <div className="grid grid-cols-[max-content,auto,max-content]"> */}
       <TopNav />
       <SideNav />
-      <AnimateRoutes />
+      <div className="flex ">
+        <div className="w-[calc(100%-28px)]">
+          <AnimateRoutes />
+        </div>
+
+        <div className="w-7  overflow-hidden"></div>
+      </div>
+
       <RightSideMenu />
     </BrowserRouter>
   );

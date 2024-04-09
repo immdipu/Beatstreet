@@ -5,13 +5,18 @@ import { useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
 import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
 import { useDispatch, useSelector } from "react-redux";
-import { SetSearchTerm } from "../redux/slice/playerSlicer";
+import {
+  SetSearchTerm,
+  ToggleSideNavSidebar,
+} from "../redux/slice/playerSlicer";
 
 const SearchBar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const searchTerm = useSelector((state) => state.searchTerm);
-  const HandleSideNav = () => {};
+  const HandleSideNav = () => {
+    dispatch(ToggleSideNavSidebar());
+  };
 
   function HandleSearch() {
     navigate("/search");

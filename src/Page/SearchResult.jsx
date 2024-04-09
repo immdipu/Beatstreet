@@ -17,7 +17,6 @@ import toast from "react-hot-toast";
 const SearchResult = () => {
   const { SearchTerm } = useSelector((state) => state.player);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
-  const side_menu_show = false;
   const [search_results, setSearchResults] = useState(null);
 
   const searchGlobal = useMutation({
@@ -48,14 +47,7 @@ const SearchResult = () => {
 
   if (searchGlobal.isPending) {
     return (
-      <div
-        className={
-          "bg-darkBlue pl-10 max-md:pl-4 pr-4 overflow-hidden " +
-          (side_menu_show
-            ? "mr-96 transition-all duration-300 ease-in"
-            : "mr-0")
-        }
-      >
+      <div className={"bg-darkBlue pl-10 max-md:pl-4 pr-4 overflow-hidden "}>
         <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
           <LoadingSpinner size={80} />
         </div>
@@ -68,10 +60,7 @@ const SearchResult = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { ease: "easeInOut" } }}
       exit={{ opacity: 0, transition: { ease: "easeInOut" } }}
-      className={
-        "bg-darkBlue pl-10 max-md:pl-1 pr-4 overflow-hidden " +
-        (side_menu_show ? "mr-96 transition-all duration-300 ease-in" : "mr-0")
-      }
+      className={"bg-darkBlue pl-10 max-md:pl-1 pr-4 overflow-hidden "}
     >
       {!search_results && (
         <div>

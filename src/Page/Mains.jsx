@@ -9,9 +9,10 @@ import {
   TopCharts,
   TopPlaylists,
 } from "../components";
+import { useSelector } from "react-redux";
 
 const Mains = () => {
-  const side_menu_show = false;
+  const { showRightSidebar } = useSelector((state) => state.player);
   const { data, isLoading, isError } = useQuery({
     queryKey: ["favoriteSongs"],
     queryFn: () => userApis.getHomepage(),
@@ -47,10 +48,7 @@ const Mains = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1, transition: { ease: "easeInOut" } }}
       exit={{ x: "-100vw", transition: { ease: "easeInOut" } }}
-      className={
-        "bg-darkBlue pl-10 pr-4 max-md:pl-4 overflow-hidden " +
-        (side_menu_show ? "mr-96 transition-all duration-300 ease-in" : "mr-0")
-      }
+      className={"bg-darkBlue pl-10 pr-4 max-md:pl-4 overflow-hidden "}
     >
       <section className="w-full my-6 ">
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">

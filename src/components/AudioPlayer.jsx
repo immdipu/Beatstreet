@@ -20,16 +20,8 @@ import userApis from "../Api/userApi";
 import musicApi from "../Api/Api";
 
 const AudioPlayer = () => {
-  // const {
-  //   current_song,
-  //   side_menu_show,
-  //   audio_playing,
-  //   current_playing_lists,
-  //   singleSong,
-  // } = usePlayerContext();
   const audio_playing = true;
 
-  const side_menu_show = true;
   const { playingSongId, playing } = useSelector((state) => state.player);
   const user = useSelector((state) => state.user);
   const [repeatOne, setRepeatOne] = useState(false);
@@ -170,12 +162,7 @@ const AudioPlayer = () => {
   }
 
   return (
-    <div
-      className={
-        " px-7 py-2 mt-5 relative boss max-md:h-full " +
-        (side_menu_show ? "opacity-100" : "opacity-0")
-      }
-    >
+    <div className={" px-7 py-2 mt-5 relative boss max-md:h-full "}>
       <img
         src={ImageFetch(current_song) || ""}
         alt="background"
@@ -192,10 +179,7 @@ const AudioPlayer = () => {
         ></audio>
 
         <div
-          className={
-            "text-container  flex justify-center overflow-hidden items-center " +
-            (side_menu_show ? " w-52 max-md:w-72" : "w-0")
-          }
+          className="text-container  flex justify-center overflow-hidden w-52 max-md:w-72 items-center "
           ref={songNameContainer}
         >
           <h3

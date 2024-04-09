@@ -10,7 +10,6 @@ import { useUserContext } from "../Context/UserContext";
 import { LoginAlert } from "../components";
 
 const SingleAlbum = () => {
-  const side_menu_show = true;
   const [ImageLoading, SetImageLoading] = useState(true);
   const { login_success } = useUserContext();
   const [alert, setAlert] = useState(false);
@@ -56,12 +55,7 @@ const SingleAlbum = () => {
   };
 
   return (
-    <div
-      className={
-        "bg-darkBlue  overflow-hidden " +
-        (side_menu_show ? "mr-96 transition-all duration-300 ease-in" : "mr-0")
-      }
-    >
+    <div className={"bg-darkBlue  overflow-hidden "}>
       {alert && (
         <div className="fixed top-28 left-1/2 z-[100] max-md:left-0 max-md:scale-75 w-full">
           <LoginAlert

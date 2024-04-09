@@ -10,17 +10,23 @@ import InfoIcon from "@mui/icons-material/Info";
 import LogoText from "./assets/LogoText";
 import RippleButton from "ripple-effect-reactjs";
 import { useUserContext } from "../Context/UserContext";
+import { useSelector, useDispatch } from "react-redux";
+import { ToggleSideNavSidebar } from "../redux/slice/playerSlicer";
 
 const SideNav = () => {
-  const HandleSideNav = () => {};
-  const side_navbar_show = true;
+  const { SideNavbar } = useSelector((state) => state.player);
+  const { islogged } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const HandleSideNav = () => {
+    dispatch(ToggleSideNavSidebar());
+  };
   const { login_success } = useUserContext();
   return (
     <div className={"float-left w-52 h-[26rem] max-md:w-0 select-none"}>
       <div
         className={
           "bg-lightBlue text-darkTextColor top-0  w-52 transition-all duration-200 ease-linear  fixed z-50 h-full  py-10 " +
-          (side_navbar_show ? "max-md:w-64 left-0" : "max-md:-left-52")
+          (SideNavbar ? "max-md:w-64 left-0" : "max-md:-left-52")
         }
       >
         <section className="px-7 max-md:px-10 ">
@@ -115,7 +121,7 @@ const SideNav = () => {
             Made by <span className="text-neutral-200">Dipu</span>
           </a>
         </div>
-        {!login_success && (
+        {!islogged && (
           <section className="px-7  mt-10 hidden gap-2 max-md:flex">
             <RippleButton color={"#519aff2e"} speed={500}>
               <Link
@@ -141,7 +147,7 @@ const SideNav = () => {
       <div
         className={
           "fixed z-30 h-full max-md:block hidden top-0 w-full bg-[#0c0c0cc7] transition-all duration-200 ease-in " +
-          (side_navbar_show ? "visible opacity-100" : "invisible opacity-0")
+          (SideNavbar ? "visible opacity-100" : "invisible opacity-0")
         }
         onClick={HandleSideNav}
       ></div>

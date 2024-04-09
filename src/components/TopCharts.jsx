@@ -1,6 +1,5 @@
 import React from "react";
 import { SingleChart } from "../components";
-import { useMusicContext } from "../Context/MusicContext";
 
 const TopCharts = ({ data }) => {
   return (

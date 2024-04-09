@@ -3,15 +3,12 @@ import SearchBar from "./SearchBar";
 import LoginAndSignUp from "./LoginAndSignUp";
 import UserAvatar from "./UserAvatar";
 import ClipLoader from "react-spinners/ClipLoader";
-import { useUserContext } from "../Context/UserContext";
 import userApis from "../Api/userApi";
-import { useQuery } from "@tanstack/react-query";
 import { isLogged } from "../redux/slice/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 
 const TopNav = () => {
-  const { login_success, User_id, auto_login_begin } = useUserContext();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 

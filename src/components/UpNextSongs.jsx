@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-
+import React from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import { SongDurtionFormat } from "../Utils/Helper";
-import ClipLoader from "react-spinners/ClipLoader";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import { useSelector, useDispatch } from "react-redux";
 import { PlayNextSong } from "../redux/slice/playerSlicer";
@@ -11,20 +8,6 @@ import { PlayNextSong } from "../redux/slice/playerSlicer";
 const UpNextSongs = ({}) => {
   const { upcomingSongs } = useSelector((state) => state.player);
   const dispatch = useDispatch();
-  // const getUpNextSongs = async (data) => {
-  //   let IndexOfCurrentSong = songs.indexOf(current_song.id);
-  //   let Ids = data.join();
-  //   setLoading(true);
-  //   try {
-  //     const getSongs = await axios.get(`https://saavn.dev/songs?id=${Ids}`);
-  //     const songs = getSongs.data.data;
-  //     setSongsarr(songs);
-  //     setLoading(false);
-  //   } catch (error) {
-  //     console.log(error);
-  //     setLoading(false);
-  //   }
-  // };
 
   return (
     <div>

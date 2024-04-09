@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
 import { useNavigate } from "react-router-dom";
 import IconButton from "@mui/material/IconButton";
-import ClearRoundedIcon from "@mui/icons-material/ClearRounded";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   SetSearchTerm,
@@ -24,15 +24,6 @@ const SearchBar = () => {
 
   function handleInputChange(event) {
     dispatch(SetSearchTerm(event.target.value));
-    // clearTimeout(searchTimer);
-    // setSearchTimer(
-    //   setTimeout(() => {
-    //     if (event.target.value !== "") {
-    //       SearchAll(inputValue, current_page_count);
-    //       inputRef.current.blur();
-    //     }
-    //   }, 2500)
-    // );
   }
 
   return (

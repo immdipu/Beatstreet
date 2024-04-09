@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 
 const SingleTopPlaylists = ({ title, id, image }) => {
   return (

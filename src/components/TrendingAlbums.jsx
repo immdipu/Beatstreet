@@ -1,6 +1,5 @@
 import React from "react";
 import MusicCard from "./MusicCard";
-import { useMusicContext } from "../Context/MusicContext";
 
 const TrendingAlbums = ({ data }) => {
   return (

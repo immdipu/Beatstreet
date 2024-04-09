@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MusicCard, SingleSongList, SingleArtist } from "../components";
+import { SingleSongList, SingleArtist } from "../components";
 
 const TopResults = ({ data }) => {
   return (

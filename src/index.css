@@ -171,3 +171,8 @@ circle {
 .MuiSlider-colorPrimary {
     padding: 0 !important;
 }
+
+
+.bottomPlayerGap {
+    margin-bottom: 100px;
+}

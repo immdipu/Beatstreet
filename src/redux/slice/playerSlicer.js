@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  showRightSidebar: true,
+  showRightSidebar: false,
   SideNavbar: false,
   SearchTerm: "",
   playingSongId: null,

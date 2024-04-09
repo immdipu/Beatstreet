@@ -31,14 +31,14 @@ function App() {
       <div className="flex ">
         <div
           className={cn(
-            "w-[calc(100%-28px)] shrink-0 duration-700 ease-in-out will-change-transform transition-all",
+            "w-[calc(100%-28px)] max-md:w-full shrink-0 duration-700 ease-in-out will-change-transform transition-all",
             showRightSidebar && "w-[calc(100%-380px)]"
           )}
         >
           <AnimateRoutes />
         </div>
 
-        <div className="w-7  overflow-hidden"></div>
+        <div className="w-7 max-md:w-0   overflow-hidden"></div>
       </div>
 
       <RightSideMenu />

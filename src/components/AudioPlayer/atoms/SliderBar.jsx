@@ -14,6 +14,7 @@ const SliderBar = ({ value, onchange = () => {}, position = "" }) => {
         position: { position },
         color: theme.palette.mode === "dark" ? "#fff" : "#007aff",
         height: 4,
+
         padding: 0,
         "& .MuiSlider-thumb": {
           width: 8,
@@ -37,6 +38,8 @@ const SliderBar = ({ value, onchange = () => {}, position = "" }) => {
         "& .MuiSlider-rail": {
           opacity: 0.28,
         },
+
+        "&.css-1v8m7un-MuiSlider-root": {},
       }}
     />
   );

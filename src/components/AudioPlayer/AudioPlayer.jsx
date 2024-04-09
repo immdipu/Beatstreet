@@ -2,10 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import { ImageFetch } from "../../Utils/Helper";
 import SongDownloader from "../downloader/SongDownloader";
 import { AnimatePresence } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 import userApis from "../../Api/userApi";
 import musicApi from "../../Api/Api";
+import { KeyboardDoubleArrowDownSharp } from "@mui/icons-material";
+import { useSwipeable } from "react-swipeable";
+import { ToggleRightSidebar } from "../../redux/slice/playerSlicer";
 import {
   Header,
   FavoriteBtn,
@@ -20,12 +23,20 @@ import { createPortal } from "react-dom";
 
 const AudioPlayer = () => {
   const { playingSongId } = useSelector((state) => state.player);
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [showUpNext, setShowUpNext] = useState(false);
-  const [paused, setPaused] = useState(false);
+  const [paused, setPaused] = useState(true);
   const [coverRadius, setCoverRadius] = useState(false);
   const currentAudio = useRef();
   const [current_song, Setcurrent_song] = useState(null);
+
+  const handlers = useSwipeable({
+    onSwiped: (eventData) => console.log("User Swiped!", eventData),
+    onSwipedUp: (eventData) => {
+      setShowUpNext((prev) => !prev);
+    },
+  });
 
   const addRecentSong = useMutation({
     mutationFn: (songId) => userApis.addRecentSong(songId),
@@ -48,6 +59,7 @@ const AudioPlayer = () => {
   }, [current_song]);
 
   const handleAudioPlay = () => {
+    if (!current_song) return console.log("No audio");
     if (currentAudio.current.paused) {
       currentAudio.current.play();
       setPaused(false);
@@ -58,18 +70,34 @@ const AudioPlayer = () => {
   };
 
   return (
-    <div className={" px-7 py-2 mt-5 relative boss max-md:h-full "}>
+    <div
+      className={
+        " px-7 py-2  max-md:rounded-none mt-5 max-md:mt-0 relative boss max-md:h-full "
+      }
+    >
       <img
         src={ImageFetch(current_song)}
         alt="background"
         className="absolute inset-0 -z-40 h-full  object-cover opacity-20 blur-md rounded-lg
     "
       />
-      <section className="flex flex-col items-center gap-1 ">
-        <Header
-          name={current_song?.name || ""}
-          artist={current_song?.artists || []}
-        />
+
+      <section className="flex flex-col items-center gap-1 max-md:mt-10 ">
+        <div className="flex">
+          <button
+            onClick={() => {
+              dispatch(ToggleRightSidebar());
+            }}
+            className="w-fit -translate-x-4"
+          >
+            <KeyboardDoubleArrowDownSharp />
+          </button>
+          <Header
+            name={current_song?.name || ""}
+            artist={current_song?.artists || []}
+          />
+        </div>
+
         <img
           src={ImageFetch(current_song || "")}
           alt="song Avatar"
@@ -94,19 +122,45 @@ const AudioPlayer = () => {
             </>,
             document.getElementById("song-image")
           )}
+
+        {currentAudio.current &&
+          createPortal(
+            <>
+              <Header
+                name={current_song?.name || ""}
+                artist={current_song?.artists || []}
+                bottom={true}
+              />
+            </>,
+            document.getElementById("song-header")
+          )}
+        {currentAudio.current &&
+          createPortal(
+            <>
+              <SongDownloader songId={current_song?.id || ""} />
+            </>,
+            document.getElementById("song-downloader")
+          )}
+
         <TimeAndSlider
           current_song={current_song || ""}
           setPaused={setPaused}
           currentAudio={currentAudio}
         />
-        <div className="mt-1 max-md:scale-125 max-md:mt-5">
+        <div className="mt-1 max-md:scale-125 max-md:mt-10   max-md:space-x-2">
           <FavoriteBtn />
           <PreviousBtn />
           <PlayPause paused={paused} handleAudioPlay={handleAudioPlay} />
           {currentAudio.current &&
             createPortal(
               <>
-                <PlayPause paused={paused} handleAudioPlay={handleAudioPlay} />
+                <PlayPause
+                  paused={paused}
+                  handleAudioPlay={handleAudioPlay}
+                  fill="#dadada"
+                  bg="#121010"
+                  font="2rem"
+                />
               </>,
               document.getElementById("play-pause")
             )}
@@ -119,8 +173,9 @@ const AudioPlayer = () => {
         </div>
 
         <button
+          {...handlers}
           onClick={() => setShowUpNext((prev) => !prev)}
-          className="mt-0 max-md:mt-16 max-md:text-xl"
+          className="mt-0  w-full min-h-24  max-md:mt-16 max-md:text-xl"
         >
           up Next
         </button>

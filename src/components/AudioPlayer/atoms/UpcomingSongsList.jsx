@@ -8,7 +8,7 @@ const UpcomingSongsList = ({ setShowUpNext }) => {
       initial={{ y: "100%" }}
       animate={{ y: "0", transition: { ease: "easeInOut" } }}
       exit={{ y: "100%", transition: { ease: "easeInOut" } }}
-      className="bg-neutral-800  bg-opacity-70 -bottom-8 max-md:bottom-16 pb-4 z-[55] backdrop-blur-md absolute
+      className="bg-neutral-800  bg-opacity-70 max-md:bottom-0 pb-4 z-[55] backdrop-blur-md absolute
 px-1 rounded-xl w-full"
     >
       <div

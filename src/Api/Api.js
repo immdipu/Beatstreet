@@ -5,14 +5,16 @@ import toast from "react-hot-toast";
 const BASEURL = import.meta.env.VITE_BASE_URL;
 const musicApi = {
   SingleArtist: async (id) => {
-    try {
-      const response = await axios.get(`${BASEURL}/artists?id=${id}`);
-      const result = response.data.data || [];
-      return result;
-    } catch (error) {
-      console.log(error);
-    }
+    const response = await axios.get(`${BASEURL}/artists?id=${id}`);
+    const result = response.data.data || [];
+    return result;
   },
+  SingleAlbum: async (id) => {
+    const response = await axios.get(`${BASEURL}/albums?id=${id}`);
+    const result = response.data.data || [];
+    return result;
+  },
+
   ArtistSongs: async ({ id, pageParam }) => {
     try {
       const response = await axios.get(

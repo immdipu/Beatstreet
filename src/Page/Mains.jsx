@@ -14,8 +14,10 @@ import { useSelector } from "react-redux";
 const Mains = () => {
   const { showRightSidebar } = useSelector((state) => state.player);
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["favoriteSongs"],
+    queryKey: ["homepage"],
     queryFn: () => userApis.getHomepage(),
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   if (isLoading) {

@@ -12,7 +12,7 @@ const FavoritesSongs = () => {
     queryFn: () => userApis.getFavoritesSongs(),
   });
 
-  if (isLoading) {
+  if (isLoading && !data) {
     return (
       <div className="text-2xl font-bold fixed inset-0 w-full h-full flex place-items-center justify-center bg-darkBlue -z-20 max-md:pr-0 pr-32 ">
         <LoadingSpinner size={80} />

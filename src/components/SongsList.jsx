@@ -1,7 +1,7 @@
 import React from "react";
 import SingleSongList from "./SingleSongList";
 
-const SongsList = ({ songs, current, playlistId = null }) => {
+const SongsList = ({ songs, playlistId = null }) => {
   return (
     <div className="w-full overflow-hidden max-md:px-0 flex flex-col gap-2">
       {songs &&

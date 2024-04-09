@@ -30,9 +30,16 @@ const SingleSongList = ({
     primaryArtistsArr = ArtistFormatter(artists?.primary);
   }
 
+  const handleContextMenu = useCallback((e) => {
+    e.preventDefault();
+    const button = document.querySelector(`[data-sid="${id}"]`);
+    console.log("button", button);
+    button.click();
+  }, []);
+
   return (
     <>
-      <div className="relative">
+      <div className="relative" onContextMenu={handleContextMenu}>
         <ListItemButton
           sx={[
             {

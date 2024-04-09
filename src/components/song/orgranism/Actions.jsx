@@ -45,7 +45,7 @@ const Actions = ({ id, artists, playlistId, album }) => {
       {user.islogged && <Favorite songId={id} />}
       {user.islogged && <SongDownloader songId={id} />}
       {!user.islogged && <DownloadLogo />}
-      <IconButton size="large" onClick={handleClick}>
+      <IconButton size="large" onClick={handleClick} data-sid={id}>
         <MoreVertIcon className="text-slate-200 opacity-60" />
       </IconButton>
 
@@ -54,6 +54,7 @@ const Actions = ({ id, artists, playlistId, album }) => {
         open={open}
         anchorEl={anchorEl}
         onClose={handleClose}
+        className="song-menu"
         anchorOrigin={{
           vertical: "top",
           horizontal: "center",

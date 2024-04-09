@@ -21,7 +21,7 @@ import SpotifyPlaylist from "./SpotifyPlaylist";
 import UserSinglePlaylist from "./UserSinglePlaylist";
 import CustomizedAccordions from "./HelpSupport";
 import Error from "./Error";
-import Setting from "./setting";
+import Setting from "./Setting";
 export {
   Home,
   SingleAlbum,

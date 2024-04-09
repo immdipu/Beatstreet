@@ -18,7 +18,6 @@ import {
   TopArtist,
   UserPlaylists,
   ImportPlaylist,
-  TopPlaylists,
   SpotifyLogin,
   SpotifyPlaylist,
   UserSinglePlaylist,

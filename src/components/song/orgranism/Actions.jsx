@@ -4,9 +4,11 @@ import { IconButton, Popover } from "@mui/material";
 import Favorite from "../../Favorite";
 import SongDownloader from "../../downloader/SongDownloader";
 import DownloadLogo from "../../downloader/DownloadLogo";
+import Clear from "@mui/icons-material/Clear";
 import CreatePlaylistModal from "../../CreatePlaylistModal";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { AnimatePresence } from "framer-motion";
+import { db } from "../../../App";
 
 const UserPlaylistPopOver = lazy(() =>
   import("../../song/popover/UserPlaylistPopOver")
@@ -14,7 +16,7 @@ const UserPlaylistPopOver = lazy(() =>
 
 const PopOverData = lazy(() => import("../../song/popover/PopOverData"));
 
-const Actions = ({ id, artists, playlistId, album }) => {
+const Actions = ({ id, artists, playlistId, album, offline }) => {
   const user = useSelector((state) => state.user);
   const [showPlaylist, setShowPlaylist] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -43,8 +45,17 @@ const Actions = ({ id, artists, playlistId, album }) => {
   return (
     <>
       {user.islogged && <Favorite songId={id} />}
-      {user.islogged && <SongDownloader songId={id} />}
-      {!user.islogged && <DownloadLogo />}
+      {user.islogged && !offline && <SongDownloader songId={id} />}
+      {!user.islogged && !offline && <DownloadLogo />}
+      {offline && (
+        <Clear
+          className="text-red-400 cursor-pointer active:scale-90 duration-150"
+          sx={{ fontSize: 25 }}
+          onClick={async () => {
+            await db.songs.delete(id);
+          }}
+        />
+      )}
       <IconButton size="large" onClick={handleClick} data-sid={id}>
         <MoreVertIcon className="text-slate-200 opacity-60" />
       </IconButton>

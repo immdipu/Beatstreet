@@ -65,7 +65,7 @@ const SingleSongList = ({
           onClick={() => dispatch(PlaySong({ id, upcomingSongs }))}
         >
           <Image
-            src={offline ? URL.createObjectURL(image) : image[1].url}
+            src={offline ? URL.createObjectURL(image) : image[1]?.url}
             alt={name}
             className="w-14 h-14 rounded-lg"
           />
@@ -94,6 +94,7 @@ const SingleSongList = ({
               id={id}
               playlistId={playlistId}
               album={album}
+              offline={offline}
             />
           </Suspense>
         </div>

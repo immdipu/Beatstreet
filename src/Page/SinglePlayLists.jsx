@@ -52,6 +52,7 @@ const SinglePlayLists = () => {
             alt={data.name}
             src={data.image[2]?.url || data.image[1]?.url || data.image[0]?.url}
             variant="rounded"
+            className={"size-52"}
           />
 
           <div className="flex place-content-end max-md:place-items-center flex-col">

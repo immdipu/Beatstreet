@@ -1,17 +1,7 @@
 import React from "react";
-import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
-
 const DownloadLogo = () => {
-  const user = useSelector((state) => state.user);
   return (
-    <div
-      onClick={() => {
-        if (!user.islogged) {
-          toast.error("Please Login to download");
-        }
-      }}
-    >
+    <div>
       <svg
         version="1.1"
         viewBox="0 0 700 700"

@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import { IconButton, Popover } from "@mui/material";
 import Favorite from "../../Favorite";
 import SongDownloader from "../../downloader/SongDownloader";
-import DownloadLogo from "../../downloader/DownloadLogo";
 import Clear from "@mui/icons-material/Clear";
 import CreatePlaylistModal from "../../CreatePlaylistModal";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -46,7 +45,6 @@ const Actions = ({ id, artists, playlistId, album, offline }) => {
     <>
       {user.islogged && <Favorite songId={id} />}
       {user.islogged && !offline && <SongDownloader songId={id} />}
-      {!user.islogged && !offline && <DownloadLogo />}
       {offline && (
         <Clear
           className="text-red-400 cursor-pointer active:scale-90 duration-150"

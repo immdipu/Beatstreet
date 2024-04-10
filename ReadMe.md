@@ -4,14 +4,13 @@ Welcome to Beatstreet, a free website where you can listen to your favorite musi
 
 ## Features
 
+- Can be installed as a PWA on your PC or Mobile.
 - Listen to your favorite music for free
 - Search for your favorite artists, albums, and songs
 - Create and manage playlists
-- Share songs and playlists with friends
-- View other users' playlists
+- Download songs for offline listening
 - No Subscription
 - No Ads
-- Download songs, albums and playlist with just one click
 
 ## Technologies Used
 
@@ -19,6 +18,10 @@ Welcome to Beatstreet, a free website where you can listen to your favorite musi
 - Express - for the backend API
 - React - for the frontend UI
 - Node.js - for the server
+- ReactQuery - for fetching data from the backend
+- Redux - for state management
+- Material-UI - for the UI components
+- Netlify - for hosting the website
 - HTML, CSS, and JavaScript - for the website design and functionality
 
 ## Getting Started
@@ -53,7 +56,7 @@ To use the Music Streaming Website, simply click on the following link: [Beatstr
 
 #### Playlist
 
-<img src="public/images/MobilePlaylist.png" width="300">
+<img src="public/images/MobileView.png" width="300">
 
 ## Support
 

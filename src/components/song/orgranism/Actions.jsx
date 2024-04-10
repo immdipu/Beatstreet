@@ -44,7 +44,7 @@ const Actions = ({ id, artists, playlistId, album, offline }) => {
   return (
     <>
       {user.islogged && <Favorite songId={id} />}
-      {user.islogged && !offline && <SongDownloader songId={id} />}
+      {!offline && <SongDownloader songId={id} />}
       {offline && (
         <Clear
           className="text-red-400 cursor-pointer active:scale-90 duration-150"

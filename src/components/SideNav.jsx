@@ -5,6 +5,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import DonutSmallIcon from "@mui/icons-material/DonutSmall";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import Folder from "@mui/icons-material/Folder";
 import { NavLink, Link } from "react-router-dom";
 import InfoIcon from "@mui/icons-material/Info";
 import LogoText from "./assets/LogoText";
@@ -74,6 +75,14 @@ const SideNav = () => {
             Library
           </h3>
           <ul className="flex flex-col gap-6 mt-5">
+            <NavLink
+              onClick={HandleSideNav}
+              to={"/downloads"}
+              className="flex items-center gap-4 text-sm max-md:text-base font-medium"
+            >
+              <Folder />
+              Downloads
+            </NavLink>
             <NavLink
               onClick={HandleSideNav}
               to={"/recentsongs"}

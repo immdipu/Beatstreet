@@ -18,6 +18,7 @@ const SingleSongList = ({
   title,
   upcomingSongs = [],
   playlistId = null,
+  offline = false,
 }) => {
   const dispatch = useDispatch();
   function ArtistFormatter(artistss) {
@@ -63,7 +64,7 @@ const SingleSongList = ({
           onClick={() => dispatch(PlaySong({ id, upcomingSongs }))}
         >
           <Image
-            src={image[1].url}
+            src={offline ? URL.createObjectURL(image) : image[1].url}
             alt={name}
             className="w-14 h-14 rounded-lg"
           />

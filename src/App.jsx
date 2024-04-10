@@ -7,6 +7,12 @@ import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { cn } from "./Utils/Helper";
 import BottomAudioPlayer from "./components/AudioPlayer/BottomAudioPlayer";
+import { Dexie } from "dexie";
+
+export const db = new Dexie("SongsDatabase");
+db.version(1).stores({
+  songs: "id, url name image artist duration",
+});
 
 function App() {
   const { showRightSidebar } = useSelector((state) => state.player);

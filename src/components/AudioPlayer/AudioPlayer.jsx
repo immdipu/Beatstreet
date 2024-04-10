@@ -6,9 +6,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { useMutation } from "@tanstack/react-query";
 import userApis from "../../Api/userApi";
 import musicApi from "../../Api/Api";
+import { db } from "../../App";
 import { KeyboardDoubleArrowDownSharp } from "@mui/icons-material";
 import { useSwipeable } from "react-swipeable";
 import { ToggleRightSidebar } from "../../redux/slice/playerSlicer";
+import { useLiveQuery } from "dexie-react-hooks";
 import {
   Header,
   FavoriteBtn,
@@ -23,6 +25,7 @@ import { createPortal } from "react-dom";
 
 const AudioPlayer = () => {
   const { playingSongId } = useSelector((state) => state.player);
+  const offlineSongs = useLiveQuery(() => db.songs.toArray(), []);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const [showUpNext, setShowUpNext] = useState(false);
@@ -49,8 +52,25 @@ const AudioPlayer = () => {
   });
 
   useEffect(() => {
-    getSongDetails.mutate(playingSongId);
-  }, [playingSongId]);
+    if (navigator.onLine) {
+      getSongDetails.mutate(playingSongId);
+    } else {
+      if (!offlineSongs) return;
+      const getSong = offlineSongs.filter((item) => item.id === playingSongId);
+      const updatedsong = getSong.map((item) => {
+        return {
+          ...item,
+          url: URL.createObjectURL(item.url),
+          image: [
+            {
+              url: URL.createObjectURL(item.image),
+            },
+          ],
+        };
+      });
+      Setcurrent_song(updatedsong[0]);
+    }
+  }, [playingSongId, offlineSongs]);
 
   useEffect(() => {
     if (current_song?.id && user.islogged) {

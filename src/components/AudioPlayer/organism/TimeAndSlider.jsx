@@ -71,7 +71,7 @@ const TimeAndSlider = ({ current_song, setPaused, currentAudio }) => {
   return (
     <div className="w-full">
       <audio
-        src={AudioLinkSelector(current_song) || ""}
+        src={AudioLinkSelector(current_song)}
         ref={currentAudio}
         onTimeUpdate={handleAudioUpdate}
         onLoadedData={() => {

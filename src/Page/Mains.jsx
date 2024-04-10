@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import userApis from "../Api/userApi.js";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   LoadingSpinner,
   TrendingAlbums,
@@ -9,16 +10,22 @@ import {
   TopCharts,
   TopPlaylists,
 } from "../components";
-import { useSelector } from "react-redux";
 
 const Mains = () => {
-  const { showRightSidebar } = useSelector((state) => state.player);
+  const navigate = useNavigate();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["homepage"],
     queryFn: () => userApis.getHomepage(),
     refetchOnMount: false,
     refetchOnWindowFocus: false,
+    retry: 2,
   });
+
+  useEffect(() => {
+    if (!navigator.onLine) {
+      navigate("/Downloads");
+    }
+  }, []);
 
   if (isLoading) {
     return (

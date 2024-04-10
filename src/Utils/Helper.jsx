@@ -1,9 +1,9 @@
 import { twMerge } from "tailwind-merge";
 import clsx from "clsx";
+import { db } from "../App";
 
 export const ImageFetch = (item) => {
   let imageLink = null;
-
   if (item?.image) {
     let arrayLength = item.image.length;
     if (arrayLength > 0) {
@@ -38,6 +38,10 @@ export const AudioLinkSelector = (item) => {
     } else {
       return (audioLink = item.downloadUrl[0].url);
     }
+  } else if (item?.url) {
+    return item.url;
+  } else {
+    return null;
   }
 };
 
@@ -93,4 +97,25 @@ export const isFavorite = (songId) => {
 
 export const cn = (...inputs) => {
   return twMerge(clsx(inputs));
+};
+
+export const AddSongToOffline = async ({
+  link,
+  image,
+  name,
+  artist,
+  id,
+  duration,
+}) => {
+  const blob = new Blob([link], { type: "audio/mpeg" });
+  const imageBlob = new Blob([image], { type: "image/png" });
+
+  await db.songs.add({
+    id,
+    url: blob,
+    name,
+    image: imageBlob,
+    artist: JSON.stringify(artist),
+    duration,
+  });
 };

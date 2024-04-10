@@ -24,6 +24,7 @@ import {
   Error,
   CustomizedAccordions,
   Setting,
+  Downloads,
 } from "./Page";
 import {
   HindiPlaylist,
@@ -66,6 +67,7 @@ const AnimateRoutes = () => {
         <Route path="/userplaylist/:id" element={<UserSinglePlaylist />} />
         <Route path="/about" element={<CustomizedAccordions />} />
         <Route path="/setting" element={<Setting />} />
+        <Route path="/downloads" element={<Downloads />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </AnimatePresence>

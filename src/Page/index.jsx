@@ -22,6 +22,7 @@ import UserSinglePlaylist from "./UserSinglePlaylist";
 import CustomizedAccordions from "./HelpSupport";
 import Error from "./Error";
 import Setting from "./Setting";
+import Downloads from "./Downloads";
 export {
   Home,
   SingleAlbum,
@@ -46,5 +47,6 @@ export {
   UserSinglePlaylist,
   CustomizedAccordions,
   Setting,
+  Downloads,
   Error,
 };

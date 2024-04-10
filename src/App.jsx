@@ -11,7 +11,7 @@ import { Dexie } from "dexie";
 
 export const db = new Dexie("SongsDatabase");
 db.version(1).stores({
-  songs: "id, url name image artist duration",
+  songs: "id, url, name, image, artist, duration",
 });
 
 function App() {

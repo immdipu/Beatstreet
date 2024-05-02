@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import { Logo } from ".";
 import RippleButton from "ripple-effect-reactjs";
 import ClipLoader from "react-spinners/ClipLoader";
-import { useUserContext } from "../Context/UserContext";
 import { motion } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import userApis from "../Api/userApi";

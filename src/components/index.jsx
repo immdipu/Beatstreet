@@ -8,7 +8,6 @@ import SongsList from "./SongsList";
 import TrendingAlbums from "./TrendingAlbums";
 import Albums from "./Albums";
 import SearchBar from "./SearchBar";
-import Alert from "./Alert";
 import SingleChart from "./SingleChart";
 import TopCharts from "./TopCharts";
 import TopPlaylists from "./TopPlaylists";
@@ -23,7 +22,6 @@ import SongDownloader from "./downloader/SongDownloader";
 import SinglesongCard from "./SinglesongCard";
 import LogoText from "./assets/LogoText";
 import TopNav from "./TopNav";
-import LoginAlert from "./LoginAlert";
 import EyeVisibility from "./assets/EyeVisibility";
 import EyeNotVisibility from "./assets/EyeNotVisibility";
 import UserVerify from "./UserVerify";
@@ -50,7 +48,6 @@ export {
   TrendingAlbums,
   Albums,
   SearchBar,
-  Alert,
   SingleChart,
   TopCharts,
   TopPlaylists,
@@ -65,7 +62,6 @@ export {
   SongDownloader,
   SinglesongCard,
   TopNav,
-  LoginAlert,
   EyeNotVisibility,
   EyeVisibility,
   UserVerify,

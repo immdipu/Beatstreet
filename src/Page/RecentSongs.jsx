@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { SongsList, LoadingSpinner } from "../components";
 import { Logo, LogoText } from "../components";
-import { useUserContext } from "../Context/UserContext";
 
 import { useSelector } from "react-redux";
 import userApis from "../Api/userApi";

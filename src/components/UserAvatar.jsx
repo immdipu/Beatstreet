@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { useUserContext } from "../Context/UserContext";
 import UserDropDown from "./UserDropDown";
 import { AnimatePresence, motion } from "framer-motion";
 import { useSelector } from "react-redux";

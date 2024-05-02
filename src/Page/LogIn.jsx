@@ -2,13 +2,7 @@ import React, { useRef, useState, useLayoutEffect } from "react";
 import RippleButton from "ripple-effect-reactjs";
 import { Link, useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
-import { useUserContext } from "../Context/UserContext";
-import {
-  LoginAlert,
-  EyeNotVisibility,
-  EyeVisibility,
-  TopNav,
-} from "../components";
+import { EyeNotVisibility, EyeVisibility, TopNav } from "../components";
 import ClipLoader from "react-spinners/ClipLoader";
 import { motion } from "framer-motion";
 import userApis from "../Api/userApi";
@@ -18,8 +12,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { isLogged } from "../redux/slice/userSlice";
 
 const LogIn = () => {
-  const { loginUser, login_loading, login_failed, login_success } =
-    useUserContext();
   const navigate = useNavigate();
   const [validateEmail, setValidateEmail] = useState(false);
   const [passwordVisibility, setPasswordVisibility] = useState(false);

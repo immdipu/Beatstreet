@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@capacitor/android": "^5.7.4",
+    "@capacitor/core": "^5.7.4",
+    "@capacitor/ios": "^5.7.4",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
@@ -34,6 +37,7 @@
     "tailwind-merge": "^2.2.2"
   },
   "devDependencies": {
+    "@capacitor/cli": "^5.7.4",
     "@tanstack/eslint-plugin-query": "^5.27.7",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",

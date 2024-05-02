@@ -10,7 +10,6 @@ import { NavLink, Link } from "react-router-dom";
 import InfoIcon from "@mui/icons-material/Info";
 import LogoText from "./assets/LogoText";
 import RippleButton from "ripple-effect-reactjs";
-import { useUserContext } from "../Context/UserContext";
 import { useSelector, useDispatch } from "react-redux";
 import { ToggleSideNavSidebar } from "../redux/slice/playerSlicer";
 
@@ -21,7 +20,7 @@ const SideNav = () => {
   const HandleSideNav = () => {
     dispatch(ToggleSideNavSidebar());
   };
-  const { login_success } = useUserContext();
+
   return (
     <div className={"float-left w-52 h-[26rem] max-md:w-0 select-none"}>
       <div

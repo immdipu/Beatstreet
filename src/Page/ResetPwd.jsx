@@ -1,18 +1,11 @@
 import React, { useRef, useState } from "react";
 import RippleButton from "ripple-effect-reactjs";
-import { LoginAlert, EyeNotVisibility, EyeVisibility } from "../components";
-import { useUserContext } from "../Context/UserContext";
+import { EyeNotVisibility, EyeVisibility } from "../components";
 import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 
 const ResetPwd = () => {
   const { token } = useParams();
-  const {
-    resetPassword,
-    password_reset_begin,
-    password_reset_failed,
-    password_reset_success,
-  } = useUserContext();
   const passwordRef = useRef(null);
   const passwordConfirmRef = useRef(null);
   const [passwordVisibility, setPasswordVisibility] = useState(false);
@@ -53,29 +46,8 @@ const ResetPwd = () => {
         password: passwordRef.current.value.trim(),
         passwordConfirm: passwordConfirmRef.current.value.trim(),
       };
-      resetPassword(token, data);
     }
   };
-  let alert = null;
-  if (password_reset_failed) {
-    alert = (
-      <LoginAlert
-        message={"Ah error has occured ! Try again later"}
-        alertClass={"failed"}
-      />
-    );
-  }
-
-  if (password_reset_success) {
-    passwordRef.current.value = null;
-    passwordConfirmRef.current.value = null;
-    alert = (
-      <LoginAlert
-        message={"Password has been changed successfully"}
-        alertClass={"success"}
-      />
-    );
-  }
 
   return (
     <div className="max-w-sm w-full mx-auto bg-[#1e1f22] py-5 px-6 mt-28 rounded-md">

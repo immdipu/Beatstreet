@@ -5,7 +5,6 @@ import InfoIcon from "@mui/icons-material/Info";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { useUserContext } from "../Context/UserContext";
 import { useSelector, useDispatch } from "react-redux";
 import { Logout } from "../redux/slice/userSlice";
 

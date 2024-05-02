@@ -1,21 +1,14 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { SongsList } from "../components";
-
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Logo, LogoText } from "../components";
 import ClipLoader from "react-spinners/ClipLoader";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import RippleButton from "ripple-effect-reactjs";
-import { useUserContext } from "../Context/UserContext";
 
 const ViewAllSongList = () => {
   let { keyword } = useParams();
-
-  const { login_success } = useUserContext();
-  useEffect(() => {
-    SearchSongs(keyword);
-  }, [keyword]);
 
   const HandleDownloadAll = () => {
     const btns = document.querySelectorAll(".btnss");

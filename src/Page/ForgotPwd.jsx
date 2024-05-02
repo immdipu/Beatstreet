@@ -1,41 +1,12 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import RippleButton from "ripple-effect-reactjs";
-import { useUserContext } from "../Context/UserContext";
 import ClipLoader from "react-spinners/ClipLoader";
-import { LoginAlert } from "../components";
 import { motion } from "framer-motion";
 
 const ForgotPwd = () => {
-  const {
-    forgotPassword,
-    forgot_password_loading,
-    forgot_password_success,
-    forgot_password_failed,
-  } = useUserContext();
   const [validateEmail, setValidateEmail] = useState(false);
   const emailRef = useRef(null);
-
-  let alert = null;
-  if (forgot_password_failed) {
-    alert = (
-      <LoginAlert
-        message={"Failed! The email you provided is not registered"}
-        alertClass={"failed"}
-      />
-    );
-  }
-
-  if (forgot_password_success) {
-    alert = (
-      <LoginAlert
-        message={
-          "SUCCESS! A email containing password reset link has been sent to your email"
-        }
-        alertClass={"success"}
-      />
-    );
-  }
 
   const handleSubmit = () => {
     if (emailRef.current.value.trim() !== "") {
@@ -51,7 +22,6 @@ const ForgotPwd = () => {
       let data = {
         email: emailRef.current.value,
       };
-      forgotPassword(data);
       emailRef.current.value = null;
     }
   };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import userApis from "../Api/userApi.js";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";

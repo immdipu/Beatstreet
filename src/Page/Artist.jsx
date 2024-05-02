@@ -1,7 +1,6 @@
 import React from "react";
 import { LoadingSpinner } from "../components";
 import { useParams } from "react-router-dom";
-
 import { ImageFetch, FollowersCount } from "../Utils/Helper";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import { useQuery } from "@tanstack/react-query";

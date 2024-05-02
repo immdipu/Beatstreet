@@ -27,8 +27,6 @@ const SingleAlbum = () => {
     return <div>error</div>;
   }
 
-  console.log("data", data);
-
   const HandleDownloadAll = () => {
     const btns = document.querySelectorAll(".btnss");
     btns.forEach((btn) => {

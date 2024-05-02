@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { SongsList, LoadingSpinner } from "../components";
 import { Logo, LogoText } from "../components";
 import { useSelector } from "react-redux";

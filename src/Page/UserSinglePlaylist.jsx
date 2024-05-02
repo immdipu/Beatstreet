@@ -6,7 +6,6 @@ import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import RippleButton from "ripple-effect-reactjs";
 import { useQuery } from "@tanstack/react-query";
 import userApis from "../Api/userApi";
-import { useSelector } from "react-redux";
 
 const UserSinglePlaylist = () => {
   let { id } = useParams();

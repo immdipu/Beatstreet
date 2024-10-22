@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 const ForgotPwd = () => {
   const [validateEmail, setValidateEmail] = useState(false);
   const emailRef = useRef(null);
+  const forgot_password_loading = false;
 
   const handleSubmit = () => {
     if (emailRef.current.value.trim() !== "") {

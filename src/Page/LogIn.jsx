@@ -147,7 +147,7 @@ const LogIn = () => {
         <div
           className={
             "flex justify-center " +
-            (login_loading ? "pointer-events-none" : "pointer-events-auto")
+            (Login.isPending ? "pointer-events-none" : "pointer-events-auto")
           }
         >
           <RippleButton speed={400} color={"#bbb7b7bf"} radius={7} width={40}>
@@ -156,7 +156,7 @@ const LogIn = () => {
               className="bg-white rounded-md border-2 h-12 text-lg w-full"
               onClick={handleSubmit}
             >
-              {login_loading ? (
+              {Login.isPending ? (
                 <div className="mt-2">
                   <ClipLoader size={30} color="#2764eb" speedMultiplier={3} />
                 </div>

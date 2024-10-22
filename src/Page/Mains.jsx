@@ -84,7 +84,6 @@ const Mains = () => {
         <h1 className="font-medium text-xl w-fit text-darkTitle my-4">
           Top Playlist
         </h1>
-
         {data?.data?.topPlaylist && (
           <TopPlaylists data={data?.data?.topPlaylist} />
         )}
